@@ -10,18 +10,12 @@ import UIKit
 
 class HomeViewController: RootViewController {
 
-    //MARK: 懒加载实时数据View
-    lazy var showDataView: ShowDataView = {
-        let view = ShowDataView()
-        view.backgroundColor = UIColor.WhiteColor
+    //MARK: 首页View
+    lazy var homeView: HomeView = {
+        let view = HomeView()
         return view
     }()
-    //MARK: 懒加载服务模块View
-    lazy var serviceModuleView: ServiceModuleView = {
-        let view = ServiceModuleView()
-        view.backgroundColor = UIColor.WhiteColor
-        return view
-    }()
+   
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,11 +33,8 @@ class HomeViewController: RootViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 实时数据
-        view.addSubview(showDataView)
-        // 服务模块
-        view.addSubview(serviceModuleView)
-
+        // 首页View
+        view.addSubview(homeView)
         
 
     }
@@ -53,18 +44,14 @@ class HomeViewController: RootViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // 实时数据
-        showDataView.mas_makeConstraints { (make:MASConstraintMaker!) in
+        // 首页View
+        homeView.mas_makeConstraints { (make:MASConstraintMaker!) in
             make.top.mas_equalTo()(self.view.mas_top)
             make.left.mas_equalTo()(self.view.mas_left)
             make.right.mas_equalTo()(self.view.mas_right)
+            make.bottom.mas_equalTo()(self.view.mas_bottom)
         }
-        // 服务模块
-        serviceModuleView.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.top.mas_equalTo()(self.showDataView.mas_bottom)
-            make.left.mas_equalTo()(self.view.mas_left)
-            make.right.mas_equalTo()(self.view.mas_right)
-        }
+        
     }
 
     override func didReceiveMemoryWarning() {

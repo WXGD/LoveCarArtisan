@@ -21,13 +21,11 @@ class ModuleView: UIView {
     /** 服务图片 */
     lazy var serviceImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "home_page_marketing")
         return imageView
     }()
     /** 服务名称 */
     lazy var serviceLabel: UILabel = {
         let label = UILabel()
-        label.text = "UIColor.black"
         label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 14)
         return label
