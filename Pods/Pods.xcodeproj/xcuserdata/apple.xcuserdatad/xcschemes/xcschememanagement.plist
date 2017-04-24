@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,7 +22,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>A7276BC516C1CF486BCDE31F5911F120</key>
+		<key>1DE93A359FA21F91DFBE81309E851A4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51452A133AFAE03E4684B1B97978C8CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

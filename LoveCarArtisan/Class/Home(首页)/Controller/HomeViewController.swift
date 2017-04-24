@@ -33,13 +33,23 @@ class HomeViewController: RootViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 首页View
-        view.addSubview(homeView)
         
+        // 布局
+        homeLayoutView()
 
     }
     
     
+    private func homeLayoutView() {
+        // 首页View
+        // 用户按钮
+        homeView.serviceModuleView.customerBtn.serviceBtn.addTarget(self, action:#selector(tapped), for: UIControlEvents.touchUpInside)
+        view.addSubview(homeView)
+    }
+    
+    func tapped() {
+        navigationController?.pushViewController(UserViewController(), animated: true)
+    }
     
     
     override func viewDidLayoutSubviews() {

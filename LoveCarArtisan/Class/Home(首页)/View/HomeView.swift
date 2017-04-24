@@ -43,6 +43,17 @@ class HomeView: UIView {
         view.backgroundColor = UIColor.WhiteColor
         return view
     }()
+    // 懒加载轮播图模块View
+    lazy var bannerView: BannerView = {
+        let view = BannerView()
+        view.backgroundColor = UIColor.WhiteColor
+        return view
+    }()
+    // 懒加载底部提示View
+    lazy var bottomSignView: ScrollBottomView = {
+        let view = ScrollBottomView()
+        return view
+    }()
     func homeLayoutView() {
         // 背景scrollView
         addSubview(backScrollView)
@@ -52,6 +63,10 @@ class HomeView: UIView {
         backView.addSubview(showDataView)
         // 服务模块
         backView.addSubview(serviceModuleView)
+        // 轮播图模块
+        backView.addSubview(bannerView)
+        // 底部提示
+        backView.addSubview(bottomSignView)
     }
     
     override func layoutSubviews() {
@@ -70,7 +85,7 @@ class HomeView: UIView {
             make.right.mas_equalTo()(self.backScrollView.mas_right)
             make.bottom.mas_equalTo()(self.backScrollView.mas_bottom)
             make.width.mas_equalTo()(self.backScrollView.mas_width)
-            make.height.mas_equalTo()(1000)
+            make.bottom.mas_equalTo()(self.bottomSignView.mas_bottom)
         }
         // 实时数据
         showDataView.mas_makeConstraints { (make:MASConstraintMaker!) in
@@ -81,6 +96,18 @@ class HomeView: UIView {
         // 服务模块
         serviceModuleView.mas_makeConstraints { (make:MASConstraintMaker!) in
             make.top.mas_equalTo()(self.showDataView.mas_bottom)
+            make.left.mas_equalTo()(self.backView.mas_left)
+            make.right.mas_equalTo()(self.backView.mas_right)
+        }
+        // 轮播图模块
+        bannerView.mas_makeConstraints { (make:MASConstraintMaker!) in
+            make.top.mas_equalTo()(self.serviceModuleView.mas_bottom)?.setOffset(10)
+            make.left.mas_equalTo()(self.backView.mas_left)
+            make.right.mas_equalTo()(self.backView.mas_right)
+        }
+        // 底部提示
+        bottomSignView.mas_makeConstraints { (make:MASConstraintMaker!) in
+            make.top.mas_equalTo()(self.bannerView.mas_bottom)
             make.left.mas_equalTo()(self.backView.mas_left)
             make.right.mas_equalTo()(self.backView.mas_right)
         }

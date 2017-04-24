@@ -19,7 +19,7 @@ class TabBarViewController: UITabBarController {
         // 设置子控制器
         addChildVC(HomeViewController(), title: "首页", image: "tab_account_normal", selectedImage: "tab_account_pressed")
         addChildVC(NewsViewController(), title: "消息", image: "tab_news_normal", selectedImage: "tab_news_pressed")
-        addChildVC(UserViewController(), title: "我的", image: "tab_account_normal", selectedImage: "tab_account_pressed")
+        addChildVC(AccountViewController(), title: "我的", image: "tab_account_normal", selectedImage: "tab_account_pressed")
     }
 
     func addChildVC(_ viewController: UIViewController, title:NSString, image:NSString, selectedImage:NSString) {
