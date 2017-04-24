@@ -1,0 +1,6 @@
+framework module Pods_LoveCarArtisan {
+  umbrella header "Pods-LoveCarArtisan-umbrella.h"
+
+  export *
+  module * { export * }
+}

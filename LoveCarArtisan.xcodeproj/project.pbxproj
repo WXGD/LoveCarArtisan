@@ -1,0 +1,791 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C21EA9ED900054877F /* ServiceModuleView.swift */; };
+		18C714C51EA9FE260054877F /* ModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C41EA9FE260054877F /* ModuleView.swift */; };
+		18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CC1FDA1EA8AF7D00FC2B54 /* LaunchScreen.storyboard */; };
+		18CC1FE71EA8AF7D00FC2B54 /* LoveCarArtisanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC1FE61EA8AF7D00FC2B54 /* LoveCarArtisanTests.swift */; };
+		18CC1FF21EA8AF7D00FC2B54 /* LoveCarArtisanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC1FF11EA8AF7D00FC2B54 /* LoveCarArtisanUITests.swift */; };
+		18CC201B1EA8B05A00FC2B54 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20001EA8B05A00FC2B54 /* UIColor+Extension.swift */; };
+		18CC201C1EA8B05A00FC2B54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20041EA8B05A00FC2B54 /* HomeViewController.swift */; };
+		18CC201D1EA8B05A00FC2B54 /* ShowDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20071EA8B05A00FC2B54 /* ShowDataView.swift */; };
+		18CC201E1EA8B05A00FC2B54 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC200A1EA8B05A00FC2B54 /* NewsViewController.swift */; };
+		18CC201F1EA8B05A00FC2B54 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC200F1EA8B05A00FC2B54 /* UserViewController.swift */; };
+		18CC20201EA8B05A00FC2B54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20131EA8B05A00FC2B54 /* AppDelegate.swift */; };
+		18CC20211EA8B05A00FC2B54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CC20151EA8B05A00FC2B54 /* Assets.xcassets */; };
+		18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20181EA8B05A00FC2B54 /* NavigationViewController.swift */; };
+		18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20191EA8B05A00FC2B54 /* RootViewController.swift */; };
+		18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */; };
+		F17E28FFA8C1BFE61EEF27FF /* Pods_LoveCarArtisan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16907CC78DE63FD532C656B7 /* Pods_LoveCarArtisan.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18CC1FE31EA8AF7D00FC2B54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CC1FC61EA8AF7D00FC2B54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18CC1FCD1EA8AF7D00FC2B54;
+			remoteInfo = LoveCarArtisan;
+		};
+		18CC1FEE1EA8AF7D00FC2B54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18CC1FC61EA8AF7D00FC2B54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18CC1FCD1EA8AF7D00FC2B54;
+			remoteInfo = LoveCarArtisan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		16907CC78DE63FD532C656B7 /* Pods_LoveCarArtisan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveCarArtisan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18C714C21EA9ED900054877F /* ServiceModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModuleView.swift; sourceTree = "<group>"; };
+		18C714C41EA9FE260054877F /* ModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleView.swift; sourceTree = "<group>"; };
+		18CC1FCE1EA8AF7D00FC2B54 /* LoveCarArtisan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCarArtisan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18CC1FDB1EA8AF7D00FC2B54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18CC1FDD1EA8AF7D00FC2B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18CC1FE21EA8AF7D00FC2B54 /* LoveCarArtisanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveCarArtisanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18CC1FE61EA8AF7D00FC2B54 /* LoveCarArtisanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveCarArtisanTests.swift; sourceTree = "<group>"; };
+		18CC1FE81EA8AF7D00FC2B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18CC1FED1EA8AF7D00FC2B54 /* LoveCarArtisanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveCarArtisanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18CC1FF11EA8AF7D00FC2B54 /* LoveCarArtisanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveCarArtisanUITests.swift; sourceTree = "<group>"; };
+		18CC1FF31EA8AF7D00FC2B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18CC20001EA8B05A00FC2B54 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		18CC20041EA8B05A00FC2B54 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		18CC20071EA8B05A00FC2B54 /* ShowDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDataView.swift; sourceTree = "<group>"; };
+		18CC200A1EA8B05A00FC2B54 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		18CC200F1EA8B05A00FC2B54 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		18CC20131EA8B05A00FC2B54 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18CC20151EA8B05A00FC2B54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18CC20181EA8B05A00FC2B54 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		18CC20191EA8B05A00FC2B54 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		18CC20271EA8B26900FC2B54 /* LoveCarArtisan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoveCarArtisan-Bridging-Header.h"; sourceTree = "<group>"; };
+		40D21842B8116436B8F08963 /* Pods-LoveCarArtisan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCarArtisan.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan.release.xcconfig"; sourceTree = "<group>"; };
+		A43CDA17E21F0F6BEF42DCB1 /* Pods-LoveCarArtisan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCarArtisan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18CC1FCB1EA8AF7D00FC2B54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F17E28FFA8C1BFE61EEF27FF /* Pods_LoveCarArtisan.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18CC1FDF1EA8AF7D00FC2B54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18CC1FEA1EA8AF7D00FC2B54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18CC1FC51EA8AF7D00FC2B54 = {
+			isa = PBXGroup;
+			children = (
+				18CC1FD01EA8AF7D00FC2B54 /* LoveCarArtisan */,
+				18CC1FE51EA8AF7D00FC2B54 /* LoveCarArtisanTests */,
+				18CC1FF01EA8AF7D00FC2B54 /* LoveCarArtisanUITests */,
+				18CC1FCF1EA8AF7D00FC2B54 /* Products */,
+				32FE9601D3FD953AD3CE292D /* Pods */,
+				344C5BD16D8B6C907547DEC9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		18CC1FCF1EA8AF7D00FC2B54 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18CC1FCE1EA8AF7D00FC2B54 /* LoveCarArtisan.app */,
+				18CC1FE21EA8AF7D00FC2B54 /* LoveCarArtisanTests.xctest */,
+				18CC1FED1EA8AF7D00FC2B54 /* LoveCarArtisanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18CC1FD01EA8AF7D00FC2B54 /* LoveCarArtisan */ = {
+			isa = PBXGroup;
+			children = (
+				18CC1FFF1EA8B05A00FC2B54 /* Category */,
+				18CC20011EA8B05A00FC2B54 /* Class */,
+				18CC20121EA8B05A00FC2B54 /* Main */,
+				18CC20141EA8B05A00FC2B54 /* Resources */,
+				18CC20161EA8B05A00FC2B54 /* Tools */,
+				18CC1FDA1EA8AF7D00FC2B54 /* LaunchScreen.storyboard */,
+				18CC1FDD1EA8AF7D00FC2B54 /* Info.plist */,
+			);
+			path = LoveCarArtisan;
+			sourceTree = "<group>";
+		};
+		18CC1FE51EA8AF7D00FC2B54 /* LoveCarArtisanTests */ = {
+			isa = PBXGroup;
+			children = (
+				18CC1FE61EA8AF7D00FC2B54 /* LoveCarArtisanTests.swift */,
+				18CC1FE81EA8AF7D00FC2B54 /* Info.plist */,
+			);
+			path = LoveCarArtisanTests;
+			sourceTree = "<group>";
+		};
+		18CC1FF01EA8AF7D00FC2B54 /* LoveCarArtisanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				18CC1FF11EA8AF7D00FC2B54 /* LoveCarArtisanUITests.swift */,
+				18CC1FF31EA8AF7D00FC2B54 /* Info.plist */,
+			);
+			path = LoveCarArtisanUITests;
+			sourceTree = "<group>";
+		};
+		18CC1FFF1EA8B05A00FC2B54 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20001EA8B05A00FC2B54 /* UIColor+Extension.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		18CC20011EA8B05A00FC2B54 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20021EA8B05A00FC2B54 /* Home(首页) */,
+				18CC20081EA8B05A00FC2B54 /* News(消息) */,
+				18CC200D1EA8B05A00FC2B54 /* User(用户) */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		18CC20021EA8B05A00FC2B54 /* Home(首页) */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20031EA8B05A00FC2B54 /* Controller */,
+				18CC20051EA8B05A00FC2B54 /* Model */,
+				18CC20061EA8B05A00FC2B54 /* View */,
+			);
+			path = "Home(首页)";
+			sourceTree = "<group>";
+		};
+		18CC20031EA8B05A00FC2B54 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20041EA8B05A00FC2B54 /* HomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18CC20051EA8B05A00FC2B54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18CC20061EA8B05A00FC2B54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20071EA8B05A00FC2B54 /* ShowDataView.swift */,
+				18C714C21EA9ED900054877F /* ServiceModuleView.swift */,
+				18C714C41EA9FE260054877F /* ModuleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18CC20081EA8B05A00FC2B54 /* News(消息) */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20091EA8B05A00FC2B54 /* Controller */,
+				18CC200B1EA8B05A00FC2B54 /* Model */,
+				18CC200C1EA8B05A00FC2B54 /* View */,
+			);
+			path = "News(消息)";
+			sourceTree = "<group>";
+		};
+		18CC20091EA8B05A00FC2B54 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18CC200A1EA8B05A00FC2B54 /* NewsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18CC200B1EA8B05A00FC2B54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18CC200C1EA8B05A00FC2B54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18CC200D1EA8B05A00FC2B54 /* User(用户) */ = {
+			isa = PBXGroup;
+			children = (
+				18CC200E1EA8B05A00FC2B54 /* Controller */,
+				18CC20101EA8B05A00FC2B54 /* Model */,
+				18CC20111EA8B05A00FC2B54 /* View */,
+			);
+			path = "User(用户)";
+			sourceTree = "<group>";
+		};
+		18CC200E1EA8B05A00FC2B54 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18CC200F1EA8B05A00FC2B54 /* UserViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18CC20101EA8B05A00FC2B54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18CC20111EA8B05A00FC2B54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18CC20121EA8B05A00FC2B54 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20131EA8B05A00FC2B54 /* AppDelegate.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		18CC20141EA8B05A00FC2B54 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20151EA8B05A00FC2B54 /* Assets.xcassets */,
+				18CC20271EA8B26900FC2B54 /* LoveCarArtisan-Bridging-Header.h */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		18CC20161EA8B05A00FC2B54 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20171EA8B05A00FC2B54 /* ViewController */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		18CC20171EA8B05A00FC2B54 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18CC20181EA8B05A00FC2B54 /* NavigationViewController.swift */,
+				18CC20191EA8B05A00FC2B54 /* RootViewController.swift */,
+				18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		32FE9601D3FD953AD3CE292D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A43CDA17E21F0F6BEF42DCB1 /* Pods-LoveCarArtisan.debug.xcconfig */,
+				40D21842B8116436B8F08963 /* Pods-LoveCarArtisan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		344C5BD16D8B6C907547DEC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16907CC78DE63FD532C656B7 /* Pods_LoveCarArtisan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18CC1FCD1EA8AF7D00FC2B54 /* LoveCarArtisan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18CC1FF61EA8AF7D00FC2B54 /* Build configuration list for PBXNativeTarget "LoveCarArtisan" */;
+			buildPhases = (
+				2833AA036AA6EB1A9EA60735 /* 📦 Check Pods Manifest.lock */,
+				18CC1FCA1EA8AF7D00FC2B54 /* Sources */,
+				18CC1FCB1EA8AF7D00FC2B54 /* Frameworks */,
+				18CC1FCC1EA8AF7D00FC2B54 /* Resources */,
+				D78B930ED8E96A51F803C967 /* 📦 Embed Pods Frameworks */,
+				B55D25B42F06BE6B8B4BC5C8 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoveCarArtisan;
+			productName = LoveCarArtisan;
+			productReference = 18CC1FCE1EA8AF7D00FC2B54 /* LoveCarArtisan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18CC1FE11EA8AF7D00FC2B54 /* LoveCarArtisanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18CC1FF91EA8AF7D00FC2B54 /* Build configuration list for PBXNativeTarget "LoveCarArtisanTests" */;
+			buildPhases = (
+				18CC1FDE1EA8AF7D00FC2B54 /* Sources */,
+				18CC1FDF1EA8AF7D00FC2B54 /* Frameworks */,
+				18CC1FE01EA8AF7D00FC2B54 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18CC1FE41EA8AF7D00FC2B54 /* PBXTargetDependency */,
+			);
+			name = LoveCarArtisanTests;
+			productName = LoveCarArtisanTests;
+			productReference = 18CC1FE21EA8AF7D00FC2B54 /* LoveCarArtisanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		18CC1FEC1EA8AF7D00FC2B54 /* LoveCarArtisanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18CC1FFC1EA8AF7D00FC2B54 /* Build configuration list for PBXNativeTarget "LoveCarArtisanUITests" */;
+			buildPhases = (
+				18CC1FE91EA8AF7D00FC2B54 /* Sources */,
+				18CC1FEA1EA8AF7D00FC2B54 /* Frameworks */,
+				18CC1FEB1EA8AF7D00FC2B54 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18CC1FEF1EA8AF7D00FC2B54 /* PBXTargetDependency */,
+			);
+			name = LoveCarArtisanUITests;
+			productName = LoveCarArtisanUITests;
+			productReference = 18CC1FED1EA8AF7D00FC2B54 /* LoveCarArtisanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18CC1FC61EA8AF7D00FC2B54 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = apple;
+				TargetAttributes = {
+					18CC1FCD1EA8AF7D00FC2B54 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = PM6CHF268R;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					18CC1FE11EA8AF7D00FC2B54 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 18CC1FCD1EA8AF7D00FC2B54;
+					};
+					18CC1FEC1EA8AF7D00FC2B54 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 18CC1FCD1EA8AF7D00FC2B54;
+					};
+				};
+			};
+			buildConfigurationList = 18CC1FC91EA8AF7D00FC2B54 /* Build configuration list for PBXProject "LoveCarArtisan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18CC1FC51EA8AF7D00FC2B54;
+			productRefGroup = 18CC1FCF1EA8AF7D00FC2B54 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18CC1FCD1EA8AF7D00FC2B54 /* LoveCarArtisan */,
+				18CC1FE11EA8AF7D00FC2B54 /* LoveCarArtisanTests */,
+				18CC1FEC1EA8AF7D00FC2B54 /* LoveCarArtisanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18CC1FCC1EA8AF7D00FC2B54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18CC20211EA8B05A00FC2B54 /* Assets.xcassets in Resources */,
+				18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18CC1FE01EA8AF7D00FC2B54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18CC1FEB1EA8AF7D00FC2B54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2833AA036AA6EB1A9EA60735 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B55D25B42F06BE6B8B4BC5C8 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D78B930ED8E96A51F803C967 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18CC1FCA1EA8AF7D00FC2B54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18CC20201EA8B05A00FC2B54 /* AppDelegate.swift in Sources */,
+				18CC201B1EA8B05A00FC2B54 /* UIColor+Extension.swift in Sources */,
+				18CC201F1EA8B05A00FC2B54 /* UserViewController.swift in Sources */,
+				18CC201C1EA8B05A00FC2B54 /* HomeViewController.swift in Sources */,
+				18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */,
+				18CC201D1EA8B05A00FC2B54 /* ShowDataView.swift in Sources */,
+				18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */,
+				18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */,
+				18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */,
+				18CC201E1EA8B05A00FC2B54 /* NewsViewController.swift in Sources */,
+				18C714C51EA9FE260054877F /* ModuleView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18CC1FDE1EA8AF7D00FC2B54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18CC1FE71EA8AF7D00FC2B54 /* LoveCarArtisanTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18CC1FE91EA8AF7D00FC2B54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18CC1FF21EA8AF7D00FC2B54 /* LoveCarArtisanUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18CC1FE41EA8AF7D00FC2B54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18CC1FCD1EA8AF7D00FC2B54 /* LoveCarArtisan */;
+			targetProxy = 18CC1FE31EA8AF7D00FC2B54 /* PBXContainerItemProxy */;
+		};
+		18CC1FEF1EA8AF7D00FC2B54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18CC1FCD1EA8AF7D00FC2B54 /* LoveCarArtisan */;
+			targetProxy = 18CC1FEE1EA8AF7D00FC2B54 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18CC1FDA1EA8AF7D00FC2B54 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18CC1FDB1EA8AF7D00FC2B54 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18CC1FF41EA8AF7D00FC2B54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		18CC1FF51EA8AF7D00FC2B54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18CC1FF71EA8AF7D00FC2B54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A43CDA17E21F0F6BEF42DCB1 /* Pods-LoveCarArtisan.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = PM6CHF268R;
+				INFOPLIST_FILE = LoveCarArtisan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LoveCarArtisan/Resources/LoveCarArtisan-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
+			};
+			name = Debug;
+		};
+		18CC1FF81EA8AF7D00FC2B54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40D21842B8116436B8F08963 /* Pods-LoveCarArtisan.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = PM6CHF268R;
+				INFOPLIST_FILE = LoveCarArtisan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LoveCarArtisan/Resources/LoveCarArtisan-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)/**";
+			};
+			name = Release;
+		};
+		18CC1FFA1EA8AF7D00FC2B54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LoveCarArtisanTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoveCarArtisan.app/LoveCarArtisan";
+			};
+			name = Debug;
+		};
+		18CC1FFB1EA8AF7D00FC2B54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LoveCarArtisanTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoveCarArtisan.app/LoveCarArtisan";
+			};
+			name = Release;
+		};
+		18CC1FFD1EA8AF7D00FC2B54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = LoveCarArtisanUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = LoveCarArtisan;
+			};
+			name = Debug;
+		};
+		18CC1FFE1EA8AF7D00FC2B54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = LoveCarArtisanUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = LoveCarArtisan;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18CC1FC91EA8AF7D00FC2B54 /* Build configuration list for PBXProject "LoveCarArtisan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18CC1FF41EA8AF7D00FC2B54 /* Debug */,
+				18CC1FF51EA8AF7D00FC2B54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18CC1FF61EA8AF7D00FC2B54 /* Build configuration list for PBXNativeTarget "LoveCarArtisan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18CC1FF71EA8AF7D00FC2B54 /* Debug */,
+				18CC1FF81EA8AF7D00FC2B54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18CC1FF91EA8AF7D00FC2B54 /* Build configuration list for PBXNativeTarget "LoveCarArtisanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18CC1FFA1EA8AF7D00FC2B54 /* Debug */,
+				18CC1FFB1EA8AF7D00FC2B54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18CC1FFC1EA8AF7D00FC2B54 /* Build configuration list for PBXNativeTarget "LoveCarArtisanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18CC1FFD1EA8AF7D00FC2B54 /* Debug */,
+				18CC1FFE1EA8AF7D00FC2B54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18CC1FC61EA8AF7D00FC2B54 /* Project object */;
+}
