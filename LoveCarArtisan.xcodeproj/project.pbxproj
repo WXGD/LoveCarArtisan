@@ -20,6 +20,8 @@
 		1839C8791EADDE1F00E8B1FF /* ScrollBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8781EADDE1F00E8B1FF /* ScrollBottomView.swift */; };
 		1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C87E1EADE58B00E8B1FF /* AccountViewController.swift */; };
 		1839C8811EADECDB00E8B1FF /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8801EADECDB00E8B1FF /* UserTableCell.swift */; };
+		1839C8851EADFBD100E8B1FF /* userList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1839C8841EADFBD100E8B1FF /* userList.json */; };
+		1839C8871EADFBE800E8B1FF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8861EADFBE800E8B1FF /* UserModel.swift */; };
 		18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C21EA9ED900054877F /* ServiceModuleView.swift */; };
 		18C714C51EA9FE260054877F /* ModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C41EA9FE260054877F /* ModuleView.swift */; };
 		18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CC1FDA1EA8AF7D00FC2B54 /* LaunchScreen.storyboard */; };
@@ -70,6 +72,8 @@
 		1839C8781EADDE1F00E8B1FF /* ScrollBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollBottomView.swift; sourceTree = "<group>"; };
 		1839C87E1EADE58B00E8B1FF /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		1839C8801EADECDB00E8B1FF /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableCell.swift; path = "LoveCarArtisan/Class/Account(账户)/Controller/UserTableCell.swift"; sourceTree = SOURCE_ROOT; };
+		1839C8841EADFBD100E8B1FF /* userList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userList.json; sourceTree = "<group>"; };
+		1839C8861EADFBE800E8B1FF /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = "LoveCarArtisan/Class/Account(账户)/Controller/UserModel.swift"; sourceTree = SOURCE_ROOT; };
 		18C714C21EA9ED900054877F /* ServiceModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModuleView.swift; sourceTree = "<group>"; };
 		18C714C41EA9FE260054877F /* ModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleView.swift; sourceTree = "<group>"; };
 		18CC1FCE1EA8AF7D00FC2B54 /* LoveCarArtisan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCarArtisan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +185,22 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1839C8821EADFBD100E8B1FF /* json */ = {
+			isa = PBXGroup;
+			children = (
+				1839C8831EADFBD100E8B1FF /* user */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		1839C8831EADFBD100E8B1FF /* user */ = {
+			isa = PBXGroup;
+			children = (
+				1839C8841EADFBD100E8B1FF /* userList.json */,
+			);
+			path = user;
 			sourceTree = "<group>";
 		};
 		18CC1FC51EA8AF7D00FC2B54 = {
@@ -349,6 +369,7 @@
 		18CC20101EA8B05A00FC2B54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1839C8861EADFBE800E8B1FF /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +393,7 @@
 		18CC20141EA8B05A00FC2B54 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1839C8821EADFBD100E8B1FF /* json */,
 				1839C8681EADDBBD00E8B1FF /* s3.jpg */,
 				18CC20151EA8B05A00FC2B54 /* Assets.xcassets */,
 				18CC20271EA8B26900FC2B54 /* LoveCarArtisan-Bridging-Header.h */,
@@ -528,6 +550,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1839C8851EADFBD100E8B1FF /* userList.json in Resources */,
 				18CC20211EA8B05A00FC2B54 /* Assets.xcassets in Resources */,
 				1839C8691EADDBBD00E8B1FF /* s3.jpg in Resources */,
 				18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */,
@@ -613,6 +636,7 @@
 				18CC201C1EA8B05A00FC2B54 /* HomeViewController.swift in Sources */,
 				1839C8791EADDE1F00E8B1FF /* ScrollBottomView.swift in Sources */,
 				18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */,
+				1839C8871EADFBE800E8B1FF /* UserModel.swift in Sources */,
 				1839C8771EADDD0D00E8B1FF /* LLViewExtensions.swift in Sources */,
 				1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */,
 				1839C8651EADA2D200E8B1FF /* theme.swift in Sources */,

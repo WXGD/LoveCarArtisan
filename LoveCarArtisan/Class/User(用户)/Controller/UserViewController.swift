@@ -10,10 +10,23 @@ import UIKit
 
 class UserViewController: RootViewController {
 
+    var userArray:NSMutableArray?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let path = Bundle.main.path(forResource: "userList", ofType: "json")
+        let data = NSData.init(contentsOfFile: path!)
+        let json:NSDictionary = try! JSONSerialization.jsonObject(with: data! as Data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+        userArray = UserModel.mj_objectArray(withKeyValuesArray: json["data"])
+
+        
         // 布局视图
         userLayoutView()
+
+        
+        
+        
     }
     
     // 懒加载实时数据View
@@ -50,11 +63,17 @@ class UserViewController: RootViewController {
 
 extension UserViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return userArray!.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellID = "userCell"
         let cell = UserTableCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
+        
+        let userModel : UserModel = userArray![indexPath.row] as! UserModel
+        
+        cell.userModel = userModel
+        
+        
         return cell
     }
 }

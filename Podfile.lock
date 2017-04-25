@@ -1,15 +1,18 @@
 PODS:
   - Kingfisher (3.2.2)
   - Masonry (1.0.2)
+  - MJExtension (3.0.13)
 
 DEPENDENCIES:
   - Kingfisher
   - Masonry
+  - MJExtension
 
 SPEC CHECKSUMS:
   Kingfisher: 821466474ad7ffc375a4aecadfa05068cfed67b3
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
 
-PODFILE CHECKSUM: 87938605eaaca6cd2ecf896fa4973f3ed2481739
+PODFILE CHECKSUM: 93c16706e9733ee2d748e9886c72fbae7b47f68e
 
 COCOAPODS: 1.0.0
