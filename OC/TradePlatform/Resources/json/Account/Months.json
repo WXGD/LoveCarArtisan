@@ -1,0 +1,21 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :      {
+        "current" :         {
+            "amount" : "1504",
+            "count" : "6",
+        },
+        "history" :         [
+                           {
+                           "amount" : "81",
+                           "count" : "2",
+                           "date" : "2017-02-03~2017-02-05",
+                           }
+                           ],
+        "last" :         {
+            "amount" : "117",
+            "count" : "5",
+        },
+    },
+}

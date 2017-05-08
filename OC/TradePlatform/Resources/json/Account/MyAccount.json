@@ -1,0 +1,16 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :       {
+        "amount" : "0.00",
+        "withdraw" : "0",
+        "withdraw_record" :         [
+                                     {
+                                     "create_time" : "2017-02-04 13:34:49",
+                                     "withdraw_money" : "0.00",
+                                     "withdraw_status" : "2",
+                                     "withdraw_time" : "0000-00-00 00:00:00",
+                                     }
+                                     ],
+    },
+}

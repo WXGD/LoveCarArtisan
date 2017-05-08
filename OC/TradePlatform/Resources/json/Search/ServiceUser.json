@@ -1,0 +1,42 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :      [
+                   {
+                   "avatar_thumb" : "http://imagetest.cheweifang.cn/",
+                   "mobile" : "13783671503",
+                   "name" : "豫",
+                   "provider_user_id" : "12",
+                   },
+                   {
+                   "avatar_thumb" : "http://imagetest.cheweifang.cn/",
+                   "mobile" : "13253685942",
+                   "name" : "匿名用户",
+                   "provider_user_id" : "13",
+                   },
+                   {
+                   "avatar_thumb" : "http://imagetest.cheweifang.cn/",
+                   "mobile" : "13852645258",
+                   "name" : "匿名用户",
+                   "provider_user_id" : "15",
+                   },
+                   {
+                   "avatar_thumb" : "http://imagetest.cheweifang.cn/",
+                   "mobile" : "13021960147",
+                   "name" : "匿名用户",
+                   "provider_user_id" : "18",
+                   },
+                   {
+                   "avatar_thumb" : "http://imagetest.cheweifang.cn/",
+                   "mobile" : "13592187452",
+                   "name" : "ff",
+                   "provider_user_id" : "21",
+                   },
+                   {
+                   "avatar_thumb" : "http://imagetest.cheweifang.cn/",
+                   "mobile" : "13592187453",
+                   "name" : "匿名用户",
+                   "provider_user_id" : "24",
+                   }
+                   ],
+}

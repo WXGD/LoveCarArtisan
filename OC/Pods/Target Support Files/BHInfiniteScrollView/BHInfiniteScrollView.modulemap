@@ -1,0 +1,6 @@
+framework module BHInfiniteScrollView {
+  umbrella header "BHInfiniteScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}

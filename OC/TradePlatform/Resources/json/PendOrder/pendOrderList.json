@@ -1,0 +1,35 @@
+{
+    "code" : "0",
+    "data" :     [
+                {
+                "car_plate_no" : "豫A22222",
+                "cart_id" : "35",
+                "create_time" : "2017-05-04 18:15:15",
+                "detail" :             [
+                                      {
+                                      "buy_num" : "7",
+                                      "goods" :                     {
+                                      "actual_sale_price" : "60.00",
+                                      "buy_num" : "7",
+                                      "card_num_price" : "1",
+                                      "cart_id" : "35",
+                                      "goods_id" : "69",
+                                      "goods_name" : "洗车",
+                                      "price" : "120.00",
+                                      "sale_price" : "100.00",
+                                      },
+                                      "goods_category" :                     {
+                                      "goods_category_id" : "1",
+                                      "goods_category_name" : "洗车",
+                                      },
+                                      }
+                                      ],
+                "mileage" : "0.00",
+                "mobile" : "13137719220",
+                "next_maintain" : "2017-05-04 00:00:00",
+                "sale_user_id" : "31",
+                "total_price" : "420.00",
+                }
+                ],
+    "msg" : "成功",
+}

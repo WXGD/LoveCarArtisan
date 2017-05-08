@@ -1,0 +1,18 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+        {
+              "name" : "服务",
+              "order_category_id" : "2",
+        },
+        {
+                  "name" : "开卡",
+                  "order_category_id" : "3",
+        },
+        {
+                  "name" : "充值",
+                  "order_category_id" : "4",
+        },
+    ]
+}

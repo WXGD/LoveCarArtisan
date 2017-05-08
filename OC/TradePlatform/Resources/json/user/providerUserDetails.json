@@ -1,0 +1,35 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     {
+        "avatar_thumb" : "http://imagetest.cheweifang.cn/",
+        "car_brand_image" : "http://imagetest.cheweifang.cn/parentbrand/asidunmading.jpg",
+        "car_brand_series" : "阿斯顿马丁Vanquish Volante",
+        "car_plate_no" : "豫D521jp",
+        "card_num" : "1",
+        "gender" : "未知",
+        "mobile" : "13021960147",
+        "name" : "",
+        "provider_user_id" : "7",
+        "car" :         [
+                       {
+                       "car_brand_series" : "中华尊致",
+                       "car_plate_no" : "豫A90905",
+                       "image" : "http://imagetest.cheweifang.cn/parentbrand/zhonghua.jpg",
+                       "provider_user_car_id" : "12",
+                       },
+                       {
+                       "car_brand_series" : "中欧尊致",
+                       "car_plate_no" : "豫F12097",
+                       "image" : "http://imagetest.cheweifang.cn/parentbrand/zhongou.jpg",
+                       "provider_user_car_id" : "11",
+                       },
+                       {
+                       "car_brand_series" : "中兴无限V3",
+                       "car_plate_no" : "豫AQ2Q14",
+                       "image" : "http://imagetest.cheweifang.cn/parentbrand/zhongxing.jpg",
+                       "provider_user_car_id" : "6",
+                       }
+                       ],
+    },
+}

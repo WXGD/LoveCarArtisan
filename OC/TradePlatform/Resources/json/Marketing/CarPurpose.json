@@ -1,0 +1,17 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :      [
+                   {
+                   "purpose_name" : "自用",
+                   "purpose_id" : "1",
+                   },
+                   {
+                   "purpose_name" : "公务商用",
+                   "purpose_id" : "2",
+                   },{
+                   "purpose_name" : "营运",
+                   "purpose_id" : "3",
+                   }
+                   ],
+}

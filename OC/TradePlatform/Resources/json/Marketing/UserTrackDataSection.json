@@ -1,0 +1,24 @@
+{
+    "code" : "0",
+    "data" :     [
+                  {
+                  "max_value" : "1000",
+                  "min_value" : "0",
+                  "unit" : "",
+                  "user_track_id" : "122",
+                  },
+                  {
+                  "max_value" : "10",
+                  "min_value" : "0",
+                  "unit" : "",
+                  "user_track_id" : 14,
+                  },
+                  {
+                  "max_value" : "7",
+                  "min_value" : "0",
+                  "unit" : "",
+                  "user_track_id" : "7",
+                  }
+                  ],
+    "msg" : "成功",
+}

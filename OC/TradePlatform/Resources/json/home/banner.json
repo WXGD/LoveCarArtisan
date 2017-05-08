@@ -1,0 +1,16 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "available_share" : "0",
+                  "image_url" : "http://imagetest.cheweifang.cn/banner/2017-02-22/banner.png",
+                  "need_login" : "1",
+                  "redirect_data" : "",
+                  "redirect_type" : "1",
+                  "share_url" : "",
+                  }
+    ]
+}
+
+

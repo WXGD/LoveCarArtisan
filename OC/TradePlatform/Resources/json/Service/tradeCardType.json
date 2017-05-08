@@ -1,0 +1,18 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "card_category_id" : 1,
+                  "name" : "次卡",
+                  },
+                  {
+                  "card_category_id" : 2,
+                  "name" : "储值卡",
+                  },
+                  {
+                  "card_category_id" : 3,
+                  "name" : "年卡",
+                  }
+    ]
+}

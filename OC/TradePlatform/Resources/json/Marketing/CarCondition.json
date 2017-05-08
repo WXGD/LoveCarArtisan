@@ -1,0 +1,18 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :      [
+                   {
+                   "car_condition_name" : "较差",
+                   "car_condition_id" : "3",
+                   },
+                   {
+                   "car_condition_name" : "一般",
+                   "car_condition_id" : "2",
+                   },
+                   {
+                   "car_condition_name" : "优秀",
+                   "car_condition_id" : "1",
+                   }
+                   ],
+}

@@ -1,0 +1,51 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "car_model_name" : "奥迪A4 2008款 1.8T 个性风格版",
+                  "car_plate_no" : "",
+                  "city_name" : "安阳市",
+                  "create_time" : "2017-04-14 14:30:36",
+                  "deal_price" : "15.76",
+                  "purchase_price" : "17.13",
+                  "usedcar_assess_record_id" : "1",
+                  },
+                  {
+                  "car_model_name" : "阿尔法罗密欧156(进口) 2004款 2.0L GTA",
+                  "car_plate_no" : "",
+                  "city_name" : "安阳市",
+                  "create_time" : "2017-04-14 14:44:56",
+                  "deal_price" : "23.72",
+                  "purchase_price" : "25.78",
+                  "usedcar_assess_record_id" : "2",
+                  },
+                  {
+                  "car_model_name" : "奥迪A4 2008款 2.0T 自动豪华型",
+                  "car_plate_no" : "",
+                  "city_name" : "阿坝藏族羌族自治州",
+                  "create_time" : "2017-04-14 15:56:39",
+                  "deal_price" : "22.94",
+                  "purchase_price" : "24.93",
+                  "usedcar_assess_record_id" : "3",
+                  },
+                  {
+                  "car_model_name" : "阿斯顿马丁DB9(进口) 2016款 6.0L GT邦德限量版",
+                  "car_plate_no" : "",
+                  "city_name" : "阿坝藏族羌族自治州",
+                  "create_time" : "2017-04-14 16:35:40",
+                  "deal_price" : "280.11",
+                  "purchase_price" : "304.47",
+                  "usedcar_assess_record_id" : "4",
+                  },
+                  {
+                  "car_model_name" : "别克GL8 2015款 2.4L 豪华商务尊享版",
+                  "car_plate_no" : "",
+                  "city_name" : "郑州市",
+                  "create_time" : "2017-04-14 17:35:51",
+                  "deal_price" : "23.13",
+                  "purchase_price" : "25.14",
+                  "usedcar_assess_record_id" : "6",
+                  }
+                  ]
+}

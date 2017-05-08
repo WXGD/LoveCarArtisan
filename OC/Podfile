@@ -1,0 +1,23 @@
+platform:ios,’7.0’
+use_frameworks!
+target 'TradePlatform' do
+	pod 'Masonry'
+	pod 'AFNetworking'
+	pod 'SDWebImage'
+	pod 'ReactiveCocoa’
+	pod 'MJExtension'
+	pod 'MJRefresh'
+	pod 'MBProgressHUD'
+	pod 'VTMagic'
+	pod 'LBXScan'
+	pod 'Bugly'
+	pod 'BHInfiniteScrollView'
+	pod 'JPush'
+	pod 'WebViewJavascriptBridge'
+	pod 'PEPhotoCropEditor'
+	pod 'ShareSDK3'
+	pod 'MOBFoundation'
+	pod 'ShareSDK3/ShareSDKPlatforms/QQ'
+	pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+	pod 'FMDB'
+end

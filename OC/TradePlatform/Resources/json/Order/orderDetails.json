@@ -1,0 +1,28 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     {
+        "order_comment" : "",
+        "order_info" :         {
+            "buy_num" : "1",
+            "goods_name" : "陆测试2",
+            "order_no" : "K17020800003",
+            "order_status" : "4",
+            "remark" : "",
+            "sale_price" : "80.00",
+            "save_amount" : "0.00",
+            "total_actual_price" : "80.00",
+            "total_price" : "80.00",
+        },
+        "order_pay_info" :         {
+            "pay_amount_text" : "￥80.00",
+            "pay_method_text" : "现金",
+            "pay_no" : "",
+        },
+        "user_info" :         {
+            "car_plate_no" : "豫AQ2Q15",
+            "mobile" : "15036093116",
+            "name" : "弓",
+        },
+    },
+}

@@ -1,0 +1,46 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "card_num_price" : "1",
+                  "goods_id" : "6",
+                  "name" : "美容",
+                  "price" : "20.00",
+                  "sale_price" : "20.00",
+                  "status":"1",
+                  },
+                  {
+                  "card_num_price" : "1",
+                  "goods_id" : "5",
+                  "name" : "洗车1",
+                  "price" : "18.00",
+                  "sale_price" : "13.00",
+                  "status":"1",
+                  },
+                  {
+                  "card_num_price" : "1",
+                  "goods_id" : "3",
+                  "name" : "测试洗车",
+                  "price" : "20.00",
+                  "sale_price" : "16.00",
+                  "status":"1",
+                  },
+                  {
+                  "card_num_price" : "1",
+                  "goods_id" : "2",
+                  "name" : "小车普洗测试",
+                  "price" : "10.00",
+                  "sale_price" : "8.00",
+                  "status":"1",
+                  },
+                  {
+                  "card_num_price" : "1",
+                  "goods_id" : "1",
+                  "name" : "大车精洗测试",
+                  "price" : "20.00",
+                  "sale_price" : "20.00",
+                  "status":"1",
+                  }
+    ]
+}

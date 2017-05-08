@@ -1,0 +1,39 @@
+//
+//  TradePlatform.pch
+//  TradePlatform
+//
+//  Created by apple on 2016/12/28.
+//  Copyright © 2016年 apple. All rights reserved.
+//
+
+#ifndef TradePlatform_pch
+#define TradePlatform_pch
+
+// 配置文件
+#import "Config.h"
+#import "Api.h"
+// 网络请求
+// 用户信息模型
+// 分类
+#import "UIColor+Extension.h"
+#import "UIView+Extension.h"
+#import "MBProgressHUD+Extension.h"
+#import "UIImageView+ProcessWebCache.h"
+// 封装方法
+#import "CustomObject.h"
+#import "TPNetRequest.h"
+#import "MerchantInfoModel.h"
+#import "AlertAction.h"
+#import "CustomString.h"
+#import "UsedCellView.h"
+#import "KeyBoardView.h"
+// 第三方
+#import "Masonry.h"
+#import "MJRefresh.h"
+#import "MJExtension.h"
+#import "ReactiveCocoa.h"
+
+
+
+
+#endif /* TradePlatform_pch */

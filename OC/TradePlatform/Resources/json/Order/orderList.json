@@ -1,0 +1,32 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "buy_num" : "1",
+                  "create_time" : "2017-02-07 20:17:56",
+                  "goods_name" : "陆测试2",
+                  "order_category_id" : "3",
+                  "order_category_name" : "开卡",
+                  "order_id" : "56",
+                  "order_no" : "K17020700011",
+                  "order_status" : "4",
+                  "pay_method_id" : "6",
+                  "sale_price" : "80.00",
+                  "total_actual_price" : "80.00",
+                  },
+                  {
+                  "buy_num" : "1",
+                  "create_time" : "2017-02-07 20:17:56",
+                  "goods_name" : "美容，大车精洗储值卡",
+                  "order_category_id" : "2",
+                  "order_category_name" : "开卡",
+                  "order_id" : "56",
+                  "order_no" : "K17020700011",
+                  "order_status" : "2",
+                  "pay_method_id" : "3",
+                  "sale_price" : "80.00",
+                  "total_actual_price" : "80.00",
+                  },
+    ]
+}

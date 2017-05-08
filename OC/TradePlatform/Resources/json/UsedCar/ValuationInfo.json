@@ -1,0 +1,16 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     {
+                "buy_price" : "11.00",
+                "car_model_name" : "阿尔法罗密欧156(进口) 2004款 2.0L GTA",
+                "car_status_text" : "较差",
+                "city_name" : "安阳市",
+                "deal_price" : "23.72",
+                "mileage" : "1.00",
+                "purchase_price" : "25.78",
+                "purpose_text" : "公务商用",
+                "used_date" : "2015-04",
+                "car_plate_no":"豫AWW888",
+                  },
+}

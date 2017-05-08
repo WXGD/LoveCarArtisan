@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1696E02F22FA122F2F1DA0F0464EB3F06FDC633A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1696E02F22FA122F2F1DA0F0464EB3F06FDC633A" : 9223372036854775807,
+    "81300FC9D58A2F1C09F2F0300550EBC131397A38" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5955A8F3-E199-4C5B-80A2-B24AE2A24FAA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1696E02F22FA122F2F1DA0F0464EB3F06FDC633A" : "TradePlatform\/",
+    "81300FC9D58A2F1C09F2F0300550EBC131397A38" : "CarRepairFactory\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TradePlatform",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TradePlatform.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "139.196.213.202:TradePlatform.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1696E02F22FA122F2F1DA0F0464EB3F06FDC633A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "139.196.213.202:CarRepairFactory-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81300FC9D58A2F1C09F2F0300550EBC131397A38"
+    }
+  ]
+}

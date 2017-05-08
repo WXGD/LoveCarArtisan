@@ -1,0 +1,62 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "goods" :             [
+                                       {
+                                       "goods_id" : "5",
+                                       "name" : "洗车1",
+                                       },
+                                       {
+                                       "goods_id" : "3",
+                                       "name" : "测试洗车",
+                                       },
+                                       {
+                                       "goods_id" : "2",
+                                       "name" : "小车普洗测试",
+                                       },
+                                       {
+                                       "goods_id" : "1",
+                                       "name" : "大车精洗测试",
+                                       }
+                                       ],
+                  "goods_category_id" : "1",
+                  "name" : "洗车",
+                  },
+                  {
+                  "goods" :             [
+                                       {
+                                       "goods_id" : "6",
+                                       "name" : "美容",
+                                       }
+                                       ],
+                  "goods_category_id" : "2",
+                  "name" : "美容",
+                  },
+                  {
+                  "goods" :             [
+                  ],
+                  "goods_category_id" : "3",
+                  "name" : "贴膜",
+                  },
+                  {
+                  "goods" :             [
+                  ],
+                  "goods_category_id" : "4",
+                  "name" : "配件",
+                  },
+                  {
+                  "goods" :             [
+                  ],
+                  "goods_category_id" : "5",
+                  "name" : "饰品",
+                  },
+                  {
+                  "goods" :             [
+                  ],
+                  "goods_category_id" : "6",
+                  "name" : "保养",
+                  }
+    ]
+}

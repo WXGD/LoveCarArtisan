@@ -1,0 +1,51 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "card_category_id" : "2",
+                  "card_name" : "1元卡",
+                  "card_no" : "00400001",
+                  "end_time" : "",
+                  "money" : "22",
+                  "num" : "0",
+                  "provider_user_card_id" : "6",
+                  },
+                  {
+                  "card_category_id" : "3",
+                  "card_name" : "年卡",
+                  "card_no" : "00300001",
+                  "end_time" : "2028-03-03",
+                  "money" : "0.00",
+                  "num" : "0",
+                  "provider_user_card_id" : "9",
+                  },
+                  {
+                  "card_category_id" : "2",
+                  "card_name" : "充值卡500",
+                  "card_no" : "00200001",
+                  "end_time" : "",
+                  "money" : "611",
+                  "num" : "0",
+                  "provider_user_card_id" : "10",
+                  },
+                  {
+                  "card_category_id" : "1",
+                  "card_name" : "100次卡",
+                  "card_no" : "00100001",
+                  "end_time" : "",
+                  "money" : "0.00",
+                  "num" : "110",
+                  "provider_user_card_id" : "11",
+                  },
+                  {
+                  "card_category_id" : "3",
+                  "card_name" : "high",
+                  "card_no" : "00500001",
+                  "end_time" : "2018-03-02",
+                  "money" : "0.00",
+                  "num" : "0",
+                  "provider_user_card_id" : "14",
+                  }
+    ]
+}

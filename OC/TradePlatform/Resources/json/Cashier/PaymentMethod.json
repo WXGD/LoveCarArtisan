@@ -1,0 +1,26 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "name" : "会员卡支付",
+                  "image_url" : "cashier_card_pay",
+                  "pay_method_id" : "3",
+                  },
+                  {
+                  "name" : "现金／银联支付",
+                  "image_url" : "cashier_cash_pay",
+                  "pay_method_id" : "6",
+                  },
+                  {
+                  "name" : "微信支付",
+                  "image_url" : "cashier_weixin_pay",
+                  "pay_method_id" : "2",
+                  },
+                  {
+                  "name" : "支付宝支付",
+                  "image_url" : "cashier_ali_pay",
+                  "pay_method_id" : "1",
+                  },
+    ]
+}

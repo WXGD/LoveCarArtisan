@@ -1,0 +1,18 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     {
+        "address" : "篮宝湾10号楼2405",
+        "alipay_collection_qrcode" : "http://imagetest.cheweifang.cn/",
+        "login_token" : "dc87ac6d1f69fca5a4e70ee38e15ab15",
+        "create_time" : "2017-02-03 11:29:47",
+        "name" : "测试店1",
+        "user_name" : "弓",
+        "provider_id" : "1",
+        "service_tel" : "18712345678",
+        "staff_user_id" : "3",
+        "thumb_image_url" : "http://imagetest.cheweifang.cn/",
+        "wxmp_qrcode" : "http://imagetest.cheweifang.cn/provider/2017-02-08/589a8e537ac60.jpeg",
+        "wxpay_collection_qrcode" : "http://imagetest.cheweifang.cn/",
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "car_brand_image" : "http://imagetest.cheweifang.cn//parentbrand/aodi.jpg",
+                  "car_brand_name" : "奥迪",
+                  "car_brand_series_name" : "",
+                  "car_plate_no" : "豫A15942",
+                  "provider_user_car_id" : "8",
+                  "provider_user_id" : "13",
+                  },
+                  {
+                  "car_brand_image" : "http://imagetest.cheweifang.cn//parentbrand/anchi.jpg",
+                  "car_brand_name" : "安驰",
+                  "car_brand_series_name" : "",
+                  "car_plate_no" : "豫A12346",
+                  "provider_user_car_id" : "9",
+                  "provider_user_id" : "12",
+                  },
+                  {
+                  "car_brand_image" : "",
+                  "car_brand_name" : "",
+                  "car_brand_series_name" : "",
+                  "car_plate_no" : "鲁A12345",
+                  "provider_user_car_id" : "10",
+                  "provider_user_id" : "15",
+                  },
+                  {
+                  "car_brand_image" : "",
+                  "car_brand_name" : "",
+                  "car_brand_series_name" : "",
+                  "car_plate_no" : "豫A12345",
+                  "provider_user_car_id" : "21",
+                  "provider_user_id" : "18",
+                  },
+                  {
+                  "car_brand_image" : "",
+                  "car_brand_name" : "",
+                  "car_brand_series_name" : "",
+                  "car_plate_no" : "豫A12348",
+                  "provider_user_car_id" : "22",
+                  "provider_user_id" : "18",
+                  }
+    ]
+}

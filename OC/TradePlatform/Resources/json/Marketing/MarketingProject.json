@@ -1,0 +1,20 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :      [
+                   {
+                   "marketing_project_logo" : "marketing_safest_logo",
+                   "marketing_project_name" : "保险查询",
+                   "marketing_project_name_title_color" : "#2c80ff",
+                   "marketing_project_vice_title" : "快速查询用户保险到期时间",
+                   "marketing_project_id" : "1",
+                   },
+                   {
+                   "marketing_project_logo" : "marketing_used_car_logo",
+                   "marketing_project_name" : "二手车估值",
+                   "marketing_project_name_title_color" : "#45c018",
+                   "marketing_project_vice_title" : "快速精准评估二手车价格",
+                   "marketing_project_id" : "2",
+                   }
+                   ],
+}

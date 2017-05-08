@@ -1,0 +1,67 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "card_category_id" : "1",
+                  "card_no" : "00300002",
+                  "mobile" : "13253685958",
+                  "money" : "0.00",
+                  "name" : "洗车卡20次",
+                  "num" : "19",
+                  "provider_user_card_id" : "14",
+                  "provider_user_id" : "10",
+                  "end_time" : "",
+                  },
+                  {
+                  "card_category_id" : "2",
+                  "card_no" : "00200001",
+                  "mobile" : "13253685958",
+                  "money" : "10.00",
+                  "name" : "洗车储值卡",
+                  "num" : "0",
+                  "provider_user_card_id" : "15",
+                  "provider_user_id" : "10",
+                  "end_time" : "",
+                  },
+                  {
+                  "card_category_id" : "2",
+                  "card_no" : "00600001",
+                  "mobile" : "13253685958",
+                  "money" : "87",
+                  "name" : "陆测试2",
+                  "num" : "0",
+                  "provider_user_card_id" : "17",
+                  "provider_user_id" : "10",
+                  "end_time" : "",
+                  },
+                  {
+                  "card_category_id" : "2",
+                  "card_no" : "00400001",
+                  "mobile" : "13021960147",
+                  "money" : "20.00",
+                  "name" : "美容，大车精洗储值卡",
+                  "num" : "0",
+                  "provider_user_card_id" : "16",
+                  "provider_user_id" : "7",
+                  "end_time" : "",
+                  },
+                  {
+                  "card_category_id" : "1",
+                  "card_no" : "00300001",
+                  "mobile" : "18521516231",
+                  "money" : "0.00",
+                  "name" : "洗车卡20次",
+                  "num" : "20",
+                  "provider_user_card_id" : "12",
+                  "provider_user_id" :"6",
+                  "end_time" : "",
+                  }
+    ],
+    "options" :     {
+        "amount" : "517",
+        "count" : "39",
+    },
+}
+
+
