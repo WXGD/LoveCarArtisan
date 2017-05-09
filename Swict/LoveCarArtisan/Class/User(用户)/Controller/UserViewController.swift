@@ -42,7 +42,6 @@ class UserViewController: RootViewController {
     private func userLayoutView() {
         view.addSubview(userTable)
     }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         userTable.mas_makeConstraints { (make:MASConstraintMaker!) in
@@ -52,8 +51,6 @@ class UserViewController: RootViewController {
             make.bottom.mas_equalTo()(self.view.mas_bottom)
         }
     }
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

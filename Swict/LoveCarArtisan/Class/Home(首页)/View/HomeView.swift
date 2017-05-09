@@ -6,6 +6,31 @@
 //  Copyright © 2017年 apple. All rights reserved.
 //
 
+
+public enum HomeBtnType : Int {
+    /** 扫一扫 */
+    case Scan
+    /** 收款 */
+    case Receipt
+    /** 服务管理 */
+    case ServiceManage
+    /** 会员卡 */
+    case UserCard
+    /** 客户 */
+    case Customer
+    /** 订单 */
+    case Order
+    /**  营销 */
+    case Marketing
+    /** 报表 */
+    case Report
+    /** 商城 */
+    case CommercialCity
+    /** 挂单入口按钮 */
+    case PendOrderBtnActio
+}
+
+
 import UIKit
 
 class HomeView: UIView {
@@ -41,6 +66,10 @@ class HomeView: UIView {
     lazy var serviceModuleView: ServiceModuleView = {
         let view = ServiceModuleView()
         view.backgroundColor = UIColor.WhiteColor
+        /** 客户 */
+        view.customerBtn.serviceBtn.tag = HomeBtnType.Customer.rawValue
+        /** 服务管理 */
+        view.serviceBtn.serviceBtn.tag = HomeBtnType.ServiceManage.rawValue
         return view
     }()
     // 懒加载轮播图模块View

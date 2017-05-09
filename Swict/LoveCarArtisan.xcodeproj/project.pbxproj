@@ -10,7 +10,6 @@
 		1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C85D1EAD9C9400E8B1FF /* HomeView.swift */; };
 		1839C8651EADA2D200E8B1FF /* theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8641EADA2D200E8B1FF /* theme.swift */; };
 		1839C8671EADC9B200E8B1FF /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8661EADC9B200E8B1FF /* BannerView.swift */; };
-		1839C8691EADDBBD00E8B1FF /* s3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1839C8681EADDBBD00E8B1FF /* s3.jpg */; };
 		1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */; };
 		1839C8731EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86D1EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift */; };
 		1839C8741EADDD0D00E8B1FF /* LLFilledPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86E1EADDD0D00E8B1FF /* LLFilledPageControl.swift */; };
@@ -19,9 +18,7 @@
 		1839C8771EADDD0D00E8B1FF /* LLViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8711EADDD0D00E8B1FF /* LLViewExtensions.swift */; };
 		1839C8791EADDE1F00E8B1FF /* ScrollBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8781EADDE1F00E8B1FF /* ScrollBottomView.swift */; };
 		1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C87E1EADE58B00E8B1FF /* AccountViewController.swift */; };
-		1839C8811EADECDB00E8B1FF /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8801EADECDB00E8B1FF /* UserTableCell.swift */; };
 		1839C8851EADFBD100E8B1FF /* userList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1839C8841EADFBD100E8B1FF /* userList.json */; };
-		1839C8871EADFBE800E8B1FF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8861EADFBE800E8B1FF /* UserModel.swift */; };
 		18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C21EA9ED900054877F /* ServiceModuleView.swift */; };
 		18C714C51EA9FE260054877F /* ModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C41EA9FE260054877F /* ModuleView.swift */; };
 		18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CC1FDA1EA8AF7D00FC2B54 /* LaunchScreen.storyboard */; };
@@ -37,6 +34,10 @@
 		18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20181EA8B05A00FC2B54 /* NavigationViewController.swift */; };
 		18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20191EA8B05A00FC2B54 /* RootViewController.swift */; };
 		18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */; };
+		18DF12C71EC04AD70070302D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12C41EC04AD70070302D /* UserModel.swift */; };
+		18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12C61EC04AD70070302D /* UserTableCell.swift */; };
+		18DF12CC1EC04E590070302D /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12CB1EC04E590070302D /* ServiceViewController.swift */; };
+		18DF12D61EC04F2D0070302D /* GoodsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12D51EC04F2D0070302D /* GoodsShowViewController.swift */; };
 		F17E28FFA8C1BFE61EEF27FF /* Pods_LoveCarArtisan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16907CC78DE63FD532C656B7 /* Pods_LoveCarArtisan.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +63,6 @@
 		1839C85D1EAD9C9400E8B1FF /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1839C8641EADA2D200E8B1FF /* theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = theme.swift; sourceTree = "<group>"; };
 		1839C8661EADC9B200E8B1FF /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
-		1839C8681EADDBBD00E8B1FF /* s3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s3.jpg; sourceTree = "<group>"; };
 		1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
 		1839C86D1EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollViewCell.swift; sourceTree = "<group>"; };
 		1839C86E1EADDD0D00E8B1FF /* LLFilledPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLFilledPageControl.swift; sourceTree = "<group>"; };
@@ -71,9 +71,7 @@
 		1839C8711EADDD0D00E8B1FF /* LLViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLViewExtensions.swift; sourceTree = "<group>"; };
 		1839C8781EADDE1F00E8B1FF /* ScrollBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollBottomView.swift; sourceTree = "<group>"; };
 		1839C87E1EADE58B00E8B1FF /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		1839C8801EADECDB00E8B1FF /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableCell.swift; path = "LoveCarArtisan/Class/Account(账户)/Controller/UserTableCell.swift"; sourceTree = SOURCE_ROOT; };
 		1839C8841EADFBD100E8B1FF /* userList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userList.json; sourceTree = "<group>"; };
-		1839C8861EADFBE800E8B1FF /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = "LoveCarArtisan/Class/Account(账户)/Controller/UserModel.swift"; sourceTree = SOURCE_ROOT; };
 		18C714C21EA9ED900054877F /* ServiceModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModuleView.swift; sourceTree = "<group>"; };
 		18C714C41EA9FE260054877F /* ModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleView.swift; sourceTree = "<group>"; };
 		18CC1FCE1EA8AF7D00FC2B54 /* LoveCarArtisan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCarArtisan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +94,10 @@
 		18CC20191EA8B05A00FC2B54 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		18CC20271EA8B26900FC2B54 /* LoveCarArtisan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoveCarArtisan-Bridging-Header.h"; sourceTree = "<group>"; };
+		18DF12C41EC04AD70070302D /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		18DF12C61EC04AD70070302D /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
+		18DF12CB1EC04E590070302D /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
+		18DF12D51EC04F2D0070302D /* GoodsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsShowViewController.swift; sourceTree = "<group>"; };
 		40D21842B8116436B8F08963 /* Pods-LoveCarArtisan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCarArtisan.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan.release.xcconfig"; sourceTree = "<group>"; };
 		A43CDA17E21F0F6BEF42DCB1 /* Pods-LoveCarArtisan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCarArtisan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -270,6 +272,7 @@
 		18CC20011EA8B05A00FC2B54 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				18DF12BF1EC049DF0070302D /* Service(服务) */,
 				1839C87A1EADE55C00E8B1FF /* Account(账户) */,
 				18CC20021EA8B05A00FC2B54 /* Home(首页) */,
 				18CC20081EA8B05A00FC2B54 /* News(消息) */,
@@ -352,8 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				18CC200E1EA8B05A00FC2B54 /* Controller */,
-				18CC20101EA8B05A00FC2B54 /* Model */,
-				18CC20111EA8B05A00FC2B54 /* View */,
+				18DF12C31EC04AD70070302D /* Model */,
+				18DF12C51EC04AD70070302D /* View */,
 			);
 			path = "User(用户)";
 			sourceTree = "<group>";
@@ -364,22 +367,6 @@
 				18CC200F1EA8B05A00FC2B54 /* UserViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		18CC20101EA8B05A00FC2B54 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1839C8861EADFBE800E8B1FF /* UserModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18CC20111EA8B05A00FC2B54 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1839C8801EADECDB00E8B1FF /* UserTableCell.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		18CC20121EA8B05A00FC2B54 /* Main */ = {
@@ -394,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				1839C8821EADFBD100E8B1FF /* json */,
-				1839C8681EADDBBD00E8B1FF /* s3.jpg */,
 				18CC20151EA8B05A00FC2B54 /* Assets.xcassets */,
 				18CC20271EA8B26900FC2B54 /* LoveCarArtisan-Bridging-Header.h */,
 			);
@@ -417,6 +403,71 @@
 				18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18DF12BF1EC049DF0070302D /* Service(服务) */ = {
+			isa = PBXGroup;
+			children = (
+				18DF12D11EC04F100070302D /* GoodsShow(商品展示) */,
+				18DF12C01EC049DF0070302D /* Controller */,
+			);
+			path = "Service(服务)";
+			sourceTree = "<group>";
+		};
+		18DF12C01EC049DF0070302D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18DF12CB1EC04E590070302D /* ServiceViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18DF12C31EC04AD70070302D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18DF12C41EC04AD70070302D /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18DF12C51EC04AD70070302D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18DF12C61EC04AD70070302D /* UserTableCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18DF12D11EC04F100070302D /* GoodsShow(商品展示) */ = {
+			isa = PBXGroup;
+			children = (
+				18DF12D21EC04F100070302D /* Controller */,
+				18DF12D31EC04F100070302D /* Model */,
+				18DF12D41EC04F100070302D /* View */,
+			);
+			path = "GoodsShow(商品展示)";
+			sourceTree = "<group>";
+		};
+		18DF12D21EC04F100070302D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18DF12D51EC04F2D0070302D /* GoodsShowViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18DF12D31EC04F100070302D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18DF12D41EC04F100070302D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		32FE9601D3FD953AD3CE292D /* Pods */ = {
@@ -552,7 +603,6 @@
 			files = (
 				1839C8851EADFBD100E8B1FF /* userList.json in Resources */,
 				18CC20211EA8B05A00FC2B54 /* Assets.xcassets in Resources */,
-				1839C8691EADDBBD00E8B1FF /* s3.jpg in Resources */,
 				18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,7 +678,6 @@
 			files = (
 				1839C8671EADC9B200E8B1FF /* BannerView.swift in Sources */,
 				1839C8761EADDD0D00E8B1FF /* LLSnakePageControl.swift in Sources */,
-				1839C8811EADECDB00E8B1FF /* UserTableCell.swift in Sources */,
 				1839C8751EADDD0D00E8B1FF /* LLPillPageControl.swift in Sources */,
 				18CC20201EA8B05A00FC2B54 /* AppDelegate.swift in Sources */,
 				18CC201B1EA8B05A00FC2B54 /* UIColor+Extension.swift in Sources */,
@@ -636,19 +685,22 @@
 				18CC201C1EA8B05A00FC2B54 /* HomeViewController.swift in Sources */,
 				1839C8791EADDE1F00E8B1FF /* ScrollBottomView.swift in Sources */,
 				18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */,
-				1839C8871EADFBE800E8B1FF /* UserModel.swift in Sources */,
 				1839C8771EADDD0D00E8B1FF /* LLViewExtensions.swift in Sources */,
+				18DF12C71EC04AD70070302D /* UserModel.swift in Sources */,
 				1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */,
 				1839C8651EADA2D200E8B1FF /* theme.swift in Sources */,
 				18CC201D1EA8B05A00FC2B54 /* ShowDataView.swift in Sources */,
 				1839C8731EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift in Sources */,
 				18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */,
+				18DF12D61EC04F2D0070302D /* GoodsShowViewController.swift in Sources */,
 				18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */,
 				18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */,
 				1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */,
+				18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */,
 				18CC201E1EA8B05A00FC2B54 /* NewsViewController.swift in Sources */,
 				18C714C51EA9FE260054877F /* ModuleView.swift in Sources */,
 				1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */,
+				18DF12CC1EC04E590070302D /* ServiceViewController.swift in Sources */,
 				1839C8741EADDD0D00E8B1FF /* LLFilledPageControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

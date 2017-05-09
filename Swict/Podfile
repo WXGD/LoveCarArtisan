@@ -4,4 +4,5 @@ target 'LoveCarArtisan' do
 	pod 'Masonry'
 	pod 'MJExtension'
 	pod ‘Kingfisher’
+	pod "VTMagic"
 end

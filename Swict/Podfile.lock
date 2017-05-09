@@ -2,17 +2,22 @@ PODS:
   - Kingfisher (3.2.2)
   - Masonry (1.0.2)
   - MJExtension (3.0.13)
+  - VTMagic (1.2.4):
+    - VTMagic/Core (= 1.2.4)
+  - VTMagic/Core (1.2.4)
 
 DEPENDENCIES:
   - Kingfisher
   - Masonry
   - MJExtension
+  - VTMagic
 
 SPEC CHECKSUMS:
   Kingfisher: 821466474ad7ffc375a4aecadfa05068cfed67b3
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
 
-PODFILE CHECKSUM: 93c16706e9733ee2d748e9886c72fbae7b47f68e
+PODFILE CHECKSUM: bcf0d3f2941ceb826144f9164dc97ee7b464fc33
 
 COCOAPODS: 1.0.0
