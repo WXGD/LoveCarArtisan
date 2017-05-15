@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TYAttributedLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VTMagic.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,11 +87,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0C563D7146256065730C4D48F4D5CA9B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
 		<dict>
 			<key>primary</key>
@@ -102,16 +102,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5303BC0588CCA5E41C1AE89E7C76FFA2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5455E7F3F90AD8DA15B0631A7F07A602</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>79E0D8FBD71F6BF3FD5BAF1B7E4822FA</key>
 		<dict>
 			<key>primary</key>
@@ -122,7 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CEE62423A55AAAD337EA25FAFCF9541</key>
+		<key>7F1BF9030E252E61BE8470DBE6BFB9DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F3440A66FA25FB1EF4B7E4CB2828C00</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,6 +132,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BE544D564D6DE5CA7CC6921779F7E361</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C01C04A7EE593A1FC5653F41D92AC1C0</key>
 		<dict>
 			<key>primary</key>
@@ -147,7 +147,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D2A53D7AE772CF3AEE8871339B972942</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DBA6001481CEA0EBA031CC5C94508FAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1D056840D98A12B47C2DCCA03EEC2D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -55,8 +55,17 @@
 @property (nonatomic, copy) NSString *mileage;
 /** 下次保养时间 */
 @property (nonatomic, copy) NSString *next_maintain;
-
-
+/** 自加字段，保险询价页使用用户车辆  **/
+/** 车架号 */
+@property (nonatomic, copy) NSString *vin;
+/** 发动机号 */
+@property (nonatomic, copy) NSString *engine;
+/** 注册时间 */
+@property (nonatomic, copy) NSString *register_time;
+/** 所有人 */
+@property (nonatomic, copy) NSString *hold_man;
+/** 行驶证图片 */
+@property (nonatomic, strong) UIImage *license_img;
 
 /** 请求会员车辆列表 */
 + (void)requestUsreCarListParame:(NSMutableDictionary *)parame success:(void(^)(NSMutableArray *usreCarListArray))success;

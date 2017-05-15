@@ -1,0 +1,20 @@
+{
+    "code" : "0",
+    "data" :     {
+        "common" :         [
+                          {
+                          "bank" : "中国建设银行",
+                          "card_no" : "6226****3652",
+                          "name" : "朱英豪",
+                          "provider_bank_account_id" : "30",
+                          }
+                          ],
+    "default" :         {
+        "bank" : "中国银行",
+        "card_no" : "6396****9632",
+        "name" : "朱英杰",
+        "provider_bank_account_id" : "29",
+    },
+    },
+    "msg" : "成功",
+}

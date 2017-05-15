@@ -161,7 +161,7 @@
 - (void)quiryBenefitBtnDelegate:(UIButton *)button {
     /** 查保险 */
     BenefitQuiryViewController *benefitQuiryVC = [[BenefitQuiryViewController alloc] init];
-    benefitQuiryVC.userCar = self.userInfoView.userCarArray[button.tag];
+//    benefitQuiryVC.userCar = self.userInfoView.userCarArray[button.tag];
     [self.navigationController pushViewController:benefitQuiryVC animated:YES];
 }
 

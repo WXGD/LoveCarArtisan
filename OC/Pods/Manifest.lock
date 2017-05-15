@@ -29,6 +29,8 @@ PODS:
   - MJRefresh (3.1.12)
   - MOBFoundation (2.2.10)
   - PEPhotoCropEditor (1.3.1)
+  - Pgyer (2.8.4)
+  - PgyUpdate (1.2)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -44,6 +46,7 @@ PODS:
   - ShareSDK3/ShareSDK (3.5.2)
   - ShareSDK3/ShareSDKPlatforms/QQ (3.5.2)
   - ShareSDK3/ShareSDKPlatforms/WeChat (3.5.2)
+  - TYAttributedLabel (2.6.2)
   - VTMagic (1.2.4):
     - VTMagic/Core (= 1.2.4)
   - VTMagic/Core (1.2.4)
@@ -65,11 +68,14 @@ DEPENDENCIES:
   - MJRefresh
   - MOBFoundation
   - PEPhotoCropEditor
+  - Pgyer
+  - PgyUpdate
   - ReactiveCocoa
   - SDWebImage
   - ShareSDK3
   - ShareSDK3/ShareSDKPlatforms/QQ
   - ShareSDK3/ShareSDKPlatforms/WeChat
+  - TYAttributedLabel
   - VTMagic
   - WebViewJavascriptBridge
 
@@ -86,13 +92,16 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MOBFoundation: 3cca6f267be8ea7643be0d27ec871b66b64e32fd
   PEPhotoCropEditor: 613292fce009efd085e7aed975f1ebb3fec8bb7b
+  Pgyer: 26edfcc8da6da6383fabfdbccd2f77c623b9d6eb
+  PgyUpdate: a42e82cec5ad4e992af390e9d494f6fc62db65e4
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   ShareSDK3: 08ed714e2bbdcd97ab60f58cb398227341dfc20a
+  TYAttributedLabel: 1c1f1e7604043ba584e005d4fd3aee8a1a7a2020
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: 9b86ddb0b242d31526b7ed1a8f806ebb1527569f
+PODFILE CHECKSUM: c58a19c5cf7fd239a49ea885985ab134cb298b6b
 
 COCOAPODS: 1.0.0

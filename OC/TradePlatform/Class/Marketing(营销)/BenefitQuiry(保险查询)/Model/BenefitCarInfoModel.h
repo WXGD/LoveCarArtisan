@@ -28,6 +28,7 @@
 
 // 通过车牌号查询车辆信息接口
 + (void)usePlnQuiryCarInfo:(NSMutableDictionary *)params success:(void(^)(BenefitCarInfoModel *carInfo))success;
-
+// 上传行驶证图片，获取行驶证信息
++ (void)uploadDrivingLicenseImageRequestDrivingLicenseInfoImage:(UIImage *)modifyImage success:(void(^)(NSMutableDictionary *drivingLicenseInfo))success;
 
 @end

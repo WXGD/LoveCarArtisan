@@ -11,7 +11,8 @@
 
 @interface AlertAction : NSObject
 
-
+/** StyleAlert只有单个按钮 */
++ (void)determineStay:(UIViewController *)viewController title:(NSString *)title admitStr:(NSString *)admitStr message:(NSString *)message determineBlock:(void(^)())determineBlock;
 /** StyleAlert取消确定，确定在左，带取消回调 */
 + (void)determineStayLeft:(UIViewController *)viewController title:(NSString *)title admit:(NSString *)admit noadmit:(NSString *)noadmit message:(NSString *)message admitBlock:(void(^)())admitBlock noadmitBlock:(void(^)())noadmitBlock;
 /** StyleAlert确定取消，确定在右 */

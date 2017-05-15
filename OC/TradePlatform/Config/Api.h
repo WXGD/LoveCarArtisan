@@ -17,14 +17,14 @@
 #define AppSecret @"0ffd650fd58944e5cc08188b64e60b4f"
 
 // 商城web
-#define MallsWEBAPI @"http://x.cheweifang.cn/mall/"
-//#define MallsWEBAPI @"http://xtest.cheweifang.cn/mall/"
+//#define MallsWEBAPI @"http://x.cheweifang.cn/mall/"
+#define MallsWEBAPI @"http://xtest.cheweifang.cn/mall/"
 // url
-#define WEBAPI @"http://x.cheweifang.cn/web/"
-//#define WEBAPI @"http://xtest.cheweifang.cn/web/"
+//#define WEBAPI @"http://x.cheweifang.cn/web/"
+#define WEBAPI @"http://xtest.cheweifang.cn/web/"
 /** API */
-#define API @"https://xapi.cheweifang.cn/index.php"
-//#define API @"https://xapitest.cheweifang.cn/index.php"
+//#define API @"https://xapi.cheweifang.cn/index.php"
+#define API @"https://xapitest.cheweifang.cn/index.php"
 /** API版本号 */
 #define APIEdition @"1"
 #define APITWOEdition @"2"

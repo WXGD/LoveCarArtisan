@@ -115,6 +115,12 @@
     self.reportBtn.moduleLabel.text = @"数据分析";
     self.reportBtn.moduleBtn.tag = ReportBtnAction;
     [self.twoModuleBackView addSubview:self.reportBtn];
+    /** 账户 */
+    self.accountBtn = [[ModuleView alloc] init];
+    self.accountBtn.moduleImage.image = [UIImage imageNamed:@"home_page_account"];
+    self.accountBtn.moduleLabel.text = @"账户";
+    self.accountBtn.moduleBtn.tag = AccountBtnAction;
+    [self.twoModuleBackView addSubview:self.accountBtn];
     /** 2分割线 */
     self.twoDividingLineView = [[UIView alloc] init];
     self.twoDividingLineView.backgroundColor = DividingLine;
@@ -224,6 +230,12 @@
         make.top.equalTo(self.twoModuleBackView.mas_top);
         make.left.equalTo(self.twoModuleBackView.mas_left);
     }];
+    /** 账户 */
+    [self.accountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.twoModuleBackView.mas_top);
+        make.left.equalTo(self.reportBtn.mas_right);
+    }];
     /** 2分割线 */
     [self.twoDividingLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
@@ -233,8 +245,8 @@
         make.height.mas_equalTo(@0.5);
     }];
     
-    /** 服务,会员卡,客户,营销,报表,订单，商城 */
-    [@[self.serviceBtn, self.membershipCardBtn , self.customerBtn , self.marketingBtn , self.reportBtn , self.orderBtn, self.commercialCityBtn] mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 服务,会员卡,客户,营销,报表,订单，商城, 账户 */
+    [@[self.serviceBtn, self.membershipCardBtn , self.customerBtn , self.marketingBtn , self.reportBtn , self.orderBtn, self.commercialCityBtn, self.accountBtn] mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.width.equalTo(self.serviceBtn.mas_width);
     }];

@@ -124,7 +124,7 @@
     /** 二维码 */
     [self.accountView.QRCodeView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 我的账户 */
-    [self.accountView.myAccountView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.accountView.myAccountView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 设置 */
     [self.accountView.setUpView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 关于我们 */

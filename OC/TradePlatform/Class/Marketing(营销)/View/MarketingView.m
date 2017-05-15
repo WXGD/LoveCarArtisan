@@ -43,8 +43,8 @@
     self.benefitView = [[MarketingCell alloc] init];
     self.benefitView.backgroundColor = WhiteColor;
     self.benefitView.marketingProjectLogo.image = [UIImage imageNamed:@"marketing_safest_logo"];
-    self.benefitView.marketingProjectName.text = @"保险查询";
-    self.benefitView.marketingProjectViceTitle.text = @"快速查询用户保险到期时间";
+    self.benefitView.marketingProjectName.text = @"车险询价";
+    self.benefitView.marketingProjectViceTitle.text = @"资源整合，为用户推荐更合适的车险";
     self.benefitView.marketingProjectViceTitle.textColor = HEXSTR_RGB(@"#2c80ff");
     self.benefitView.marketingBtn.tag = BenefitBtnAction;
     [self.marketingBackView addSubview:self.benefitView];

@@ -27,6 +27,7 @@
 #import "CustomString.h"
 #import "UsedCellView.h"
 #import "KeyBoardView.h"
+#import "AddressChoicePickerView.h"
 // 第三方
 #import "Masonry.h"
 #import "MJRefresh.h"

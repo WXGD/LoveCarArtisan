@@ -20,4 +20,8 @@ target 'TradePlatform' do
 	pod 'ShareSDK3/ShareSDKPlatforms/QQ'
 	pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
 	pod 'FMDB'
+	pod 'TYAttributedLabel'
+	pod 'Pgyer'
+	pod 'PgyUpdate'
+
 end

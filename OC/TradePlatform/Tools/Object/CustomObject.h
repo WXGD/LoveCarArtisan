@@ -56,5 +56,21 @@
  * @parameter cppointVC:指定控制器
  */
 + (BOOL)judgeAppointController:(Class)appointVC currentVC:(UIViewController *)currentVC;
+/**
+ * 返回到指定控制器
+ *
+ * @parameter currentVC:当前控制器
+ * @parameter cppointVC:指定控制器
+ */
++ (void)returnAppointController:(Class)appointVC currentVC:(UIViewController *)currentVC;
 
+/**
+ *  验证身份证号码是否正确的方法
+ *
+ *  @param IDNumber 传进身份证号码字符串
+ *
+ *  @return 返回YES或NO表示该身份证号码是否符合国家标准
+ */
+
++ (BOOL)isIDCorrect:(NSString *)IDNumber;
 @end

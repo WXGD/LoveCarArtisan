@@ -22,6 +22,8 @@ typedef NS_ENUM(NSInteger, ServiceModuleBottonAction) {
     ReportBtnAction = 8,
     /** 商城 */
     CommercialCityBtnAction = 9,
+    /** 账户 */
+    AccountBtnAction = 10,
 };
 
 #import <UIKit/UIKit.h>
@@ -43,6 +45,8 @@ typedef NS_ENUM(NSInteger, ServiceModuleBottonAction) {
 @property (strong, nonatomic) ModuleView *orderBtn;
 /** 商城 */
 @property (strong, nonatomic) ModuleView *commercialCityBtn;
+/** 账户 */
+@property (strong, nonatomic) ModuleView *accountBtn;
 
 
 @end

@@ -25,6 +25,7 @@
 #import "MarketingViewController.h"
 #import "CommercialCityWebViewController.h"
 #import "PendOrderViewController.h"
+#import "MyAccountViewController.h"
 
 // 模型
 #import "BannerModel.h"
@@ -222,6 +223,12 @@
             [self.navigationController pushViewController:pendVC animated:YES];
             break;
         }
+            /** 账户 */
+        case AccountBtnAction: {
+            MyAccountViewController *myAccountVC = [[MyAccountViewController alloc] init];
+            [self.navigationController pushViewController:myAccountVC animated:YES];
+            break;
+        }
         default:
             break;
     }
@@ -232,9 +239,9 @@
     /** 营业额 */
     self.homePageView.showDataView.turnoverLabel.text = [NSString stringWithFormat:@"%.2f", shopRealtime.amount];
     /** 消费人数 */
-    self.homePageView.showDataView.csmPleNumLabel.text = [NSString stringWithFormat:@"%ld", shopRealtime.user_count];
+    self.homePageView.showDataView.csmPleNumLabel.text = [NSString stringWithFormat:@"%ld", (long)shopRealtime.user_count];
     /** 订单数 */
-    self.homePageView.showDataView.orderNumLabel.text = [NSString stringWithFormat:@"%ld", shopRealtime.order_count];
+    self.homePageView.showDataView.orderNumLabel.text = [NSString stringWithFormat:@"%ld", (long)shopRealtime.order_count];
 }
 
 
@@ -275,6 +282,8 @@
     [self.homePageView.serviceModuleView.commercialCityBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
     /** 挂单 */
     [self.homePageView.btnPendOrder addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
+    /** 账户 */
+    [self.homePageView.serviceModuleView.accountBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.homePageView];
     @weakify(self)
     [self.homePageView mas_makeConstraints:^(MASConstraintMaker *make) {

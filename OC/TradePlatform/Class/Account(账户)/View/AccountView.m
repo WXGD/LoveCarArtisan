@@ -56,15 +56,15 @@
     self.QRCodeView.cellLabel.font = FifteenTypeface;
     self.QRCodeView.usedCellBtn.tag = QRCodeBtnAction;
     [self addSubview:self.QRCodeView];
-    /** 我的账户 */
-    self.myAccountView = [[UsedCellView alloc] init];
-    self.myAccountView.cellImage.image = [UIImage imageNamed:@"account_my_account"];
-    self.myAccountView.cellLabel.text = @"我的账户";
-    self.myAccountView.describeLabel.text = @"查看余额";
-    self.myAccountView.cellLabel.font = FifteenTypeface;
-    self.myAccountView.isSplistLine = YES;
-    self.myAccountView.usedCellBtn.tag = MyAccountBtnAction;
-    [self addSubview:self.myAccountView];
+//    /** 我的账户 */
+//    self.myAccountView = [[UsedCellView alloc] init];
+//    self.myAccountView.cellImage.image = [UIImage imageNamed:@"account_my_account"];
+//    self.myAccountView.cellLabel.text = @"我的账户";
+//    self.myAccountView.describeLabel.text = @"查看余额";
+//    self.myAccountView.cellLabel.font = FifteenTypeface;
+//    self.myAccountView.isSplistLine = YES;
+//    self.myAccountView.usedCellBtn.tag = MyAccountBtnAction;
+//    [self addSubview:self.myAccountView];
     /** 关于我们 */
     self.aboutUsView = [[UsedCellView alloc] init];
     self.aboutUsView.cellImage.image = [UIImage imageNamed:@"account_about_us"];
@@ -110,20 +110,20 @@
         make.top.equalTo(self.tenantsInfoView.mas_bottom).offset(10);
         make.height.mas_equalTo(@50);
     }];
-    /** 我的账户 */
-    [self.myAccountView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.QRCodeView.mas_bottom);
-        make.height.mas_equalTo(@50);
-    }];
+//    /** 我的账户 */
+//    [self.myAccountView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        @strongify(self)
+//        make.left.equalTo(self.mas_left);
+//        make.right.equalTo(self.mas_right);
+//        make.top.equalTo(self.QRCodeView.mas_bottom);
+//        make.height.mas_equalTo(@50);
+//    }];
     /** 关于我们 */
     [self.aboutUsView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.myAccountView.mas_bottom).offset(10);
+        make.top.equalTo(self.QRCodeView.mas_bottom).offset(10);
         make.height.mas_equalTo(@50);
     }];
     /** 设置 */

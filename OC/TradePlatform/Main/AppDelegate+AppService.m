@@ -9,11 +9,15 @@
 #import "AppDelegate+AppService.h"
 // 腾讯bugly
 #import <Bugly/Bugly.h>
+// 蒲公英
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 
 // 推送appKey
 static NSString *appKey = @"5f34b14fc441b62a35ddbdec";
 static NSString *channel = @"App Store";
 static BOOL isProduction = false;
+
 
 @implementation AppDelegate (AppService)
 
@@ -38,6 +42,11 @@ static BOOL isProduction = false;
     [self registerTengXunBugly];
     // 极光推送
     [self registerJpush:launchOptions];
+    
+    // 蒲公英启动基本SDK
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"911d6895c2eedf4bae0968fc52800da0"];
+    // 蒲公英启动更新检查SDK
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"911d6895c2eedf4bae0968fc52800da0"];
 }
 // 腾讯bugly
 - (void)registerTengXunBugly {

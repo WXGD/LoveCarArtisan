@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, AccountBottonAction) {
 /** 二维码 */
 @property (strong, nonatomic) UsedCellView *QRCodeView;
 /** 我的账户 */
-@property (strong, nonatomic) UsedCellView *myAccountView;
+//@property (strong, nonatomic) UsedCellView *myAccountView;
 /** 设置 */
 @property (strong, nonatomic) UsedCellView *setUpView;
 /** 关于我们 */

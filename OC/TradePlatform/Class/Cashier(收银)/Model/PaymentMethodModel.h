@@ -25,5 +25,7 @@
 
 /** 请求支付方式 */
 + (void)requestPaymentMethodSuccess:(void(^)(NSMutableArray *paymentMethodArray))success;
+/** 请求第三方支付方式 */
++ (void)requestThirdPartyPayMethodSuccess:(void(^)(NSMutableArray *paymentMethodArray))success;
 
 @end

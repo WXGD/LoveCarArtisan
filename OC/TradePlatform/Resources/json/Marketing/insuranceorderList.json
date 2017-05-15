@@ -1,0 +1,21 @@
+{
+    "code" : "0",
+    "data" :     [
+                {
+                "actual_total_price" : "61.00",
+                "address" : "河南郑州金水区蓝堡湾",
+                "car_plate_no" : "豫A12345",
+                "discount" : "1.0000",
+                "insurance_company_icon" : "http://imagetest.cheweifang.cn/",
+                "insurance_company_name" : "太平洋保险",
+                "insurance_quote_id" : "287",
+                "license_brand_model" : "sink",
+                "mobile" : "13021960154",
+                "name" : "许",
+                "owner_name" : "许",
+                "status" : "1",
+                "total_price" : "62.00",
+                }
+                ],
+    "msg" : "成功",
+}

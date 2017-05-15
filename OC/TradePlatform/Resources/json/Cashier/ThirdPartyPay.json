@@ -1,0 +1,16 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "name" : "微信支付",
+                  "image_url" : "cashier_weixin_pay",
+                  "pay_method_id" : "2",
+                  },
+                  {
+                  "name" : "支付宝支付",
+                  "image_url" : "cashier_ali_pay",
+                  "pay_method_id" : "1",
+                  },
+    ]
+}

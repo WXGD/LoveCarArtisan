@@ -1,0 +1,87 @@
+{
+    "code" : "0",
+    "data" :     {
+        "insurance_categorys" :         {
+            "jqx" :             {
+                "free" : "0",
+                "insurance_categorys" :                 [
+                                                         {
+                                                         "coverage" : "0.00",
+                                                         "insurance_category_name" : "交强险",
+                                                         "premium" : "13.00",
+                                                         },
+                                                         {
+                                                         "coverage" : "0.00",
+                                                         "insurance_category_name" : "车船税",
+                                                         "premium" : "10.00",
+                                                         }
+                                                         ],
+            },
+            "syx" :             {
+                "free" : "3",
+                "insurance_categorys" :                 [
+                                                         {
+                                                         "coverage" : "50.00",
+                                                         "insurance_category_name" : "车损险",
+                                                         "premium" : "13.00",
+                                                         },
+                                                         {
+                                                         "coverage" : "60.00",
+                                                         "insurance_category_name" : "三者险",
+                                                         "premium" : "13.00",
+                                                         },
+                                                         {
+                                                         "coverage" : "0.00",
+                                                         "insurance_category_name" : "玻璃险",
+                                                         "premium" : "13.00",
+                                                         }
+                                                         ],
+            },
+        },
+        "insurance_end_time" :         [
+                                        {
+                                        "name" : "交强险",
+                                        "used_by_time" : "2017-05-12",
+                                        },
+                                        {
+                                        "name" : "车船税",
+                                        "used_by_time" : "2017-05-12",
+                                        },
+                                        {
+                                        "name" : "车损险",
+                                        "used_by_time" : "2017-05-14",
+                                        },
+                                        {
+                                        "name" : "三者险",
+                                        "used_by_time" : "2017-05-13",
+                                        },
+                                        {
+                                        "name" : "玻璃险",
+                                        "used_by_time" : "2017-05-12",
+                                        }
+                                        ],
+        "insurance_start_time" :         [
+                                          {
+                                          "name" : "交强险",
+                                          "restart_by_time" : "2017-05-13",
+                                          },
+                                          {
+                                          "name" : "车船税",
+                                          "restart_by_time" : "2017-05-13",
+                                          },
+                                          {
+                                          "name" : "车损险",
+                                          "restart_by_time" : "2017-05-16",
+                                          },
+                                          {
+                                          "name" : "三者险",
+                                          "restart_by_time" : "2017-05-14",
+                                          },
+                                          {
+                                          "name" : "玻璃险",
+                                          "restart_by_time" : "2017-05-13",
+                                          }
+                                          ],
+    },
+    "msg" : "成功",
+}

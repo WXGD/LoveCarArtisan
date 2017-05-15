@@ -39,6 +39,7 @@
     self.marketingProjectViceTitle = [[UILabel alloc] init];
     self.marketingProjectViceTitle.font = TwelveTypeface;
     self.marketingProjectViceTitle.textColor = GrayH2;
+    self.marketingProjectViceTitle.numberOfLines = 0;
     [self addSubview:self.marketingProjectViceTitle];
     /** 营销项目箭头 */
     self.marketingProjectArrowImage = [[UIImageView alloc] init];
@@ -83,6 +84,7 @@
         @strongify(self)
         make.top.equalTo(self.mas_centerY).offset(8);
         make.left.equalTo(self.marketingProjectName.mas_left);
+        make.right.equalTo(self.mas_right).offset(-42);
     }];
     /** 营销项目箭头 */
     [self.marketingProjectArrowImage mas_makeConstraints:^(MASConstraintMaker *make) {

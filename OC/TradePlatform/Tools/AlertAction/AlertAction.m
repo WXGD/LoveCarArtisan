@@ -57,6 +57,19 @@
     [viewController presentViewController:alertController animated:YES completion:nil];
 }
 
+/** StyleAlert只有单个按钮 */
++ (void)determineStay:(UIViewController *)viewController title:(NSString *)title admitStr:(NSString *)admitStr message:(NSString *)message determineBlock:(void(^)())determineBlock {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *admit = [UIAlertAction actionWithTitle:admitStr style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (determineBlock) {
+            determineBlock();
+        }
+    }];
+    [alertController addAction:admit];
+    [viewController presentViewController:alertController animated:YES completion:nil];
+}
+
+
 
 /** StyleActionSheet相机（Camera）相册（album） 的调用*/
 + (UIAlertController *)callCameraAlertActionStyleActionSheetBtn:(UIButton *)btn ViewController:(UIViewController *)viewController CameraBlock:(void(^)(UIImagePickerController *picker))cameraBlock albumBlock:(void(^)(UIImagePickerController *picker))albumBlock cancelBlock:(void(^)())cancelBlock {
@@ -74,7 +87,7 @@
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
         // 设置挑选出的图片是否可编辑
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         // 模态出图片库
         [viewController.navigationController presentViewController:picker animated:YES completion:^{
             
@@ -88,7 +101,7 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         // 设置挑选出的图片是否可编辑
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         // 模态出图片库
         [viewController.navigationController presentViewController:picker animated:YES completion:^{
             

@@ -56,6 +56,8 @@
 #define BlueColor [UIColor colorWithRed:30/255.0 green:136/255.0 blue:229/255.0 alpha:1]
 /** 黑色 */
 #define Black [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1]
+/** 黑色4c4c4c */
+#define BlackH1 [UIColor colorWithRed:76/255.0 green:76/255.0 blue:76/255.0 alpha:1]
 /** 深灰色 */
 #define GrayH1 [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1]
 /** 次灰色 */

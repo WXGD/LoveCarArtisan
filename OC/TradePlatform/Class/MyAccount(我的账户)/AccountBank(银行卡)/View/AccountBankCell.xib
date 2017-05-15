@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="AccountBankCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y3g-D5-D2v">
+                        <rect key="frame" x="16" y="5" width="288" height="90"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuG-FJ-icN">
+                                <rect key="frame" x="11" y="16" width="0.0" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="EzU-Ke-QYS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvq-oH-hdk">
+                                <rect key="frame" x="11" y="54" width="0.0" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="EUp-HI-jJK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiM-RQ-Zux">
+                                <rect key="frame" x="247" y="8.5" width="30" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="解绑">
+                                    <color key="titleColor" red="0.28627450980392155" green="0.55294117647058827" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JL1-UP-3lq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BML-ki-vdy">
+                                <rect key="frame" x="172" y="47" width="105" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="105" id="ECr-N2-w66"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="设为默认提现账户">
+                                    <color key="titleColor" red="0.27058823529411763" green="0.75294117647058822" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="setBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NCH-f1-7QF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="4cd-e7-nxT"/>
+                            <constraint firstAttribute="trailing" secondItem="hiM-RQ-Zux" secondAttribute="trailing" constant="11" id="9u3-qx-yTm"/>
+                            <constraint firstItem="BML-ki-vdy" firstAttribute="centerY" secondItem="Jvq-oH-hdk" secondAttribute="centerY" id="Fwc-GG-vg7"/>
+                            <constraint firstItem="MuG-FJ-icN" firstAttribute="top" secondItem="y3g-D5-D2v" secondAttribute="top" constant="16" id="Glq-l8-vpC"/>
+                            <constraint firstItem="MuG-FJ-icN" firstAttribute="leading" secondItem="y3g-D5-D2v" secondAttribute="leading" constant="11" id="cu1-SZ-HOG"/>
+                            <constraint firstItem="Jvq-oH-hdk" firstAttribute="leading" secondItem="y3g-D5-D2v" secondAttribute="leading" constant="11" id="kKF-Zs-Zsp"/>
+                            <constraint firstItem="hiM-RQ-Zux" firstAttribute="centerY" secondItem="MuG-FJ-icN" secondAttribute="centerY" id="s0B-Gj-gnU"/>
+                            <constraint firstAttribute="bottom" secondItem="Jvq-oH-hdk" secondAttribute="bottom" constant="24" id="tMi-9v-eN4"/>
+                            <constraint firstAttribute="trailing" secondItem="BML-ki-vdy" secondAttribute="trailing" constant="11" id="z6R-9w-Oil"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="y3g-D5-D2v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="BaT-g3-cVg"/>
+                    <constraint firstItem="y3g-D5-D2v" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="HF8-i5-B48"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="y3g-D5-D2v" secondAttribute="bottom" constant="-3.5" id="efk-27-S4g"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="y3g-D5-D2v" secondAttribute="trailing" constant="8" id="gIg-Gv-Ixx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="bankNameLab" destination="MuG-FJ-icN" id="CX0-dV-vsC"/>
+                <outlet property="bankNumLab" destination="Jvq-oH-hdk" id="dPT-eC-x2Q"/>
+                <outlet property="bgView" destination="y3g-D5-D2v" id="mhV-Gu-Dv9"/>
+                <outlet property="cancelBtn" destination="hiM-RQ-Zux" id="wa8-tp-Ads"/>
+                <outlet property="setBtn" destination="BML-ki-vdy" id="ic0-0o-mA6"/>
+                <outlet property="setBtnWidthConstraint" destination="ECr-N2-w66" id="4el-uZ-UAl"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

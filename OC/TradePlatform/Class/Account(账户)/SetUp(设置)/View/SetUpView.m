@@ -68,6 +68,14 @@
     self.serviceNumView.cellLabel.text = @"客服电话";
     self.serviceNumView.describeLabel.text = SERVICENUM;
     [self addSubview:self.serviceNumView];
+    /** 功能介绍 */
+    self.funcIntroView = [[UsedCellView alloc] init];
+    self.funcIntroView.usedCellBtn.tag = funcIntroBtnAction;
+    self.funcIntroView.cellImage.image = [UIImage imageNamed:@"service_num"];
+    self.funcIntroView.isCellImageSize = YES;
+    self.funcIntroView.isCellImage = YES;
+    self.funcIntroView.cellLabel.text = @"功能介绍";
+    [self addSubview:self.funcIntroView];
 }
 
 - (void)layoutSubviews {
@@ -111,6 +119,14 @@
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.top.equalTo(self.aboutUsView.mas_bottom).offset(15);
+        make.height.mas_equalTo(@50);
+    }];
+    /** 功能介绍 */
+    [self.funcIntroView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.serviceNumView.mas_bottom).offset(10);
         make.height.mas_equalTo(@50);
     }];
 }

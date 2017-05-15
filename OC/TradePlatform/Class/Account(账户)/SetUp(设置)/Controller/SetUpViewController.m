@@ -11,6 +11,7 @@
 #import "SetUpView.h"
 // 下级控制器
 #import "FeedbackViewController.h"
+#import "AboutUsViewController.h"
 // 更新提醒模型
 #import "UpdateReminderModel.h"
 #import "CityModel.h"
@@ -73,6 +74,14 @@
             }];
             break;
         }
+            /** 功能介绍 */
+        case funcIntroBtnAction: {
+            AboutUsViewController *funcIntroVC = [[AboutUsViewController alloc] init];
+            NSString *WEBURL = [NSString stringWithFormat:@"%@%@", WEBAPI, @"upgrade-log/index.html"];
+            funcIntroVC.webUrl = WEBURL;
+            [self.navigationController pushViewController:funcIntroVC animated:YES];
+            break;
+        }
         default:
             break;
     }
@@ -106,6 +115,8 @@
     [self.setUpView.aboutUsView.usedCellBtn addTarget:self action:@selector(setUpBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 客服电话 */
     [self.setUpView.serviceNumView.usedCellBtn addTarget:self action:@selector(setUpBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    /** 功能介绍 */
+    [self.setUpView.funcIntroView.usedCellBtn addTarget:self action:@selector(setUpBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.setUpView];
     @weakify(self)
     [self.setUpView mas_makeConstraints:^(MASConstraintMaker *make) {

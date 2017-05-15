@@ -1,0 +1,17 @@
+{
+    "code" : "0",
+    "data" :     [
+                {
+                "car_plate_no" : "豫A12345",
+                "create_time" : "2017-05-12 10:45:30",
+                "fail_reason" : "",
+                "insurance_query_id" : "151",
+                "license_brand_model" : "sink",
+                "mobile" : "",
+                "name" : "xu",
+                "remark" : "",
+                "status" : "2",
+                }
+                ],
+    "msg" : "成功",
+}

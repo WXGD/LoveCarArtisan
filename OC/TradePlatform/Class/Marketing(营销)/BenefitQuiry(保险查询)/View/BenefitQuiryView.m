@@ -2,46 +2,42 @@
 //  BenefitQuiryView.m
 //  TradePlatform
 //
-//  Created by apple on 2017/3/27.
+//  Created by apple on 2017/5/8.
 //  Copyright © 2017年 apple. All rights reserved.
 //
 
 #import "BenefitQuiryView.h"
+#import "ZYKeyboardUtil.h"
+// 省份简称键盘
+#import "SelectProvinceView.h"
+// 大写键盘
+#import "CustomKeyboard.h"
+// 下级控制器
+#import "ImageCropViewController.h"
 // view
 #import "DrivingPermitView.h"
-#import "ZYKeyboardUtil.h"
+// model
+#import "BenefitCarInfoModel.h"
 
-@interface BenefitQuiryView ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
-
-/** 头部背景图片 */
-@property (strong, nonatomic) UIImageView *headerBackImage;
-/** 保险查询logo */
-@property (strong, nonatomic) UIImageView *benefitQuiryLogo;
-/** 保险选项卡view */
-@property (strong, nonatomic) UIView *benefitTabView;
-/** 新增保险保险 */
-@property (strong, nonatomic) UIButton *addBenefitQuiryBtn;
-/** 保险查询历史 */
-@property (strong, nonatomic) UIButton *benefitQuiryHistoryBtn;
-/** 选中按钮 */
-@property (strong, nonatomic) UIButton *checkBtn;
-/** 保险查询标记view */
-@property (strong, nonatomic) UIView *benefitQuirySignView;
-
-/** 保险选项卡填充背景View */
-@property (strong, nonatomic) UIView *benTabBackView;
-
-/** 新增查询保险ScrollView */
-@property (strong, nonatomic) UIScrollView *addbenQuiryScorllView;
-/** 新增查询填充背景View */
-@property (strong, nonatomic) UIView *addbenQuiryBackView;
-
-/** 预计结果提示 */
-@property (strong, nonatomic) UILabel *expectsResultsSignLabel;
-
-/** 服务提供商 */
-@property (strong, nonatomic) UILabel *serviceProviderLabel;
-
+@interface BenefitQuiryView ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, PECropViewControllerDelegate>
+/** 提交view */
+@property (strong, nonatomic) UIView *submitView;
+/** 背景scrollview */
+@property (strong, nonatomic) UIScrollView *benefitQuiryScrollView;
+/** 填充scrollview的view */
+@property (strong, nonatomic) UIView *benefitQuiryView;
+/** 分割线 */
+@property (strong, nonatomic) UIView *recordLineView;
+/** 行驶证拍摄 */
+@property (strong, nonatomic) UIView *cardShotView;
+/** 车牌号view */
+@property (strong, nonatomic) UIView *plnView;
+@property (strong, nonatomic) UILabel *plnTitleLabel;
+@property (strong, nonatomic) UIView *plnLineView;
+/** 注册时间选择 */
+@property (strong, nonatomic) UIButton *registerTimeBtn;
+/** 省份简称键盘 */
+@property (strong, nonatomic) SelectProvinceView *selectProvince;
 /** 操作键盘弹出 */
 @property (strong, nonatomic) ZYKeyboardUtil *keyboardUtil;
 
@@ -49,13 +45,10 @@
 
 @implementation BenefitQuiryView
 
-
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self benefitQuiryViewLayoutView];
-        // 限制车架号最大输入位数
-        [self limitVinMaxNumInputSignal];
+        [self benefitQuiryLayoutView];
         // 操作键盘弹出
         self.keyboardUtil = [[ZYKeyboardUtil alloc] init];
         @weakify(self)
@@ -63,29 +56,30 @@
             @strongify(self)
             [keyboardUtil adaptiveViewHandleWithAdaptiveView:self, nil];
         }];
+        // 省份简称通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(provinceBtnAction:) name:@"ProvinceBtnNotification" object:nil];
+        // 大写键盘删除按钮
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(customKeyboardDelete:) name:@"customKeyboardDelete" object:nil];
+        // 大写键盘添加文字
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(customKeyboardAddContent:) name:@"customKeyboardAddContent" object:nil];
+        // 大写键盘下一步
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(customKeyboardNextStep:) name:@"customKeyboardNextStep" object:nil];
     }
     return self;
 }
 
-// tab按钮选择
-- (void)benefitTabBtnAction:(UIButton *)button {
-    // 回收键盘
-    [self endEditing:YES];
-    self.checkBtn.selected = !self.checkBtn.selected;
-    self.checkBtn = button;
-    self.checkBtn.selected = !self.checkBtn.selected;
-    /** 选中标记 */
-    // 告诉self约束需要更新
-    [self setNeedsUpdateConstraints];
-    // 调用此方法告诉self检测是否需要更新约束，若需要则更新，下面添加动画效果才起作用
-    [self updateConstraintsIfNeeded];
-    [UIView animateWithDuration:0.3 animations:^{
-        [self layoutIfNeeded];
-        self.benTabScorllView.contentOffset = CGPointMake(ScreenW * (self.checkBtn.tag - 5010), 0);
-    }];
+#pragma mark - 按钮点击方法
+// 拍摄按钮点击
+- (void)shotBtnAction:(UIButton *)button {
+    // 图片选择
+    [AlertAction callCameraAlertActionStyleActionSheetBtn:button ViewController:[self viewController] CameraBlock:^(UIImagePickerController *picker) {
+        // 设置代理
+        picker.delegate = self;
+    } albumBlock:^(UIImagePickerController *picker) {
+        // 设置代理
+        picker.delegate = self;
+    } cancelBlock:nil];
 }
-
-
 // 行驶证按钮
 - (void)drivingPermitBtnAvtion:(UIButton *)button {
     switch (button.tag) {
@@ -117,13 +111,19 @@
             [drivingPermitView show];
             break;
         }
+            /** 所有人 */
+        case HoldManBtnAction: {
+            DrivingPermitView *drivingPermitView = [[DrivingPermitView alloc] init];
+            drivingPermitView.drivingPermitImage.image = [UIImage imageNamed:@"driving_permit_hold_man"];
+            [drivingPermitView show];
+            break;
+        }
         default:
             break;
     }
 }
-
-// 登记时间
-- (void)checkTimeBtnAvtion:(UIButton *)button {
+// 登记时间                                                 
+- (void)registerTimeBtnAvtion:(UIButton *)button {
     // 日历
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDate;
@@ -135,7 +135,7 @@
         NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
         formatter.dateFormat = @"YYYY-MM-dd";
         NSString *timestamp = [formatter stringFromDate:datePicker.date];
-        self.checkTimeView.viceLabel.text = timestamp;
+        self.registerTimeView.viceTextFiled.text = timestamp;
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
     [alertController addAction:confirm];
@@ -145,111 +145,230 @@
     [alertController.view addSubview:datePicker];
 }
 
-#pragma mark - scrollview滚动代理
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (![NSStringFromClass([scrollView class]) isEqualToString:@"UITableView"]) {
-        UIButton *checkBtn = (UIButton *)[self viewWithTag: scrollView.contentOffset.x / ScreenW + 5010];
-        [self benefitTabBtnAction:checkBtn];
-    }
+#pragma mark - 键盘通知
+// 省份简称按钮点击
+- (void)caftaBtnAction:(UIButton *)button {
+    [self endEditing:YES];
+    self.selectProvince = [[SelectProvinceView alloc] init];
+    [self.selectProvince show];
 }
-#pragma mark - tableview代理
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.quiryRecordArray.count;
+// 省份简称键盘点击
+- (void)provinceBtnAction:(NSNotification *)province {
+    [self.selectProvince dismiss];
+    self.caftaBtn.titleLabel.text = province.userInfo[@"province"];
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellID = @"quiryRecordCell";
-    QuiryRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
-        cell = [[QuiryRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+// 大写键盘通知
+// 删除按钮
+- (void)customKeyboardDelete:(NSNotification *)notification {
+    [self.plnTF deleteBackward];
+}
+// 文本选中
+- (void)customKeyboardAddContent:(NSNotification *)notification {
+    [self.plnTF insertText:notification.userInfo[@"choiceBtnContent"]];
+}
+// 下一步
+- (void)customKeyboardNextStep:(NSNotification *)notification {
+    [self.superview endEditing:YES];
+}
+#pragma mark - 拍照，图片选择代理
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [[UIImage alloc] init];
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    } else {
+        image = [info valueForKey:UIImagePickerControllerOriginalImage];
     }
-    cell.quiryRecordModel = [self.quiryRecordArray objectAtIndex:indexPath.row];
-    return cell;
+    @weakify(self)
+    [[self viewController].navigationController dismissViewControllerAnimated:YES completion:^{
+        @strongify(self)
+        ImageCropViewController *imageCropVC = [[ImageCropViewController alloc] init];
+        imageCropVC.delegate = self;
+        imageCropVC.image = image;
+        CGFloat width = image.size.width;
+        CGFloat height = image.size.height;
+        CGFloat length = MIN(width, height);
+        imageCropVC.imageCropRect = CGRectMake((width - length) / 2, (height - length) / 2, length, length);
+        imageCropVC.toolbarHidden = YES;
+        [[self viewController].navigationController pushViewController:imageCropVC animated:YES];
+    }];
+}
+#pragma mark - 取消图片挑选
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [[self viewController].navigationController dismissViewControllerAnimated:YES completion:^{ }];
+}
+#pragma mark - 图片裁剪代理方法
+// 确认裁剪
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage {
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    [BenefitCarInfoModel uploadDrivingLicenseImageRequestDrivingLicenseInfoImage:croppedImage success:^(NSMutableDictionary *drivingLicenseInfo) {
+        /** 车牌号 */
+        NSString *pln = drivingLicenseInfo[@"号牌号码"];
+        self.plnTF.text = [pln substringFromIndex:1];
+        self.caftaBtn.titleLabel.text = [pln substringToIndex:1];
+        /** 品牌车型 */
+        self.carBrandView.viceTextFiled.text = drivingLicenseInfo[@"品牌型号"];
+        /** 车架号 */
+        self.vinView.viceTextFiled.text = drivingLicenseInfo[@"车辆识别代号"];
+        /** 发动机号 */
+        self.engineView.viceTextFiled.text = drivingLicenseInfo[@"发动机号码"];
+        /** 注册时间 */
+        self.registerTimeView.viceTextFiled.text = drivingLicenseInfo[@"注册日期"];
+        /** 所有人 */
+        self.holdManView.viceTextFiled.text = drivingLicenseInfo[@"所有人"];
+    }];
+    // 把选择的图片赋值给头像
+    /** 行驶证图片 */
+    self.cardImg.image = croppedImage;
+    // 显示行驶证图片
+    [self.cardImg setHidden:NO];
+    // 隐藏行驶证选择
+    [self.cardShotView setHidden:YES];
+    /** 车牌号view */
+    @weakify(self)
+    [self.plnView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.inquiryRecordBtn.mas_bottom).offset(190.5);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
+        make.height.mas_equalTo(@48);
+    }];
+}
+// 取消裁剪
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller {
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    // 获取当前选中模型
-    BennfitQuiryRecordModel *quiryRecordModel = [self.quiryRecordArray objectAtIndex:indexPath.row];
-    if (_delegate && [_delegate respondsToSelector:@selector(quiryRecordChoiceCell:quiryRecordModel:)]) {
-        [_delegate quiryRecordChoiceCell:indexPath quiryRecordModel:quiryRecordModel];
-    }
-}
 
 
 #pragma mark - view布局
-- (void)benefitQuiryViewLayoutView {
-    /** 头部背景图片 */
-    self.headerBackImage = [[UIImageView alloc] init];
-    self.headerBackImage.image = [UIImage imageNamed:@"header_choice_back"];
-    [self addSubview:self.headerBackImage];
-    /** 营销项目logo */
-    self.benefitQuiryLogo = [[UIImageView alloc] init];
-    self.benefitQuiryLogo.image = [UIImage imageNamed:@"benefit_quiry_logo"];
-    [self.headerBackImage addSubview:self.benefitQuiryLogo];
-    /** 保险选项卡view */
-    self.benefitTabView = [[UIView alloc] init];
-    self.benefitTabView.backgroundColor = WhiteColor;
-    [self addSubview:self.benefitTabView];
-    /** 新增保险保险 */
-    self.addBenefitQuiryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.addBenefitQuiryBtn setTitle:@"新增查询" forState:UIControlStateNormal];
-    self.addBenefitQuiryBtn.titleLabel.font = FourteenTypeface;
-    [self.addBenefitQuiryBtn setTitleColor:GrayH1 forState:UIControlStateNormal];
-    [self.addBenefitQuiryBtn setTitleColor:ThemeColor forState:UIControlStateSelected];
-    [self.addBenefitQuiryBtn addTarget:self action:@selector(benefitTabBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.addBenefitQuiryBtn.tag = 5010;
-    [self.benefitTabView addSubview:self.addBenefitQuiryBtn];
-    self.checkBtn = self.addBenefitQuiryBtn;
-    self.addBenefitQuiryBtn.selected = YES;
-    /** 保险查询历史 */
-    self.benefitQuiryHistoryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.benefitQuiryHistoryBtn setTitle:@"查询历史" forState:UIControlStateNormal];
-    self.benefitQuiryHistoryBtn.titleLabel.font = FourteenTypeface;
-    [self.benefitQuiryHistoryBtn setTitleColor:GrayH1 forState:UIControlStateNormal];
-    [self.benefitQuiryHistoryBtn setTitleColor:ThemeColor forState:UIControlStateSelected];
-    [self.benefitQuiryHistoryBtn addTarget:self action:@selector(benefitTabBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.benefitQuiryHistoryBtn.tag = 5011;
-    [self.benefitTabView addSubview:self.benefitQuiryHistoryBtn];
-    /** 保险查询标记view */
-    self.benefitQuirySignView = [[UIView alloc] init];
-    self.benefitQuirySignView.backgroundColor = ThemeColor;
-    [self.benefitTabView addSubview:self.benefitQuirySignView];
-    /** 保险选项卡ScrollView */
-    self.benTabScorllView = [[UIScrollView alloc] init];
-    self.benTabScorllView.pagingEnabled = YES;
-    self.benTabScorllView.showsHorizontalScrollIndicator = NO;
-    self.benTabScorllView.delegate = self;
-    [self addSubview:self.benTabScorllView];
-    // 添加回收键盘的手势
-    UITapGestureRecognizer *benTabTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(benTabTapAction:)];
-    benTabTap.delegate = self;
-    [self.benTabScorllView addGestureRecognizer:benTabTap];
-    /** 保险选项卡填充背景View */
-    self.benTabBackView = [[UIView alloc] init];
-    [self.benTabScorllView addSubview:self.benTabBackView];
-    /** 新增查询保险ScrollView */
-    self.addbenQuiryScorllView = [[UIScrollView alloc] init];
-    [self.benTabBackView addSubview:self.addbenQuiryScorllView];
-    /** 新增查询填充背景View */
-    self.addbenQuiryBackView = [[UIView alloc] init];
-    [self.addbenQuiryScorllView addSubview:self.addbenQuiryBackView];
+- (void)benefitQuiryLayoutView {
+    /** 提交view */
+    self.submitView = [[UIView alloc] init];
+    self.submitView.backgroundColor = WhiteColor;
+    [self addSubview:self.submitView];
+    /** 提交查询btn */
+    self.submitQueryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.submitQueryBtn.backgroundColor = ThemeColor;
+    self.submitQueryBtn.layer.cornerRadius = 2;
+    self.submitQueryBtn.clipsToBounds = YES;
+    [self.submitQueryBtn setTitle:@"确认查询" forState:UIControlStateNormal];
+    [self.submitQueryBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
+    self.submitQueryBtn.titleLabel.font = SixteenTypeface;
+    self.submitQueryBtn.layer.masksToBounds = YES;
+    self.submitQueryBtn.layer.cornerRadius = 2;
+    self.submitQueryBtn.tag = SubmitQueryBtnAction;
+    [self.submitView addSubview:self.submitQueryBtn];
+    /** 背景scrollview */
+    self.benefitQuiryScrollView = [[UIScrollView alloc] init];
+    [self addSubview:self.benefitQuiryScrollView];
+    /** 填充scrollview的view */
+    self.benefitQuiryView = [[UIView alloc] init];
+    [self.benefitQuiryScrollView addSubview:self.benefitQuiryView];
+    UITapGestureRecognizer *benefitQuiryTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(benefitQuiryTapAction)];
+    [self.benefitQuiryView addGestureRecognizer:benefitQuiryTap];
+    /** 询价记录 */
+    self.inquiryRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.inquiryRecordBtn.backgroundColor = WhiteColor;
+    [self.inquiryRecordBtn setImage:[UIImage imageNamed:@"benefit_inquiry_record"] forState:UIControlStateNormal];
+    [self.inquiryRecordBtn setTitle:@"询价记录" forState:UIControlStateNormal];
+    [self.inquiryRecordBtn setTitleColor:Black forState:UIControlStateNormal];
+    self.inquiryRecordBtn.titleLabel.font = FourteenTypeface;
+    self.inquiryRecordBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    self.inquiryRecordBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    self.inquiryRecordBtn.tag = InquiryRecordBtnAction;
+    [self.benefitQuiryView addSubview:self.inquiryRecordBtn];
+    /** 分割线 */
+    self.recordLineView = [[UIView alloc] init];
+    self.recordLineView.backgroundColor = DividingLine;
+    [self.benefitQuiryView addSubview:self.recordLineView];
+    /** 出险记录 */
+    self.dangerRecordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.dangerRecordBtn.backgroundColor = WhiteColor;
+    [self.dangerRecordBtn setImage:[UIImage imageNamed:@"benefit_danger_record"] forState:UIControlStateNormal];
+    [self.dangerRecordBtn setTitle:@"出险记录" forState:UIControlStateNormal];
+    [self.dangerRecordBtn setTitleColor:Black forState:UIControlStateNormal];
+    self.dangerRecordBtn.titleLabel.font = FourteenTypeface;
+    self.dangerRecordBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    self.dangerRecordBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    self.dangerRecordBtn.tag = DangerRecordBtnAction;
+    [self.benefitQuiryView addSubview:self.dangerRecordBtn];
+    /** 行驶证拍摄 */
+    self.cardShotView = [[UIView alloc] init];
+    self.cardShotView.backgroundColor = WhiteColor;
+    [self.benefitQuiryView addSubview:self.cardShotView];
+    /** 拍摄 */
+    self.shotBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.shotBtn.backgroundColor = HEXSTR_RGB(@"fafafa");
+    self.shotBtn.titleLabel.textColor = Black;
+    [self.shotBtn setTitle:@"拍摄行驶证正面快速查询" forState:UIControlStateNormal];
+    [self.shotBtn setTitleColor:Black forState:UIControlStateNormal];
+    self.shotBtn.titleLabel.font = FourteenTypeface;
+    [self.shotBtn setImage:[UIImage imageNamed:@"benefit_shot"] forState:UIControlStateNormal];
+    self.shotBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    self.shotBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    self.shotBtn.titleLabel.font = SixteenTypeface;
+    self.shotBtn.layer.masksToBounds = YES;
+    self.shotBtn.layer.cornerRadius = 2;
+    self.shotBtn.layer.borderWidth = 1;
+    self.shotBtn.layer.borderColor = HEXSTR_RGB(@"efeff4").CGColor;
+    self.shotBtn.tag = ShotBtnAction;
+    [self.shotBtn addTarget:self action:@selector(shotBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cardShotView addSubview:self.shotBtn];
+    /** 行驶证图片 */
+    self.cardImg = [[UIImageView alloc] init];
+    self.cardImg.userInteractionEnabled = YES;
+    [self.benefitQuiryView addSubview:self.cardImg];
+    /** 更换图片 */
+    self.changeImgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.changeImgBtn.backgroundColor = RGBA(0, 0, 0, 0.4);
+    [self.changeImgBtn setTitle:@"更换图片" forState:UIControlStateNormal];
+    [self.changeImgBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
+    self.changeImgBtn.titleLabel.font = FourteenTypeface;
+    self.changeImgBtn.layer.masksToBounds = YES;
+    self.changeImgBtn.layer.cornerRadius = 2;
+    [self.changeImgBtn addTarget:self action:@selector(shotBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cardImg addSubview:self.changeImgBtn];
+    // 隐藏行驶证图片
+    [self.cardImg setHidden:YES];
     /** 车牌号view */
-    self.plnView = [[UsedCellView alloc] init];
-    self.plnView.usedCellTypeChoice = ViceTextFiledHorizontalLayout;
-    [self.plnView.arrowImage setImage:[UIImage imageNamed:@"custom_open_card_scan"] forState:UIControlStateNormal];
-    self.plnView.cellLabel.text = @"车牌号";
-    self.plnView.cellLabel.font = FifteenTypeface;
-    self.plnView.cellLabel.textColor = GrayH1;
-    self.plnView.viceTextFiled.placeholder = @"请输入车牌号";
-    self.plnView.viceTextFiled.borderStyle = UITextBorderStyleNone;
-    self.plnView.viceTextFiled.textAlignment = NSTextAlignmentLeft;
-    self.plnView.viceTextFiled.textColor = Black;
-    self.plnView.viceTextFiled.font = FourteenTypeface;
-    self.plnView.isCellImage = YES;
-    self.plnView.isCellBtn = YES;
-    self.plnView.arrowImage.tag = PlnBtnAction;
-    [self.addbenQuiryBackView addSubview:self.plnView];
+    self.plnView = [[UIView alloc] init];
+    self.plnView.backgroundColor = WhiteColor;
+    [self.benefitQuiryView addSubview:self.plnView];
+    
+    self.plnLineView = [[UIView alloc] init];
+    self.plnLineView.backgroundColor = DividingLine;
+    [self.plnView addSubview:self.plnLineView];
+    
+    self.plnTitleLabel = [[UILabel alloc] init];
+    self.plnTitleLabel.text = @"车牌号";
+    self.plnTitleLabel.font = FourteenTypeface;
+    self.plnTitleLabel.textColor = GrayH1;
+    [self.plnView addSubview:self.plnTitleLabel];
+    
+    self.caftaBtn = [[CaftaBtn alloc] init];
+    self.caftaBtn.titleLabel.text = @"豫";
+    self.caftaBtn.tag = CaftaBtnAction;
+    [self.caftaBtn.caftaBtn addTarget:self action:@selector(caftaBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.plnView addSubview:self.caftaBtn];
+    
+    self.plnTF = [[UITextField alloc] init];
+    self.plnTF.placeholder = @"请输入车牌号";
+    self.plnTF.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.plnTF setValue:GrayH4 forKeyPath:@"_placeholderLabel.textColor"];
+    [self.plnTF setValue:FourteenTypeface forKeyPath:@"_placeholderLabel.font"];
+    self.plnTF.font = FourteenTypeface;
+    self.plnTF.textColor = Black;
+    [self.plnView addSubview:self.plnTF];
+    // 自定义大写键盘
+    CustomKeyboard *maskContent = [CustomKeyboard loadBlueViewFromXIB];
+    // 注册使用大写键盘
+    self.plnTF.inputView = maskContent;
+    
+    self.plnBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.plnBtn setImage:[UIImage imageNamed:@"custom_open_card_scan"] forState:UIControlStateNormal];
+    self.plnBtn.tag = PlnBtnAction;
+    [self.plnView addSubview:self.plnBtn];
     /** 品牌车型 */
     self.carBrandView = [[UsedCellView alloc] init];
     self.carBrandView.usedCellTypeChoice = ViceTextFiledHorizontalLayout;
@@ -266,7 +385,7 @@
     self.carBrandView.isCellBtn = YES;
     self.carBrandView.arrowImage.tag = CarBrandBtnAction;
     [self.carBrandView.arrowImage addTarget:self action:@selector(drivingPermitBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    [self.addbenQuiryBackView addSubview:self.carBrandView];
+    [self.benefitQuiryView addSubview:self.carBrandView];
     /** 车架号 */
     self.vinView = [[UsedCellView alloc] init];
     self.vinView.usedCellTypeChoice = ViceTextFiledHorizontalLayout;
@@ -283,7 +402,7 @@
     self.vinView.isCellBtn = YES;
     self.vinView.arrowImage.tag = VinBtnAction;
     [self.vinView.arrowImage addTarget:self action:@selector(drivingPermitBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    [self.addbenQuiryBackView addSubview:self.vinView];
+    [self.benefitQuiryView addSubview:self.vinView];
     /** 发动机号 */
     self.engineView = [[UsedCellView alloc] init];
     self.engineView.usedCellTypeChoice = ViceTextFiledHorizontalLayout;
@@ -300,21 +419,26 @@
     self.engineView.isCellBtn = YES;
     self.engineView.arrowImage.tag = EngineBtnAction;
     [self.engineView.arrowImage addTarget:self action:@selector(drivingPermitBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    [self.addbenQuiryBackView addSubview:self.engineView];
-    /** 初次登记时间 */
-    self.checkTimeView = [[UsedCellView alloc] init];
-    [self.checkTimeView.arrowImage setImage:[UIImage imageNamed:@"benefit_quiry_there"] forState:UIControlStateNormal];
-    self.checkTimeView.cellLabel.text = @"初次登记时间 ";
-    self.checkTimeView.cellLabel.font = FifteenTypeface;
-    self.checkTimeView.cellLabel.textColor = GrayH1;
-    self.checkTimeView.viceLabel.textColor = Black;
-    self.checkTimeView.viceLabel.font = FourteenTypeface;
-    self.checkTimeView.isSplistLine = YES;
-    self.checkTimeView.isCellImage = YES;
-    self.checkTimeView.isCellBtn = YES;
-    self.checkTimeView.arrowImage.tag = CheckTimeBtnAction;
-    [self.checkTimeView.arrowImage addTarget:self action:@selector(drivingPermitBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    [self.addbenQuiryBackView addSubview:self.checkTimeView];
+    [self.benefitQuiryView addSubview:self.engineView];
+    /** 注册时间 */
+    self.registerTimeView = [[UsedCellView alloc] init];
+    self.registerTimeView.usedCellTypeChoice = ViceTextFiledHorizontalLayout;
+    [self.registerTimeView.arrowImage setImage:[UIImage imageNamed:@"benefit_quiry_there"] forState:UIControlStateNormal];
+    self.registerTimeView.cellLabel.text = @"注册时间";
+    self.registerTimeView.cellLabel.font = FourteenTypeface;
+    self.registerTimeView.cellLabel.textColor = GrayH1;
+    [self.registerTimeView.viceTextFiled setValue:GrayH4 forKeyPath:@"_placeholderLabel.textColor"];
+    [self.registerTimeView.viceTextFiled setValue:FourteenTypeface forKeyPath:@"_placeholderLabel.font"];
+    self.registerTimeView.viceTextFiled.placeholder = @"请选择初次登记时间";
+    self.registerTimeView.viceTextFiled.borderStyle = UITextBorderStyleNone;
+    self.registerTimeView.viceTextFiled.textAlignment = NSTextAlignmentLeft;
+    self.registerTimeView.viceTextFiled.font = FourteenTypeface;
+    self.registerTimeView.viceTextFiled.textColor = Black;
+    self.registerTimeView.isCellImage = YES;
+    self.registerTimeView.isCellBtn = YES;
+    self.registerTimeView.arrowImage.tag = CheckTimeBtnAction;
+    [self.registerTimeView.arrowImage addTarget:self action:@selector(drivingPermitBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
+    [self.benefitQuiryView addSubview:self.registerTimeView];
     // 获取当前时间
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -322,280 +446,223 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateFormat:@"YYYY-MM-dd"];
     NSString *dateTime = [formatter stringFromDate:date];
-    self.checkTimeView.viceLabel.text = dateTime;
-    // 初次登记时间选择按钮
-    self.checkTimeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.checkTimeButton addTarget:self action:@selector(checkTimeBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    [self.checkTimeView addSubview:self.checkTimeButton];
-    /** 预计结果提示 */
-    self.expectsResultsSignLabel = [[UILabel alloc] init];
-    self.expectsResultsSignLabel.text = @"预计10分钟出结果";
-    self.expectsResultsSignLabel.font = TwelveTypeface;
-    self.expectsResultsSignLabel.textColor = BlueColor;
-    [self.addbenQuiryBackView addSubview:self.expectsResultsSignLabel];
-    /** 提交查询 */
-    self.submitQueryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.submitQueryBtn setTitle:@"提交查询" forState:UIControlStateNormal];
-    self.submitQueryBtn.titleLabel.font = FifteenTypeface;
-    [self.submitQueryBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
-    self.submitQueryBtn.backgroundColor = ThemeColor;
-    self.submitQueryBtn.layer.masksToBounds = YES;
-    self.submitQueryBtn.layer.cornerRadius = 2;
-    self.submitQueryBtn.tag = SubmitQueryBtnAction;
-    [self.addbenQuiryBackView addSubview:self.submitQueryBtn];
-    /** 拍摄行驶证查询 */
-    self.shotQueryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.shotQueryBtn setTitle:@"拍摄行驶证正面查询" forState:UIControlStateNormal];
-    self.shotQueryBtn.titleLabel.font = FifteenTypeface;
-    [self.shotQueryBtn setTitleColor:Black forState:UIControlStateNormal];
-    self.shotQueryBtn.backgroundColor = WhiteColor;
-    self.shotQueryBtn.layer.masksToBounds = YES;
-    self.shotQueryBtn.layer.cornerRadius = 2;
-    self.shotQueryBtn.layer.borderWidth = 0.5;
-    self.shotQueryBtn.layer.borderColor = DividingLine.CGColor;
-    self.shotQueryBtn.tag = ShotQueryBtnAction;
-    [self.addbenQuiryBackView addSubview:self.shotQueryBtn];
-    /** 服务提供商 */
-    self.serviceProviderLabel = [[UILabel alloc] init];
-    self.serviceProviderLabel.text = @"本服务由龙郡保险提供";
-    self.serviceProviderLabel.font = TwelveTypeface;
-    self.serviceProviderLabel.textColor = GrayH2;
-    [self.addbenQuiryBackView addSubview:self.serviceProviderLabel];
-    /** 查询记录 */
-    self.quiryRecordTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, ScreenH - 46) style:UITableViewStylePlain];
-    self.quiryRecordTableView.delegate = self;
-    self.quiryRecordTableView.dataSource = self;
-    self.quiryRecordTableView.rowHeight = 82;
-    self.quiryRecordTableView.backgroundColor = CLEARCOLOR;
-    self.quiryRecordTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.benTabBackView addSubview:self.quiryRecordTableView];
-    
-    
-    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenW, 56.5)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, ScreenW, 14.5)];
-    label.textColor = GrayH2;
-    label.font = TwelveTypeface;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"本服务由龙郡保险提供";
-    [footView addSubview:label];
-    self.quiryRecordTableView.tableFooterView = footView;
+    self.registerTimeView.viceTextFiled.text = dateTime;
+    /** 注册时间选择 */
+    self.registerTimeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.registerTimeBtn addTarget:self action:@selector(registerTimeBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
+    [self.registerTimeView addSubview:self.registerTimeBtn];
+    /** 所有人 */
+    self.holdManView = [[UsedCellView alloc] init];
+    self.holdManView.usedCellTypeChoice = ViceTextFiledHorizontalLayout;
+    [self.holdManView.arrowImage setImage:[UIImage imageNamed:@"benefit_quiry_there"] forState:UIControlStateNormal];
+    self.holdManView.cellLabel.text = @"所有人";
+    self.holdManView.cellLabel.font = FifteenTypeface;
+    self.holdManView.cellLabel.textColor = GrayH1;
+    self.holdManView.viceTextFiled.placeholder = @"请输入车辆所有人姓名";
+    self.holdManView.viceTextFiled.borderStyle = UITextBorderStyleNone;
+    self.holdManView.viceTextFiled.textAlignment = NSTextAlignmentLeft;
+    self.holdManView.viceTextFiled.textColor = Black;
+    self.holdManView.viceTextFiled.font = FourteenTypeface;
+    self.holdManView.isCellImage = YES;
+    self.holdManView.isCellBtn = YES;
+    self.holdManView.arrowImage.tag = HoldManBtnAction;
+    [self.holdManView.arrowImage addTarget:self action:@selector(drivingPermitBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
+    [self.benefitQuiryView addSubview:self.holdManView];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     @weakify(self)
-    /** 头部背景图片 */
-    [self.headerBackImage mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 提交view */
+    [self.submitView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.mas_top);
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-    }];
-    /** 营销项目logo */
-    [self.benefitQuiryLogo mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.headerBackImage.mas_top);
-        make.left.equalTo(self.headerBackImage.mas_left);
-        make.right.equalTo(self.headerBackImage.mas_right);
-        make.bottom.equalTo(self.headerBackImage.mas_bottom);
-    }];
-    /** 保险选项卡view */
-    [self.benefitTabView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.headerBackImage.mas_bottom);
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.height.mas_equalTo(@44);
-    }];
-    /** 新增保险保险 */
-    [self.addBenefitQuiryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.benefitTabView.mas_top);
-        make.bottom.equalTo(self.benefitTabView.mas_bottom);
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_centerX);
-    }];
-    /** 保险查询历史 */
-    [self.benefitQuiryHistoryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.benefitTabView.mas_top);
-        make.bottom.equalTo(self.benefitTabView.mas_bottom);
-        make.right.equalTo(self.mas_right);
-        make.left.equalTo(self.mas_centerX);
-    }];
-    /** 保险查询标记view */
-    [self.benefitQuirySignView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.bottom.equalTo(self.benefitTabView.mas_bottom);
-        make.centerX.equalTo(self.checkBtn.mas_centerX);
-        make.size.mas_equalTo(CGSizeMake((ScreenW / 2 - 32), 2));
-    }];
-    /** 保险选项卡ScrollView */
-    [self.benTabScorllView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.benefitTabView.mas_bottom).offset(10);
         make.left.equalTo(self.mas_left);
         make.bottom.equalTo(self.mas_bottom);
         make.right.equalTo(self.mas_right);
+        make.height.mas_equalTo(@50);
     }];
-    /** 保险选项卡填充背景View */
-    [self.benTabBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 提交查询btn */
+    [self.submitQueryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.benTabScorllView.mas_top);
-        make.left.equalTo(self.benTabScorllView.mas_left);
-        make.bottom.equalTo(self.benTabScorllView.mas_bottom);
-        make.right.equalTo(self.benTabScorllView.mas_right);
-        make.height.equalTo(self.benTabScorllView.mas_height);
-        make.width.mas_equalTo(@(ScreenW * 2));
+        make.top.equalTo(self.submitView.mas_top).offset(5);
+        make.left.equalTo(self.submitView.mas_left).offset(16);
+        make.bottom.equalTo(self.submitView.mas_bottom).offset(-5);
+        make.right.equalTo(self.submitView.mas_right).offset(-16);
     }];
-    /** 新增查询保险ScrollView */
-    [self.addbenQuiryScorllView mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 背景scrollview */
+    [self.benefitQuiryScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.benTabBackView.mas_top);
-        make.left.equalTo(self.benTabBackView.mas_left);
-        make.bottom.equalTo(self.benTabBackView.mas_bottom);
-        make.right.equalTo(self.benTabBackView.mas_centerX);
+        make.top.equalTo(self.mas_top);
+        make.left.equalTo(self.mas_left);
+        make.bottom.equalTo(self.submitView.mas_top);
+        make.right.equalTo(self.mas_right);
     }];
-    /** 新增查询填充背景View */
-    [self.addbenQuiryBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 填充scrollview的view */
+    [self.benefitQuiryView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.addbenQuiryScorllView.mas_top);
-        make.left.equalTo(self.addbenQuiryScorllView.mas_left);
-        make.bottom.equalTo(self.addbenQuiryScorllView.mas_bottom);
-        make.right.equalTo(self.addbenQuiryScorllView.mas_right);
-        make.width.equalTo(self.addbenQuiryScorllView.mas_width);
-        make.bottom.equalTo(self.serviceProviderLabel.mas_bottom).offset(24);
+        make.top.equalTo(self.benefitQuiryScrollView.mas_top);
+        make.left.equalTo(self.benefitQuiryScrollView.mas_left);
+        make.bottom.equalTo(self.benefitQuiryScrollView.mas_bottom);
+        make.right.equalTo(self.benefitQuiryScrollView.mas_right);
+        make.width.equalTo(self.benefitQuiryScrollView.mas_width);
+        make.bottom.equalTo(self.holdManView.mas_bottom).offset(10);
     }];
-    /** 车牌号 */
+    /** 询价记录 */
+    [self.inquiryRecordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.benefitQuiryView.mas_top);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_centerX);
+        make.height.mas_offset(@50);
+    }];
+    /** 分割线 */
+    [self.recordLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.centerY.equalTo(self.inquiryRecordBtn.mas_centerY);
+        make.right.equalTo(self.inquiryRecordBtn.mas_right);
+        make.width.mas_offset(@0.5);
+        make.height.mas_offset(@25);
+    }];
+    /** 出险记录 */
+    [self.dangerRecordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.inquiryRecordBtn.mas_top);
+        make.left.equalTo(self.inquiryRecordBtn.mas_right);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
+        make.height.equalTo(self.inquiryRecordBtn.mas_height);
+    }];
+    /** 行驶证拍摄 */
+    [self.cardShotView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.inquiryRecordBtn.mas_bottom).offset(10);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
+        make.height.mas_offset(@60);
+    }];
+    /** 拍摄 */
+    [self.shotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.cardShotView.mas_top).offset(10);
+        make.bottom.equalTo(self.cardShotView.mas_bottom).offset(-10);
+        make.left.equalTo(self.cardShotView.mas_left).offset(16);
+        make.right.equalTo(self.cardShotView.mas_right).offset(-16);
+    }];
+    /** 行驶证图片 */
+    [self.cardImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.inquiryRecordBtn.mas_bottom).offset(10);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
+        make.height.mas_offset(@180);
+    }];
+    /** 更换图片 */
+    [self.changeImgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.cardImg.mas_top).offset(10);
+        make.right.equalTo(self.cardImg.mas_right).offset(-16);
+        make.size.mas_equalTo(CGSizeMake(90, 30));
+    }];
+    /** 车牌号view */
     [self.plnView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.addbenQuiryBackView.mas_top);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left);
-        make.right.equalTo(self.addbenQuiryBackView.mas_right);
+        make.top.equalTo(self.inquiryRecordBtn.mas_bottom).offset(70.5);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
         make.height.mas_equalTo(@48);
+    }];
+    [self.plnLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.bottom.equalTo(self.plnView.mas_bottom);
+        make.left.equalTo(self.plnView.mas_left).offset(16);
+        make.right.equalTo(self.plnView.mas_right);
+        make.height.mas_equalTo(@0.5);
+    }];
+    [self.plnTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.centerY.equalTo(self.plnView.mas_centerY);
+        make.left.equalTo(self.plnView.mas_left).offset(16);
+    }];
+    [self.caftaBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.plnView.mas_top);
+        make.bottom.equalTo(self.plnView.mas_bottom);
+        make.left.equalTo(self.plnView.mas_left).offset(115);
+    }];
+    [self.plnBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.plnView.mas_top);
+        make.bottom.equalTo(self.plnView.mas_bottom);
+        make.right.equalTo(self.plnView.mas_right).offset(-16);
+    }];
+    [self.plnTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.bottom.equalTo(self.plnView.mas_bottom);
+        make.top.equalTo(self.plnView.mas_top);
+        make.left.equalTo(self.caftaBtn.mas_right).offset(16);
+        make.right.equalTo(self.plnBtn.mas_left).offset(10);
     }];
     /** 品牌车型 */
     [self.carBrandView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.top.equalTo(self.plnView.mas_bottom);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left);
-        make.right.equalTo(self.addbenQuiryBackView.mas_right);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
         make.height.mas_equalTo(@48);
     }];
     /** 车架号 */
     [self.vinView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.top.equalTo(self.carBrandView.mas_bottom);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left);
-        make.right.equalTo(self.addbenQuiryBackView.mas_right);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
         make.height.mas_equalTo(@48);
+    }];
+    [self.vinView.arrowImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(@44);
     }];
     /** 发动机号 */
     [self.engineView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.top.equalTo(self.vinView.mas_bottom);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left);
-        make.right.equalTo(self.addbenQuiryBackView.mas_right);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
         make.height.mas_equalTo(@48);
     }];
-    /** 初次登记时间 */
-    [self.checkTimeView mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 注册时间 */
+    [self.registerTimeView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.top.equalTo(self.engineView.mas_bottom);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left);
-        make.right.equalTo(self.addbenQuiryBackView.mas_right);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
         make.height.mas_equalTo(@48);
     }];
-    // 初次登记时间选择按钮
-    [self.checkTimeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 注册时间选择 */
+    [self.registerTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.checkTimeView.mas_top);
-        make.left.equalTo(self.checkTimeView.mas_left);
-        make.right.equalTo(self.checkTimeView.mas_right).offset(-80);
-        make.bottom.equalTo(self.checkTimeView.mas_bottom);
+        make.top.equalTo(self.registerTimeView.mas_top);
+        make.left.equalTo(self.registerTimeView.mas_left);
+        make.bottom.equalTo(self.registerTimeView.mas_bottom);
+        make.right.equalTo(self.registerTimeView.mas_right).offset(-80);
     }];
-    /** 预计结果提示 */
-    [self.expectsResultsSignLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 所有人 */
+    [self.holdManView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.checkTimeView.mas_bottom).offset(27);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left).offset(16);
+        make.top.equalTo(self.registerTimeView.mas_bottom);
+        make.left.equalTo(self.benefitQuiryView.mas_left);
+        make.right.equalTo(self.benefitQuiryView.mas_right);
+        make.height.mas_equalTo(@48);
     }];
-    /** 提交查询 */
-    [self.submitQueryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.expectsResultsSignLabel.mas_bottom).offset(10);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left).offset(16);
-        make.right.equalTo(self.addbenQuiryBackView.mas_right).offset(-16);
-        make.height.mas_equalTo(@44);
-    }];
-    /** 拍摄行驶证查询 */
-    [self.shotQueryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.submitQueryBtn.mas_bottom).offset(16);
-        make.left.equalTo(self.addbenQuiryBackView.mas_left).offset(16);
-        make.right.equalTo(self.addbenQuiryBackView.mas_right).offset(-16);
-        make.height.mas_equalTo(@44);
-    }];
-    /** 服务提供商 */
-    [self.serviceProviderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.shotQueryBtn.mas_bottom).offset(44);
-        make.centerX.equalTo(self.addbenQuiryBackView.mas_centerX);
-    }];
-    /** 查询记录 */
-    [self.quiryRecordTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.top.equalTo(self.benTabBackView.mas_top);
-        make.left.equalTo(self.benTabBackView.mas_centerX);
-        make.bottom.equalTo(self.benTabBackView.mas_bottom);
-        make.right.equalTo(self.benTabBackView.mas_right);
+    [self.holdManView.arrowImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(@44);
     }];
 }
 
 
-- (void)updateConstraints {
-    @weakify(self)
-    /** 保险查询标记view */
-    [self.benefitQuirySignView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.centerX.equalTo(self.checkBtn.mas_centerX);
-        make.size.mas_equalTo(CGSizeMake((ScreenW / 2 - 32), 2));
-        make.bottom.equalTo(self.benefitTabView.mas_bottom);
-    }];
-    [super updateConstraints];
+#pragma mark - 回收键盘
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self endEditing:YES];
 }
-
-#pragma mark - 输入框响应
-// 限制车架号最大输入位数
-- (void)limitVinMaxNumInputSignal {
-    // 获取账户signal
-    RACSignal *vinTFSignal = self.vinView.viceTextFiled.rac_textSignal;
-    // 判断账户输入框最大输入位数
-    RACSignal *vinMaxNumber =
-    [vinTFSignal map:^id(NSString *text) {
-        return @(text.length > 16);
-    }];
-    // 限制账号输入框可输入位数
-    RAC(self.vinView.viceTextFiled, text) =
-    [vinMaxNumber map:^id(NSNumber *vinNumberTF){
-        return [vinNumberTF boolValue] ? [self.vinView.viceTextFiled.text substringToIndex:17] : self.vinView.viceTextFiled.text;
-    }];
-}
-
-
-#pragma mark - 手势代理，解决手势冲突
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    // 判断是不是tableview触发的手势
-    PDLog(@"%@", touch.view);
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UIImageView"]) {
-        //返回为NO则屏蔽手势事件
-        return NO;
-    }
-    return YES;
-}
-
-#pragma mark - 回收键盘的方法
-- (void)benTabTapAction:(UIButton *)button {
+- (void)benefitQuiryTapAction {
     [self endEditing:YES];
 }
 

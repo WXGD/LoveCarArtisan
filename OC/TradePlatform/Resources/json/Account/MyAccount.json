@@ -1,16 +1,24 @@
 {
     "code" : "0",
-    "msg" : "成功",
-    "data" :       {
+    "data" :     {
+        "all_amount" : "0.00",
         "amount" : "0.00",
-        "withdraw" : "0",
+        "withdraw" : "0.1",
         "withdraw_record" :         [
+                                     
                                      {
-                                     "create_time" : "2017-02-04 13:34:49",
+                                     "create_time" : "2017-02-17 11:38:24",
+                                     "kefu_id" : "1",
+                                     "operator" : "超级管理员",
+                                     "receipt_url" : "http://imagetest.cheweifang.cn/acgj/withdraw/2017-03-08/58bfb2bcf2403.jpg",
+                                     "withdraw_end_time" : "2017-02-16 23:59:59",
                                      "withdraw_money" : "0.00",
-                                     "withdraw_status" : "2",
-                                     "withdraw_time" : "0000-00-00 00:00:00",
+                                     "withdraw_start_time" : "0000-00-00 00:00:00",
+                                     "withdraw_status" : "1",
+                                     "withdraw_time" : "2017-03-08 15:29:00",
                                      }
+                                     
                                      ],
     },
+    "msg" : "成功",
 }

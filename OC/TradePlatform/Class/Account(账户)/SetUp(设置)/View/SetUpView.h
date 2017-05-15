@@ -18,6 +18,8 @@ typedef NS_ENUM(NSInteger, SetUpBottonAction) {
     AboutUsBtnAction,
     /** 客服电话 */
     ServiceNumBtnAction,
+    /** 功能介绍 */
+    funcIntroBtnAction,
 };
 
 #import <UIKit/UIKit.h>
@@ -34,6 +36,8 @@ typedef NS_ENUM(NSInteger, SetUpBottonAction) {
 @property (strong, nonatomic) UsedCellView *aboutUsView;
 /** 客服电话 */
 @property (strong, nonatomic) UsedCellView *serviceNumView;
+/** 功能介绍 */
+@property (strong, nonatomic) UsedCellView *funcIntroView;
 
 
 @end

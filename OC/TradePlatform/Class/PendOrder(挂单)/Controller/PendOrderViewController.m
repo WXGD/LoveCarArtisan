@@ -43,7 +43,7 @@
     _tableVi.backgroundColor = CLEARCOLOR;
     [self.view addSubview:_tableVi];
     @weakify(self)
-    /** 服务商 */
+    /** 挂单 */
     [self.tableVi mas_remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.top.equalTo(self.view.mas_top);
