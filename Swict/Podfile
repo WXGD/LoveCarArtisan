@@ -5,4 +5,5 @@ target 'LoveCarArtisan' do
 	pod 'MJExtension'
 	pod ‘Kingfisher’
 	pod "VTMagic"
+	pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end

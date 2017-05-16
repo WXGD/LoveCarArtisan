@@ -53,6 +53,9 @@
     //在页面出现的时候就将黑线隐藏起来
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    // 隐藏nav
+    self.navigationController.navigationBar.hidden = YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     // 请求时时数据,马上进入刷新状态
     [self.homePageView.homePageScrollView.mj_header beginRefreshing];
     // 网络请求,请求banner数据
@@ -66,6 +69,8 @@
     //在页面消失的时候就让navigationbar还原样式
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:nil];
+    // 隐藏nav
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -157,6 +162,31 @@
 #pragma mark - 首页功能选择按钮
 - (void)homePageBtnAvtion:(UIButton *)button {
     switch (button.tag) {
+            /** 搜索框view */
+        case SearchBtnAction: {
+            SearchViewController *searchVC = [[SearchViewController alloc] init];
+//    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:searchVC] animated:nil completion:nil];
+            [self.navigationController pushViewController:searchVC animated:NO];
+            break;
+        }
+            /** 快捷方式 */
+        case ShortcutBtnBtnAction: {
+            // 创建下拉菜单
+            DropdownMenu *menu = [DropdownMenu menu];
+            menu.delegate = self;
+            // 设置内容
+            ShortcutViewController *shortcutVC = [[ShortcutViewController alloc] init];
+            shortcutVC.view.height = 150;
+            shortcutVC.view.width = 150;
+            menu.contentController = shortcutVC;
+            shortcutVC.shortcutNav = self.navigationController;
+            shortcutVC.ShortcutBtnActionBlock = ^() {
+                [menu dismiss];
+            };
+            // 显示
+            [menu showFrom:self.search];
+            break;
+        }
             /** 扫一扫 */
         case ScanBtnAction: {
             PhotographViewController *photographVC = [[PhotographViewController alloc] init];
@@ -262,6 +292,10 @@
 - (void)homePageLayoutView {
     /** 首页view */
     self.homePageView = [[HomePageView alloc] init];
+    /** 搜索框view */
+    [self.homePageView.homeNavView.search.viewBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
+    /** 快捷方式 */
+    [self.homePageView.homeNavView.shortcutBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
     /** 扫一扫 */
     [self.homePageView.showDataView.scanBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
     /** 收款 */

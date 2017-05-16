@@ -891,6 +891,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A43CDA17E21F0F6BEF42DCB1 /* Pods-LoveCarArtisan.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = PM6CHF268R;
@@ -909,6 +910,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40D21842B8116436B8F08963 /* Pods-LoveCarArtisan.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = PM6CHF268R;

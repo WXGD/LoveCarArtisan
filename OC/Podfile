@@ -23,5 +23,5 @@ target 'TradePlatform' do
 	pod 'TYAttributedLabel'
 	pod 'Pgyer'
 	pod 'PgyUpdate'
-
+	pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end

@@ -38,6 +38,7 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - Reveal-iOS-SDK (1.6.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - Pgyer
   - PgyUpdate
   - ReactiveCocoa
+  - Reveal-iOS-SDK
   - SDWebImage
   - ShareSDK3
   - ShareSDK3/ShareSDKPlatforms/QQ
@@ -95,6 +97,7 @@ SPEC CHECKSUMS:
   Pgyer: 26edfcc8da6da6383fabfdbccd2f77c623b9d6eb
   PgyUpdate: a42e82cec5ad4e992af390e9d494f6fc62db65e4
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   ShareSDK3: 08ed714e2bbdcd97ab60f58cb398227341dfc20a
   TYAttributedLabel: 1c1f1e7604043ba584e005d4fd3aee8a1a7a2020
@@ -102,6 +105,6 @@ SPEC CHECKSUMS:
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: c58a19c5cf7fd239a49ea885985ab134cb298b6b
+PODFILE CHECKSUM: d48d63ad03db120a1dffb878993fb2770bb4d403
 
 COCOAPODS: 1.0.0

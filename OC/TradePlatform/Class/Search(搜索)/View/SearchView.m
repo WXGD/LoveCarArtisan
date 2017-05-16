@@ -80,7 +80,7 @@
         make.top.equalTo(self.mas_top);
         make.bottom.equalTo(self.mas_bottom);
         if (!self.isSearchWidth) {
-            make.width.mas_equalTo(@(240 * WScale));
+            make.width.mas_equalTo(@(260 * WScale));
         }else{
             make.width.mas_equalTo(@(290 * WScale));
         }

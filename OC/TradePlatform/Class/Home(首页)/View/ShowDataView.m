@@ -136,79 +136,96 @@
     @weakify(self)
     /** 实时订单背景view */
     [self.showDataBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.top.equalTo(self.mas_top);
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
     }];
     [self.showDataBackImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.bottom.equalTo(self.showDataBackView.mas_bottom);
         make.left.equalTo(self.showDataBackView.mas_left);
         make.right.equalTo(self.showDataBackView.mas_right);
     }];
     /** 营业额 */
     [self.turnoverTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.mas_top).offset(32);
     }];
     [self.turnoverLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.turnoverTitleLabel.mas_bottom).offset(18);
     }];
     [self.chiefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.bottom.equalTo(self.turnoverLabel.mas_bottom).offset(-10);
         make.left.equalTo(self.turnoverLabel.mas_right).offset(9);
     }];
     /** 订单数 */
     [self.orderNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.left.equalTo(self.mas_left);
         make.top.equalTo(self.turnoverLabel.mas_bottom).offset(36);
     }];
     [self.orderNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.top.equalTo(self.orderNumView.mas_top);
         make.centerX.equalTo(self.orderNumView.mas_centerX);
     }];
     [self.orderNumTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.centerX.equalTo(self.orderNumView.mas_centerX);
         make.top.equalTo(self.orderNumLabel.mas_bottom).offset(12);
     }];
     [self.orderNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.bottom.equalTo(self.orderNumTitleLabel.mas_bottom);
     }];
     /** 分割线 */
     [self.dividingLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.left.equalTo(self.orderNumView.mas_right);
         make.width.mas_equalTo(@0.5);
     }];
     /** 消费人数 */
     [self.csmPleNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.left.equalTo(self.dividingLineView.mas_right);
         make.right.equalTo(self.mas_right);
         make.top.equalTo(self.turnoverLabel.mas_bottom).offset(36);
     }];
     [self.csmPleNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.top.equalTo(self.csmPleNumView.mas_top);
         make.centerX.equalTo(self.csmPleNumView.mas_centerX);
     }];
     [self.csmPleNumTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.centerX.equalTo(self.csmPleNumView.mas_centerX);
         make.top.equalTo(self.csmPleNumLabel.mas_bottom).offset(12);
     }];
     /** 订单数, 消费人数 */
     [@[self.orderNumView, self.csmPleNumView] mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.width.equalTo(self.orderNumView.mas_width);
     }];
     /** 订单数, 分割线, 消费人数 */
     [@[self.orderNumView, self.dividingLineView, self.csmPleNumView] mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.top.equalTo(self.turnoverLabel.mas_bottom).offset(36);
         make.height.equalTo(self.orderNumView.mas_height);
     }];
     /** 实时订单背景view高度 */
     [self.showDataBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.bottom.equalTo(self.orderNumView.mas_bottom).offset(48);
     }];
 
     /** 收银，扫一扫view */
     [self.cashierScanImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.csmPleNumView.mas_bottom).offset(18);
         make.width.mas_equalTo(@161);

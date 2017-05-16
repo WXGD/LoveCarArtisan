@@ -166,7 +166,7 @@
         @strongify(self)
         make.top.equalTo(self.serviceModuleView.mas_top);
         make.left.equalTo(self.serviceModuleView.mas_left).offset(16);
-        make.width.mas_equalTo(@(ScreenW - 36));
+        make.width.mas_equalTo(@(ScreenW - 32));
         make.bottom.equalTo(self.orderBtn.mas_bottom);
     }];
     /** 服务 */

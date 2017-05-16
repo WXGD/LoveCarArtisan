@@ -10,6 +10,10 @@
 typedef NS_ENUM(NSInteger, SuspensionAction) {
     /** 挂单入口按钮 */
     PendOrderBtnActio = 20,
+    /** 搜索框view */
+    SearchBtnAction = 21,
+    /** 快捷方式 */
+    ShortcutBtnBtnAction = 22,
 };
 
 #import <UIKit/UIKit.h>
@@ -18,12 +22,14 @@ typedef NS_ENUM(NSInteger, SuspensionAction) {
 #import "ServiceModuleView.h"
 #import "BannerView.h"
 #import "ScrollBottomView.h"
+#import "HomeNavView.h"
 
 @interface HomePageView : UIView
 
 /** 背景scrollview */
 @property (strong, nonatomic) UIScrollView *homePageScrollView;
-
+/** 导航栏 */
+@property (strong, nonatomic) HomeNavView *homeNavView;
 /** 时时数据 */
 @property (strong, nonatomic) ShowDataView *showDataView;
 /** 服务模块 */

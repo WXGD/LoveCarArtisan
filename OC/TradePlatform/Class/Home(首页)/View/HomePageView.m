@@ -34,6 +34,13 @@
     self.homePageView = [[UIView alloc] init];
     self.homePageView.backgroundColor = VCBackground;
     [self.homePageScrollView addSubview:self.homePageView];
+    /** 导航栏 */
+    self.homeNavView = [[HomeNavView alloc] init];
+    /** 搜索框view */
+    self.homeNavView.search.viewBtn.tag = SearchBtnAction;
+    /** 快捷方式 */
+    self.homeNavView.shortcutBtn.tag = ShortcutBtnBtnAction;
+    [self.homePageView addSubview:self.homeNavView];
     /** 时时数据 */
     self.showDataView = [[ShowDataView alloc] init];
     self.showDataView.backgroundColor = WhiteColor;
@@ -78,10 +85,17 @@
         make.width.equalTo(self.homePageScrollView.mas_width);
         make.bottom.equalTo(self.bottomSignView.mas_bottom);
     }];
+    /** 导航栏 */
+    [self.homeNavView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.homePageView.mas_top);
+        make.left.equalTo(self.homePageView.mas_left);
+        make.right.equalTo(self.homePageView.mas_right);
+    }];
     /** 时时数据 */
     [self.showDataView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.homePageView.mas_top);
+        make.top.equalTo(self.homeNavView.mas_bottom);
         make.left.equalTo(self.homePageView.mas_left);
         make.right.equalTo(self.homePageView.mas_right);
     }];

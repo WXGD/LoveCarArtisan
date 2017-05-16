@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		009A21D116ACE7676A0E57E1 /* Pods_TradePlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBAD7AE2CAEEA6517B6CE2D6 /* Pods_TradePlatform.framework */; };
 		180635D81E7A736200D26D20 /* ServiceMasterHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 180635D71E7A736200D26D20 /* ServiceMasterHandle.m */; };
+		18130F2A1ECAAC4200A525A0 /* HomeNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18130F291ECAAC4200A525A0 /* HomeNavView.m */; };
 		1815C2021EC2A4A8009B09EA /* SafeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C2011EC2A4A8009B09EA /* SafeTypeModel.m */; };
 		1815C2051EC2A751009B09EA /* BenefitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C2041EC2A751009B09EA /* BenefitModel.m */; };
 		1815C20C1EC2E546009B09EA /* BenefitFirmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815C20B1EC2E546009B09EA /* BenefitFirmModel.m */; };
@@ -518,6 +519,8 @@
 		01E38F572059FA0385037228 /* Pods-TradePlatform.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradePlatform.release.xcconfig"; path = "Pods/Target Support Files/Pods-TradePlatform/Pods-TradePlatform.release.xcconfig"; sourceTree = "<group>"; };
 		180635D61E7A736200D26D20 /* ServiceMasterHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceMasterHandle.h; sourceTree = "<group>"; };
 		180635D71E7A736200D26D20 /* ServiceMasterHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceMasterHandle.m; sourceTree = "<group>"; };
+		18130F281ECAAC4200A525A0 /* HomeNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNavView.h; sourceTree = "<group>"; };
+		18130F291ECAAC4200A525A0 /* HomeNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNavView.m; sourceTree = "<group>"; };
 		1815C2001EC2A4A8009B09EA /* SafeTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeTypeModel.h; sourceTree = "<group>"; };
 		1815C2011EC2A4A8009B09EA /* SafeTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeTypeModel.m; sourceTree = "<group>"; };
 		1815C2031EC2A751009B09EA /* BenefitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BenefitModel.h; sourceTree = "<group>"; };
@@ -2821,6 +2824,8 @@
 				3C43E3E11EC1CCCC0000887F /* ShowDataView.m */,
 				3C43E3E21EC1CCCC0000887F /* UpdateReminderView.h */,
 				3C43E3E31EC1CCCC0000887F /* UpdateReminderView.m */,
+				18130F281ECAAC4200A525A0 /* HomeNavView.h */,
+				18130F291ECAAC4200A525A0 /* HomeNavView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6005,6 +6010,7 @@
 				3C43E8381EC1CCCD0000887F /* OrderInfoModel.m in Sources */,
 				3C43E7F51EC1CCCD0000887F /* ReviseRangeFootView.m in Sources */,
 				3C43E8A41EC1CCCD0000887F /* UserInfoView.m in Sources */,
+				18130F2A1ECAAC4200A525A0 /* HomeNavView.m in Sources */,
 				3C43E8A11EC1CCCD0000887F /* UserCardListTableViewCell.m in Sources */,
 				3C43E8CA1EC1CCCD0000887F /* ConfictCardViewCell.m in Sources */,
 				3C43E7BE1EC1CCCC0000887F /* BenefitPaySuccessViewController.m in Sources */,
