@@ -20,15 +20,15 @@ class BannerView: UIView {
     // 标题标志
     lazy var titleSignView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.ThemeColor
+        view.backgroundColor = ThemeColor
         return view
     }()
     // 标题
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "工匠资讯"
-        label.textColor = UIColor.BlackColor
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = BlackColor
+        label.font = FourteenFont
         return label
     }()
     // 轮播图
@@ -52,7 +52,7 @@ class BannerView: UIView {
         bannerView.customPageControlStyle = .snake
         // 非.system的状态下，设置PageControl的tintColor
         bannerView.customPageControlInActiveTintColor = UIColor.white
-        bannerView.customPageControlTintColor = UIColor.ThemeColor;
+        bannerView.customPageControlTintColor = ThemeColor;
         // 非.system的状态下，设置PageControl的间距(默认为8.0)
         bannerView.customPageControlIndicatorPadding = 8.0
         return bannerView

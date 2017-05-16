@@ -8,34 +8,36 @@
 
 import UIKit
 
-extension UIColor {
-    
-    /** 主题色 */
-    static let ThemeColor:UIColor = UIColor.colorWith(69, green: 192, blue: 24, alpha: 1)
-    /** 白色 */
-    static let WhiteColor:UIColor = UIColor.colorWith(255, green: 255, blue: 255, alpha: 1)
-    /** 红色 */
-    static let RedColor:UIColor = UIColor.colorWith(229, green: 57, blue: 53, alpha: 1)
-    /** 蓝色 */
-    static let BlueColor:UIColor = UIColor.colorWith(30, green: 136, blue: 229, alpha: 1)
-    /** 黑色 */
-    static let BlackColor:UIColor = UIColor.colorWith(51, green: 51, blue: 51, alpha: 1)
-    /** 深灰色 */
-    static let GrayH1:UIColor = UIColor.colorWith(102, green: 102, blue: 102, alpha: 1)
-    /** 次灰色 */
-    static let GrayH2:UIColor = UIColor.colorWith(153, green: 153, blue: 153, alpha: 1)
-    /** 浅灰色 */
-    static let GrayH3:UIColor = UIColor.colorWith(195, green: 195, blue: 195, alpha: 1)
-    /** 按钮不可点击颜色 */
-    static let NotClick:UIColor = UIColor.colorWith(187, green: 187, blue: 187, alpha: 1)
-    /** 分割线颜色 */
-    static let DividingLine:UIColor = UIColor.colorWith(229, green: 229, blue: 229, alpha: 1)
-    /** 控制器背景颜色 */
-    static let VCBackground:UIColor = UIColor.colorWith(239, green: 239, blue: 239, alpha: 1)
-    static let VCBackgroundTwo:UIColor = UIColor.colorWith(245, green: 245, blue: 245, alpha: 1)
-    static let VCBackgroundThree:UIColor = UIColor.colorWith(250, green: 250, blue: 250, alpha: 1)
+/** 主题色(45,C0,18) */
+public let ThemeColor:UIColor = UIColor.colorWith(69, green: 192, blue: 24, alpha: 1)
+/** 白色(FF,FF,FF) */
+public let WhiteColor:UIColor = UIColor.colorWith(255, green: 255, blue: 255, alpha: 1)
+/** 红色(E5,39,35) */
+public let RedColor:UIColor = UIColor.colorWith(229, green: 57, blue: 53, alpha: 1)
+/** 蓝色(1E,88,E5) */
+public let BlueColor:UIColor = UIColor.colorWith(30, green: 136, blue: 229, alpha: 1)
+/** 黑色(33,33,33) */
+public let BlackColor:UIColor = UIColor.colorWith(51, green: 51, blue: 51, alpha: 1)
+/** 灰色1(66,66,66) */
+public let GrayH1Color:UIColor = UIColor.colorWith(102, green: 102, blue: 102, alpha: 1)
+/** 灰色2(99,99,99) */
+public let GrayH2Color:UIColor = UIColor.colorWith(153, green: 153, blue: 153, alpha: 1)
+/** 灰色3(C3,C3,C3) */
+public let GrayH3Color:UIColor = UIColor.colorWith(195, green: 195, blue: 195, alpha: 1)
+/** 灰色4(BB,BB,BB)(按钮不可点击色) */
+public let GrayH4Color:UIColor = UIColor.colorWith(187, green: 187, blue: 187, alpha: 1)
+/** 灰色5(E5,E5,E5)(分割线颜色) */
+public let GrayH5Color:UIColor = UIColor.colorWith(229, green: 229, blue: 229, alpha: 1)
+/** 灰色6(EF,EF,EF)(控制器背景颜色) */
+public let GrayH6Color:UIColor = UIColor.colorWith(239, green: 239, blue: 239, alpha: 1)
+/** 灰色7(F5,F5,F5)(控制器背景颜色) */
+public let GrayH7Color:UIColor = UIColor.colorWith(245, green: 245, blue: 245, alpha: 1)
+/** 灰色8(FA,FA,FA)(控制器背景颜色) */
+public let GrayH8Color:UIColor = UIColor.colorWith(250, green: 250, blue: 250, alpha: 1)
 
-    
+
+extension UIColor {
+
     // rgb
     class func colorWith(_ red: Int, green: Int, blue: Int, alpha: CGFloat) -> UIColor {
         let color = UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: alpha)

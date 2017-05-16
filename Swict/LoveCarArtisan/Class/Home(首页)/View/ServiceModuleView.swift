@@ -24,8 +24,8 @@ class ServiceModuleView: UIView {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 2
         pageControl.currentPage = 0
-        pageControl.pageIndicatorTintColor = UIColor.VCBackground
-        pageControl.currentPageIndicatorTintColor = UIColor.ThemeColor
+        pageControl.pageIndicatorTintColor = GrayH6Color
+        pageControl.currentPageIndicatorTintColor = ThemeColor
         return pageControl
     }()
     // 背景scrollView

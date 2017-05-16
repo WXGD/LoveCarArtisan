@@ -39,16 +39,16 @@ class UserTableCell: UITableViewCell {
     private lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "用户名"
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.BlackColor
+        label.font = FifteenFont
+        label.textColor = BlackColor
         return label
     }()
     // 用户手机号
     private lazy var userPhoneLabel: UILabel = {
         let label = UILabel()
         label.text = "用户手机号"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.textColor = UIColor.GrayH1
+        label.font = TwelveFont
+        label.textColor = GrayH1Color
         return label
     }()
     // 尖头
@@ -63,7 +63,7 @@ class UserTableCell: UITableViewCell {
         view.backgroundColor = UIColor.colorWithHex("f0f9ff")
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 2
-        view.layer.borderColor = UIColor.DividingLine.cgColor
+        view.layer.borderColor = GrayH4Color.cgColor
         view.layer.borderWidth = 0.5
         return view
     }()
@@ -74,8 +74,8 @@ class UserTableCell: UITableViewCell {
     private lazy var plnLabel: UILabel = {
         let label = UILabel()
         label.text = "车牌号"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.textColor = UIColor.BlackColor
+        label.font = TwelveFont
+        label.textColor = BlackColor
         return label
     }()
     

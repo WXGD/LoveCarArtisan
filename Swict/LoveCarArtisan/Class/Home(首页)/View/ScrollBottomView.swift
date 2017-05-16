@@ -22,8 +22,8 @@ class ScrollBottomView: UIView {
     lazy var appNameLabel: UILabel = {
         let label = UILabel()
         label.text = "爱车工匠已陪伴您"
-        label.textColor = UIColor.NotClick
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = GrayH4Color
+        label.font = TwelveFont
         return label
     }()
     // 提示语View
@@ -35,16 +35,16 @@ class ScrollBottomView: UIView {
     lazy var signLabel: UILabel = {
         let label = UILabel()
         label.text = "0"
-        label.textColor = UIColor.GrayH2
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = GrayH2Color
+        label.font = EighteenFont
         return label
     }()
     // 天
     lazy var dayLabel: UILabel = {
         let label = UILabel()
         label.text = "天"
-        label.textColor = UIColor.GrayH2
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = GrayH2Color
+        label.font = TwelveFont
         return label
     }()
     // 左分割线

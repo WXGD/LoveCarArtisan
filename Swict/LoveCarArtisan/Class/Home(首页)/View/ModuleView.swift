@@ -27,7 +27,7 @@ class ModuleView: UIView {
     lazy var serviceLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = FourteenFont
         return label
     }()
     /** 服务按钮 */

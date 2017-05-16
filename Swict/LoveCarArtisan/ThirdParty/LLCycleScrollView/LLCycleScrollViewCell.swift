@@ -82,7 +82,7 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         titleLabel.isHidden = true
         titleLabel.textColor = titleLabelTextColor
         titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.font = FifteenFont
         titleLabel.backgroundColor = UIColor.clear
         titleBackView.addSubview(titleLabel)
     }

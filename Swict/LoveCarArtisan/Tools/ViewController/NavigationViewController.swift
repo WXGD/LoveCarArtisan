@@ -17,15 +17,15 @@ class NavigationViewController: UINavigationController {
         super.viewDidLoad()
         navBar = UINavigationBar.appearance()
         navBar.isTranslucent = false
-        navBar.barTintColor = UIColor.ThemeColor
-        navBar.tintColor = UIColor.WhiteColor
+        navBar.barTintColor = ThemeColor
+        navBar.tintColor = WhiteColor
         navBar.titleTextAttributes = {[
-            NSForegroundColorAttributeName: UIColor.WhiteColor,
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18)
+            NSForegroundColorAttributeName: WhiteColor,
+            NSFontAttributeName: EighteenFontBold
         ]}()
         barItem = UIBarButtonItem.appearance()
         barItem.setTitleTextAttributes(
-            [NSFontAttributeName: UIFont.systemFont(ofSize: 15)]
+            [NSFontAttributeName: FifteenFont]
         , for: UIControlState.normal)
     }
 

@@ -12,12 +12,12 @@ class ShowDataView: UIView {
     /** 实时订单背景view */
     lazy var showDataBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.ThemeColor
+        view.backgroundColor = ThemeColor
         return view
     }()
     lazy var showDataBackImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "home_show_back")
+        imageView.image = #imageLiteral(resourceName: "home_show_back")
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -26,22 +26,22 @@ class ShowDataView: UIView {
     lazy var turnoverTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "今日营业总额"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = FourteenFont
         label.textColor = UIColor.colorWith(255, green: 255, blue: 255, alpha: 0.8)
         return label
     }()
     lazy var turnoverLabel: UILabel = {
         let label = UILabel()
         label.text = "100"
-        label.font = UIFont.boldSystemFont(ofSize: 45)
-        label.textColor = UIColor.WhiteColor
+        label.font = FortyFiveFont
+        label.textColor = WhiteColor
         return label
     }()
     lazy var chiefLabel: UILabel = {
         let label = UILabel()
         label.text = "元"
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.WhiteColor
+        label.font = FourteenFont
+        label.textColor = WhiteColor
         return label
     }()
     /** 订单数 */
@@ -52,15 +52,15 @@ class ShowDataView: UIView {
     lazy var orderNumTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "今日订单数"
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = ThirteenFont
         label.textColor = UIColor.colorWith(255, green: 255, blue: 255, alpha: 0.6)
         return label
     }()
     lazy var orderNumLabel: UILabel = {
         let label = UILabel()
         label.text = "0"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor.WhiteColor
+        label.font = TwelveFont
+        label.textColor = WhiteColor
         return label
     }()
     /** 分割线 */
@@ -77,21 +77,21 @@ class ShowDataView: UIView {
     lazy var csmPleNumTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "今日服务人数"
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = ThirteenFont
         label.textColor = UIColor.colorWith(255, green: 255, blue: 255, alpha: 0.6)
         return label
     }()
     lazy var csmPleNumLabel: UILabel = {
         let label = UILabel()
         label.text = "0"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor.WhiteColor
+        label.font = TwelveFont
+        label.textColor = WhiteColor
         return label
     }()
     /** 收银，扫一扫view */
     lazy var cashierScanImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "home_cashier_scan")
+        imageView.image = #imageLiteral(resourceName: "home_cashier_scan")
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -99,21 +99,21 @@ class ShowDataView: UIView {
     lazy var cashierBtn: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
         button.setTitle("收银", for: UIControlState.normal)
-        button.setTitleColor(UIColor.ThemeColor, for: UIControlState.normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.setTitleColor(ThemeColor, for: UIControlState.normal)
+        button.titleLabel?.font = FifteenFont
         return button
     }()
     /** 分割线 */
     lazy var cashierScanLineView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.DividingLine
+        view.backgroundColor = GrayH5Color
         return view
     }()
     /** 扫一扫 */
     lazy var scanBtn: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
-        button.setImage(UIImage(named:"home_page_scan"), for: UIControlState.normal)
-        button.setTitleColor(UIColor.ThemeColor, for: UIControlState.normal)
+        button.setImage(#imageLiteral(resourceName: "home_page_scan"), for: UIControlState.normal)
+        button.setTitleColor(ThemeColor, for: UIControlState.normal)
         return button
     }()
     

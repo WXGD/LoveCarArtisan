@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18009B721EC9944A0003B929 /* ServiceClassHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18009B711EC9944A0003B929 /* ServiceClassHandle.swift */; };
+		18009B751EC99E840003B929 /* serviceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = 18009B741EC99E840003B929 /* serviceClass.json */; };
+		18009B7B1EC9AD680003B929 /* ServiceClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18009B791EC9AD680003B929 /* ServiceClassModel.swift */; };
+		18009B7D1EC9AD830003B929 /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18009B7C1EC9AD830003B929 /* GoodsViewController.swift */; };
+		18130F2C1ECACCF300A525A0 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F2B1ECACCF300A525A0 /* GoodsCell.swift */; };
+		18130F311ECAD04400A525A0 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F301ECAD04400A525A0 /* CustomCell.swift */; };
+		18130F331ECAD55C00A525A0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F321ECAD55C00A525A0 /* Tools.swift */; };
 		1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C85D1EAD9C9400E8B1FF /* HomeView.swift */; };
-		1839C8651EADA2D200E8B1FF /* theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8641EADA2D200E8B1FF /* theme.swift */; };
 		1839C8671EADC9B200E8B1FF /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8661EADC9B200E8B1FF /* BannerView.swift */; };
 		1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */; };
 		1839C8731EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86D1EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift */; };
@@ -37,7 +43,6 @@
 		18DF12C71EC04AD70070302D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12C41EC04AD70070302D /* UserModel.swift */; };
 		18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12C61EC04AD70070302D /* UserTableCell.swift */; };
 		18DF12CC1EC04E590070302D /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12CB1EC04E590070302D /* ServiceViewController.swift */; };
-		18DF12D61EC04F2D0070302D /* GoodsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12D51EC04F2D0070302D /* GoodsShowViewController.swift */; };
 		F17E28FFA8C1BFE61EEF27FF /* Pods_LoveCarArtisan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16907CC78DE63FD532C656B7 /* Pods_LoveCarArtisan.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,8 +65,14 @@
 
 /* Begin PBXFileReference section */
 		16907CC78DE63FD532C656B7 /* Pods_LoveCarArtisan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveCarArtisan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18009B711EC9944A0003B929 /* ServiceClassHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClassHandle.swift; sourceTree = "<group>"; };
+		18009B741EC99E840003B929 /* serviceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = serviceClass.json; sourceTree = "<group>"; };
+		18009B791EC9AD680003B929 /* ServiceClassModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClassModel.swift; sourceTree = "<group>"; };
+		18009B7C1EC9AD830003B929 /* GoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
+		18130F2B1ECACCF300A525A0 /* GoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
+		18130F301ECAD04400A525A0 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		18130F321ECAD55C00A525A0 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		1839C85D1EAD9C9400E8B1FF /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		1839C8641EADA2D200E8B1FF /* theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = theme.swift; sourceTree = "<group>"; };
 		1839C8661EADC9B200E8B1FF /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
 		1839C86D1EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollViewCell.swift; sourceTree = "<group>"; };
@@ -97,7 +108,6 @@
 		18DF12C41EC04AD70070302D /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		18DF12C61EC04AD70070302D /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		18DF12CB1EC04E590070302D /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
-		18DF12D51EC04F2D0070302D /* GoodsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsShowViewController.swift; sourceTree = "<group>"; };
 		40D21842B8116436B8F08963 /* Pods-LoveCarArtisan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCarArtisan.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan.release.xcconfig"; sourceTree = "<group>"; };
 		A43CDA17E21F0F6BEF42DCB1 /* Pods-LoveCarArtisan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveCarArtisan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoveCarArtisan/Pods-LoveCarArtisan.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,10 +138,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18009B681EC993C90003B929 /* DataHandle */ = {
+			isa = PBXGroup;
+			children = (
+				18009B711EC9944A0003B929 /* ServiceClassHandle.swift */,
+			);
+			path = DataHandle;
+			sourceTree = "<group>";
+		};
+		18009B731EC99E840003B929 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				18009B741EC99E840003B929 /* serviceClass.json */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		18009B761EC9AD680003B929 /* Goods(商品展示) */ = {
+			isa = PBXGroup;
+			children = (
+				18009B771EC9AD680003B929 /* Controller */,
+				18009B781EC9AD680003B929 /* Model */,
+				18009B7A1EC9AD680003B929 /* View */,
+			);
+			path = "Goods(商品展示)";
+			sourceTree = "<group>";
+		};
+		18009B771EC9AD680003B929 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18009B7C1EC9AD830003B929 /* GoodsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18009B781EC9AD680003B929 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18009B791EC9AD680003B929 /* ServiceClassModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18009B7A1EC9AD680003B929 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18130F2B1ECACCF300A525A0 /* GoodsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18130F2D1ECAD01400A525A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18130F301ECAD04400A525A0 /* CustomCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1839C85F1EADA27200E8B1FF /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				1839C8641EADA2D200E8B1FF /* theme.swift */,
+				18130F321ECAD55C00A525A0 /* Tools.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -192,6 +260,7 @@
 		1839C8821EADFBD100E8B1FF /* json */ = {
 			isa = PBXGroup;
 			children = (
+				18009B731EC99E840003B929 /* service */,
 				1839C8831EADFBD100E8B1FF /* user */,
 			);
 			path = json;
@@ -230,6 +299,7 @@
 		18CC1FD01EA8AF7D00FC2B54 /* LoveCarArtisan */ = {
 			isa = PBXGroup;
 			children = (
+				18009B681EC993C90003B929 /* DataHandle */,
 				1839C86A1EADDD0500E8B1FF /* ThirdParty */,
 				1839C85F1EADA27200E8B1FF /* Config */,
 				18CC1FFF1EA8B05A00FC2B54 /* Category */,
@@ -390,6 +460,7 @@
 		18CC20161EA8B05A00FC2B54 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				18130F2D1ECAD01400A525A0 /* View */,
 				18CC20171EA8B05A00FC2B54 /* ViewController */,
 			);
 			path = Tools;
@@ -408,8 +479,8 @@
 		18DF12BF1EC049DF0070302D /* Service(服务) */ = {
 			isa = PBXGroup;
 			children = (
-				18DF12D11EC04F100070302D /* GoodsShow(商品展示) */,
 				18DF12C01EC049DF0070302D /* Controller */,
+				18009B761EC9AD680003B929 /* Goods(商品展示) */,
 			);
 			path = "Service(服务)";
 			sourceTree = "<group>";
@@ -434,38 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				18DF12C61EC04AD70070302D /* UserTableCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		18DF12D11EC04F100070302D /* GoodsShow(商品展示) */ = {
-			isa = PBXGroup;
-			children = (
-				18DF12D21EC04F100070302D /* Controller */,
-				18DF12D31EC04F100070302D /* Model */,
-				18DF12D41EC04F100070302D /* View */,
-			);
-			path = "GoodsShow(商品展示)";
-			sourceTree = "<group>";
-		};
-		18DF12D21EC04F100070302D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				18DF12D51EC04F2D0070302D /* GoodsShowViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		18DF12D31EC04F100070302D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18DF12D41EC04F100070302D /* View */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -601,6 +640,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18009B751EC99E840003B929 /* serviceClass.json in Resources */,
 				1839C8851EADFBD100E8B1FF /* userList.json in Resources */,
 				18CC20211EA8B05A00FC2B54 /* Assets.xcassets in Resources */,
 				18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */,
@@ -688,16 +728,20 @@
 				1839C8771EADDD0D00E8B1FF /* LLViewExtensions.swift in Sources */,
 				18DF12C71EC04AD70070302D /* UserModel.swift in Sources */,
 				1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */,
-				1839C8651EADA2D200E8B1FF /* theme.swift in Sources */,
 				18CC201D1EA8B05A00FC2B54 /* ShowDataView.swift in Sources */,
 				1839C8731EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift in Sources */,
 				18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */,
-				18DF12D61EC04F2D0070302D /* GoodsShowViewController.swift in Sources */,
 				18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */,
 				18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */,
 				1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */,
 				18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */,
+				18130F2C1ECACCF300A525A0 /* GoodsCell.swift in Sources */,
+				18009B7B1EC9AD680003B929 /* ServiceClassModel.swift in Sources */,
+				18130F311ECAD04400A525A0 /* CustomCell.swift in Sources */,
 				18CC201E1EA8B05A00FC2B54 /* NewsViewController.swift in Sources */,
+				18009B721EC9944A0003B929 /* ServiceClassHandle.swift in Sources */,
+				18009B7D1EC9AD830003B929 /* GoodsViewController.swift in Sources */,
+				18130F331ECAD55C00A525A0 /* Tools.swift in Sources */,
 				18C714C51EA9FE260054877F /* ModuleView.swift in Sources */,
 				1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */,
 				18DF12CC1EC04E590070302D /* ServiceViewController.swift in Sources */,

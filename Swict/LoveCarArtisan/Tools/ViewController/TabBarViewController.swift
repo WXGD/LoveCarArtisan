@@ -29,7 +29,7 @@ class TabBarViewController: UITabBarController {
         viewController.tabBarItem.selectedImage = UIImage(named:selectedImage as String)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         // 设置文字选中的样式
         let selectedtextAttrs: NSMutableDictionary = NSMutableDictionary()
-        selectedtextAttrs[NSForegroundColorAttributeName] = UIColor.ThemeColor;
+        selectedtextAttrs[NSForegroundColorAttributeName] = ThemeColor;
         viewController.tabBarItem.setTitleTextAttributes(selectedtextAttrs as? [String : Any], for: UIControlState.selected)
         // 设置导航栏,添加为子控制器
         self.addChildViewController(NavigationViewController.init(rootViewController: viewController))

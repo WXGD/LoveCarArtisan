@@ -18,7 +18,7 @@ class RootViewController: UIViewController {
     
     // MARK - 页面基础信息
     func rootVCBasicInfo() {
-        view.backgroundColor = UIColor.VCBackground
+        view.backgroundColor = GrayH6Color
     }
     
     

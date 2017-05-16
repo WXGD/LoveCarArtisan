@@ -59,13 +59,13 @@ class HomeView: UIView {
     // 懒加载实时数据View
     lazy var showDataView: ShowDataView = {
         let view = ShowDataView()
-        view.backgroundColor = UIColor.WhiteColor
+        view.backgroundColor = WhiteColor
         return view
     }()
     // 懒加载服务模块View
     lazy var serviceModuleView: ServiceModuleView = {
         let view = ServiceModuleView()
-        view.backgroundColor = UIColor.WhiteColor
+        view.backgroundColor = WhiteColor
         /** 客户 */
         view.customerBtn.serviceBtn.tag = HomeBtnType.Customer.rawValue
         /** 服务管理 */
@@ -75,7 +75,7 @@ class HomeView: UIView {
     // 懒加载轮播图模块View
     lazy var bannerView: BannerView = {
         let view = BannerView()
-        view.backgroundColor = UIColor.WhiteColor
+        view.backgroundColor = WhiteColor
         return view
     }()
     // 懒加载底部提示View
