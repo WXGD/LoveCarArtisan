@@ -13,23 +13,32 @@ class AccountViewController: RootViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        
+        let cell: CustomCell = CustomCell()
+        cell.backgroundColor = WhiteColor
+        view.addSubview(cell)
+        cell.mas_makeConstraints { (make:MASConstraintMaker!) in
+            make.left.equalTo()(self.view.mas_left)
+            make.right.equalTo()(self.view.mas_right)
+            make.top.equalTo()(self.view.mas_top)
+            make.height.mas_equalTo()(50)
+        }
+        
+        
+        let cellaaaa: CustomCell = CustomCell()
+        cellaaaa.cellStyle = CustomCellStyle.HorizontalLayoutHaveMImgAndNotVImg
+        cellaaaa.backgroundColor = WhiteColor
+        view.addSubview(cellaaaa)
+        cellaaaa.mas_makeConstraints { (make:MASConstraintMaker!) in
+            make.left.equalTo()(self.view.mas_left)
+            make.right.equalTo()(self.view.mas_right)
+            make.top.equalTo()(cell.mas_bottom)
+            make.height.mas_equalTo()(50)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
