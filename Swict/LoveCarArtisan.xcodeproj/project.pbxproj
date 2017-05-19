@@ -14,6 +14,15 @@
 		18130F2C1ECACCF300A525A0 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F2B1ECACCF300A525A0 /* GoodsCell.swift */; };
 		18130F311ECAD04400A525A0 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F301ECAD04400A525A0 /* CustomCell.swift */; };
 		18130F331ECAD55C00A525A0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F321ECAD55C00A525A0 /* Tools.swift */; };
+		18304A461ECD9A8E00B73F57 /* ServiceModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18304A451ECD9A8E00B73F57 /* ServiceModuleView.swift */; };
+		18304A4A1ECD9D0F00B73F57 /* ModuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18304A491ECD9D0F00B73F57 /* ModuleCell.swift */; };
+		1837B6871ECEA53400FF4455 /* DCURLNavgation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1837B6811ECEA53400FF4455 /* DCURLNavgation.m */; };
+		1837B6881ECEA53400FF4455 /* DCURLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1837B6831ECEA53400FF4455 /* DCURLRouter.m */; };
+		1837B6891ECEA53400FF4455 /* DCURLRouter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1837B6841ECEA53400FF4455 /* DCURLRouter.plist */; };
+		1837B68A1ECEA53400FF4455 /* UIViewController+DCURLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1837B6861ECEA53400FF4455 /* UIViewController+DCURLRouter.m */; };
+		1837B68C1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B68B1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift */; };
+		1837B68E1ECEBF4400FF4455 /* AppDelegate+AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B68D1ECEBF4400FF4455 /* AppDelegate+AppService.swift */; };
+		1837B6901ECEBF5500FF4455 /* AppDelegate+RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B68F1ECEBF5500FF4455 /* AppDelegate+RootController.swift */; };
 		1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C85D1EAD9C9400E8B1FF /* HomeView.swift */; };
 		1839C8671EADC9B200E8B1FF /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8661EADC9B200E8B1FF /* BannerView.swift */; };
 		1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */; };
@@ -25,7 +34,6 @@
 		1839C8791EADDE1F00E8B1FF /* ScrollBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8781EADDE1F00E8B1FF /* ScrollBottomView.swift */; };
 		1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C87E1EADE58B00E8B1FF /* AccountViewController.swift */; };
 		1839C8851EADFBD100E8B1FF /* userList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1839C8841EADFBD100E8B1FF /* userList.json */; };
-		18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C21EA9ED900054877F /* ServiceModuleView.swift */; };
 		18C714C51EA9FE260054877F /* ModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C714C41EA9FE260054877F /* ModuleView.swift */; };
 		18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CC1FDA1EA8AF7D00FC2B54 /* LaunchScreen.storyboard */; };
 		18CC1FE71EA8AF7D00FC2B54 /* LoveCarArtisanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC1FE61EA8AF7D00FC2B54 /* LoveCarArtisanTests.swift */; };
@@ -40,6 +48,8 @@
 		18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20181EA8B05A00FC2B54 /* NavigationViewController.swift */; };
 		18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC20191EA8B05A00FC2B54 /* RootViewController.swift */; };
 		18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */; };
+		18D5955E1ECE8EAB003F7853 /* ServiceModuleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5955D1ECE8EAA003F7853 /* ServiceModuleModel.swift */; };
+		18D595601ECE9007003F7853 /* ServiceModule.json in Resources */ = {isa = PBXBuildFile; fileRef = 18D5955F1ECE9007003F7853 /* ServiceModule.json */; };
 		18DF12C71EC04AD70070302D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12C41EC04AD70070302D /* UserModel.swift */; };
 		18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12C61EC04AD70070302D /* UserTableCell.swift */; };
 		18DF12CC1EC04E590070302D /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF12CB1EC04E590070302D /* ServiceViewController.swift */; };
@@ -72,6 +82,19 @@
 		18130F2B1ECACCF300A525A0 /* GoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		18130F301ECAD04400A525A0 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		18130F321ECAD55C00A525A0 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		18304A451ECD9A8E00B73F57 /* ServiceModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModuleView.swift; sourceTree = "<group>"; };
+		18304A491ECD9D0F00B73F57 /* ModuleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleCell.swift; sourceTree = "<group>"; };
+		1837B67F1ECEA53400FF4455 /* DCSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSingleton.h; sourceTree = "<group>"; };
+		1837B6801ECEA53400FF4455 /* DCURLNavgation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCURLNavgation.h; sourceTree = "<group>"; };
+		1837B6811ECEA53400FF4455 /* DCURLNavgation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCURLNavgation.m; sourceTree = "<group>"; };
+		1837B6821ECEA53400FF4455 /* DCURLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCURLRouter.h; sourceTree = "<group>"; };
+		1837B6831ECEA53400FF4455 /* DCURLRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCURLRouter.m; sourceTree = "<group>"; };
+		1837B6841ECEA53400FF4455 /* DCURLRouter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DCURLRouter.plist; sourceTree = "<group>"; };
+		1837B6851ECEA53400FF4455 /* UIViewController+DCURLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DCURLRouter.h"; sourceTree = "<group>"; };
+		1837B6861ECEA53400FF4455 /* UIViewController+DCURLRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DCURLRouter.m"; sourceTree = "<group>"; };
+		1837B68B1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AppLifeCircle.swift"; sourceTree = "<group>"; };
+		1837B68D1ECEBF4400FF4455 /* AppDelegate+AppService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AppService.swift"; sourceTree = "<group>"; };
+		1837B68F1ECEBF5500FF4455 /* AppDelegate+RootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RootController.swift"; sourceTree = "<group>"; };
 		1839C85D1EAD9C9400E8B1FF /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1839C8661EADC9B200E8B1FF /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
@@ -83,7 +106,6 @@
 		1839C8781EADDE1F00E8B1FF /* ScrollBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollBottomView.swift; sourceTree = "<group>"; };
 		1839C87E1EADE58B00E8B1FF /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		1839C8841EADFBD100E8B1FF /* userList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userList.json; sourceTree = "<group>"; };
-		18C714C21EA9ED900054877F /* ServiceModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceModuleView.swift; sourceTree = "<group>"; };
 		18C714C41EA9FE260054877F /* ModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleView.swift; sourceTree = "<group>"; };
 		18CC1FCE1EA8AF7D00FC2B54 /* LoveCarArtisan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveCarArtisan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18CC1FDB1EA8AF7D00FC2B54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -105,6 +127,8 @@
 		18CC20191EA8B05A00FC2B54 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		18CC201A1EA8B05A00FC2B54 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		18CC20271EA8B26900FC2B54 /* LoveCarArtisan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoveCarArtisan-Bridging-Header.h"; sourceTree = "<group>"; };
+		18D5955D1ECE8EAA003F7853 /* ServiceModuleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceModuleModel.swift; path = "LoveCarArtisan/Class/Home(首页)/View/ServiceModuleModel.swift"; sourceTree = SOURCE_ROOT; };
+		18D5955F1ECE9007003F7853 /* ServiceModule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServiceModule.json; sourceTree = "<group>"; };
 		18DF12C41EC04AD70070302D /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		18DF12C61EC04AD70070302D /* UserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableCell.swift; sourceTree = "<group>"; };
 		18DF12CB1EC04E590070302D /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +173,7 @@
 		18009B731EC99E840003B929 /* service */ = {
 			isa = PBXGroup;
 			children = (
+				18D5955F1ECE9007003F7853 /* ServiceModule.json */,
 				18009B741EC99E840003B929 /* serviceClass.json */,
 			);
 			path = service;
@@ -196,6 +221,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1837B67E1ECEA53400FF4455 /* DCURLRouter */ = {
+			isa = PBXGroup;
+			children = (
+				1837B67F1ECEA53400FF4455 /* DCSingleton.h */,
+				1837B6801ECEA53400FF4455 /* DCURLNavgation.h */,
+				1837B6811ECEA53400FF4455 /* DCURLNavgation.m */,
+				1837B6821ECEA53400FF4455 /* DCURLRouter.h */,
+				1837B6831ECEA53400FF4455 /* DCURLRouter.m */,
+				1837B6841ECEA53400FF4455 /* DCURLRouter.plist */,
+				1837B6851ECEA53400FF4455 /* UIViewController+DCURLRouter.h */,
+				1837B6861ECEA53400FF4455 /* UIViewController+DCURLRouter.m */,
+			);
+			path = DCURLRouter;
+			sourceTree = "<group>";
+		};
 		1839C85F1EADA27200E8B1FF /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +247,7 @@
 		1839C86A1EADDD0500E8B1FF /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				1837B67E1ECEA53400FF4455 /* DCURLRouter */,
 				1839C86B1EADDD0D00E8B1FF /* LLCycleScrollView */,
 			);
 			path = ThirdParty;
@@ -299,12 +340,12 @@
 		18CC1FD01EA8AF7D00FC2B54 /* LoveCarArtisan */ = {
 			isa = PBXGroup;
 			children = (
+				18CC20121EA8B05A00FC2B54 /* Main */,
+				1839C85F1EADA27200E8B1FF /* Config */,
 				18009B681EC993C90003B929 /* DataHandle */,
 				1839C86A1EADDD0500E8B1FF /* ThirdParty */,
-				1839C85F1EADA27200E8B1FF /* Config */,
 				18CC1FFF1EA8B05A00FC2B54 /* Category */,
 				18CC20011EA8B05A00FC2B54 /* Class */,
-				18CC20121EA8B05A00FC2B54 /* Main */,
 				18CC20141EA8B05A00FC2B54 /* Resources */,
 				18CC20161EA8B05A00FC2B54 /* Tools */,
 				18CC1FDA1EA8AF7D00FC2B54 /* LaunchScreen.storyboard */,
@@ -372,6 +413,7 @@
 		18CC20051EA8B05A00FC2B54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18D5955D1ECE8EAA003F7853 /* ServiceModuleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -381,10 +423,11 @@
 			children = (
 				1839C85D1EAD9C9400E8B1FF /* HomeView.swift */,
 				18CC20071EA8B05A00FC2B54 /* ShowDataView.swift */,
-				18C714C21EA9ED900054877F /* ServiceModuleView.swift */,
 				18C714C41EA9FE260054877F /* ModuleView.swift */,
 				1839C8661EADC9B200E8B1FF /* BannerView.swift */,
 				1839C8781EADDE1F00E8B1FF /* ScrollBottomView.swift */,
+				18304A451ECD9A8E00B73F57 /* ServiceModuleView.swift */,
+				18304A491ECD9D0F00B73F57 /* ModuleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,6 +486,9 @@
 			isa = PBXGroup;
 			children = (
 				18CC20131EA8B05A00FC2B54 /* AppDelegate.swift */,
+				1837B68B1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift */,
+				1837B68D1ECEBF4400FF4455 /* AppDelegate+AppService.swift */,
+				1837B68F1ECEBF5500FF4455 /* AppDelegate+RootController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -642,7 +688,9 @@
 			files = (
 				18009B751EC99E840003B929 /* serviceClass.json in Resources */,
 				1839C8851EADFBD100E8B1FF /* userList.json in Resources */,
+				1837B6891ECEA53400FF4455 /* DCURLRouter.plist in Resources */,
 				18CC20211EA8B05A00FC2B54 /* Assets.xcassets in Resources */,
+				18D595601ECE9007003F7853 /* ServiceModule.json in Resources */,
 				18CC1FDC1EA8AF7D00FC2B54 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -723,6 +771,7 @@
 				18CC201B1EA8B05A00FC2B54 /* UIColor+Extension.swift in Sources */,
 				18CC201F1EA8B05A00FC2B54 /* UserViewController.swift in Sources */,
 				18CC201C1EA8B05A00FC2B54 /* HomeViewController.swift in Sources */,
+				1837B6881ECEA53400FF4455 /* DCURLRouter.m in Sources */,
 				1839C8791EADDE1F00E8B1FF /* ScrollBottomView.swift in Sources */,
 				18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */,
 				1839C8771EADDD0D00E8B1FF /* LLViewExtensions.swift in Sources */,
@@ -730,10 +779,14 @@
 				1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */,
 				18CC201D1EA8B05A00FC2B54 /* ShowDataView.swift in Sources */,
 				1839C8731EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift in Sources */,
-				18C714C31EA9ED900054877F /* ServiceModuleView.swift in Sources */,
 				18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */,
+				1837B6901ECEBF5500FF4455 /* AppDelegate+RootController.swift in Sources */,
 				18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */,
+				18304A4A1ECD9D0F00B73F57 /* ModuleCell.swift in Sources */,
+				1837B68A1ECEA53400FF4455 /* UIViewController+DCURLRouter.m in Sources */,
 				1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */,
+				1837B68E1ECEBF4400FF4455 /* AppDelegate+AppService.swift in Sources */,
+				1837B68C1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift in Sources */,
 				18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */,
 				18130F2C1ECACCF300A525A0 /* GoodsCell.swift in Sources */,
 				18009B7B1EC9AD680003B929 /* ServiceClassModel.swift in Sources */,
@@ -741,8 +794,11 @@
 				18CC201E1EA8B05A00FC2B54 /* NewsViewController.swift in Sources */,
 				18009B721EC9944A0003B929 /* ServiceClassHandle.swift in Sources */,
 				18009B7D1EC9AD830003B929 /* GoodsViewController.swift in Sources */,
+				1837B6871ECEA53400FF4455 /* DCURLNavgation.m in Sources */,
 				18130F331ECAD55C00A525A0 /* Tools.swift in Sources */,
 				18C714C51EA9FE260054877F /* ModuleView.swift in Sources */,
+				18D5955E1ECE8EAB003F7853 /* ServiceModuleModel.swift in Sources */,
+				18304A461ECD9A8E00B73F57 /* ServiceModuleView.swift in Sources */,
 				1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */,
 				18DF12CC1EC04E590070302D /* ServiceViewController.swift in Sources */,
 				1839C8741EADDD0D00E8B1FF /* LLFilledPageControl.swift in Sources */,

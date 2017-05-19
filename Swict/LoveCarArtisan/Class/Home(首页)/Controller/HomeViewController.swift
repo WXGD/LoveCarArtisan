@@ -28,11 +28,17 @@ class HomeViewController: RootViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        view.backgroundColor = UIColor.orange
-        self.navigationItem.titleView = view;
         // 布局视图
         homeLayoutView()
+        // 请求服务模块数据
+        serviceModuleRequestData()
+    }
+    // MARK: 网络请求
+    // 请求服务模块数据
+    func serviceModuleRequestData() {
+        ServiceModuleModel.requestServiceModuleSuccess { (serviceModelArry: NSMutableArray) in
+            self.homeView.serviceModuleView.moduleArray = serviceModelArry
+        }
     }
     // MARK: 按钮点击方法
     // 首页按钮操作方法
@@ -53,10 +59,7 @@ class HomeViewController: RootViewController {
     // MARK: 布局视图
     private func homeLayoutView() {
         // 首页View
-        // 用户按钮
-        homeView.serviceModuleView.customerBtn.serviceBtn.addTarget(self, action:#selector(homeButtonAction(button:)), for: UIControlEvents.touchUpInside)
-        // 服务管理
-        homeView.serviceModuleView.serviceBtn.serviceBtn.addTarget(self, action:#selector(homeButtonAction(button:)), for: UIControlEvents.touchUpInside)
+        homeView.serviceModuleView.delegate = self
         view.addSubview(homeView)
     }
     override func viewDidLayoutSubviews() {
@@ -73,3 +76,27 @@ class HomeViewController: RootViewController {
         super.didReceiveMemoryWarning()
     }
 }
+
+extension HomeViewController : ServiceModuleDelegate {
+    func moduleBtnDelegate(button: UIButton) {
+        let section: NSInteger = button.tag / 1000 % 10
+        let row: NSInteger = button.tag / 100 % 10
+        let tag: NSInteger = button.tag / 1 % 10
+        
+        let moduleItem: NSArray = self.homeView.serviceModuleView.moduleArray.object(at: section) as! NSArray
+        let itemArray: NSArray = moduleItem.object(at: row) as! NSArray
+        let serviceModuleModel: ServiceModuleModel = itemArray.object(at: tag) as! ServiceModuleModel;
+        print(section, row, tag, serviceModuleModel.name!)
+        
+        let menuDic: NSMutableDictionary = NSMutableDictionary()
+        
+        DCURLRouter.pushURLString(serviceModuleModel.nav_url!, query: menuDic as! [AnyHashable : Any], animated: true)
+            
+        
+    }
+}
+
+
+
+
+

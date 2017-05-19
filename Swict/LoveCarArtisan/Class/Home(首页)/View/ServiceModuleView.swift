@@ -2,191 +2,137 @@
 //  ServiceModuleView.swift
 //  LoveCarArtisan
 //
-//  Created by apple on 2017/4/21.
+//  Created by apple on 2017/5/18.
 //  Copyright © 2017年 apple. All rights reserved.
 //
 
 import UIKit
 
-class ServiceModuleView: UIView {
+// MARK: 定义代理
+protocol ServiceModuleDelegate {
+    //代理方法
+    func moduleBtnDelegate(button: UIButton)
+}
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        serviceModuLayoutView()
-    }
+class ServiceModuleView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        serviceModulelaoutView()
+    }
+    // MARK: 定义代理
+    var delegate : ServiceModuleDelegate?
     
-    // 页面控制器
+    // MARK: 定义控件
+    /** 服务模块数据 */
+    var moduleArray: NSMutableArray = NSMutableArray() {
+        didSet {
+            pageControl.numberOfPages = moduleArray.count
+            collectionView?.reloadData()
+        }
+    }
+    /** collection样式 */
+    private var flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    /** collection */
+    private var collectionView: UICollectionView?
+    /** pageControl */
     lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 2
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = GrayH6Color
         pageControl.currentPageIndicatorTintColor = ThemeColor
         return pageControl
     }()
-    // 背景scrollView
-    private lazy var backScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.delegate = self
-        scrollView.backgroundColor = UIColor.clear
-        scrollView.isPagingEnabled = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    // 背景View
-    private lazy var backView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.clear
-        return view
-    }()
-    /** 服务 */
-    lazy var serviceBtn: ModuleView = {
-        let view = ModuleView()
-        view.serviceLabel.text = "服务"
-        view.serviceImage.image = #imageLiteral(resourceName: "home_page_service")
-        return view
-    }()
-    /** 会员卡 */
-    lazy var membershipCardBtn: ModuleView = {
-        let view = ModuleView()
-        view.serviceLabel.text = "会员卡"
-        view.serviceImage.image = #imageLiteral(resourceName: "home_page_user_card")
-        return view
-    }()
-    /** 客户 */
-    lazy var customerBtn: ModuleView = {
-        let view = ModuleView()
-        view.serviceLabel.text = "用户"
-        view.serviceImage.image = #imageLiteral(resourceName: "home_page_customer")
-        return view
-    }()
-    /**  营销 */
-    lazy var marketingBtn: ModuleView = {
-        let view = ModuleView()
-        view.serviceLabel.text = "营销"
-        view.serviceImage.image = #imageLiteral(resourceName: "home_page_marketing")
-        return view
-    }()
-    /** 报表 */
-    lazy var reportBtn: ModuleView = {
-        let view = ModuleView()
-        view.serviceLabel.text = "报表"
-        view.serviceImage.image = #imageLiteral(resourceName: "home_page_report")
-        return view
-    }()
-    /** 订单 */
-    lazy var orderBtn: ModuleView = {
-        let view = ModuleView()
-        view.serviceLabel.text = "订单"
-        view.serviceImage.image = #imageLiteral(resourceName: "home_page_order")
-        return view
-    }()
-    /** 商城 */
-    lazy var commercialCityBtn: ModuleView = {
-        let view = ModuleView()
-        view.serviceLabel.text = "商城"
-        view.serviceImage.image = #imageLiteral(resourceName: "home_page_commercial_city")
-        return view
-    }()
-    func serviceModuLayoutView() {
-        // 页面控制器
+    // MARK: 布局控件
+    func serviceModulelaoutView() {
+        /** collection样式 */
+        flowLayout = UICollectionViewFlowLayout()
+        // 设置滚动方向
+        flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal;
+        /** collection */
+        collectionView = UICollectionView(frame: self.frame, collectionViewLayout: flowLayout)
+        collectionView!.backgroundColor = UIColor.clear;
+        collectionView!.delegate = self;
+        collectionView!.dataSource = self;
+        collectionView!.showsHorizontalScrollIndicator = false;
+        collectionView!.isPagingEnabled = true;
+        // 注册Item
+        collectionView!.register(ModuleCell.self, forCellWithReuseIdentifier:"moduleCell")
+        addSubview(collectionView!)
+        /** pageControl */
         addSubview(pageControl)
-        // 背景scrollView
-        addSubview(backScrollView)
-        // 背景View
-        backScrollView.addSubview(backView)
-        /** 服务 */
-        backView.addSubview(serviceBtn)
-        /** 会员卡 */
-        backView.addSubview(membershipCardBtn)
-        /** 客户 */
-        backView.addSubview(customerBtn)
-        /**  营销 */
-        backView.addSubview(marketingBtn)
-        /** 报表 */
-        backView.addSubview(reportBtn)
-        /** 订单 */
-        backView.addSubview(orderBtn)
-        /** 商城 */
-        backView.addSubview(commercialCityBtn)
     }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        // 背景scrollView
-        backScrollView.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.top.mas_equalTo()(self.mas_top)
-            make.left.mas_equalTo()(self.mas_left)
-            make.right.mas_equalTo()(self.mas_right)
-            make.bottom.equalTo()(self.orderBtn.mas_bottom)
-        }
-        // 背景View
-        backView.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.top.mas_equalTo()(self.backScrollView.mas_top)
-            make.left.mas_equalTo()(self.backScrollView.mas_left)
-            make.right.mas_equalTo()(self.backScrollView.mas_right)
-            make.bottom.mas_equalTo()(self.backScrollView.mas_bottom)
-            make.width.mas_equalTo()(AppWidth * 2)
-            make.height.mas_equalTo()(self.backScrollView.mas_height)
-        }
-        /** 服务 */
-        serviceBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.left.equalTo()(self.backView.mas_left)?.setOffset(16)
-            make.top.equalTo()(self.backView.mas_top)
-            make.width.equalTo()(self.serviceBtn.mas_width)
-        }
-        /** 会员卡 */
-        membershipCardBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.left.equalTo()(self.serviceBtn.mas_right)
-            make.top.equalTo()(self.serviceBtn.mas_top)
-            make.width.equalTo()(self.serviceBtn.mas_width)
-        }
-        /** 客户 */
-        customerBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.left.equalTo()(self.membershipCardBtn.mas_right)
-            make.right.equalTo()(self.backView.mas_centerX)?.setOffset(-16)
-            make.top.equalTo()(self.serviceBtn.mas_top)
-            make.width.equalTo()(self.serviceBtn.mas_width)
-        }
-        /** 营销 */
-        marketingBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.left.equalTo()(self.serviceBtn.mas_left)
-            make.top.equalTo()(self.serviceBtn.mas_bottom)
-            make.width.equalTo()(self.serviceBtn.mas_width)
-        }
-        /** 报表 */
-        reportBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.left.equalTo()(self.marketingBtn.mas_right)
-            make.top.equalTo()(self.marketingBtn.mas_top)
-            make.width.equalTo()(self.serviceBtn.mas_width)
-        }
-        /** 订单 */
-        orderBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.left.equalTo()(self.reportBtn.mas_right)
-            make.right.equalTo()(self.customerBtn.mas_right)
-            make.top.equalTo()(self.marketingBtn.mas_top)
-            make.width.equalTo()(self.serviceBtn.mas_width)
-        }
-        /** 商城 */
-        commercialCityBtn.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.left.equalTo()(self.backView.mas_centerX)?.setOffset(16)
-            make.top.equalTo()(self.serviceBtn.mas_top)
-            make.width.equalTo()(self.serviceBtn.mas_width)
+        /** collection */
+        collectionView!.mas_makeConstraints { (make:MASConstraintMaker!) in
+            make.left.equalTo()(self.mas_left);
+            make.right.equalTo()(self.mas_right);
+            make.top.equalTo()(self.mas_top);
+            make.bottom.equalTo()(self.mas_bottom)?.setOffset(-20);
         }
         // 页面控制器
         pageControl.mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.centerX.equalTo()(self.backScrollView.mas_centerX)
-            make.top.equalTo()(self.backScrollView.mas_bottom)
+            make.centerX.equalTo()(self.collectionView!.mas_centerX)
+            make.top.equalTo()(self.collectionView!.mas_bottom)
             make.width.equalTo()(100)
             make.height.equalTo()(20)
         }
+        /** self高度 */
         mas_makeConstraints { (make:MASConstraintMaker!) in
-            make.bottom.equalTo()(self.pageControl.mas_bottom)
+            make.height.mas_equalTo()(232);
         }
+    }
+}
+
+
+extension ServiceModuleView : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // 告诉系统一共多少组
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return moduleArray.count
+    }
+    // 告诉系统每组多少个
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let moduleItem: NSArray = moduleArray.object(at: section) as! NSArray
+        return moduleItem.count
+    }
+    // 告诉系统每个Cell如何显示
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: ModuleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "moduleCell", for: indexPath) as! ModuleCell
+        let moduleItem: NSArray = moduleArray.object(at: indexPath.section) as! NSArray
+        let itemArray: NSArray = moduleItem.object(at: indexPath.row) as! NSArray
+        /** cell位置 */
+        cell.indexPath = indexPath as NSIndexPath;
+        /** 按钮数据 */
+        cell.btnArray = itemArray;
+        /** 按钮1 */
+        cell.btnOne.serviceBtn.addTarget(self, action: #selector(moduleBtnAction(button:)), for: UIControlEvents.touchUpInside)
+        /** 按钮2 */
+        cell.btnTwo.serviceBtn.addTarget(self, action: #selector(moduleBtnAction(button:)), for: UIControlEvents.touchUpInside)
+        /** 按钮3 */
+        cell.btnThree.serviceBtn.addTarget(self, action: #selector(moduleBtnAction(button:)), for: UIControlEvents.touchUpInside)
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: AppWidth - 32, height: 106)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 16, height: 0)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 16, height: 0)
+    }
+    // MARK: 按钮点击方法
+    func moduleBtnAction(button: UIButton) {
+        self.delegate?.moduleBtnDelegate(button: button)
     }
 }
 
@@ -196,3 +142,7 @@ extension ServiceModuleView : UIScrollViewDelegate {
         pageControl.currentPage = Int(scrollView.contentOffset.x / AppWidth)
     }
 }
+
+
+
+

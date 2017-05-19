@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>http</key>
+	<string>WebViewController</string>
+	<key>https</key>
+	<string>WebViewController</string>
+	<key>acgj</key>
+	<dict>
+		<key>acgj://service_manage</key>
+		<string>ServiceViewController</string>
+		<key>acgj://user_card</key>
+		<string>UserCardViewController</string>
+		<key>acgj://customer</key>
+		<string>UserViewController</string>
+		<key>acgj://order</key>
+		<string>OrderViewController</string>
+		<key>acgj://marketing</key>
+		<string>MarketingViewController</string>
+		<key>acgj://report</key>
+		<string>CommercialCityWebViewController</string>
+		<key>acgj://commercial_city</key>
+		<string>CommercialCityWebViewController</string>
+		<key>acgj://my_ccount</key>
+		<string>MyAccountViewController</string>
+		<key>acgj://store</key>
+		<string>StoreViewController</string>
+	</dict>
+</dict>
+</plist>

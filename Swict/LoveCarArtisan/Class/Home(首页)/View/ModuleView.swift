@@ -52,6 +52,7 @@ class ModuleView: UIView {
         serviceImage.mas_makeConstraints { (make:MASConstraintMaker!) in
             make.centerX.equalTo()(self.mas_centerX)
             make.top.equalTo()(self.mas_top)?.setOffset(21)
+            make.size.equalTo()(CGSize(width: 35, height: 35))
         }
         /** 服务名称 */
         serviceLabel.mas_makeConstraints { (make:MASConstraintMaker!) in

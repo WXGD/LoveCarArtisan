@@ -9,6 +9,20 @@
 import UIKit
 
 
+// MARK:系统
+// 获取系统版本
+public let IOS_VERSION: Double = Double(UIDevice.current.systemVersion)!
+public let IOS_VERSION_STR: String = UIDevice.current.systemVersion
+// app信息字典
+public let APP_INFO: Dictionary = Bundle.main.infoDictionary!
+// 获取软件版本号 version
+public let VERSION: String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+// 获取内部软件版本号 build
+public let BUILD: String = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+// UDID
+public let UDID: String = (UIDevice.current.identifierForVendor?.uuidString)!
+
+
 // MARK:尺寸
 /** nav高度 */
 public let NavigationH: CGFloat = 64

@@ -1,0 +1,56 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "name" : "服务",
+                  "nav_url" : "acgj://service_manage",
+                  "image_url" : "home_page_service",
+                  },
+                  {
+                  "name" : "会员卡",
+                  "nav_url" : "acgj://user_card",
+                  "image_url" : "home_page_user_card",
+                  },
+                  {
+                  "name" : "用户",
+                  "nav_url" : "acgj://customer",
+                  "image_url" : "home_page_customer",
+                  },
+                  {
+                  "name" : "订单",
+                  "nav_url" : "acgj://order",
+                  "image_url" : "home_page_order",
+                  "nav_title" : "订单",
+                  },
+                  {
+                  "name" : "营销",
+                  "nav_url" : "acgj://marketing",
+                  "image_url" : "home_page_marketing",
+                  },
+                  {
+                  "name" : "批发商城",
+                  "nav_url" : "acgj://commercial_city",
+                  "image_url" : "home_page_commercial_city",
+                  "web_url" : "http://xtest.cheweifang.cn/mall/#/1/2?_k=l01xoq",
+                  "web_url_id" : "0",
+                  },
+                  {
+                  "name" : "数据分析",
+                  "nav_url" : "acgj://report",
+                  "image_url" : "home_page_report",
+                  "web_url" : "http://xtest.cheweifang.cn/web/analyse/dataAnalysis.html?provider_id=",
+                  "web_url_id" : "1",
+                  },
+                  {
+                  "name" : "账户",
+                  "nav_url" : "acgj://my_ccount",
+                  "image_url" : "home_page_account",
+                  },
+                  {
+                  "name" : "门店",
+                  "nav_url" : "acgj://store",
+                  "image_url" : "home_page_store",
+                  },
+    ]
+}
