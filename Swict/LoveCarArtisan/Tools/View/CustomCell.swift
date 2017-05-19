@@ -104,7 +104,6 @@ class CustomCell: UIView {
     /** 主图片 */
     lazy var mainImg: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "home_page_report")
         imageView.setContentHuggingPriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         return imageView
@@ -114,7 +113,6 @@ class CustomCell: UIView {
         let label = UILabel()
         label.font = FourteenFont
         label.textColor = BlackColor
-        label.text = "主标题"
         label.setContentHuggingPriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         label.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         return label
@@ -124,7 +122,6 @@ class CustomCell: UIView {
         let label = UILabel()
         label.font = TwelveFont
         label.textColor = GrayH1Color
-        label.text = "左边副标题"
         label.setContentHuggingPriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         label.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         return label
@@ -134,7 +131,6 @@ class CustomCell: UIView {
         let label = UILabel()
         label.font = TwelveFont
         label.textColor = GrayH1Color
-        label.text = "右边副标题"
         label.setContentHuggingPriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         label.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: UILayoutConstraintAxis.horizontal)
         return label
@@ -144,7 +140,6 @@ class CustomCell: UIView {
         let textField = UITextField()
         textField.font = FourteenFont
         textField.textColor = BlackColor
-        textField.placeholder = "副输入框"
         return textField
     }()
     /** 主按钮 */
@@ -172,6 +167,7 @@ class CustomCell: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = WhiteColor
         customCell()
     }
     

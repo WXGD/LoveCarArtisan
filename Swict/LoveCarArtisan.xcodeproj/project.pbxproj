@@ -23,6 +23,11 @@
 		1837B68C1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B68B1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift */; };
 		1837B68E1ECEBF4400FF4455 /* AppDelegate+AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B68D1ECEBF4400FF4455 /* AppDelegate+AppService.swift */; };
 		1837B6901ECEBF5500FF4455 /* AppDelegate+RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B68F1ECEBF5500FF4455 /* AppDelegate+RootController.swift */; };
+		1837B6921ECECB0E00FF4455 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B6911ECECB0E00FF4455 /* AccountView.swift */; };
+		1837B69C1ECED8A400FF4455 /* AloneInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B69B1ECED8A400FF4455 /* AloneInfoViewController.swift */; };
+		1837B69E1ECED8B000FF4455 /* AloneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B69D1ECED8B000FF4455 /* AloneInfoView.swift */; };
+		1837B6A01ECEDC4C00FF4455 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B69F1ECEDC4C00FF4455 /* SetUpViewController.swift */; };
+		1837B6A21ECEDC5500FF4455 /* SetUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B6A11ECEDC5500FF4455 /* SetUpView.swift */; };
 		1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C85D1EAD9C9400E8B1FF /* HomeView.swift */; };
 		1839C8671EADC9B200E8B1FF /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8661EADC9B200E8B1FF /* BannerView.swift */; };
 		1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */; };
@@ -95,6 +100,11 @@
 		1837B68B1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AppLifeCircle.swift"; sourceTree = "<group>"; };
 		1837B68D1ECEBF4400FF4455 /* AppDelegate+AppService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AppService.swift"; sourceTree = "<group>"; };
 		1837B68F1ECEBF5500FF4455 /* AppDelegate+RootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RootController.swift"; sourceTree = "<group>"; };
+		1837B6911ECECB0E00FF4455 /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		1837B69B1ECED8A400FF4455 /* AloneInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AloneInfoViewController.swift; sourceTree = "<group>"; };
+		1837B69D1ECED8B000FF4455 /* AloneInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AloneInfoView.swift; sourceTree = "<group>"; };
+		1837B69F1ECEDC4C00FF4455 /* SetUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
+		1837B6A11ECEDC5500FF4455 /* SetUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpView.swift; sourceTree = "<group>"; };
 		1839C85D1EAD9C9400E8B1FF /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1839C8661EADC9B200E8B1FF /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
@@ -236,6 +246,72 @@
 			path = DCURLRouter;
 			sourceTree = "<group>";
 		};
+		1837B6931ECED88300FF4455 /* AloneInfo(个人信息) */ = {
+			isa = PBXGroup;
+			children = (
+				1837B6941ECED88300FF4455 /* Controller */,
+				1837B6951ECED88300FF4455 /* Model */,
+				1837B6961ECED88300FF4455 /* View */,
+			);
+			path = "AloneInfo(个人信息)";
+			sourceTree = "<group>";
+		};
+		1837B6941ECED88300FF4455 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1837B69B1ECED8A400FF4455 /* AloneInfoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1837B6951ECED88300FF4455 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1837B6961ECED88300FF4455 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1837B69D1ECED8B000FF4455 /* AloneInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1837B6971ECED88300FF4455 /* SetUp(设置) */ = {
+			isa = PBXGroup;
+			children = (
+				1837B6981ECED88300FF4455 /* Controller */,
+				1837B6991ECED88300FF4455 /* Model */,
+				1837B69A1ECED88300FF4455 /* View */,
+			);
+			path = "SetUp(设置)";
+			sourceTree = "<group>";
+		};
+		1837B6981ECED88300FF4455 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1837B69F1ECEDC4C00FF4455 /* SetUpViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1837B6991ECED88300FF4455 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1837B69A1ECED88300FF4455 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1837B6A11ECEDC5500FF4455 /* SetUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1839C85F1EADA27200E8B1FF /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +345,8 @@
 		1839C87A1EADE55C00E8B1FF /* Account(账户) */ = {
 			isa = PBXGroup;
 			children = (
+				1837B6931ECED88300FF4455 /* AloneInfo(个人信息) */,
+				1837B6971ECED88300FF4455 /* SetUp(设置) */,
 				1839C87B1EADE55C00E8B1FF /* Controller */,
 				1839C87C1EADE55C00E8B1FF /* Model */,
 				1839C87D1EADE55C00E8B1FF /* View */,
@@ -294,6 +372,7 @@
 		1839C87D1EADE55C00E8B1FF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1837B6911ECECB0E00FF4455 /* AccountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -778,19 +857,24 @@
 				18DF12C71EC04AD70070302D /* UserModel.swift in Sources */,
 				1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */,
 				18CC201D1EA8B05A00FC2B54 /* ShowDataView.swift in Sources */,
+				1837B6A21ECEDC5500FF4455 /* SetUpView.swift in Sources */,
 				1839C8731EADDD0D00E8B1FF /* LLCycleScrollViewCell.swift in Sources */,
 				18CC20221EA8B05A00FC2B54 /* NavigationViewController.swift in Sources */,
 				1837B6901ECEBF5500FF4455 /* AppDelegate+RootController.swift in Sources */,
 				18CC20231EA8B05A00FC2B54 /* RootViewController.swift in Sources */,
+				1837B69C1ECED8A400FF4455 /* AloneInfoViewController.swift in Sources */,
 				18304A4A1ECD9D0F00B73F57 /* ModuleCell.swift in Sources */,
 				1837B68A1ECEA53400FF4455 /* UIViewController+DCURLRouter.m in Sources */,
 				1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */,
 				1837B68E1ECEBF4400FF4455 /* AppDelegate+AppService.swift in Sources */,
 				1837B68C1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift in Sources */,
 				18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */,
+				1837B6921ECECB0E00FF4455 /* AccountView.swift in Sources */,
+				1837B69E1ECED8B000FF4455 /* AloneInfoView.swift in Sources */,
 				18130F2C1ECACCF300A525A0 /* GoodsCell.swift in Sources */,
 				18009B7B1EC9AD680003B929 /* ServiceClassModel.swift in Sources */,
 				18130F311ECAD04400A525A0 /* CustomCell.swift in Sources */,
+				1837B6A01ECEDC4C00FF4455 /* SetUpViewController.swift in Sources */,
 				18CC201E1EA8B05A00FC2B54 /* NewsViewController.swift in Sources */,
 				18009B721EC9944A0003B929 /* ServiceClassHandle.swift in Sources */,
 				18009B7D1EC9AD830003B929 /* GoodsViewController.swift in Sources */,

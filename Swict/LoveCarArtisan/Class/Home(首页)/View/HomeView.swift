@@ -66,10 +66,6 @@ class HomeView: UIView {
     lazy var serviceModuleView: ServiceModuleView = {
         let view = ServiceModuleView()
         view.backgroundColor = WhiteColor
-//        /** 客户 */
-//        view.customerBtn.serviceBtn.tag = HomeBtnType.Customer.rawValue
-//        /** 服务管理 */
-//        view.serviceBtn.serviceBtn.tag = HomeBtnType.ServiceManage.rawValue
         return view
     }()
     // 懒加载轮播图模块View

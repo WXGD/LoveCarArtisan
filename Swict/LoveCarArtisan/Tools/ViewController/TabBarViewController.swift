@@ -17,7 +17,7 @@ class TabBarViewController: UITabBarController {
         // tabBar不透明
         self.tabBar.isTranslucent = false;
         // 设置子控制器
-        addChildVC(HomeViewController(), title: "首页", image: "tab_account_normal", selectedImage: "tab_account_pressed")
+        addChildVC(HomeViewController(), title: "首页", image: "tab_homepage_normal", selectedImage: "tab_homepage_pressed")
         addChildVC(NewsViewController(), title: "消息", image: "tab_news_normal", selectedImage: "tab_news_pressed")
         addChildVC(AccountViewController(), title: "我的", image: "tab_account_normal", selectedImage: "tab_account_pressed")
     }

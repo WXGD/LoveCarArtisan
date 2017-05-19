@@ -9,11 +9,6 @@
 import UIKit
 
 class HomeViewController: RootViewController {
-    // MARK: 首页View
-    lazy var homeView: HomeView = {
-        let view = HomeView()
-        return view
-    }()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //在页面出现的时候就将黑线隐藏起来
@@ -56,6 +51,11 @@ class HomeViewController: RootViewController {
             break
         }
     }
+    // MARK: 创建控件
+    lazy var homeView: HomeView = {
+        let view = HomeView()
+        return view
+    }()
     // MARK: 布局视图
     private func homeLayoutView() {
         // 首页View
@@ -82,17 +82,12 @@ extension HomeViewController : ServiceModuleDelegate {
         let section: NSInteger = button.tag / 1000 % 10
         let row: NSInteger = button.tag / 100 % 10
         let tag: NSInteger = button.tag / 1 % 10
-        
         let moduleItem: NSArray = self.homeView.serviceModuleView.moduleArray.object(at: section) as! NSArray
         let itemArray: NSArray = moduleItem.object(at: row) as! NSArray
         let serviceModuleModel: ServiceModuleModel = itemArray.object(at: tag) as! ServiceModuleModel;
         print(section, row, tag, serviceModuleModel.name!)
-        
         let menuDic: NSMutableDictionary = NSMutableDictionary()
-        
         DCURLRouter.pushURLString(serviceModuleModel.nav_url!, query: menuDic as! [AnyHashable : Any], animated: true)
-            
-        
     }
 }
 
