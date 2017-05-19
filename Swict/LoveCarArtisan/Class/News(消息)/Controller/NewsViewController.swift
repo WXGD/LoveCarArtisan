@@ -35,8 +35,9 @@ class NewsViewController: RootViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.backgroundColor = UIColor.clear
-        tableView.rowHeight = 150
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableViewAutomaticDimension
         return tableView
     }()
     // MARK: 添加视图

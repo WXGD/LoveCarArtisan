@@ -125,5 +125,12 @@ class NewsCell: UITableViewCell {
             make.top.equalTo()(self.messageContentLabel.mas_bottom)?.setOffset(10)
             make.right.equalTo()(self.messageSpecificView.mas_right)?.setOffset(-16)
         }
+        /** contentView */
+        contentView.mas_makeConstraints { (make: MASConstraintMaker!) in
+            make.bottom.equalTo()(self.messageSpecificView.mas_bottom)
+            make.leading.equalTo()(self)
+            make.top.equalTo()(self)
+            make.trailing.equalTo()(self)
+        }
     }
 }
