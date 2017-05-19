@@ -28,6 +28,7 @@
 		1837B69E1ECED8B000FF4455 /* AloneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B69D1ECED8B000FF4455 /* AloneInfoView.swift */; };
 		1837B6A01ECEDC4C00FF4455 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B69F1ECEDC4C00FF4455 /* SetUpViewController.swift */; };
 		1837B6A21ECEDC5500FF4455 /* SetUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B6A11ECEDC5500FF4455 /* SetUpView.swift */; };
+		1837B6A41ECEEB8900FF4455 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837B6A31ECEEB8900FF4455 /* NewsCell.swift */; };
 		1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C85D1EAD9C9400E8B1FF /* HomeView.swift */; };
 		1839C8671EADC9B200E8B1FF /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C8661EADC9B200E8B1FF /* BannerView.swift */; };
 		1839C8721EADDD0D00E8B1FF /* LLCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */; };
@@ -105,6 +106,7 @@
 		1837B69D1ECED8B000FF4455 /* AloneInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AloneInfoView.swift; sourceTree = "<group>"; };
 		1837B69F1ECEDC4C00FF4455 /* SetUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		1837B6A11ECEDC5500FF4455 /* SetUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpView.swift; sourceTree = "<group>"; };
+		1837B6A31ECEEB8900FF4455 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsCell.swift; path = "LoveCarArtisan/Class/Account(账户)/SetUp(设置)/View/NewsCell.swift"; sourceTree = SOURCE_ROOT; };
 		1839C85D1EAD9C9400E8B1FF /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1839C8661EADC9B200E8B1FF /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		1839C86C1EADDD0D00E8B1FF /* LLCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleScrollView.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 		18CC200C1EA8B05A00FC2B54 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1837B6A31ECEEB8900FF4455 /* NewsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				1837B6881ECEA53400FF4455 /* DCURLRouter.m in Sources */,
 				1839C8791EADDE1F00E8B1FF /* ScrollBottomView.swift in Sources */,
 				18CC20241EA8B05A00FC2B54 /* TabBarViewController.swift in Sources */,
+				1837B6A41ECEEB8900FF4455 /* NewsCell.swift in Sources */,
 				1839C8771EADDD0D00E8B1FF /* LLViewExtensions.swift in Sources */,
 				18DF12C71EC04AD70070302D /* UserModel.swift in Sources */,
 				1839C87F1EADE58B00E8B1FF /* AccountViewController.swift in Sources */,
