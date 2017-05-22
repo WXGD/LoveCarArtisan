@@ -102,9 +102,9 @@
 #pragma mark - 界面赋值
 - (void)accountAssignment {
     /** 当前用户 */
-    self.accountView.currentUserView.cellLabel.text = self.merchantInfo.user_name;
-    /** 商户信息 */
-    self.accountView.tenantsInfoView.describeLabel.text = self.merchantInfo.name;
+    self.accountView.currentUserView.mainLabel.text = self.merchantInfo.user_name;
+//    /** 商户信息 */
+//    self.accountView.tenantsInfoView.describeLabel.text = self.merchantInfo.name;
 }
 #pragma mark - 布局nav
 - (void)accountLayoutNAV {
@@ -118,17 +118,17 @@
     /** 账户view */
     self.accountView = [[AccountView alloc] init];
     /** 当前用户 */
-    [self.accountView.currentUserView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    /** 商户信息 */
-    [self.accountView.tenantsInfoView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    /** 二维码 */
-    [self.accountView.QRCodeView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.accountView.currentUserView.mainBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    /** 商户信息 */
+//    [self.accountView.tenantsInfoView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    /** 二维码 */
+//    [self.accountView.QRCodeView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 我的账户 */
 //    [self.accountView.myAccountView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 设置 */
-    [self.accountView.setUpView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    /** 关于我们 */
-    [self.accountView.aboutUsView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.accountView.setUpView.mainBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    /** 关于我们 */
+//    [self.accountView.aboutUsView.usedCellBtn addTarget:self action:@selector(accountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.accountView];
     @weakify(self)
     [self.accountView mas_makeConstraints:^(MASConstraintMaker *make) {

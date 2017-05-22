@@ -14,6 +14,8 @@
 // 下级控制器
 #import "FilterConditionViewController.h"
 #import "OrderInfoViewController.h"
+// 接收上级页面的参数
+#import "UIViewController+DCURLRouter.h"
 
 @interface OrderViewController ()<OrderDeleSelectDelegate>
 
@@ -224,7 +226,11 @@
 
 #pragma mark - 布局nav
 - (void)orderLayoutNAV {
-    self.navigationItem.title = self.orderNavTitle;
+    if (self.orderNavTitle.length == 0) {
+        self.navigationItem.title = self.params[@"nav_title"];
+    }else {
+        self.navigationItem.title = self.orderNavTitle;
+    }
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_add"] style:UIBarButtonItemStyleDone target:self action:@selector(orderRightBarBtnAction)];
 }
 

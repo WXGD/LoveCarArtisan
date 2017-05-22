@@ -32,6 +32,14 @@
     self.clearCacheView.isCellImage = YES;
     self.clearCacheView.cellLabel.text = @"清除缓存";
     [self addSubview:self.clearCacheView];
+    /** 功能介绍 */
+    self.funcIntroView = [[UsedCellView alloc] init];
+    self.funcIntroView.usedCellBtn.tag = funcIntroBtnAction;
+    self.funcIntroView.cellImage.image = [UIImage imageNamed:@"service_num"];
+    self.funcIntroView.isCellImageSize = YES;
+    self.funcIntroView.isCellImage = YES;
+    self.funcIntroView.cellLabel.text = @"功能介绍";
+    [self addSubview:self.funcIntroView];
     /** 当前版本 */
     self.currentVersionView = [[UsedCellView alloc] init];
     self.currentVersionView.usedCellBtn.tag = CurrentVersionBtnAction;
@@ -41,6 +49,15 @@
     self.currentVersionView.isCellImage = YES;
     self.currentVersionView.cellLabel.text = @"当前版本";
     [self addSubview:self.currentVersionView];
+    /** 客服电话 */
+    self.serviceNumView = [[UsedCellView alloc] init];
+    self.serviceNumView.usedCellBtn.tag = ServiceNumBtnAction;
+    self.serviceNumView.cellImage.image = [UIImage imageNamed:@"service_num"];
+    self.serviceNumView.isCellImageSize = YES;
+    self.serviceNumView.isCellImage = YES;
+    self.serviceNumView.cellLabel.text = @"客服电话";
+    self.serviceNumView.describeLabel.text = SERVICENUM;
+    [self addSubview:self.serviceNumView];
     /** 意见反馈 */
     self.feedbackView = [[UsedCellView alloc] init];
     self.feedbackView.usedCellBtn.tag = FeedbackBtnAction;
@@ -58,24 +75,17 @@
     self.aboutUsView.cellLabel.text = @"关于我们";
     self.aboutUsView.isSplistLine = YES;
     [self addSubview:self.aboutUsView];
-    [self.aboutUsView setHidden:YES];
-    /** 客服电话 */
-    self.serviceNumView = [[UsedCellView alloc] init];
-    self.serviceNumView.usedCellBtn.tag = ServiceNumBtnAction;
-    self.serviceNumView.cellImage.image = [UIImage imageNamed:@"service_num"];
-    self.serviceNumView.isCellImageSize = YES;
-    self.serviceNumView.isCellImage = YES;
-    self.serviceNumView.cellLabel.text = @"客服电话";
-    self.serviceNumView.describeLabel.text = SERVICENUM;
-    [self addSubview:self.serviceNumView];
-    /** 功能介绍 */
-    self.funcIntroView = [[UsedCellView alloc] init];
-    self.funcIntroView.usedCellBtn.tag = funcIntroBtnAction;
-    self.funcIntroView.cellImage.image = [UIImage imageNamed:@"service_num"];
-    self.funcIntroView.isCellImageSize = YES;
-    self.funcIntroView.isCellImage = YES;
-    self.funcIntroView.cellLabel.text = @"功能介绍";
-    [self addSubview:self.funcIntroView];
+    
+    /** 退出当前账户 */
+    self.signOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.signOutBtn setTitle:@"退出当前账户" forState:UIControlStateNormal];
+    [self.signOutBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
+    self.signOutBtn.titleLabel.font = EighteenTypeface;
+    [self.signOutBtn setBackgroundImage:[UIImage imageNamed:@"login_btn_back"] forState:UIControlStateNormal];
+    [self.signOutBtn setBackgroundImage:[UIImage imageNamed:@"login_no_btn_back"] forState:UIControlStateSelected];
+    self.signOutBtn.adjustsImageWhenHighlighted = NO;
+    self.signOutBtn.tag = SignOutBtnAction;
+    [self addSubview:self.signOutBtn];
 }
 
 - (void)layoutSubviews {
@@ -89,12 +99,28 @@
         make.top.equalTo(self.mas_top).offset(15);
         make.height.mas_equalTo(@50);
     }];
+    /** 功能介绍 */
+    [self.funcIntroView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.clearCacheView.mas_bottom).offset(10);
+        make.height.mas_equalTo(@50);
+    }];
     /** 当前版本 */
     [self.currentVersionView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.clearCacheView.mas_bottom);
+        make.top.equalTo(self.funcIntroView.mas_bottom);
+        make.height.mas_equalTo(@50);
+    }];
+    /** 客服电话 */
+    [self.serviceNumView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.currentVersionView.mas_bottom).offset(15);
         make.height.mas_equalTo(@50);
     }];
     /** 意见反馈 */
@@ -102,7 +128,7 @@
         @strongify(self)
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.currentVersionView.mas_bottom);
+        make.top.equalTo(self.serviceNumView.mas_bottom);
         make.height.mas_equalTo(@50);
     }];
     /** 关于我们 */
@@ -111,22 +137,15 @@
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.top.equalTo(self.feedbackView.mas_bottom);
-        make.height.mas_equalTo(@0);
-    }];
-    /** 客服电话 */
-    [self.serviceNumView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.aboutUsView.mas_bottom).offset(15);
         make.height.mas_equalTo(@50);
     }];
-    /** 功能介绍 */
-    [self.funcIntroView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    /** 退出当前账户 */
+    [self.signOutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.serviceNumView.mas_bottom).offset(10);
+        make.left.equalTo(self.mas_left).offset(16);
+        make.right.equalTo(self.mas_right).offset(-16);
+        make.top.equalTo(self.aboutUsView.mas_bottom).offset(30);
         make.height.mas_equalTo(@50);
     }];
 }

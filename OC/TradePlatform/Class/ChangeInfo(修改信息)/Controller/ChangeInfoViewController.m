@@ -11,15 +11,16 @@
 #import "ChangeSexView.h"
 #import "ChangePassworkView.h"
 #import "ChangeCarInfoView.h"
-
+#import "ChangeStartEndTimeView.h"
 // 网络请求
 #import "ChangeInfoNetWork.h"
 // 下级控制器
 #import "CarBrandListViewController.h"
 #import "UserInfoViewController.h"
 
-@interface ChangeInfoViewController ()
-
+@interface ChangeInfoViewController ()<UITextFieldDelegate>
+/** 修改时间 */
+@property (strong, nonatomic) UIDatePicker *datePicker;
 /** 修改信息view */
 @property (strong, nonatomic) ChangeInfoView *changeInfoView;
 /** 修改性别view */
@@ -32,6 +33,8 @@
 @property (strong, nonatomic) ChangeCarInfoView *changeCarInfoView;
 /** 会员修改车辆 */
 @property (strong, nonatomic) CWFUserCarModel *carModel;
+/** 修改门店时间信息 */
+@property (strong, nonatomic) ChangeStartEndTimeView *changeTimeView;
 
 @end
 
@@ -46,6 +49,9 @@
     // 界面赋值
     [self changeInfoAssignment];
 }
+//-(void)setStoreModel:(StoreModel *)storeModel{
+//    _storeModel = storeModel;
+//}
 #pragma mark - 网络请求
 // 修改用户信息请求
 - (void)editUserInfoParams:(NSMutableDictionary *)params {
@@ -63,6 +69,11 @@
             }
                 /** 电话 */
             case ChangePhoneAssignment:{
+                
+                break;
+            }
+                /** 短信通知电话 */
+            case ChangeMessagePhoneAssignment:{
                 
                 break;
             }
@@ -130,16 +141,30 @@
                 /** 商户名称 */
             case ChangeMerchantNameAssignment:{
                 merchantInfo.name = self.changeInfoView.changeTextField.text;
+                self.storeModel.name = self.changeInfoView.changeTextField.text;
                 break;
             }
-                /** 电话 */
+                /** 客服电话 */
             case ChangePhoneAssignment:{
                 merchantInfo.service_tel = self.changeInfoView.changeTextField.text;
+                self.storeModel.service_tel = self.changeInfoView.changeTextField.text;
+                break;
+            }
+                /** 短信通知电话 */
+            case ChangeMessagePhoneAssignment:{
+                self.storeModel.service_mobile = self.changeInfoView.changeTextField.text;
                 break;
             }
                 /** 地址 */
             case ChangeAddressAssignment:{
                 merchantInfo.address = self.changeInfoView.changeTextField.text;
+                self.storeModel.address = self.changeInfoView.changeTextField.text;
+                break;
+            }
+                /** 时间 */
+            case ChangeTimeAssignment:{
+                self.storeModel.business_start_time = self.changeTimeView.startTf.text;
+                self.storeModel.business_end_time = self.changeTimeView.endTf.text;
                 break;
             }
             default:
@@ -147,6 +172,9 @@
         }
         // 储存商家信息
         [NSKeyedArchiver archiveRootObject:merchantInfo toFile:AccountPath];
+        if (_storeEditSuccessBlock) {
+            _storeEditSuccessBlock(self.storeModel);
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -184,6 +212,18 @@
             [self editMerchantInfoParams:params];
             break;
         }
+            /** 营业时间 */
+        case ChangeTimeAssignment: {
+            /*/index.php?c=provider&a=edit&v=1
+             provider_id 	int 	是 	服务商id
+             data 	string 	是 	修改的信息： 数据格式： 数据库字段名=值(店名----name 地址--address 电话--service_tel)  */
+            // 网络请求参数
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商编号
+            params[@"data"] = [NSString stringWithFormat:@"business_start_time=%@,business_end_time=%@", self.changeTimeView.startTf.text,self.changeTimeView.endTf.text]; // 需要修改的商户信息
+            [self editMerchantInfoParams:params];
+            break;
+        }
             /** 性别 */
         case ChangeSexAssignment:{
             // 获取当前选中的性别
@@ -203,7 +243,7 @@
             [self editUserInfoParams:params];
             break;
         }
-            /** 电话 */
+            /** 客服电话 */
         case ChangePhoneAssignment:{
             /*/index.php?c=provider&a=edit&v=1
              provider_id 	int 	是 	服务商id
@@ -212,6 +252,18 @@
             NSMutableDictionary *params = [NSMutableDictionary dictionary];
             params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商编号
             params[@"data"] = [NSString stringWithFormat:@"service_tel=%@", self.changeInfoView.changeTextField.text]; // 需要修改的商户信息
+            [self editMerchantInfoParams:params];
+            break;
+        }
+            /** 短信通知电话 */
+        case ChangeMessagePhoneAssignment:{
+            /*/index.php?c=provider&a=edit&v=1
+             provider_id 	int 	是 	服务商id
+             data 	string 	是 	修改的信息： 数据格式： 数据库字段名=值(店名----name 地址--address 电话--service_tel)  */
+            // 网络请求参数
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商编号
+            params[@"data"] = [NSString stringWithFormat:@"service_mobile=%@", self.changeInfoView.changeTextField.text]; // 需要修改的商户信息
             [self editMerchantInfoParams:params];
             break;
         }
@@ -405,11 +457,25 @@
             self.navigationItem.title = @"修改性别";
             break;
         }
-        /** 商户电话 */
+        /** 客服电话 */
         case ChangePhoneAssignment:{
             self.changeInfoView.changeTextField.placeholder = @"请输入手机号";
             self.changeInfoView.changeTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-            self.navigationItem.title = @"手机号";
+            self.navigationItem.title = @"客服电话";
+            // 修改手机号的输入框限制
+            RACSignal *phoneSig = [self.changeInfoView changePhoneTextFieldSignal];
+            // 根据账户输入框，修改保存按钮是否可点击属性
+            RAC(self.navigationItem.rightBarButtonItem, enabled) =
+            [phoneSig map:^id(NSNumber *aggregationInfoTF){
+                return@([aggregationInfoTF boolValue]);
+            }];
+            break;
+        }
+            /** 短信通知电话 */
+        case ChangeMessagePhoneAssignment:{
+            self.changeInfoView.changeTextField.placeholder = @"请输入手机号";
+            self.changeInfoView.changeTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+            self.navigationItem.title = @"短信通知";
             // 修改手机号的输入框限制
             RACSignal *phoneSig = [self.changeInfoView changePhoneTextFieldSignal];
             // 根据账户输入框，修改保存按钮是否可点击属性
@@ -430,6 +496,13 @@
             [nameSig map:^id(NSNumber *nameTF){
                 return@([nameTF boolValue]);
             }];
+            break;
+        }
+            /** 时间 */
+        case ChangeTimeAssignment:{
+            self.navigationItem.title = @"营业时间";
+            //  修改时间的输入框限制
+            
             break;
         }
         /** 生日 */
@@ -569,7 +642,21 @@
             make.right.equalTo(self.view.mas_right);
             make.bottom.equalTo(self.view.mas_bottom);
         }];
-    }else {
+    }else  if (self.changeInfoExhibitionType == ChangeTimeAssignment) {
+        /** 修改店铺时间 */
+        self.changeTimeView = [[ChangeStartEndTimeView alloc] init];
+        self.changeTimeView.startTf.delegate = self;
+        self.changeTimeView.endTf.delegate = self;;
+        [self.view addSubview:self.changeTimeView];
+        @weakify(self)
+        [self.changeTimeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            @strongify(self)
+            make.top.equalTo(self.view.mas_top);
+            make.left.equalTo(self.view.mas_left);
+            make.right.equalTo(self.view.mas_right);
+            make.height.mas_equalTo(92);
+        }];
+    }else{
         /** 修改信息view */
         self.changeInfoView = [[ChangeInfoView alloc] init];
         [self.view addSubview:self.changeInfoView];
@@ -580,9 +667,50 @@
             make.left.equalTo(self.view.mas_left);
             make.right.equalTo(self.view.mas_right);
         }];
+
     }
 }
+-(void)textFieldDidBeginEditing:(UITextField*)textField
 
+{
+    if (textField == self.changeTimeView.startTf || textField == self.changeTimeView.endTf) {
+        [textField resignFirstResponder];
+        // 日历
+        UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+        datePicker.datePickerMode = UIDatePickerModeTime;
+        // 选择框
+        NSString *title = @"\n\n\n\n\n\n\n\n\n\n" ;
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 确定日期
+            NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"HH:ss";
+            NSString *timestamp = [formatter stringFromDate:datePicker.date];
+            if (textField == self.changeTimeView.startTf ) {
+                self.changeTimeView.startTf.text = timestamp;
+            }else if (textField == self.changeTimeView.endTf) {
+                self.changeTimeView.endTf.text = timestamp;
+            }
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
+        [alertController addAction:confirm];
+        [alertController addAction:cancel];
+        [self presentViewController:alertController animated:YES completion:nil];
+        // 将日期滚轮添加到选择框上
+        [alertController.view addSubview:datePicker];
+    }
+
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+
+{
+    if (textField == self.changeTimeView.startTf || textField == self.changeTimeView.endTf) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

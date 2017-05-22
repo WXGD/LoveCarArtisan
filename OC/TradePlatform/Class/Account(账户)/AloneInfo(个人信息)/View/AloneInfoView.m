@@ -31,6 +31,17 @@
     self.accountName.isArrow = YES;
     self.accountName.usedCellBtn.tag = AccountNameBtnAction;
     [self addSubview:self.accountName];
+    /** 手机号 */
+    self.telPhone = [[UsedCellView alloc] init];
+    self.telPhone.cellLabel.text = @"手机号";
+    self.telPhone.cellLabel.font = FifteenTypeface;
+    self.telPhone.describeLabel.font = FifteenTypeface;
+    self.telPhone.describeLabel.textColor = Black;
+    self.telPhone.isSplistLine = YES;
+    self.telPhone.isCellImage = YES;
+    self.telPhone.isArrow = YES;
+    self.telPhone.usedCellBtn.tag = TelPhoneBtnAction;
+    [self addSubview:self.telPhone];
     /** 修改密码 */
     self.delPassword = [[UsedCellView alloc] init];
     self.delPassword.cellLabel.text = @"修改密码";
@@ -41,16 +52,16 @@
     self.delPassword.isCellImage = YES;
     self.delPassword.usedCellBtn.tag = DelPasswordBtnAction;
     [self addSubview:self.delPassword];
-    /** 退出当前账户 */
-    self.signOutView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.signOutView setTitle:@"退出当前账户" forState:UIControlStateNormal];
-    [self.signOutView setTitleColor:WhiteColor forState:UIControlStateNormal];
-    self.signOutView.titleLabel.font = EighteenTypeface;
-    [self.signOutView setBackgroundImage:[UIImage imageNamed:@"login_btn_back"] forState:UIControlStateNormal];
-    [self.signOutView setBackgroundImage:[UIImage imageNamed:@"login_no_btn_back"] forState:UIControlStateSelected];
-    self.signOutView.adjustsImageWhenHighlighted = NO;
-    self.signOutView.tag = SignOutBtnAction;
-    [self addSubview:self.signOutView];
+//    /** 退出当前账户 */
+//    self.signOutView = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.signOutView setTitle:@"退出当前账户" forState:UIControlStateNormal];
+//    [self.signOutView setTitleColor:WhiteColor forState:UIControlStateNormal];
+//    self.signOutView.titleLabel.font = EighteenTypeface;
+//    [self.signOutView setBackgroundImage:[UIImage imageNamed:@"login_btn_back"] forState:UIControlStateNormal];
+//    [self.signOutView setBackgroundImage:[UIImage imageNamed:@"login_no_btn_back"] forState:UIControlStateSelected];
+//    self.signOutView.adjustsImageWhenHighlighted = NO;
+//    self.signOutView.tag = SignOutBtnAction;
+//    [self addSubview:self.signOutView];
 }
 
 - (void)layoutSubviews {
@@ -64,22 +75,30 @@
         make.top.equalTo(self.mas_top).offset(10);
         make.height.mas_equalTo(@50);
     }];
-    /** 修改密码 */
-    [self.delPassword mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 手机号 */
+    [self.telPhone mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.top.equalTo(self.accountName.mas_bottom).offset(10);
         make.height.mas_equalTo(@50);
     }];
-    /** 退出当前账户 */
-    [self.signOutView mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 修改密码 */
+    [self.delPassword mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.left.equalTo(self.mas_left).offset(16);
-        make.right.equalTo(self.mas_right).offset(-16);
-        make.top.equalTo(self.delPassword.mas_bottom).offset(30);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.telPhone.mas_bottom).offset(10);
         make.height.mas_equalTo(@50);
     }];
+//    /** 退出当前账户 */
+//    [self.signOutView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        @strongify(self)
+//        make.left.equalTo(self.mas_left).offset(16);
+//        make.right.equalTo(self.mas_right).offset(-16);
+//        make.top.equalTo(self.delPassword.mas_bottom).offset(30);
+//        make.height.mas_equalTo(@50);
+//    }];
 }
 
 @end

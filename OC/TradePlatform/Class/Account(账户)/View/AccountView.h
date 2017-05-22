@@ -27,16 +27,16 @@ typedef NS_ENUM(NSInteger, AccountBottonAction) {
 @interface AccountView : UIView
 
 /** 当前用户 */
-@property (strong, nonatomic) UsedCellView *currentUserView;
-/** 商户信息 */
-@property (strong, nonatomic) UsedCellView *tenantsInfoView;
-/** 二维码 */
-@property (strong, nonatomic) UsedCellView *QRCodeView;
-/** 我的账户 */
+@property (strong, nonatomic) CustomCell *currentUserView;
+///** 商户信息 */
+//@property (strong, nonatomic) UsedCellView *tenantsInfoView;
+///** 二维码 */
+//@property (strong, nonatomic) UsedCellView *QRCodeView;
+///** 我的账户 */
 //@property (strong, nonatomic) UsedCellView *myAccountView;
 /** 设置 */
-@property (strong, nonatomic) UsedCellView *setUpView;
-/** 关于我们 */
-@property (strong, nonatomic) UsedCellView *aboutUsView;
+@property (strong, nonatomic) CustomCell *setUpView;
+///** 关于我们 */
+//@property (strong, nonatomic) UsedCellView *aboutUsView;
 
 @end

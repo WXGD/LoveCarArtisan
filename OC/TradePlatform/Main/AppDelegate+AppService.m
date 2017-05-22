@@ -12,6 +12,8 @@
 // 蒲公英
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
+// URL跳转界面
+#import "DCURLRouter.h"
 
 // 推送appKey
 static NSString *appKey = @"5f34b14fc441b62a35ddbdec";
@@ -32,8 +34,9 @@ static BOOL isProduction = false;
 }
 // URL跳转界面
 - (void)urlNavController {
-    
+    [DCURLRouter loadConfigDictFromPlist:@"DCURLRouter.plist"];
 }
+
 // 加载第三方
 - (void)loadThirdParty:(NSDictionary *)launchOptions {
     // 微信 wxff87f02dac93ce58;
@@ -42,7 +45,8 @@ static BOOL isProduction = false;
     [self registerTengXunBugly];
     // 极光推送
     [self registerJpush:launchOptions];
-    
+    // URL跳转界面
+    [self urlNavController];
     // 蒲公英启动基本SDK
     [[PgyManager sharedPgyManager] startManagerWithAppId:@"911d6895c2eedf4bae0968fc52800da0"];
     // 蒲公英启动更新检查SDK

@@ -131,11 +131,14 @@
         cell = [[NSBundle mainBundle] loadNibNamed:cellID owner:nil options:nil][0];
     }
     cell.cancelBtnClick = ^(BankCommonModel *bankCommonModel) {
-        NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
-        dic[@"provider_id"] = self.merchantInfo.provider_id; ;
-        dic[@"provider_bank_account_id"] = bankCommonModel.provider_bank_account_id;
-        dic[@"type"] = @"del";
-        [self cancelOrSetDefauBank:dic];
+        [AlertAction determineStayLeft:self title:@"提示" admit:@"是" noadmit:@"否" message:@"是否接触绑定该银行卡" admitBlock:^{
+            NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];
+            dic[@"provider_id"] = self.merchantInfo.provider_id; ;
+            dic[@"provider_bank_account_id"] = bankCommonModel.provider_bank_account_id;
+            dic[@"type"] = @"del";
+            [self cancelOrSetDefauBank:dic];
+        } noadmitBlock:nil];
+        
     };
     cell.setDefaultBtnClick = ^(BankCommonModel *bankCommonModel) {
         NSMutableDictionary *dic =[[NSMutableDictionary alloc] init];

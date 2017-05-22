@@ -14,8 +14,12 @@ typedef NS_ENUM(NSInteger, ChangeInfoExhibitionType) {
     ChangeMerchantNameAssignment,
     /** 性别 */
     ChangeSexAssignment,
-    /** 电话 */
+    /** 客服电话 */
     ChangePhoneAssignment,
+    /** 短信通知电话 */
+    ChangeMessagePhoneAssignment,
+    /** 营业时间 */
+    ChangeTimeAssignment,
     /** 地址 */
     ChangeAddressAssignment,
     /** 生日 */
@@ -37,6 +41,7 @@ typedef NS_ENUM(NSInteger, ChangeInfoExhibitionType) {
 #import "UserModel.h"
 // 车辆信息模型
 #import "UserCarModel.h"
+#import "StoreModel.h"
 
 
 @interface ChangeInfoViewController : RootViewController
@@ -45,11 +50,14 @@ typedef NS_ENUM(NSInteger, ChangeInfoExhibitionType) {
 @property (assign, nonatomic) ChangeInfoExhibitionType changeInfoExhibitionType;
 /** 用户信息(修改用户信息时需要) */
 @property (strong, nonatomic) UserModel *userInfo;
+/** 门店信息 */
+@property (strong, nonatomic) StoreModel *storeModel;
 @property (copy, nonatomic) NSString *provider_user_id;
 /** 用户车辆信息 */
 @property (strong, nonatomic) UserCarModel *userCar;
 
 /** 修改成功回调 */
 @property (copy, nonatomic) void(^editSuccessBlock)(UserModel *userInfo);
-
+/** 门店修改成功回调 */
+@property (copy, nonatomic) void(^storeEditSuccessBlock)(StoreModel *storeModel);
 @end

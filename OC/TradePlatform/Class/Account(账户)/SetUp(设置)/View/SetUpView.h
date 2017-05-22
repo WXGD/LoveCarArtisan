@@ -20,6 +20,8 @@ typedef NS_ENUM(NSInteger, SetUpBottonAction) {
     ServiceNumBtnAction,
     /** 功能介绍 */
     funcIntroBtnAction,
+    /** 退出登录 */
+    SignOutBtnAction,
 };
 
 #import <UIKit/UIKit.h>
@@ -38,6 +40,7 @@ typedef NS_ENUM(NSInteger, SetUpBottonAction) {
 @property (strong, nonatomic) UsedCellView *serviceNumView;
 /** 功能介绍 */
 @property (strong, nonatomic) UsedCellView *funcIntroView;
-
+/** 退出当前账户 */
+@property (strong, nonatomic) UIButton *signOutBtn;
 
 @end

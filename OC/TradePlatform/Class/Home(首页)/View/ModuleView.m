@@ -10,11 +10,9 @@
 
 @implementation ModuleView
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
-        self.backgroundColor = WhiteColor;
         [self moduleViewLayoutView];
     }
     return self;
@@ -42,6 +40,7 @@
         @strongify(self)
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.mas_top).offset(21);
+        make.size.mas_equalTo(CGSizeMake(35, 35));
     }];
     /** 文字 */
     [self.moduleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

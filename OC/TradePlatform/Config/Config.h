@@ -119,6 +119,8 @@
 #define  TwentyFourTypefaceBold [UIFont fontWithName:@"Helvetica-Bold" size:24]
 /** 30号字 */
 #define  ThirtyTypeface [UIFont systemFontOfSize:30]
+/** 30号字加粗字 */
+#define  ThirtyTypefaceBold [UIFont fontWithName:@"Helvetica-Bold" size:30]
 /** 36号字 */
 #define  ThirtySixTypeface [UIFont systemFontOfSize:36]
 /** 40号字 */

@@ -10,6 +10,8 @@
 typedef NS_ENUM(NSInteger, AccountBottonAction) {
     /** 名字 */
     AccountNameBtnAction,
+    /** 手机号 */
+    TelPhoneBtnAction,
     /** 修改密码 */
     DelPasswordBtnAction,
     /** 退出当前账户 */
@@ -23,6 +25,8 @@ typedef NS_ENUM(NSInteger, AccountBottonAction) {
 
 /** 名字 */
 @property (strong, nonatomic) UsedCellView *accountName;
+/** 手机号 */
+@property (strong, nonatomic) UsedCellView *telPhone;
 /** 修改密码 */
 @property (strong, nonatomic) UsedCellView *delPassword;
 /** 退出当前账户 */

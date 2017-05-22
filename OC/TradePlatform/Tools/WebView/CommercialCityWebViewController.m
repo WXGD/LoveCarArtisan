@@ -13,6 +13,8 @@
 // 微信支付
 #import "WXPayment.h"
 #import "WXApiManager.h"
+// 接收上级页面的参数
+#import "UIViewController+DCURLRouter.h"
 
 @interface CommercialCityWebViewController ()<ALiPayHandleDelegate, WXApiManagerDelegate>
 
@@ -26,10 +28,26 @@
     [WXApiManager sharedManager].delegate = self;
     // 支付宝回调代理
     [ALiPayHandle sharedManager].delegate = self;
-    // 加载网络URL
-    [self loadNetworkHTML:self.webUrl];
     // web和html交互
     [self webAndHtmlInteractiveMethod];
+    // 判断是否有URL，如果没有
+    if (self.webUrl.length == 0) {
+        // 判断是非需要登陆者ID
+        if ([[NSString stringWithFormat:@"%@", self.params[@"web_url_id"]] isEqualToString:@"0"]) {
+            self.webUrl = self.params[@"web_url"];
+        }else {
+            self.webUrl = [NSString stringWithFormat:@"%@%@", self.params[@"web_url"], self.merchantInfo.provider_id];
+        }
+    }
+}
+
+
+
+
+- (void)setWebUrl:(NSString *)webUrl {
+    _webUrl = webUrl;
+    // 加载网络URL
+    [self loadNetworkHTML:webUrl];
 }
 
 /** web和html交互方法 */

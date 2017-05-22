@@ -12,9 +12,20 @@
 // 下级控制器
 #import "FeedbackViewController.h"
 #import "AboutUsViewController.h"
+#import "LoginViewController.h"
+#import "NavigationViewController.h"
 // 更新提醒模型
 #import "UpdateReminderModel.h"
 #import "CityModel.h"
+// 推送设置别名
+#import "JPUSHService.h"
+// 单利
+#import "OrderFilterHandle.h"
+#import "OrderClassHandle.h"
+#import "UsedCarBrandHandle.h"
+#import "AllGoodsHandle.h"
+#import "ServiceMasterHandle.h"
+#import "ServiceCategoryHandle.h"
 
 @interface SetUpViewController ()
 /** 设置view */
@@ -63,7 +74,10 @@
         }
         /** 关于我们 */
         case AboutUsBtnAction: {
-            
+            AboutUsViewController *aboutUsVC = [[AboutUsViewController alloc] init];
+            NSString *WEBURL = [NSString stringWithFormat:@"%@%@", WEBAPI, @"aboutUs/aboutUs.html"];
+            aboutUsVC.webUrl = WEBURL;
+            [self.navigationController pushViewController:aboutUsVC animated:YES];
             break;
         }
         /** 客服电话 */
@@ -80,6 +94,30 @@
             NSString *WEBURL = [NSString stringWithFormat:@"%@%@", WEBAPI, @"upgrade-log/index.html"];
             funcIntroVC.webUrl = WEBURL;
             [self.navigationController pushViewController:funcIntroVC animated:YES];
+            break;
+        }
+            /** 退出登录 */
+        case SignOutBtnAction: {
+            [AlertAction determineStayLeft:self title:@"退出登录" message:@"确定要退出登录吗?" determineBlock:^{
+                // 设置标签和(或)别名
+                [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+                    PDLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
+                }];
+                // 清空用户信息数据
+                MerchantInfoModel *merchantInfo = [[MerchantInfoModel alloc] init];
+                // 储存商家信息
+                [NSKeyedArchiver archiveRootObject:merchantInfo toFile:AccountPath];
+                // 销毁单利
+                [OrderFilterHandle destroyHandle];
+                [OrderClassHandle destroyHandle];
+                [UsedCarBrandHandle destroyHandle];
+                [AllGoodsHandle destroyHandle];
+                [ServiceMasterHandle destroyHandle];
+                [ServiceCategoryHandle destroyHandle];
+                // 跳转到登录界面
+                UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+                keyWindow.rootViewController = [[NavigationViewController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+            }];
             break;
         }
         default:
@@ -117,6 +155,8 @@
     [self.setUpView.serviceNumView.usedCellBtn addTarget:self action:@selector(setUpBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 功能介绍 */
     [self.setUpView.funcIntroView.usedCellBtn addTarget:self action:@selector(setUpBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    /** 退出登录 */
+    [self.setUpView.signOutBtn addTarget:self action:@selector(setUpBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.setUpView];
     @weakify(self)
     [self.setUpView mas_makeConstraints:^(MASConstraintMaker *make) {

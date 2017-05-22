@@ -26,6 +26,8 @@
 #import "CommercialCityWebViewController.h"
 #import "PendOrderViewController.h"
 #import "MyAccountViewController.h"
+#import "StoreViewController.h"
+
 
 // 模型
 #import "BannerModel.h"
@@ -36,8 +38,10 @@
 #import "CityModel.h"
 #import "OrderClassHandle.h"
 #import "PendOrderModel.h"
+// URL跳转界面
+#import "DCURLRouter.h"
 
-@interface HomePageViewController ()<DropdownMenuDelegate>
+@interface HomePageViewController ()<DropdownMenuDelegate, ServiceModuleDelegate>
 
 /** 首页view */
 @property (strong, nonatomic) HomePageView *homePageView;
@@ -91,6 +95,8 @@
     [CityModel establishCitySqliteForm];
     // 请求订单类型数据
     [OrderClassHandle sharedInstance];
+    // 请求服务模块数据
+    [self serviceModuleRequestData];
 }
 #pragma mark - 网络请求
 // 请求banner数据
@@ -125,7 +131,7 @@
     // 马上进入刷新状态
     [self.homePageView.homePageScrollView.mj_header beginRefreshing];
 }
-//请求挂单数据
+// 请求挂单数据
 - (void)pendOrderRequestData {
     // 拼接请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -134,7 +140,13 @@
         self.homePageView.btnPendOrder.selected = cart;
     }];
 }
-
+// 请求服务模块数据
+- (void)serviceModuleRequestData {
+    [ServiceModuleModel requestServiceModuleSuccess:^(NSMutableArray *moduleArray) {
+        // 保存服务模块数据
+        self.homePageView.serviceModuleView.moduleArray = moduleArray;
+    }];
+}
 #pragma mark - 按钮点击方法
 // nav右边按钮
 - (void)homePageRightBarBtnAction {
@@ -200,69 +212,32 @@
             [self.navigationController pushViewController:cashierVC animated:YES];
             break;
         }
-            /** 服务管理 */
-        case ServiceManageBtnAction: {
-            ServiceViewController *serviceVC = [[ServiceViewController alloc] init];
-            [self.navigationController pushViewController:serviceVC animated:NO];
-            break;
-        }
-            /** 会员卡 */
-        case UserCardBtnAction: {
-            UserCardViewController *userCardVC = [[UserCardViewController alloc] init];
-            [self.navigationController pushViewController:userCardVC animated:YES];
-            break;
-        }
-            /** 客户 */
-        case CustomerBtnAction: {
-            UserViewController *queryUserVC = [[UserViewController alloc] init];
-            [self.navigationController pushViewController:queryUserVC animated:NO];
-            break;
-        }
-            /** 订单 */
-        case OrderBtnAction: {
-            OrderViewController *orderVC = [[OrderViewController alloc] init];
-            orderVC.orderNavTitle = @"订单";
-            [self.navigationController pushViewController:orderVC animated:YES];
-            break;
-        }
-            /**  营销 */
-        case MarketingBtnAction: {
-            MarketingViewController *marketingVC = [[MarketingViewController alloc] init];
-            [self.navigationController pushViewController:marketingVC animated:YES];
-            break;
-        }
-            /** 报表 */
-        case ReportBtnAction: {
-            CommercialCityWebViewController *commercialCityWebVC = [[CommercialCityWebViewController alloc] init];
-            NSString *WEBURL = [NSString stringWithFormat:@"%@analyse/dataAnalysis.html?provider_id=%@", WEBAPI, self.merchantInfo.provider_id];
-            commercialCityWebVC.webUrl = WEBURL;
-            [self.navigationController pushViewController:commercialCityWebVC animated:YES];
-            break;
-        }
-            /** 商城 */
-        case CommercialCityBtnAction: {
-            CommercialCityWebViewController *commercialCityWebVC = [[CommercialCityWebViewController alloc] init];
-            NSString *WEBURL = [NSString stringWithFormat:@"%@%@", MallsWEBAPI, @"#/1/2?_k=l01xoq"];
-            commercialCityWebVC.webUrl = WEBURL;
-            [self.navigationController pushViewController:commercialCityWebVC animated:YES];
-            break;
-        }
             /** 挂单 */
         case PendOrderBtnActio: {
             PendOrderViewController *pendVC = [[PendOrderViewController alloc] init];
             [self.navigationController pushViewController:pendVC animated:YES];
             break;
         }
-            /** 账户 */
-        case AccountBtnAction: {
-            MyAccountViewController *myAccountVC = [[MyAccountViewController alloc] init];
-            [self.navigationController pushViewController:myAccountVC animated:YES];
-            break;
-        }
         default:
             break;
     }
 }
+
+#pragma mark - 服务模块点击代理
+- (void)serviceModuleBtnAction:(UIButton *)button {
+    NSInteger section = button.tag / 1000 % 10;
+    NSInteger row = button.tag / 100 % 10;
+    NSInteger tag = button.tag / 1 % 10;
+    NSArray *moduleItem = [self.homePageView.serviceModuleView.moduleArray objectAtIndex:section];
+    NSArray *itemArray = [moduleItem objectAtIndex:row];
+    ServiceModuleModel *serviceModuleModel = [itemArray objectAtIndex:tag];
+    NSMutableDictionary *menuDic = [[NSMutableDictionary alloc] init];
+    menuDic[@"nav_title"] = serviceModuleModel.nav_title;
+    menuDic[@"web_url"] = serviceModuleModel.web_url;
+    menuDic[@"web_url_id"] = serviceModuleModel.web_url_id;
+    [DCURLRouter pushURLString:serviceModuleModel.nav_url query:menuDic animated:YES];
+}
+
 
 #pragma mark - 界面赋值
 - (void)homePageAssignment:(ShopRealtimeModel *)shopRealtime {
@@ -300,24 +275,10 @@
     [self.homePageView.showDataView.scanBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
     /** 收款 */
     [self.homePageView.showDataView.cashierBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /** 服务管理 */
-    [self.homePageView.serviceModuleView.serviceBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /** 会员卡 */
-    [self.homePageView.serviceModuleView.membershipCardBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /** 客户 */
-    [self.homePageView.serviceModuleView.customerBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /**  营销 */
-    [self.homePageView.serviceModuleView.marketingBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /** 报表 */
-    [self.homePageView.serviceModuleView.reportBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /** 订单 */
-    [self.homePageView.serviceModuleView.orderBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /** 商城 */
-    [self.homePageView.serviceModuleView.commercialCityBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
+    /** 服务模块点击代理 */
+    self.homePageView.serviceModuleView.delegate = self;
     /** 挂单 */
     [self.homePageView.btnPendOrder addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
-    /** 账户 */
-    [self.homePageView.serviceModuleView.accountBtn.moduleBtn addTarget:self action:@selector(homePageBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.homePageView];
     @weakify(self)
     [self.homePageView mas_makeConstraints:^(MASConstraintMaker *make) {

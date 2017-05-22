@@ -91,6 +91,8 @@
 - (void)aloneInfoAssignment {
     /** 名字 */
     self.aloneInfoView.accountName.cellLabel.text = self.merchantInfo.user_name;
+    /** 手机号 */
+    self.aloneInfoView.telPhone.cellLabel.text = self.merchantInfo.service_tel;
 
 }
 #pragma mark - 布局nav

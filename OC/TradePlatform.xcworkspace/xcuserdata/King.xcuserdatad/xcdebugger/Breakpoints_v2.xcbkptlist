@@ -19,13 +19,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TradePlatform/Class/Marketing(&#x8425;&#x9500;)/BenefitQuiry(&#x4fdd;&#x9669;&#x67e5;&#x8be2;)/DangerRecord(&#x51fa;&#x9669;&#x8bb0;&#x5f55;)/PolicyDetail(&#x8be6;&#x7ec6;&#x62a5;&#x4ef7;)/Controller/PolicyDetailViewController.m"
-            timestampString = "516276523.973388"
+            filePath = "TradePlatform/Class/ChangeInfo(&#x4fee;&#x6539;&#x4fe1;&#x606f;)/Controller/ChangeInfoViewController.m"
+            timestampString = "516703207.208155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "-setPolicyDetailModel:"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "-changeInfoRightBarButtonItmeAction"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradePlatform/Class/ChangeInfo(&#x4fee;&#x6539;&#x4fe1;&#x606f;)/Controller/ChangeInfoViewController.m"
+            timestampString = "516703207.208155"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
+            landmarkName = "-changeInfoAssignment"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradePlatform/Class/ChangeInfo(&#x4fee;&#x6539;&#x4fe1;&#x606f;)/Controller/ChangeInfoViewController.m"
+            timestampString = "516703207.208155"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-editMerchantInfoParams:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradePlatform/Class/ChangeInfo(&#x4fee;&#x6539;&#x4fe1;&#x606f;)/Controller/ChangeInfoViewController.m"
+            timestampString = "516703207.208155"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-editMerchantInfoParams:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
