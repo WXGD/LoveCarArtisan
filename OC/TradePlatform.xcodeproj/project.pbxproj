@@ -80,7 +80,6 @@
 		187E95541E150D680081FEF7 /* AlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 187E95511E150D680081FEF7 /* AlertAction.m */; };
 		187E95551E150D680081FEF7 /* ElasticBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187E95531E150D680081FEF7 /* ElasticBoxView.m */; };
 		187E95611E1511F30081FEF7 /* CertificatePhotoTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187E95601E1511F30081FEF7 /* CertificatePhotoTipsView.m */; };
-		187FA68A1EF9014B0080A595 /* CouponGoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187FA6891EF9014B0080A595 /* CouponGoverView.m */; };
 		187FA68D1EF91E890080A595 /* CouponContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187FA68C1EF91E890080A595 /* CouponContentViewController.m */; };
 		189248BA1EAF2BAE00F212CA /* UUInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189248B91EAF2BAE00F212CA /* UUInputAccessoryView.m */; };
 		18A1E4521E1638C700D99D2E /* JiuGongBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1E4511E1638C700D99D2E /* JiuGongBtn.m */; };
@@ -528,6 +527,8 @@
 		3C9DF5DC1EC5A59800D6DE98 /* insuranceorderList.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DF5DB1EC5A59800D6DE98 /* insuranceorderList.json */; };
 		3C9DF5DE1EC5A74600D6DE98 /* insurancequoteDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DF5DD1EC5A74600D6DE98 /* insurancequoteDetail.json */; };
 		3C9DF5E01EC5B55700D6DE98 /* providerbankaccountList.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C9DF5DF1EC5B55700D6DE98 /* providerbankaccountList.json */; };
+		712FA2121EF970610032BABD /* CouponContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712FA2111EF970610032BABD /* CouponContentView.m */; };
+		712FA2151EF974720032BABD /* CouponContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 712FA2141EF974720032BABD /* CouponContentCell.m */; };
 		71F63FF91E155AA2002B96FD /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 71F63FF81E155AA2002B96FD /* CodeScan.bundle */; };
 /* End PBXBuildFile section */
 
@@ -692,8 +693,6 @@
 		187E95531E150D680081FEF7 /* ElasticBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElasticBoxView.m; sourceTree = "<group>"; };
 		187E955F1E1511F30081FEF7 /* CertificatePhotoTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificatePhotoTipsView.h; sourceTree = "<group>"; };
 		187E95601E1511F30081FEF7 /* CertificatePhotoTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificatePhotoTipsView.m; sourceTree = "<group>"; };
-		187FA6881EF9014B0080A595 /* CouponGoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponGoverView.h; sourceTree = "<group>"; };
-		187FA6891EF9014B0080A595 /* CouponGoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponGoverView.m; sourceTree = "<group>"; };
 		187FA68B1EF91E890080A595 /* CouponContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponContentViewController.h; sourceTree = "<group>"; };
 		187FA68C1EF91E890080A595 /* CouponContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponContentViewController.m; sourceTree = "<group>"; };
 		189248B81EAF2BAE00F212CA /* UUInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUInputAccessoryView.h; sourceTree = "<group>"; };
@@ -1528,6 +1527,10 @@
 		3C9DF5DB1EC5A59800D6DE98 /* insuranceorderList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = insuranceorderList.json; sourceTree = "<group>"; };
 		3C9DF5DD1EC5A74600D6DE98 /* insurancequoteDetail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = insurancequoteDetail.json; sourceTree = "<group>"; };
 		3C9DF5DF1EC5B55700D6DE98 /* providerbankaccountList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = providerbankaccountList.json; sourceTree = "<group>"; };
+		712FA2101EF970610032BABD /* CouponContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponContentView.h; sourceTree = "<group>"; };
+		712FA2111EF970610032BABD /* CouponContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponContentView.m; sourceTree = "<group>"; };
+		712FA2131EF974720032BABD /* CouponContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponContentCell.h; sourceTree = "<group>"; };
+		712FA2141EF974720032BABD /* CouponContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponContentCell.m; sourceTree = "<group>"; };
 		71F63FF81E155AA2002B96FD /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
 		CBAD7AE2CAEEA6517B6CE2D6 /* Pods_TradePlatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TradePlatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED15D7E3DD32B03035CEC624 /* Pods-TradePlatform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradePlatform.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TradePlatform/Pods-TradePlatform.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1594,8 +1597,10 @@
 		181083A11EF8E273003F9088 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				187FA6881EF9014B0080A595 /* CouponGoverView.h */,
-				187FA6891EF9014B0080A595 /* CouponGoverView.m */,
+				712FA2101EF970610032BABD /* CouponContentView.h */,
+				712FA2111EF970610032BABD /* CouponContentView.m */,
+				712FA2131EF974720032BABD /* CouponContentCell.h */,
+				712FA2141EF974720032BABD /* CouponContentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6301,6 +6306,7 @@
 				3C43E8611EC1CCCD0000887F /* MonthsViewController.m in Sources */,
 				3C2A95331EC3FFBD009F1AA8 /* DangerRecordModel.m in Sources */,
 				3C43E78D1EC1CCCC0000887F /* PaymentMethodModel.m in Sources */,
+				712FA2151EF974720032BABD /* CouponContentCell.m in Sources */,
 				3C43E85D1EC1CCCD0000887F /* DateReportCellView.m in Sources */,
 				18304A441ECD895400B73F57 /* CustomCell.m in Sources */,
 				187E95231E14B72F0081FEF7 /* JHRadarChart.m in Sources */,
@@ -6308,7 +6314,6 @@
 				18D5681C1EE7A1F30039D819 /* CashierBomView.m in Sources */,
 				3C43E79C1EC1CCCC0000887F /* PayMethodCell.m in Sources */,
 				181A039A1EE53DF1003693E1 /* EditPasswordNetwork.m in Sources */,
-				187FA68A1EF9014B0080A595 /* CouponGoverView.m in Sources */,
 				3C43E8D81EC1CCCD0000887F /* UserCardRechargeView.m in Sources */,
 				3C43E84B1EC1CCCD0000887F /* PendOrderModel.m in Sources */,
 				3C43E7BB1EC1CCCC0000887F /* AddSchemeView.m in Sources */,
@@ -6419,6 +6424,7 @@
 				18CA41201EB1C76C00A2CAC8 /* OrderFilterHandle.m in Sources */,
 				1859FC351E8A4CDB0081C36F /* NSTimer+addition.m in Sources */,
 				3C43E8331EC1CCCD0000887F /* OrderModel.m in Sources */,
+				712FA2121EF970610032BABD /* CouponContentView.m in Sources */,
 				3C43E7BF1EC1CCCC0000887F /* BenefitPaySuccessView.m in Sources */,
 				3C43E7951EC1CCCC0000887F /* UserCarOptNetwork.m in Sources */,
 				185763CC1EEE366B00C8D512 /* AdminChoseHeaderView.m in Sources */,

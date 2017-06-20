@@ -7,8 +7,13 @@
 //
 
 #import "CouponContentViewController.h"
+// view
+#import "CouponContentView.h"
 
 @interface CouponContentViewController ()
+
+/** 优惠劵内容 */
+@property (strong, nonatomic) CouponContentView *couponContentView;
 
 @end
 
@@ -16,22 +21,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // 布局视图
+    [self couponContentLayoutView];
+}
+
+#pragma mark - 布局视图
+- (void)couponContentLayoutView {
+    /** 优惠劵内容 */
+    self.couponContentView = [[CouponContentView alloc] init];
+    [self.view addSubview:self.couponContentView];
+    @weakify(self)
+    [self.couponContentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.top.equalTo(self.view.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -23,14 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 网络请求
-    self.couponStateArray = @[@{@"name":@"启用"}, @{@"name":@"禁用"}, @{@"name":@"过期"}];
-    self.couponStateNameArray = @[@"启用", @"禁用", @"过期"];
-
+    
     // 布局nav
     [self couponGoverLayoutNAV];
     // 布局视图
     [self couponGoverLayoutView];
+    // 网络请求
+    self.couponStateArray = @[@{@"name":@"启用"}, @{@"name":@"禁用"}, @{@"name":@"过期"}];
+    self.couponStateNameArray = @[@"启用", @"禁用", @"过期"];
+    [self.magicView reloadData];
 }
 #pragma mark - 网络请求
 
@@ -46,8 +47,9 @@
 - (void)couponGoverLayoutView {
     self.magicView.navigationColor = WhiteColor;
     self.magicView.sliderColor = ThemeColor;
-    self.magicView.sliderWidth = 30;
+    self.magicView.sliderWidth = ScreenW / 3 - 32;
     self.magicView.separatorHidden = YES;
+    self.magicView.layoutStyle = VTLayoutStyleDivide;
 }
 
 #pragma mark - VTMagicViewDataSource
