@@ -10,7 +10,8 @@
 #import "ServiceProviderModel.h"
 
 @interface ServiceCategoryHandle : NSObject
-
+/** 服务管理模型 */
+@property (nonatomic, strong) AdminServiceModel *adminServiceModel;
 /** 服务类别 */
 @property (nonatomic, strong) NSMutableArray *serviceCategoryArray;
 /** 服务类别（包含全部服务类别） */

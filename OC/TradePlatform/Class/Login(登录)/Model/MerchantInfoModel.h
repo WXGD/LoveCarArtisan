@@ -22,7 +22,7 @@
  "staff_user_id": 1  #登陆者id,
  "user_name": "张三"  #登录者的名称,
  "create_time": "2017-02-21 11:13:45"  #服务商注册时间
-*/
+ "is_initial_provider": "1-总店 0-分店"  */
 
 /** 服务商id */
 @property (copy, nonatomic) NSString *provider_id;
@@ -36,6 +36,8 @@
 @property (copy, nonatomic) NSString *thumb_image_url;
 /** 服务商联系方式 */
 @property (copy, nonatomic) NSString *service_tel;
+/** 登陆人联系方式 */
+@property (copy, nonatomic) NSString *login_mobile;
 /** 微信公众号图片 */
 @property (copy, nonatomic) NSString *wxmp_qrcode;
 /** 服务商微信支付二维码 */
@@ -48,12 +50,14 @@
 @property (copy, nonatomic) NSString *staff_user_id;
 /** 服务商注册时间 */
 @property (copy, nonatomic) NSString *create_time;
-/** 标记是否选中 */
-@property (nonatomic, assign) BOOL checkMark;
-
+/** 1-总店 0-分店 */
+@property (assign, nonatomic) NSInteger is_initial_provider;
 /********************* 自加参数 **********************/
 /** 登录过期时间 */
 @property (copy, nonatomic) NSString *overdue_timer;
+/** 标记是否选中 */
+@property (nonatomic, assign) BOOL checkMark;
+
 
 /** 获取验证码 */
 + (void)requestVerificationParame:(NSMutableDictionary *)parame success:(void(^)())success;

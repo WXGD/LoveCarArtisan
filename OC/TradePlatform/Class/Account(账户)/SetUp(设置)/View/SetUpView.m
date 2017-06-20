@@ -96,7 +96,7 @@
         @strongify(self)
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.mas_top).offset(15);
+        make.top.equalTo(self.mas_top).offset(10);
         make.height.mas_equalTo(@50);
     }];
     /** 功能介绍 */
@@ -120,7 +120,7 @@
         @strongify(self)
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.currentVersionView.mas_bottom).offset(15);
+        make.top.equalTo(self.currentVersionView.mas_bottom).offset(10);
         make.height.mas_equalTo(@50);
     }];
     /** 意见反馈 */

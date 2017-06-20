@@ -53,6 +53,9 @@
     /** 查保险 */
     cell.userCarView.quiryBenefitBtn.tag = indexPath.row;
     [cell.userCarView.quiryBenefitBtn addTarget:self action:@selector(quiryBenefitBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    /** 查看行驶证 */
+    cell.userCarView.seeDrivingLicenseBtn.tag = indexPath.row;
+    [cell.userCarView.seeDrivingLicenseBtn addTarget:self action:@selector(seeDrivingLicenseBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -72,6 +75,12 @@
 - (void)quiryBenefitBtnAction:(UIButton *)button {
     if (_delegate && [_delegate respondsToSelector:@selector(quiryBenefitBtnDelegate:)]) {
         [_delegate quiryBenefitBtnDelegate:button];
+    }
+}
+/** 查看行驶证 */
+- (void)seeDrivingLicenseBtnAction:(UIButton *)button {
+    if (_delegate && [_delegate respondsToSelector:@selector(seeDrivingLicenseBtnDelegate:)]) {
+        [_delegate seeDrivingLicenseBtnDelegate:button];
     }
 }
 

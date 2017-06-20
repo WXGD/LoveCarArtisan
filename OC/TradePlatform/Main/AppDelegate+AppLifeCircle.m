@@ -9,12 +9,27 @@
 #import "AppDelegate+AppLifeCircle.h"
 #import "AppDelegate+AppService.h"
 #import "MerchantInfoModel.h"
+// 单利
+#import "OrderFilterHandle.h"
+#import "OrderClassHandle.h"
+#import "UsedCarBrandHandle.h"
+#import "AllGoodsHandle.h"
+#import "ServiceMasterHandle.h"
+#import "ServiceCategoryHandle.h"
+
 
 @implementation AppDelegate (AppLifeCircle)
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     PDLog(@"aa");
+    // 销毁单利
+    [OrderFilterHandle destroyHandle];
+    [OrderClassHandle destroyHandle];
+    [UsedCarBrandHandle destroyHandle];
+    [AllGoodsHandle destroyHandle];
+    [ServiceMasterHandle destroyHandle];
+    [ServiceCategoryHandle destroyHandle];
 }
 
 

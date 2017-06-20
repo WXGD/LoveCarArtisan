@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, PaySuccessBottonAction) {
 
 
 #import <UIKit/UIKit.h>
+#import "UserModel.h"
 
 @interface PaySuccessView : UIView
 
@@ -29,10 +30,15 @@ typedef NS_ENUM(NSInteger, PaySuccessBottonAction) {
 
 /** 完善信息按钮 */
 @property (strong, nonatomic) UIButton *perfectInfoBtn;
-
 /** 继续收款 */
 @property (strong, nonatomic) UIButton *continueCashierBtn;
 /** 返回首页 */
 @property (strong, nonatomic) UIButton *returnHomeBtn;
+/** 优惠券 */
+@property (strong, nonatomic) UITableView *couponTable;
+/** 优惠券数据 */
+@property (strong, nonatomic) NSMutableArray *couponArray;
+/** 用户信息(修改用户信息时需要) */
+@property (strong, nonatomic) UserModel *userInfo;
 
 @end

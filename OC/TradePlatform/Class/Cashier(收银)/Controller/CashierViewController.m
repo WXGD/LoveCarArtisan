@@ -19,7 +19,6 @@
 #import "CashierUserModel.h"
 #import "ServiceMasterHandle.h"
 // 下级控制器
-#import "ShoppingCartViewController.h"
 #import "SearchUserViewController.h"
 #import "CancellationViewController.h"
 #import "UserInfoViewController.h"
@@ -27,6 +26,7 @@
 #import "AffirmOrderViewController.h"
 #import "AddUserViewController.h"
 #import "UserConflictViewController.h"
+#import "CouponViewController.h"
 
 // 1.1.0用下级控制器
 #import "CardChoiceViewController.h"
@@ -51,6 +51,10 @@
 @property (strong, nonatomic) NSMutableArray *shoppingCartCommodityArray;
 /** 购物车商品字典 */
 @property (strong, nonatomic) NSMutableDictionary *shoppingCartGoodsDic;
+/** 优惠金额 */
+@property (assign, nonatomic) double offerSum;
+/** 优惠券ID */
+@property (copy, nonatomic) NSString *couponID;
 /************1.1.0版本*************/
 /** 支付方式数据 */
 @property (strong, nonatomic) NSMutableArray *payMethodArray;
@@ -60,6 +64,30 @@
 @end
 
 @implementation CashierViewController
+
+#pragma mark - 重写set方法
+- (void)setOfferSum:(double)offerSum {
+    _offerSum = offerSum;
+    // 选择优惠劵
+    if (offerSum > 0) {
+        /** 优惠券金额 */
+        self.cashierView.cashierBomView.couponSumLabel.text = [NSString stringWithFormat:@"%.2f", offerSum];
+        /** 优惠券选择后 */
+        self.cashierView.couponChoiceAfter = offerSum;
+    }else {
+        /** 优惠券金额 */
+        self.cashierView.cashierBomView.couponSumLabel.text = [NSString stringWithFormat:@"%.2f", offerSum];
+        // 用户有无优惠券
+        self.cashierView.couponChoiceBefore = self.cashierUserModel.coupon_count;
+    }
+    /** 实收款 */
+    double proceeds = [self.cashierView.pretiumView.viceTF.text doubleValue] * [self.cashierView.numberOperationBtn.numTF.text integerValue] - offerSum;
+    if (proceeds <= 0) {
+        self.cashierView.cashierBomView.proceedsLabel.text = [NSString stringWithFormat:@"0"];
+    }else {
+        self.cashierView.cashierBomView.proceedsLabel.text = [NSString stringWithFormat:@"%.2f", proceeds];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -139,6 +167,14 @@
         self.commodityListArray = commodityList;
         /** 默认选择商品类型 */
         self.defaultCommodity = [commodityList firstObject];
+        // 判断当前选中的服务类型是保养
+        if (self.defaultService.goods_category_id == 6) {
+            [self.cashierView.mileageView setHidden:NO];
+            [self.cashierView.nextTimeView setHidden:NO];
+        }else {
+            [self.cashierView.mileageView setHidden:YES];
+            [self.cashierView.nextTimeView setHidden:YES];
+        }
         /** 更换商品，商品信息赋值 */
         [self replaceCommodityInfoAssignment];
         if (success) {
@@ -162,7 +198,7 @@
                     // 保存服务师傅
                     self.serviceMasterModel = serviceMasterModel;
                     /** 服务师傅 */
-                    self.cashierView.serviceMasterView.viceTextFiled.text = self.serviceMasterModel.user_name;
+                    self.cashierView.serviceMasterView.viceTF.text = self.serviceMasterModel.user_name;
                 }
             }
         };
@@ -175,7 +211,7 @@
                 // 保存服务师傅
                 self.serviceMasterModel = serviceMasterModel;
                 /** 服务师傅 */
-                self.cashierView.serviceMasterView.viceTextFiled.text = self.serviceMasterModel.user_name;
+                self.cashierView.serviceMasterView.viceTF.text = self.serviceMasterModel.user_name;
             }
         }
     }
@@ -186,15 +222,23 @@
     [self.cashierView endEditing:YES];
     switch (button.tag) {
             /** 确认收款 */
-        case ConfirmationCollectionBtnAction: {
+        case ConfirCashierBtnAction: {
             // 判断有没有服务商品
             if (self.defaultCommodity.goods_id == 0) {
                 [MBProgressHUD showError:@"请先选择商品"];
                 return;
             }
-            // 判断总价是否小于0
-            if ([self.cashierView.totalView.viceLabel.text doubleValue] <= 0) {
-                [MBProgressHUD showError:@"总价不能小于0"];
+            // 判断实际支付为0
+            if ([self.cashierView.cashierBomView.proceedsLabel.text doubleValue] == 0) {
+                [AlertAction determineStayLeft:self title:@"提示" message:@"确认使用优惠券支付吗？" determineBlock:^{
+                    NSMutableDictionary *params = [self payNetwork];
+                    [CashierPayNetwork v2CashierPayParams:params success:^(NSMutableDictionary *responseObject) {
+                        PaySuccessViewController *paySuccessVC = [[PaySuccessViewController alloc] init];
+                        paySuccessVC.userInfo = self.cashierUserModel.user_info;
+                        paySuccessVC.paySuccessVCSource = CashierPaySuccessVCSource;
+                        [self.navigationController pushViewController:paySuccessVC animated:YES];
+                    }];
+                }];
                 return;
             }
             // 弹出支付方式选择
@@ -203,79 +247,12 @@
             payChoiceBoxView.serviceChoice = PayMethodChoiceBtnAction;
             payChoiceBoxView.delegate = self;
             [payChoiceBoxView show];
-//            // 判断是否有客户
-//            if (!self.cashierUserModel.user_info.provider_user_id) {
-//                [MBProgressHUD showError:@"请添加购买客户"];
-//                return;
-//            }
-//            // 判断购物车是否为空
-//            if (self.shoppingCartCommodityArray.count == 0) {
-//                [MBProgressHUD showError:@"请先添加商品到购物车"];
-//                return;
-//            }
-//            // 遍历购物车数组数据，将相同商品数量累计在一起，并返回商品数据
-//            NSString *goodsData = [self equalCommodityNumberCumulative];
-//            AffirmOrderViewController *affirmOrderVC = [[AffirmOrderViewController alloc] init];
-//            /** 收银用户信息 */
-//            affirmOrderVC.cashierUserModel = self.cashierUserModel;
-//            /** 服务师傅 */
-//            affirmOrderVC.serviceMasterModel = self.serviceMasterModel;
-//            /** 服务商品 */
-//            affirmOrderVC.goodsArray = self.shoppingCartCommodityArray;
-//            /** 订单总价 */
-//            affirmOrderVC.orderTotal = self.shoppingCartTotal;
-//            /** 商品data */
-//            affirmOrderVC.goodsData = goodsData;
-//            /** 行驶里程 */
-//            affirmOrderVC.mileage = self.cashierView.mileageView.viceTextFiled.text;
-//            /** 下一次保养时间 */
-//            affirmOrderVC.nextMaintain = self.cashierView.nextTimeView.viceTextFiled.text;
-//            /** 购物车记录 */
-//            @property (copy, nonatomic) NSString *cartID;
-//            [self.navigationController pushViewController:affirmOrderVC animated:YES];
-//            // 弹出支付方式选择
-//            CashierServiceChoiceView *payChoiceBoxView = [[CashierServiceChoiceView alloc] init];
-//            payChoiceBoxView.choiceArray = self.payMethodArray;
-//            payChoiceBoxView.serviceChoice = PayMethodChoiceBtnAction;
-//            payChoiceBoxView.delegate = self;
-//            [payChoiceBoxView show];
             break;
         }
-            /** 提交订单 */
-        case PlaceOrderBtnAction: {
+            /** 暂不收银 */
+        case TemporCashierBtnAction: {
             // 1.1.0,挂单网络请求
             [self placeOrderNetwork];
-//            // 判断购物车是否为空
-//            if (self.shoppingCartCommodityArray.count == 0) {
-//                [MBProgressHUD showError:@"请先添加商品到购物车"];
-//                return;
-//            }
-//            // 遍历购物车数组数据，将相同商品数量累计在一起，并返回商品数据
-//            NSString *goodsData = [self equalCommodityNumberCumulative];
-//            /** /index.php?c=cart&a=add&v=1
-//             provider_id 	int 	是 	服务商id
-//             staff_user_id 	int 	是 	登录者id
-//             sale_user_id 	int 	是 	服务师傅
-//             mobile 	string 	是 	手机号
-//             car_plate_no 	string 	是 	车牌号
-//             goods_data 	string 	是 	商品数据,格式： 服务类别id_商品id_购买数量_售价， 多个商品用逗号分割
-//             total_price 	float 	是 	总价
-//             mileage 	float 	否 	行驶里程
-//             next_maintain 	string 	否 	下一次保养时间,  */
-//            // 网络请求参数
-//            NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//            params[@"provider_id"] = self.merchantInfo.provider_id; // 服务id
-//            params[@"staff_user_id"] = self.merchantInfo.staff_user_id; // 登录者id
-//            params[@"sale_user_id"] = self.serviceMasterModel.staff_user_id; // 服务师傅
-//            params[@"mobile"] = self.cashierView.phoneTF.text; // 手机号
-//            params[@"car_plate_no"] = self.cashierView.plnTF.text; // 车牌号
-//            params[@"total_price"] = [NSString stringWithFormat:@"%.2f", self.shoppingCartTotal]; // 总价
-//            params[@"mileage"] = self.cashierView.mileageView.viceTextFiled.text; // 行驶里程
-//            params[@"next_maintain"] = self.cashierView.nextTimeView.viceTextFiled.text; // 下一次保养时间
-//            params[@"goods_data"] = goodsData; // 商品数据
-//            [CashierPayNetwork cartAddNotCashier:params success:^{
-//                
-//            }];
             break;
         }
             /** 手机号 */
@@ -283,15 +260,16 @@
             SearchUserViewController *searchUserVC = [[SearchUserViewController alloc] init];
             searchUserVC.ChoiceUserBlock = ^(UserModel *userModel) {
                 // 清空输入框
-                self.cashierView.phoneTF.text = userModel.mobile;
-                self.cashierView.plnTF.text = userModel.car_plate_num;
+                self.cashierView.phoneView.viceTF.text = userModel.mobile;
+                self.cashierView.plnCellView.plnTF.text = userModel.car_plate_num;
+                self.cashierView.plnCellView.caftaBtn.titleLabel.text = userModel.province_CAFTA;
                 // 判断手机号格式
                 if ([CustomObject checkTel:userModel.mobile]) {
                     // 手机号
-                    [self foundationTextFieldInfoRequestUserInfo:userModel.mobile textField:self.cashierView.phoneTF];
+                    [self foundationTextFieldInfoRequestUserInfo:userModel.mobile textField:self.cashierView.phoneView.viceTF];
                 }else if ([CustomObject isPlnNumber:userModel.car_plate_no]) {
                     // 车牌号
-                    [self foundationTextFieldInfoRequestUserInfo:userModel.car_plate_num textField:self.cashierView.plnTF];
+                    [self foundationTextFieldInfoRequestUserInfo:userModel.car_plate_num textField:self.cashierView.plnCellView.plnTF];
                 }
             };
             [self.navigationController pushViewController:searchUserVC animated:YES];
@@ -304,13 +282,13 @@
             userCarOptVC.userModel = self.cashierUserModel.user_info;
             userCarOptVC.ChoiceCarBlock = ^(UserCarModel *userCarModel) {
                 // 清空输入框
-                self.cashierView.phoneTF.text = @"";
-                self.cashierView.plnTF.text = userCarModel.car_plate_num;
-                self.cashierView.caftaBtn.titleLabel.text = userCarModel.province_CAFTA;
+                self.cashierView.phoneView.viceTF.text = @"";
+                self.cashierView.plnCellView.plnTF.text = userCarModel.car_plate_num;
+                self.cashierView.plnCellView.caftaBtn.titleLabel.text = userCarModel.province_CAFTA;
                 // 判断手机号格式
                 if ([CustomObject isPlnNumber:userCarModel.car_plate_no]) {
                     // 车牌号
-                    [self foundationTextFieldInfoRequestUserInfo:userCarModel.car_plate_no textField:self.cashierView.plnTF];
+                    [self foundationTextFieldInfoRequestUserInfo:userCarModel.car_plate_no textField:self.cashierView.plnCellView.plnTF];
                 }
             };
             [self.navigationController pushViewController:userCarOptVC animated:YES];
@@ -320,7 +298,7 @@
         case UserNameBtnAction: {
             if (self.cashierUserModel.user_info.provider_user_id) {
                 UserInfoViewController *userInfoVC = [[UserInfoViewController alloc] init];
-                userInfoVC.providerUserId = [NSString stringWithFormat:@"%ld", self.cashierUserModel.user_info.provider_user_id];
+                userInfoVC.providerUserId = [NSString stringWithFormat:@"%ld", (long)self.cashierUserModel.user_info.provider_user_id];
                 [self.navigationController pushViewController:userInfoVC animated:YES];
             }
             break;
@@ -362,72 +340,6 @@
             goodsChoiceBoxView.serviceChoice = ServiceGoodsChoiceBtnAction;
             goodsChoiceBoxView.delegate = self;
             [goodsChoiceBoxView show];
-            break;
-        }
-            /** 添加商品 */
-        case AddGoodsBtnAction: {
-            // 判断是保养商品
-            if (self.defaultService.goods_category_id == 6) {
-                // 判断行驶里程
-                if (self.cashierView.mileageView.viceTextFiled.text.length == 0) {
-                    [MBProgressHUD showError:@"请输入行驶里程"];
-                    return;
-                }
-            }
-            // 判断是否有商品
-            if (self.defaultCommodity.goods_id == 0) {
-                [MBProgressHUD showError:@"请选择商品"];
-                return;
-            }
-            // 判断商品价格不能为0
-            if ([self.cashierView.pretiumView.viceLabel.text doubleValue] <= 0) {
-                [MBProgressHUD showError:@"销售价不能为0"];
-                return;
-            }
-            // 判断是否有客户
-            if (!self.cashierUserModel.user_info.provider_user_id) {
-                [MBProgressHUD showError:@"请添加购买客户"];
-                return;
-            }
-            // 初始化购物车商品模型
-            ShoppingCartModel *shoppingCartModel = [[ShoppingCartModel alloc] init];
-            // 商品分类
-            shoppingCartModel.goods_category = self.defaultService;
-            // 商品
-            shoppingCartModel.goods = self.defaultCommodity;
-            // 商品实际售价
-            shoppingCartModel.goods.actual_sale_price = [self.cashierView.pretiumView.viceLabel.text doubleValue];
-            // 购买数量
-            shoppingCartModel.buy_num = [self.cashierView.numberOperationBtn.numTF.text integerValue];
-            // 购物车商品数量
-            self.cashierView.shoppingCartNum = shoppingCartModel.buy_num + self.cashierView.shoppingCartNum;
-            // 添加商品到购物车商品数组
-            [self.shoppingCartCommodityArray addObject:shoppingCartModel];
-
-            break;
-        }
-            /** 购物车 */
-        case ShoppingCartBtnAction: {
-            PDLog(@"购物车");
-            // 判断购物车是否为空
-            if (self.shoppingCartCommodityArray.count == 0) {
-                [MBProgressHUD showError:@"请先添加商品"];
-                return;
-            }
-            // 遍历购物车数组数据，将相同商品数量累计在一起
-            [self equalCommodityNumberCumulative];
-            // 跳转到购物车页面
-            ShoppingCartViewController *shoppingCartVC = [[ShoppingCartViewController alloc] init];
-            shoppingCartVC.shoppingCartCommodityArray = self.shoppingCartCommodityArray;
-            shoppingCartVC.shoppingCartNum = self.cashierView.shoppingCartNum;
-            shoppingCartVC.shoppingCartTotal = self.shoppingCartTotal;
-            shoppingCartVC.ShoppingCartBlock = ^(NSInteger shoppingCartNum, double shoppingCartTotal) {
-                // 购物车商品数量
-                self.cashierView.shoppingCartNum = shoppingCartNum;
-                // 购物车商品总价
-                self.shoppingCartTotal = shoppingCartTotal;
-            };
-            [self.navigationController pushViewController:shoppingCartVC animated:YES];
             break;
         }
             /** 服务师傅 */
@@ -473,6 +385,36 @@
             }
             break;
         }
+            /** 优惠券 */
+        case CouponBtnAction: {
+            // 优惠券数量为0的时候，点击没有效果
+            if (self.cashierUserModel.coupon_count  <= 0) {
+                [MBProgressHUD showError:@"没有可用优惠券"];
+                return;
+            }
+            // 优惠券界面
+            CouponViewController *couponVC = [[CouponViewController alloc] init];
+            /** 用户信息 */
+            couponVC.userInfo = self.cashierUserModel.user_info;
+            /** 服务 */
+            couponVC.defaultService = self.defaultService;
+            /** 商品 */
+            couponVC.defaultCommodity = self.defaultCommodity;
+            /** 成交价格 */
+            couponVC.defaultCommodity.actual_sale_price = [self.cashierView.pretiumView.viceTF.text floatValue];
+            /** 购买次数 */
+            couponVC.defaultCommodity.num = [self.cashierView.numberOperationBtn.numTF.text integerValue];
+            /** 支付金额 */
+            couponVC.defaultCommodity.total = couponVC.defaultCommodity.actual_sale_price * couponVC.defaultCommodity.num;
+            /** 优惠券选择回调 */
+            couponVC.CouponChioceBlock = ^(NSString *couponID, double offerSum) {
+                /** 优惠金额 */
+                self.offerSum = offerSum;
+                /** 优惠券ID */
+                self.couponID = couponID;
+            };
+            [self.navigationController pushViewController:couponVC animated:YES];
+        }
         default:
             break;
     }
@@ -510,7 +452,7 @@
             // 更换当前服务师傅
             self.serviceMasterModel = [choiceArray objectAtIndex:indexPath.row];
             /** 服务师傅 */
-            self.cashierView.serviceMasterView.viceTextFiled.text = self.serviceMasterModel.user_name;
+            self.cashierView.serviceMasterView.viceTF.text = self.serviceMasterModel.user_name;
             break;
         }
             /** 支付方式选择 */
@@ -524,7 +466,7 @@
                         qr.paySuccessVCSource = CashierPaySuccessVCSource;
                         qr.payQRCodePageType = CashierUseVCPageType;
                         // 添加支付金额
-                        [responseObject setObject:[CustomString getNumber:self.cashierView.totalView.viceLabel.text] forKey:@"price_money"];
+                        [responseObject setObject:[CustomString getNumber:self.cashierView.cashierBomView.proceedsLabel.text] forKey:@"price_money"];
                         qr.payParams = responseObject;
                         qr.navTitle = @"支付宝支付";
                         qr.userInfo = self.cashierUserModel.user_info;
@@ -539,7 +481,7 @@
                         qr.paySuccessVCSource = CashierPaySuccessVCSource;
                         qr.payQRCodePageType = CashierUseVCPageType;
                         // 添加支付金额
-                        [responseObject setObject:[CustomString getNumber:self.cashierView.totalView.viceLabel.text] forKey:@"price_money"];
+                        [responseObject setObject:[CustomString getNumber:self.cashierView.cashierBomView.proceedsLabel.text] forKey:@"price_money"];
                         qr.payParams = responseObject;
                         qr.navTitle = @"微信支付";
                         qr.userInfo = self.cashierUserModel.user_info;
@@ -563,15 +505,19 @@
                     /** 购买次数 */
                     cardChoiceVC.defaultCommodity.num = [self.cashierView.numberOperationBtn.numTF.text integerValue];
                     /** 成交价格 */
-                    cardChoiceVC.defaultCommodity.actual_sale_price = [self.cashierView.pretiumView.viceLabel.text floatValue];
+                    cardChoiceVC.defaultCommodity.actual_sale_price = [self.cashierView.pretiumView.viceTF.text floatValue];
                     /** 支付金额 */
-                    cardChoiceVC.defaultCommodity.total = [self.cashierView.numberOperationBtn.numTF.text integerValue] * [self.cashierView.pretiumView.viceLabel.text floatValue];
+                    cardChoiceVC.defaultCommodity.total = [self.cashierView.cashierBomView.proceedsLabel.text doubleValue];
                     /** 挂单ID */
                     cardChoiceVC.cartID = self.cartID;
                     /** 行驶里程 */
-                    cardChoiceVC.mileage = self.cashierView.mileageView.viceTextFiled.text;
+                    cardChoiceVC.mileage = self.cashierView.mileageView.viceTF.text;
                     /** 下一次保养时间 */
-                    cardChoiceVC.nextMaintain = self.cashierView.nextTimeView.viceTextFiled.text;
+                    cardChoiceVC.nextMaintain = self.cashierView.nextTimeView.viceTF.text;
+                    /** 优惠金额 */
+                    cardChoiceVC.offerSum = self.offerSum;
+                    /** 优惠券ID */
+                    cardChoiceVC.couponID = self.couponID;
                     /** 支付成功页面来源 */
                     cardChoiceVC.paySuccessVCSource = CashierPaySuccessVCSource;
                     [self.navigationController pushViewController:cardChoiceVC animated:YES];
@@ -613,11 +559,11 @@
     // 当手机号输入框为空时
     if (textField.text.length == 0) {
         // 判断车牌号输入框是否也为空
-        if (self.cashierView.plnTF.text.length == 0) {
+        if (self.cashierView.plnCellView.plnTF.text.length == 0) {
             // 清除用户
             self.cashierUserModel = nil;
             // 清除用户名
-            self.cashierView.userNameView.viceTextFiled.text = @"";
+            self.cashierView.userNameView.viceTF.text = @"";
         }
     }else if ([CustomObject checkTel:textField.text]) {
         // 手机号
@@ -627,15 +573,15 @@
 // 车牌号输入
 - (void)plnTFAction:(UITextField *)textField {
     // 拼接省份简称
-    NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.caftaBtn.titleLabel.text, textField.text];
+    NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.plnCellView.caftaBtn.titleLabel.text, textField.text];
     // 当车牌号输入框为空时
     if (textField.text.length == 0) {
         // 判断手机号输入框是否也为空
-        if (self.cashierView.phoneTF.text.length == 0) {
+        if (self.cashierView.phoneView.viceTF.text.length == 0) {
             // 清除用户
             self.cashierUserModel = nil;
             // 清除用户名
-            self.cashierView.userNameView.viceTextFiled.text = @"";
+            self.cashierView.userNameView.viceTF.text = @"";
         }
     }else if ([CustomObject isPlnNumber:pln]) {
         // 车牌号
@@ -660,7 +606,7 @@
     // 保存默认服务师傅
     self.serviceMasterModel = self.merchantInfo;
     /** 服务师傅 */
-    self.cashierView.serviceMasterView.viceTextFiled.text = self.serviceMasterModel.user_name;
+    self.cashierView.serviceMasterView.viceTF.text = self.serviceMasterModel.user_name;
     // 初始化购物车商品数组
     self.shoppingCartCommodityArray = [[NSMutableArray alloc] init];
     // 初始化购物车商品字典
@@ -670,46 +616,56 @@
         NSString *pln = self.plnPhoto[@"车牌号"];
         NSString *province_CAFTA = [pln substringToIndex:1]; //截取掉下标1之前的字符串
         NSString *car_plate_num = [pln substringFromIndex:1]; //截取掉下标1之后的字符串
-        self.cashierView.plnTF.text = car_plate_num;
-        self.cashierView.caftaBtn.titleLabel.text = province_CAFTA;
-        [self foundationTextFieldInfoRequestUserInfo:self.plnPhoto[@"车牌号"] textField:self.cashierView.plnTF];
+        self.cashierView.plnCellView.plnTF.text = car_plate_num;
+        self.cashierView.plnCellView.caftaBtn.titleLabel.text = province_CAFTA;
+        [self foundationTextFieldInfoRequestUserInfo:self.plnPhoto[@"车牌号"] textField:self.cashierView.plnCellView.plnTF];
     }
 }
 /** 更换商品，商品信息赋值 */
 - (void)replaceCommodityInfoAssignment {
     /** 服务类别 */
-    self.cashierView.classView.viceTextFiled.text = self.defaultService.name;
+    self.cashierView.classView.viceTF.text = self.defaultService.name;
     /** 服务商品类别 */
     if (self.defaultCommodity.name) {
-        self.cashierView.serviceView.viceTextFiled.text = self.defaultCommodity.name;
+        self.cashierView.serviceView.viceTF.text = self.defaultCommodity.name;
     }else {
-        self.cashierView.serviceView.viceTextFiled.text = @"没有上架服务";
+        self.cashierView.serviceView.viceTF.text = @"没有上架服务";
     }
     /** 商品数量 */
     self.cashierView.numberOperationBtn.numStr = @"1";
-    /** 价格view */
-    self.cashierView.priceView.viceLabel.text = [NSString stringWithFormat:@"%.2f元", self.defaultCommodity.price];
     /** 销售价view */
-    self.cashierView.pretiumView.viceLabel.text = [NSString stringWithFormat:@"%.2f", self.defaultCommodity.sale_price];
-    /** 总价view */
-    self.cashierView.totalView.viceLabel.text = [NSString stringWithFormat:@"%.2f元", self.defaultCommodity.sale_price];
+    self.cashierView.pretiumView.viceTF.text = [NSString stringWithFormat:@"%.2f", self.defaultCommodity.sale_price];
+    /** 服务金额 */
+    self.cashierView.cashierBomView.serviceSumLabel.text = [NSString stringWithFormat:@"%.2f", self.defaultCommodity.sale_price];
+    /** 实收款 */
+    double proceeds = [self.cashierView.pretiumView.viceTF.text doubleValue] - self.offerSum;
+    if (proceeds <= 0) {
+        self.cashierView.cashierBomView.proceedsLabel.text = [NSString stringWithFormat:@"0"];
+    }else {
+        self.cashierView.cashierBomView.proceedsLabel.text = [NSString stringWithFormat:@"%.2f", proceeds];
+    }
     // 判断销售价是否大于0
-    if ([self.cashierView.pretiumView.viceLabel.text doubleValue] > 0) {
+    if ([self.cashierView.pretiumView.viceTF.text doubleValue] > 0) {
         // 支付按钮可以点击
-        [self.cashierView.confirmationCollectionBtn setUserInteractionEnabled:YES];
-        self.cashierView.confirmationCollectionBtn.backgroundColor = ThemeColor;
+        [self.cashierView.cashierBomView.confirCashierBtn setUserInteractionEnabled:YES];
+        self.cashierView.cashierBomView.confirCashierBtn.backgroundColor = ThemeColor;
         // 挂单按钮可以点击
-        [self.cashierView.placeOrderBtn setUserInteractionEnabled:YES];
-        self.cashierView.placeOrderBtn.backgroundColor = BlueColor;
+        [self.cashierView.cashierBomView.temporCashierBtn setUserInteractionEnabled:YES];
+        self.cashierView.cashierBomView.temporCashierBtn.backgroundColor = WhiteColor;
+        self.cashierView.cashierBomView.temporCashierBtn.layer.borderWidth = 0.5;
+        self.cashierView.cashierBomView.temporCashierBtn.layer.borderColor = ThemeColor.CGColor;
+        [self.cashierView.cashierBomView.temporCashierBtn setTitleColor:ThemeColor forState:UIControlStateNormal];
         // 判断会员卡支付是否可用
         [self judgeUserCardWhetherHaveAccess];
     }else {
         // 支付按钮不可以点击
-        [self.cashierView.confirmationCollectionBtn setUserInteractionEnabled:NO];
-        self.cashierView.confirmationCollectionBtn.backgroundColor = NotClick;
+        [self.cashierView.cashierBomView.confirCashierBtn setUserInteractionEnabled:NO];
+        self.cashierView.cashierBomView.confirCashierBtn.backgroundColor = NotClick;
         // 挂单按钮不可以点击
-        [self.cashierView.placeOrderBtn setUserInteractionEnabled:NO];
-        self.cashierView.placeOrderBtn.backgroundColor = NotClick;
+        [self.cashierView.cashierBomView.temporCashierBtn setUserInteractionEnabled:NO];
+        self.cashierView.cashierBomView.temporCashierBtn.backgroundColor = NotClick;
+        self.cashierView.cashierBomView.temporCashierBtn.layer.borderColor = NotClick.CGColor;
+        [self.cashierView.cashierBomView.temporCashierBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     }
 }
 
@@ -719,47 +675,38 @@
     // 商品数量
     NSInteger num = [self.cashierView.numberOperationBtn.numTF.text integerValue];
     // 总价
-    float total = [self.cashierView.pretiumView.viceLabel.text doubleValue] * num;
-    /** 总价view */
-    self.cashierView.totalView.viceLabel.text = [NSString stringWithFormat:@"%.2f元", total];
-    // 判断销售价是否大于0
-    if (total > 0) {
-        // 支付按钮可以点击
-        [self.cashierView.confirmationCollectionBtn setUserInteractionEnabled:YES];
-        self.cashierView.confirmationCollectionBtn.backgroundColor = ThemeColor;
-        // 挂单按钮可以点击
-        [self.cashierView.placeOrderBtn setUserInteractionEnabled:YES];
-        self.cashierView.placeOrderBtn.backgroundColor = BlueColor;
-        // 判断会员卡支付是否可用
-        [self judgeUserCardWhetherHaveAccess];
+    double total = [self.cashierView.pretiumView.viceTF.text doubleValue] * num;
+    /** 服务金额 */
+    self.cashierView.cashierBomView.serviceSumLabel.text = [NSString stringWithFormat:@"%.2f", total];
+    /** 实收款 */
+    double proceeds = total - self.offerSum;
+    if (proceeds <= 0) {
+        self.cashierView.cashierBomView.proceedsLabel.text = [NSString stringWithFormat:@"0"];
     }else {
-        // 支付按钮不可以点击
-        [self.cashierView.confirmationCollectionBtn setUserInteractionEnabled:NO];
-        self.cashierView.confirmationCollectionBtn.backgroundColor = NotClick;
-        // 挂单按钮不可以点击
-        [self.cashierView.placeOrderBtn setUserInteractionEnabled:NO];
-        self.cashierView.placeOrderBtn.backgroundColor = NotClick;
+        self.cashierView.cashierBomView.proceedsLabel.text = [NSString stringWithFormat:@"%.2f", proceeds];
     }
 }
 
 /** 购买用户信息赋值 */
 - (void)purchaseUserInfoAssignment {
     // 用户名
-    self.cashierView.userNameView.viceTextFiled.text = self.cashierUserModel.user_info.name;
+    self.cashierView.userNameView.viceTF.text = self.cashierUserModel.user_info.name;
     // 判断手机号格式
     if ([CustomObject checkTel:self.cashierUserModel.user_info.mobile]) {
         // 手机号
-        self.cashierView.phoneTF.text = self.cashierUserModel.user_info.mobile;
+        self.cashierView.phoneView.viceTF.text = self.cashierUserModel.user_info.mobile;
         if ([CustomObject isPlnNumber:self.cashierUserModel.user_info.car_plate_no]) {
             // 车牌号
-            self.cashierView.plnTF.text = self.cashierUserModel.user_info.car_plate_num;
-            self.cashierView.caftaBtn.titleLabel.text = self.cashierUserModel.user_info.province_CAFTA;
+            self.cashierView.plnCellView.plnTF.text = self.cashierUserModel.user_info.car_plate_num;
+            self.cashierView.plnCellView.caftaBtn.titleLabel.text = self.cashierUserModel.user_info.province_CAFTA;
         }
     }else if ([CustomObject isPlnNumber:self.cashierUserModel.user_info.car_plate_no]) {
         // 车牌号
-        self.cashierView.plnTF.text = self.cashierUserModel.user_info.car_plate_num;
-        self.cashierView.caftaBtn.titleLabel.text = self.cashierUserModel.user_info.province_CAFTA;
+        self.cashierView.plnCellView.plnTF.text = self.cashierUserModel.user_info.car_plate_num;
+        self.cashierView.plnCellView.caftaBtn.titleLabel.text = self.cashierUserModel.user_info.province_CAFTA;
     }
+    // 用户有无优惠券 
+    self.cashierView.couponChoiceBefore = self.cashierUserModel.coupon_count;
     // 判断会员卡支付是否可用
     [self judgeUserCardWhetherHaveAccess];
 }
@@ -771,45 +718,49 @@
     self.defaultService = shoppingGoodsModel.goods_category;
     // 保存商品
     self.defaultCommodity = shoppingGoodsModel.goods;
+    /** 类别view */
+    self.cashierView.classView.viceTF.text = self.defaultService.name;
+    /** 服务view */
+    self.cashierView.serviceView.viceTF.text = self.defaultCommodity.name;
     // 商品数量
     self.cashierView.numberOperationBtn.numTF.text = [NSString stringWithFormat:@"%ld", shoppingGoodsModel.buy_num];
-    // 价格view
-    self.cashierView.priceView.viceLabel.text = [NSString stringWithFormat:@"%.2f元", shoppingGoodsModel.goods.price];
     // 销售价view
-    self.cashierView.pretiumView.viceLabel.text = [NSString stringWithFormat:@"%.2f", shoppingGoodsModel.goods.actual_sale_price];
-    // 总价view
-    self.cashierView.totalView.viceLabel.text = [NSString stringWithFormat:@"%.2f元", shoppingGoodsModel.goods.actual_sale_price * shoppingGoodsModel.buy_num];
+    self.cashierView.pretiumView.viceTF.text = [NSString stringWithFormat:@"%.2f", shoppingGoodsModel.goods.actual_sale_price];
+    /** 服务金额 */
+    self.cashierView.cashierBomView.serviceSumLabel.text = [NSString stringWithFormat:@"%.2f", shoppingGoodsModel.goods.actual_sale_price];
+    /** 实收款 */
+    self.cashierView.cashierBomView.proceedsLabel.text = [NSString stringWithFormat:@"%.2f", shoppingGoodsModel.goods.actual_sale_price];
     // 判断，如果是保养商品
     if (shoppingGoodsModel.goods_category.goods_category_id == 6) { // 保养
         [self.cashierView.mileageView setHidden:NO];
         [self.cashierView.nextTimeView setHidden:NO];
-        self.cashierView.mileageView.viceTextFiled.text = self.mileage;
-        self.cashierView.nextTimeView.viceTextFiled.text = self.nextMaintain;
+        self.cashierView.mileageView.viceTF.text = self.mileage;
+        self.cashierView.nextTimeView.viceTF.text = self.nextMaintain;
     }else {
         [self.cashierView.mileageView setHidden:YES];
         [self.cashierView.nextTimeView setHidden:YES];
     }
     // 获取用户信息
     // 用户信息赋值
-    self.cashierView.phoneTF.text = self.userPhone;
-    self.cashierView.plnTF.text = self.userPln;
+    self.cashierView.phoneView.leftViceLabel.text = self.userPhone;
+    self.cashierView.plnCellView.plnTF.text = self.userPln;
     // 判断是否有手机号
     if ([CustomObject checkTel:self.userPhone]) {
-        [self foundationTextFieldInfoRequestUserInfo:self.userPhone textField:self.cashierView.phoneTF];
+        [self foundationTextFieldInfoRequestUserInfo:self.userPhone textField:self.cashierView.phoneView.viceTF];
     }else if ([CustomObject isPlnNumber:self.userPln]){
         self.userPln = [self.userPln substringFromIndex:1]; //截取掉下标1之后的字符串
-        [self foundationTextFieldInfoRequestUserInfo:self.userPln textField:self.cashierView.plnTF];
+        [self foundationTextFieldInfoRequestUserInfo:self.userPln textField:self.cashierView.plnCellView.plnTF];
     }
     // 手机号输入框不可输入
-    self.cashierView.phoneTF.enabled = NO;
+    self.cashierView.phoneView.viceTF.enabled = NO;
     // 车牌号输入框不可输入
-    self.cashierView.plnTF.enabled = NO;
+    self.cashierView.plnCellView.plnTF.enabled = NO;
     // 选择用户按钮不可点击
-    self.cashierView.phoneBtn.enabled = NO;
+    self.cashierView.phoneView.viceBtn.enabled = NO;
     // 选择车辆按钮不可点击
-    self.cashierView.plnBtn.enabled = NO;
+    self.cashierView.plnCellView.choiceCarBtn.enabled = NO;
     // 选择用户按钮不可点击
-    self.cashierView.userNameView.usedCellBtn.enabled = NO;
+    self.cashierView.userNameView.mainBtn.enabled = NO;
 }
 
 
@@ -827,27 +778,25 @@
     /** 收银代理 */
     self.cashierView.delegate = self;
     /** 确认收款 */
-    [self.cashierView.confirmationCollectionBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.cashierBomView.confirCashierBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 提交订单 */
-    [self.cashierView.placeOrderBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.cashierBomView.temporCashierBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 手机号 */
-    [self.cashierView.phoneTF addTarget:self action:@selector(phoneTFAction:) forControlEvents:UIControlEventEditingChanged];
-    [self.cashierView.phoneBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.phoneView.viceTF addTarget:self action:@selector(phoneTFAction:) forControlEvents:UIControlEventEditingChanged];
+    [self.cashierView.phoneView.viceBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 车牌号 */
-    [self.cashierView.plnTF addTarget:self action:@selector(plnTFAction:) forControlEvents:UIControlEventEditingChanged];
-    [self.cashierView.plnBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.plnCellView.plnTF addTarget:self action:@selector(plnTFAction:) forControlEvents:UIControlEventEditingChanged];
+    [self.cashierView.plnCellView.choiceCarBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 用户名 */
-    [self.cashierView.userNameView.usedCellBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.userNameView.mainBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 类别view */
-    [self.cashierView.classView.usedCellBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.classView.mainBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 服务view */
-    [self.cashierView.serviceView.usedCellBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    /** 添加商品 */
-    [self.cashierView.addGoodsBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    /** 购物车 */
-    [self.cashierView.shoppingCartBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.serviceView.mainBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 服务师傅 */
-    [self.cashierView.serviceMasterView.usedCellBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cashierView.serviceMasterView.mainBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    /** 优惠券 */
+    [self.cashierView.couponView.mainBtn addTarget:self action:@selector(cashierBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.cashierView];
     @weakify(self)
     [self.cashierView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -865,12 +814,12 @@
     NSString *pln = [[NSString alloc] init];
     NSString *phone = [[NSString alloc] init];
     // 判断是车牌号输入框，还是手机号输入框
-    if ([textField isEqual:self.cashierView.plnTF]) { // 车牌号
+    if ([textField isEqual:self.cashierView.plnCellView.plnTF]) { // 车牌号
         pln = tfText;
-        phone = self.cashierView.phoneTF.text;
-    }else if ([textField isEqual:self.cashierView.phoneTF]) { // 手机号
+        phone = self.cashierView.phoneView.viceTF.text;
+    }else if ([textField isEqual:self.cashierView.phoneView.viceTF]) { // 手机号
         phone = tfText;
-        pln = self.cashierView.plnTF.text;
+        pln = [NSString stringWithFormat:@"%@%@", self.cashierView.plnCellView.caftaBtn.titleLabel.text, self.cashierView.plnCellView.plnTF.text];
     }
     // 判断搜索框输入手机号格式限制或搜索框输入车牌号格式限制
     if ([CustomObject checkTel:tfText] || [CustomObject isPlnNumber:tfText]) {
@@ -881,8 +830,8 @@
         // 网络请求参数
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商id
-        params[@"mobile"] = phone; // 手机号
-        params[@"car_plate_no"] = pln; // 车牌号
+        params[@"mobile"] = [CustomObject checkTel:phone] ? phone : @""; // 手机号
+        params[@"car_plate_no"] = [CustomObject isPlnNumber:pln] ? pln : @""; // 车牌号
         [CashierUserModel foundationUserPhoneObtainUserInfoParams:params success:^(CashierUserModel *cashierUserModel) {
             [MBProgressHUD hideHUD];
             // 回收键盘
@@ -903,9 +852,9 @@
                 [AlertAction determineStayLeft:self title:@"提示" admit:@"去添加" noadmit:@"暂不添加" message:@"还不是您的用户，是否添加！" admitBlock:^{
                     AddUserViewController *addUserVC = [[AddUserViewController alloc] init];
                     /** 手机号 */
-                    addUserVC.userPhone = [CustomObject checkTel:self.cashierView.phoneTF.text] ? self.cashierView.phoneTF.text : @"";
+                    addUserVC.userPhone = [CustomObject checkTel:self.cashierView.phoneView.viceTF.text] ? self.cashierView.phoneView.viceTF.text : @"";
                     /** 车牌号 */
-                    addUserVC.userPln = [CustomObject isPlnNumber:[NSString stringWithFormat:@"%@%@", self.cashierView.caftaBtn.titleLabel.text, self.cashierView.plnTF.text]] ? [NSString stringWithFormat:@"%@%@", self.cashierView.caftaBtn.titleLabel.text, self.cashierView.plnTF.text] : @"";
+                    addUserVC.userPln = [CustomObject isPlnNumber:[NSString stringWithFormat:@"%@%@", self.cashierView.plnCellView.caftaBtn.titleLabel.text, self.cashierView.plnCellView.plnTF.text]] ? [NSString stringWithFormat:@"%@%@", self.cashierView.plnCellView.caftaBtn.titleLabel.text, self.cashierView.plnCellView.plnTF.text] : @"";
                     [self.navigationController pushViewController:addUserVC animated:YES];
                 } noadmitBlock:nil];
                 return;
@@ -966,7 +915,7 @@
         // 计算订单总价
         self.shoppingCartTotal = self.shoppingCartTotal + carCommodityModel.goods.actual_sale_price * carCommodityModel.buy_num;
         // 拼接商品数据
-        NSString *goodsInfo = [NSString stringWithFormat:@"%ld_%ld_%ld_%.2f", carCommodityModel.goods_category.goods_category_id, carCommodityModel.goods.goods_id, carCommodityModel.buy_num, carCommodityModel.goods.actual_sale_price];
+        NSString *goodsInfo = [NSString stringWithFormat:@"%ld_%ld_%ld_%.2f", (long)carCommodityModel.goods_category.goods_category_id, (long)carCommodityModel.goods.goods_id, (long)carCommodityModel.buy_num, carCommodityModel.goods.actual_sale_price];
         if (goodsData.length == 0) {
             goodsData = [NSString stringWithFormat:@"%@", goodsInfo];
         }else {
@@ -985,11 +934,10 @@
         return;
     }
     // 判断总价是否小于0
-    if ([self.cashierView.totalView.viceLabel.text doubleValue] <= 0) {
+    if ([self.cashierView.cashierBomView.proceedsLabel.text doubleValue] <= 0) {
         [MBProgressHUD showError:@"总价不能小于0"];
         return;
     }
-    
     // 判断页面来源
     if (self.cashierVCSource == PendOrderCashierViewSource) { // 挂单页
         /** /index.php?c=cart&a=edit&v=1
@@ -1005,13 +953,13 @@
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"cart_id"] = [NSString stringWithFormat:@"%ld", self.cartID]; // 挂单列表id
         params[@"sale_user_id"] = self.serviceMasterModel.staff_user_id; // 服务师傅
-        params[@"mobile"] = self.cashierView.phoneTF.text; // 手机号
-        NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.caftaBtn.titleLabel.text, self.cashierView.plnTF.text];
+        params[@"mobile"] = self.cashierView.phoneView.viceTF.text; // 手机号
+        NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.plnCellView.caftaBtn.titleLabel.text, self.cashierView.plnCellView.plnTF.text];
         params[@"car_plate_no"] = [CustomObject isPlnNumber:pln] ? pln : @""; // 车牌号
-        params[@"total_price"] = [NSString stringWithFormat:@"%@", [CustomString getNumber:self.cashierView.totalView.viceLabel.text]]; // 总价
-        params[@"mileage"] = self.cashierView.mileageView.viceTextFiled.text; // 行驶里程
-        params[@"next_maintain"] = self.cashierView.nextTimeView.viceTextFiled.text; // 下一次保养时间
-        params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%@_%@", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, self.cashierView.numberOperationBtn.numTF.text, self.cashierView.pretiumView.viceLabel.text]; // 商品数据
+        params[@"total_price"] = [NSString stringWithFormat:@"%@", self.cashierView.pretiumView.viceTF.text]; // 总价
+        params[@"mileage"] = self.cashierView.mileageView.viceTF.text; // 行驶里程
+        params[@"next_maintain"] = self.cashierView.nextTimeView.viceTF.text; // 下一次保养时间
+        params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%@_%@", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, self.cashierView.numberOperationBtn.numTF.text, self.cashierView.pretiumView.viceTF.text]; // 商品数据
         [CashierPayNetwork editCartInfoAddNotCashier:params success:^{
             
         }];
@@ -1031,21 +979,17 @@
         params[@"provider_id"] = self.merchantInfo.provider_id; // 服务id
         params[@"staff_user_id"] = self.merchantInfo.staff_user_id; // 登录者id
         params[@"sale_user_id"] = self.serviceMasterModel.staff_user_id; // 服务师傅
-        params[@"mobile"] = self.cashierView.phoneTF.text; // 手机号
-        NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.caftaBtn.titleLabel.text, self.cashierView.plnTF.text];
+        params[@"mobile"] = self.cashierView.phoneView.viceTF.text; // 手机号
+        NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.plnCellView.caftaBtn.titleLabel.text, self.cashierView.plnCellView.plnTF.text];
         params[@"car_plate_no"] = [CustomObject isPlnNumber:pln] ? pln : @""; // 车牌号
-        params[@"total_price"] = [NSString stringWithFormat:@"%@", [CustomString getNumber:self.cashierView.totalView.viceLabel.text]]; // 总价
-        params[@"mileage"] = self.cashierView.mileageView.viceTextFiled.text; // 行驶里程
-        params[@"next_maintain"] = self.cashierView.nextTimeView.viceTextFiled.text; // 下一次保养时间
-        params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%@_%@", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, self.cashierView.numberOperationBtn.numTF.text, self.cashierView.pretiumView.viceLabel.text]; // 商品数据
+        params[@"total_price"] = [NSString stringWithFormat:@"%@", self.cashierView.pretiumView.viceTF.text]; // 总价
+        params[@"mileage"] = self.cashierView.mileageView.viceTF.text; // 行驶里程
+        params[@"next_maintain"] = self.cashierView.nextTimeView.viceTF.text; // 下一次保养时间
+        params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%@_%@", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, self.cashierView.numberOperationBtn.numTF.text, self.cashierView.pretiumView.viceTF.text]; // 商品数据
         [CashierPayNetwork cartAddNotCashier:params success:^{
             
         }];
     }
-}
-// 1.1.0,确认收款网络请求
-- (void)confirmationCollectionNetwork {
-    
 }
 // 请求购买方式
 - (void)requestPaymentMethodData {
@@ -1066,20 +1010,24 @@
      pay_amount 	string 	是 	支付方式:格式--支付方式_支付金额_卡号，(无卡的卡号为00000000) 1.支付宝 2.微信 3.次数 4.eb 5.账户余额 6.现金或刷卡 7-年卡
      mileage 	float 	否 	行驶里程
      next_maintain 	string 	否 	下一次保养时间,
-     cart_id 	int 	否 	购物车记录[挂单列表] id (挂单界面直接收银时必传)       */
+     cart_id 	int 	否 	购物车记录[挂单列表] id (挂单界面直接收银时必传)
+     coupon_grant_record_id 	string 	否 	选择用户优惠券的id集合,多个用逗号分割，默认为空
+     save_amount 	float 	否 	优惠金额，默认为0        */
     // 网络请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商id
     params[@"staff_user_id"] = self.merchantInfo.staff_user_id; // 登陆者id，
     params[@"sale_user_id"] = self.serviceMasterModel.staff_user_id; //销售者id
     params[@"mobile"] = self.cashierUserModel.user_info.mobile ? self.cashierUserModel.user_info.mobile : @""; // 手机号
-    NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.caftaBtn.titleLabel.text, self.cashierView.plnTF.text];
+    NSString *pln = [NSString stringWithFormat:@"%@%@", self.cashierView.plnCellView.caftaBtn.titleLabel.text, self.cashierView.plnCellView.plnTF.text];
     params[@"car_plate_no"] = [CustomObject isPlnNumber:pln] ? pln : @""; // 车牌号
-    params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%@_%@", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, self.cashierView.numberOperationBtn.numTF.text, self.cashierView.pretiumView.viceLabel.text]; // 商品数据
-    params[@"pay_amount"] = [NSString stringWithFormat:@"%ld_%@_000000", self.payMethodModel.pay_method_id, [CustomString getNumber:self.cashierView.totalView.viceLabel.text]]; // 支付方式
-    params[@"mileage"] = self.cashierView.mileageView.viceTextFiled.text; // 行驶里程
-    params[@"next_maintain"] = self.cashierView.nextTimeView.viceTextFiled.text; // 下一次保养时间
-    params[@"cart_id"] = [NSString stringWithFormat:@"%ld", self.cartID]; // 购物车记录
+    params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%@_%@", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, self.cashierView.numberOperationBtn.numTF.text, self.cashierView.pretiumView.viceTF.text]; // 商品数据
+    params[@"pay_amount"] = self.payMethodModel.pay_method_id == 0 ? [NSString stringWithFormat:@"6_%@_000000", [CustomString getNumber:self.cashierView.cashierBomView.proceedsLabel.text]] : [NSString stringWithFormat:@"%ld_%@_000000", (long)self.payMethodModel.pay_method_id, [CustomString getNumber:self.cashierView.cashierBomView.proceedsLabel.text]]; // 支付方式
+    params[@"mileage"] = self.cashierView.mileageView.viceTF.text; // 行驶里程
+    params[@"next_maintain"] = self.cashierView.nextTimeView.viceTF.text; // 下一次保养时间
+    params[@"cart_id"] = [NSString stringWithFormat:@"%ld", (long)self.cartID]; // 购物车记录
+    params[@"coupon_grant_record_id"] = self.couponID; // 优惠券的id集合
+    params[@"save_amount"] = [NSString stringWithFormat:@"%.2f", self.offerSum]; // 优惠金额
     return params;
 }
 
@@ -1110,9 +1058,9 @@
                 // 获取商品购买的数量
                 NSInteger num = [self.cashierView.numberOperationBtn.numTF.text integerValue];
                 // 获取商品购买价格
-                NSInteger priceMoney = [self.cashierView.priceView.viceTextFiled.text floatValue];
+                NSInteger priceMoney = [self.cashierView.pretiumView.viceTF.text floatValue];
                 // 判断会员卡的余额或者余次是否足够
-                if (userCard.card_category_id == 3 || userCard.money > priceMoney || userCard.num > self.defaultCommodity.card_num_price * num) { // 足够
+                if (userCard.card_category_id == 3 || (userCard.money != 0 && userCard.money >= priceMoney) || (userCard.num !=0 && userCard.num >= self.defaultCommodity.card_num_price * num)) { // 足够
                     userCard.is_used = YES;
                     [availableCardArray addObject:userCard];
                 }else { // 不足
@@ -1127,7 +1075,7 @@
                         // 获取商品购买的数量
                         NSInteger num = [self.cashierView.numberOperationBtn.numTF.text integerValue];
                         // 获取商品购买价格
-                        NSInteger priceMoney = [self.cashierView.priceView.viceTextFiled.text floatValue];
+                        NSInteger priceMoney = [self.cashierView.pretiumView.viceTF.text floatValue];
                         // 判断会员卡的余额或者余次是否足够
                         if (userCard.card_category_id == 3 || userCard.money > priceMoney || userCard.num > self.defaultCommodity.card_num_price * num) {  // 足够
                             if ( ![availableCardArray containsObject:userCard]) {

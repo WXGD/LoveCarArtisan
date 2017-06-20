@@ -51,6 +51,14 @@
     switch (button.tag) {
         /** 清除缓存 */
         case ClearCacheBtnAction: {
+            // 销毁单利
+            [OrderFilterHandle destroyHandle];
+            [OrderClassHandle destroyHandle];
+            [UsedCarBrandHandle destroyHandle];
+            [AllGoodsHandle destroyHandle];
+            [ServiceMasterHandle destroyHandle];
+            [ServiceCategoryHandle destroyHandle];
+            // 清理缓存图片
             [[SDImageCache sharedImageCache] clearDisk];
             self.setUpView.clearCacheView.describeLabel.text = [CustomString checkTmpSize];
             // 网络请求，更新城市数据

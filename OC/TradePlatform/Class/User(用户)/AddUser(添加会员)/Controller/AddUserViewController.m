@@ -111,7 +111,6 @@
     params[@"car_brand_series_id"] = self.carModel.car_series_id; // 车系id
     params[@"name"] = self.addUserView.addName.viceTextFiled.text; // 用户姓名
 //    params[@"birthday"] = [self.addUserView.addBirthday.viceLabel.text isEqualToString:@"请选择生日日期"] ? nil : self.addUserView.addBirthday.viceLabel.text; // 用户生日
-    params[@"gender"] = self.addUserView.addSexChoice.selectedSex; // 用户性别
     params[@"provider_card_id"] = [NSString stringWithFormat:@"%ld", self.cardTypeModel.provider_card_id]; // 服务商卡id
     params[@"card_category_id"] = [NSString stringWithFormat:@"%ld", (long)self.cardTypeModel.card_category_id]; // 卡类型id
     // 判断是否是年卡

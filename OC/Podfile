@@ -1,4 +1,4 @@
-platform:ios,’7.0’
+platform:ios,’8.0’
 use_frameworks!
 target 'TradePlatform' do
 	pod 'Masonry'
@@ -21,7 +21,9 @@ target 'TradePlatform' do
 	pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
 	pod 'FMDB'
 	pod 'TYAttributedLabel'
-	pod 'Pgyer'
-	pod 'PgyUpdate'
+	pod 'Socket.IO-Client-Swift', '~> 9.0.1'
+
+	pod 'Pgyer', :configurations => ['Debug']
+	pod 'PgyUpdate', :configurations => ['Debug']
 	pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end

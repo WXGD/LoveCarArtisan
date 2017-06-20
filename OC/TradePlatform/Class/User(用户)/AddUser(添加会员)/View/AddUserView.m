@@ -156,21 +156,6 @@
     self.addCar.isSplistLine = YES;
     self.addCar.isCellImage = YES;
     [self.addUserView addSubview:self.addCar];
-    /** 性别 */
-    self.addSexView = [[UIView alloc] init];
-    self.addSexView.backgroundColor = WhiteColor;
-    [self.addUserView addSubview:self.addSexView];
-    self.addSexLabel = [[UILabel alloc] init];
-    self.addSexLabel.text = @"性别";
-    self.addSexLabel.font = FifteenTypeface;
-    self.addSexLabel.textColor = Black;
-    [self.addSexView addSubview:self.addSexLabel];
-    self.addSexChoice = [[ChangeSexView alloc] init];
-    self.addSexChoice.defaultSex = @"男";
-    [self.addSexView addSubview:self.addSexChoice];
-    [self.addSexView setHidden:YES];
-    [self.addSexChoice setHidden:YES];
-    
     /** 老会员卡信息标题 */
     self.oldMembershipCardTitleLabel = [[UILabel alloc] init];
     self.oldMembershipCardTitleLabel.text = @"老会员卡信息（非必填）";
@@ -307,12 +292,6 @@
         @strongify(self)
         make.left.equalTo(self.addSexView.mas_left).offset(15);
         make.centerY.equalTo(self.addSexView.mas_centerY);
-    }];
-    [self.addSexChoice mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self)
-        make.centerY.equalTo(self.addSexView.mas_centerY);
-        make.left.equalTo(self.addSexLabel.mas_right).offset(15);
-        make.width.mas_equalTo(@150);
     }];
     /** 老会员卡信息标题 */
     [self.oldMembershipCardTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

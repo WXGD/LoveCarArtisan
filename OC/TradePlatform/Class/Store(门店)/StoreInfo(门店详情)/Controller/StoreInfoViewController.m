@@ -9,7 +9,8 @@
 #import "StoreInfoViewController.h"
 #import "StoreInfoView.h"
 //下级
-#import "ChangeInfoViewController.h"
+#import "EditStoreInfoViewController.h"
+#import "EditStoreTimeViewController.h"
 
 @interface StoreInfoViewController ()
 @property (nonatomic, strong) StoreInfoView *storeInfoView;
@@ -39,7 +40,7 @@
     self.storeInfoView.storeNameView.describeLabel.text = self.storeModel.name;
     self.storeInfoView.telPhoneView.describeLabel.text = self.storeModel.service_tel;
     self.storeInfoView.messagePhoneView.describeLabel.text = self.storeModel.service_mobile;
-    self.storeInfoView.addressView.describeLabel.text = self.storeModel.address;
+    self.storeInfoView.addressLabel.text = self.storeModel.address;
     self.storeInfoView.timeView.describeLabel.text = [NSString stringWithFormat:@"%@-%@",self.storeModel.business_start_time,self.storeModel.business_end_time];
 }
 #pragma mark - 布局nav
@@ -75,57 +76,106 @@
     switch (btn.tag) {
         /** 店名 */
         case StoreNameBtnAction:{
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangeMerchantNameAssignment;
-            changeInfoVC.storeModel = _storeModel;
-            changeInfoVC.storeEditSuccessBlock = ^(StoreModel *storeModel){
+            EditStoreInfoViewController *editStoreInfoVC = [[EditStoreInfoViewController alloc] init];
+            /** 编辑信息页面标题 */
+            editStoreInfoVC.navTitleStr = @"编辑店名";
+            /** 编辑信息类型标题 */
+            editStoreInfoVC.typeTitleStr = @"店名：";
+            /** 编辑信息提示文字 */
+            editStoreInfoVC.placeholderStr = @"请输入店名";
+            /** 编辑信息回显文字 */
+            editStoreInfoVC.echoStr = self.storeModel.name;
+            /** 门店信息 */
+            editStoreInfoVC.storeModel = self.storeModel;
+            /** 输入框响应类型 */
+            editStoreInfoVC.editStoreInfoType = EditStoreName;
+            /** 修改成功回调 */
+            editStoreInfoVC.EditStoreInfoSuccess = ^(StoreModel *storeModel) {
                 self.storeModel = storeModel;
             };
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
+            [self.navigationController pushViewController:editStoreInfoVC animated:YES];
             break;
         }
         /** 客服电话 */
         case StoreTelPhoneBtnAction:{
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangePhoneAssignment;
-            changeInfoVC.storeModel = _storeModel;
-            changeInfoVC.storeEditSuccessBlock = ^(StoreModel *storeModel){
+            EditStoreInfoViewController *editStoreInfoVC = [[EditStoreInfoViewController alloc] init];
+            /** 编辑信息页面标题 */
+            editStoreInfoVC.navTitleStr = @"编辑客服电话";
+            /** 编辑信息类型标题 */
+            editStoreInfoVC.typeTitleStr = @"客服电话：";
+            /** 编辑信息提示文字 */
+            editStoreInfoVC.placeholderStr = @"请输入客服电话";
+            /** 编辑信息回显文字 */
+            editStoreInfoVC.echoStr = self.storeModel.service_tel;
+            /** 门店信息 */
+            editStoreInfoVC.storeModel = self.storeModel;
+            /** 输入框响应类型 */
+            editStoreInfoVC.editStoreInfoType = EditStoreServicePhone;
+            /** 修改成功回调 */
+            editStoreInfoVC.EditStoreInfoSuccess = ^(StoreModel *storeModel) {
                 self.storeModel = storeModel;
             };
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
+            [self.navigationController pushViewController:editStoreInfoVC animated:YES];
             break;
         }
         /** 短信电话 */
         case StoreMessagePhoneBtnAction:{
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangeMessagePhoneAssignment;
-            changeInfoVC.storeModel = _storeModel;
-            changeInfoVC.storeEditSuccessBlock = ^(StoreModel *storeModel){
+            EditStoreInfoViewController *editStoreInfoVC = [[EditStoreInfoViewController alloc] init];
+            /** 编辑信息页面标题 */
+            editStoreInfoVC.navTitleStr = @"编辑通知电话";
+            /** 编辑信息类型标题 */
+            editStoreInfoVC.typeTitleStr = @"通知电话：";
+            /** 编辑信息提示文字 */
+            editStoreInfoVC.placeholderStr = @"请输入短信通知电话";
+            /** 编辑信息回显文字 */
+            editStoreInfoVC.echoStr = self.storeModel.service_mobile;
+            /** 门店信息 */
+            editStoreInfoVC.storeModel = self.storeModel;
+            /** 输入框响应类型 */
+            editStoreInfoVC.editStoreInfoType = EditStoreNoticePhone;
+            /** 修改成功回调 */
+            editStoreInfoVC.EditStoreInfoSuccess = ^(StoreModel *storeModel) {
                 self.storeModel = storeModel;
             };
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
+            [self.navigationController pushViewController:editStoreInfoVC animated:YES];
             break;
         }
         /** 地址 */
         case StoreAddressBtnAction:{
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangeAddressAssignment;
-            changeInfoVC.storeModel = _storeModel;
-            changeInfoVC.storeEditSuccessBlock = ^(StoreModel *storeModel){
+            EditStoreInfoViewController *editStoreInfoVC = [[EditStoreInfoViewController alloc] init];
+            /** 编辑信息页面标题 */
+            editStoreInfoVC.navTitleStr = @"编辑地址";
+            /** 编辑信息类型标题 */
+            editStoreInfoVC.typeTitleStr = @"地址：";
+            /** 编辑信息提示文字 */
+            editStoreInfoVC.placeholderStr = @"请输入店面地址";
+            /** 编辑信息回显文字 */
+            editStoreInfoVC.echoStr = self.storeModel.address;
+            /** 门店信息 */
+            editStoreInfoVC.storeModel = self.storeModel;
+            /** 输入框响应类型 */
+            editStoreInfoVC.editStoreInfoType = EditStoreAddress;
+            /** 修改成功回调 */
+            editStoreInfoVC.EditStoreInfoSuccess = ^(StoreModel *storeModel) {
                 self.storeModel = storeModel;
             };
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
+            [self.navigationController pushViewController:editStoreInfoVC animated:YES];
             break;
         }
         /** 营业时间 */
         case StoreTimeBtnAction:{
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangeTimeAssignment;
-            changeInfoVC.storeModel = _storeModel;
-            changeInfoVC.storeEditSuccessBlock = ^(StoreModel *storeModel){
+            EditStoreTimeViewController *editStoreTimeVC = [[EditStoreTimeViewController alloc] init];
+            /** 开始时间 */
+            editStoreTimeVC.startStr = self.storeModel.business_start_time;
+            /** 结束时间 */
+            editStoreTimeVC.endStr = self.storeModel.business_end_time;
+            /** 门店信息 */
+            editStoreTimeVC.storeModel = self.storeModel;
+            /** 修改成功回调 */
+            editStoreTimeVC.EditStoreTimeSuccess = ^(StoreModel *storeModel) {
                 self.storeModel = storeModel;
             };
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
+            [self.navigationController pushViewController:editStoreTimeVC animated:YES];
             break;
         }
         /** 微信公众号 */

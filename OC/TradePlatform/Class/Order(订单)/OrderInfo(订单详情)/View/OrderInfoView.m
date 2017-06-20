@@ -178,16 +178,25 @@
     self.serviceTableLineView.backgroundColor = DividingLine;
     [self.priceView addSubview:self.serviceTableLineView];
     /** 优惠 */
-    self.discountView = [[UsedCellView alloc] init];
-    self.discountView.cellLabel.text = @"优惠";
-    self.discountView.cellLabel.font = TwelveTypeface;
-    self.discountView.cellLabel.textColor = BlueColor;
-    self.discountView.describeLabel.font = TwelveTypeface;
-    self.discountView.describeLabel.textColor = BlueColor;
-    self.discountView.isArrow = YES;
-    self.discountView.isCellImage = YES;
-    self.discountView.dividingLineChoice = DividingLineCenterLayout;
+    self.discountView = [[CustomCell alloc] init];
+    self.discountView.lineStyle = NotLine;
+    self.discountView.cellStyle = HorizontalLayoutNotMImgAndVImg;
+    self.discountView.mainLabel.text = @"优惠";
+    self.discountView.mainLabel.font = TwelveTypeface;
+    self.discountView.mainLabel.textColor = BlueColor;
+    self.discountView.rightViceLabel.font = TwelveTypeface;
+    self.discountView.rightViceLabel.textColor = BlueColor;
     [self.orderInfoBackView addArrangedSubview:self.discountView];
+    /** 优惠券 */
+    self.couponView = [[CustomCell alloc] init];
+    self.couponView.lineStyle = CenterLayout;
+    self.couponView.cellStyle = HorizontalLayoutNotMImgAndVImg;
+    self.couponView.mainLabel.text = @"优惠券";
+    self.couponView.mainLabel.font = TwelveTypeface;
+    self.couponView.mainLabel.textColor = BlueColor;
+    self.couponView.rightViceLabel.font = TwelveTypeface;
+    self.couponView.rightViceLabel.textColor = BlueColor;
+    [self.orderInfoBackView addArrangedSubview:self.couponView];
     /** 实收 */
     self.thePaidView = [[UsedCellView alloc] init];
     self.thePaidView.cellLabel.text = @"实付款";
@@ -434,6 +443,10 @@
     }];
     /** 优惠 */
     [self.discountView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(@29.5);
+    }];
+    /** 优惠券 */
+    [self.couponView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(@29.5);
     }];
     /** 实收 */

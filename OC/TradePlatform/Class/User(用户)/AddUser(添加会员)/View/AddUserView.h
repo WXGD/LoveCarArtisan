@@ -7,7 +7,6 @@
 //
 
 #import "KeyBoardView.h"
-#import "ChangeSexView.h"
 
 @interface AddUserView : KeyBoardView
 
@@ -19,8 +18,6 @@
 @property (strong, nonatomic) UsedCellView *addCar;
 /** 姓名 */
 @property (strong, nonatomic) UsedCellView *addName;
-/** 性别 */
-@property (strong, nonatomic) ChangeSexView *addSexChoice;
 /** 会员卡类型 */
 @property (strong, nonatomic) UsedCellView *cardTypeView;
 /** 余额，余次 */

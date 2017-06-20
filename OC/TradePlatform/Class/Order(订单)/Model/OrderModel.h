@@ -87,6 +87,7 @@
  remark = "";
  "sale_user" = "测试号";
  "save_amount" = "0.00";
+ "coupon_amount" = "0.00"; 优惠券金额
  "staff_user" = "测试号";
  "total_actual_price" = "300.00";
  "total_price" = "300.00"; **/
@@ -95,6 +96,8 @@
 @property (nonatomic, assign) double total_price;
 /** 优惠金额 */
 @property (nonatomic, assign) double save_amount;
+/** 优惠券金额 */
+@property (nonatomic, assign) double coupon_amount;
 /** 备注 */
 @property (nonatomic, copy) NSString *remark;
 /** 收银员 */

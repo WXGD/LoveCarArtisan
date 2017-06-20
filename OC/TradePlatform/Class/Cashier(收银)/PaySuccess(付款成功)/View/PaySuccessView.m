@@ -7,8 +7,10 @@
 //
 
 #import "PaySuccessView.h"
+// view
+#import "CouponViewCell.h"
 
-@interface PaySuccessView ()
+@interface PaySuccessView ()<UITableViewDelegate, UITableViewDataSource>
 
 /** 背景scrollview */
 @property (strong, nonatomic) UIScrollView *orderInfoScrollView;
@@ -44,6 +46,55 @@
     }
     return self;
 }
+
+#pragma mark - table代理方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.couponArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellID = @"couponViewCell";
+    CouponViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[CouponViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    cell.couponCellType = ChoiceGrantCouponStyle;
+    cell.couponInfoModel = [self.couponArray objectAtIndex:indexPath.row];
+    cell.giveBtn.tag = indexPath.row;
+    [cell.giveBtn addTarget:self action:@selector(giveBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    CouponInfoModel *couponInfoModel = [self.couponArray objectAtIndex:indexPath.row];
+//    /*/index.php?c=coupon_grant_record&a=donate&v=1
+//     provider_user_id 	int 	是 	用户id
+//     coupon_id 	int 	是 	优惠券id       */
+//    // 拼接请求参数
+//    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//    params[@"provider_user_id"] = [NSString stringWithFormat:@"%ld", self.userInfo.provider_user_id]; // 用户id
+//    params[@"coupon_id"] = [NSString stringWithFormat:@"%ld", couponInfoModel.coupon_id]; // 优惠券id
+//    [CouponInfoModel merchantGiveCouponListParams:params success:^{
+//        
+//    }];
+}
+
+- (void)giveBtnAction:(UIButton *)button {
+    CouponInfoModel *couponInfoModel = [self.couponArray objectAtIndex:button.tag];
+    /*/index.php?c=coupon_grant_record&a=donate&v=1
+     provider_user_id 	int 	是 	用户id
+     coupon_id 	int 	是 	优惠券id       */
+    // 拼接请求参数
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"provider_user_id"] = [NSString stringWithFormat:@"%ld", self.userInfo.provider_user_id]; // 用户id
+    params[@"coupon_id"] = [NSString stringWithFormat:@"%ld", couponInfoModel.coupon_id]; // 优惠券id
+    [CouponInfoModel merchantGiveCouponListParams:params success:^{
+        couponInfoModel.markGive = YES;
+        [self.couponTable reloadData];
+    }];
+}
+
+
 #pragma mark - view布局
 - (void)paySuccessViewLayoutView {
     /** 背景scrollview */
@@ -126,6 +177,15 @@
     self.returnHomeBtn.layer.borderColor = GrayH2.CGColor;
     self.returnHomeBtn.tag = ReturnHomeBtnAction;
     [self.successOperationView addSubview:self.returnHomeBtn];
+    /** 优惠券 */
+    self.couponTable = [[UITableView alloc] init];
+    self.couponTable.delegate = self;
+    self.couponTable.dataSource = self;
+    self.couponTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.couponTable.backgroundColor = CLEARCOLOR;
+    self.couponTable.rowHeight = 135;
+    self.couponTable.bounces = NO;
+    [self.orderInfoBackView addArrangedSubview:self.couponTable];
 }
 
 - (void)layoutSubviews {
@@ -148,7 +208,6 @@
         make.right.equalTo(self.orderInfoScrollView.mas_right);
         make.width.equalTo(self.orderInfoScrollView.mas_width);
     }];
-    
     /** 成功logo */
     [self.sucLogoImage mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
@@ -166,8 +225,6 @@
         @strongify(self)
         make.bottom.equalTo(self.sucPromptLabel.mas_bottom).offset(16);
     }];
-    
-    
     /** 分割线1 */
     [self.dividingLineOne mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
@@ -203,8 +260,6 @@
         @strongify(self)
         make.bottom.equalTo(self.dividingLineTwo.mas_bottom);
     }];
-    
-    
     /** 继续收款 */
     [self.continueCashierBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
@@ -224,10 +279,14 @@
         @strongify(self)
         make.bottom.equalTo(self.continueCashierBtn.mas_bottom).offset(40);
     }];
+    /** 优惠券 */
+    [self.couponTable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(@(135 * self.couponArray.count));
+    }];
     /** 填充scrollview的view的高度 */
     [self.orderInfoBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.bottom.equalTo(self.successOperationView.mas_bottom);
+        make.bottom.equalTo(self.couponTable.mas_bottom);
     }];
 }
 

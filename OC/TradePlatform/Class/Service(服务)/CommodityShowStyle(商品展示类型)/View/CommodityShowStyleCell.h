@@ -17,5 +17,7 @@
 @property (strong, nonatomic) CommodityOperationBtn *shelvesBtn;
 /** 下架 */
 @property (strong, nonatomic) CommodityOperationBtn *theShelfBtn;
+/** 商品状态 0-下架 1-在售 */
+@property (assign, nonatomic) NSInteger status;
 
 @end

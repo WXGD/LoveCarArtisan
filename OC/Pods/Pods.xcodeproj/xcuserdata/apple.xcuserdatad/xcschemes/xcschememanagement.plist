@@ -8,81 +8,120 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>BHInfiniteScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>LBXScan.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>PEPhotoCropEditor.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-TradePlatform.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>ReactiveCocoa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>Socket.IO-Client-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>TYAttributedLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>VTMagic.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>15</integer>
 		</dict>
 		<key>WebViewJavascriptBridge.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>16</integer>
 		</dict>
 		<key>ZXingObjC.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -97,7 +136,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>24646EEB7E3FFBA68C291124360292B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>261EE4345464048E34D6E9BAEF04F7A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>29DD99664D189A7CA206368F493B1E0B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C37C885CA17166B753E13463DDE788C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>736180175FF4C7837B114AFDD974D4D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,27 +171,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F1BF9030E252E61BE8470DBE6BFB9DC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9F3440A66FA25FB1EF4B7E4CB2828C00</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A9A83F63385AA43314397B8DD375464B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD7F588C36705C4D4AF3930C05066179</key>
+		<key>BA494A205FDF50E0124D5BB40DA682C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE544D564D6DE5CA7CC6921779F7E361</key>
+		<key>BD7F588C36705C4D4AF3930C05066179</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,17 +196,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D2A53D7AE772CF3AEE8871339B972942</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>DBA6001481CEA0EBA031CC5C94508FAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1D056840D98A12B47C2DCCA03EEC2D8</key>
+		<key>DEF4A48BB3ED52990F4BE3C5852B947A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

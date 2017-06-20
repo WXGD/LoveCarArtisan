@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, BenefitQuiryAction) {
 
 #import <UIKit/UIKit.h>
 // view
-#import "CaftaBtn.h"
+#import "PlnCellView.h"
 
 @interface BenefitQuiryView : UIView
 

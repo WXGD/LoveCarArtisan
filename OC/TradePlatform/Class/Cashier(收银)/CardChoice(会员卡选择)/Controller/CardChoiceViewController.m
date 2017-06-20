@@ -62,18 +62,22 @@
                  pay_amount 	string 	是 	支付方式:格式--支付方式_支付金额_卡号，(无卡的卡号为00000000) 1.支付宝 2.微信 3.次数 4.eb 5.账户余额 6.现金或刷卡 7-年卡
                  mileage 	float 	否 	行驶里程
                  next_maintain 	string 	否 	下一次保养时间,
-                 cart_id 	int 	否 	购物车记录[挂单列表] id (挂单界面直接收银时必传)       */
+                 cart_id 	int 	否 	购物车记录[挂单列表] id (挂单界面直接收银时必传)
+                 coupon_grant_record_id 	string 	否 	选择用户优惠券的id集合,多个用逗号分割，默认为空
+                 save_amount 	float 	否 	优惠金额，默认为0        */
                 // 网络请求参数
                 NSMutableDictionary *params = [NSMutableDictionary dictionary];
                 params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商id
                 params[@"staff_user_id"] = self.merchantInfo.staff_user_id; // 登陆者id，
                 params[@"sale_user_id"] = self.serviceMasterModel.staff_user_id; //销售者id
                 params[@"mobile"] = self.userInfo.mobile; // 手机号
-                params[@"car_plate_no"] = self.userInfo.car_plate_no; // 车牌号
-                params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%ld_%f", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, (long)self.defaultCommodity.num, self.defaultCommodity.actual_sale_price]; // 商品数据
+                params[@"car_plate_no"] = [CustomObject isPlnNumber:self.userInfo.car_plate_no] ? self.userInfo.car_plate_no : @""; // 车牌号
+                params[@"goods_data"] = [NSString stringWithFormat:@"%ld_%ld_%ld_%.2f", (long)self.defaultService.goods_category_id, (long)self.defaultCommodity.goods_id, (long)self.defaultCommodity.num, self.defaultCommodity.actual_sale_price]; // 商品数据
                 params[@"mileage"] = self.mileage; // 行驶里程
                 params[@"next_maintain"] = self.nextMaintain; // 下一次保养时间
                 params[@"cart_id"] = [NSString stringWithFormat:@"%ld", self.cartID]; // 购物车记录
+                params[@"coupon_grant_record_id"] = self.couponID; // 优惠券的id集合
+                params[@"save_amount"] = [NSString stringWithFormat:@"%.2f", self.offerSum]; // 优惠金额
                 if (userCard.card_category_id == 1) { // 次卡
                     params[@"pay_amount"] = [NSString stringWithFormat:@"3_%ld_%@", self.defaultCommodity.num * self.defaultCommodity.card_num_price, userCard.card_no]; // 支付方式
                 }else if (userCard.card_category_id == 2) { // 金额卡

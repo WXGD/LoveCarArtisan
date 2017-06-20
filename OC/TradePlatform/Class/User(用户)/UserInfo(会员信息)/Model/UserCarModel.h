@@ -50,6 +50,8 @@
 @property (copy, nonatomic) NSString *provider_user_id;
 /** 用户手机号 */
 @property (nonatomic, copy) NSString *mobile;
+/** 行驶证车牌号 */
+@property (nonatomic, copy) NSString *license_img;
 /** 收银页使用用户车辆  **/
 /** 行驶里程 */
 @property (nonatomic, copy) NSString *mileage;
@@ -65,7 +67,7 @@
 /** 所有人 */
 @property (nonatomic, copy) NSString *hold_man;
 /** 行驶证图片 */
-@property (nonatomic, strong) UIImage *license_img;
+@property (nonatomic, strong) UIImage *license_img_img;
 
 /** 请求会员车辆列表 */
 + (void)requestUsreCarListParame:(NSMutableDictionary *)parame success:(void(^)(NSMutableArray *usreCarListArray))success;

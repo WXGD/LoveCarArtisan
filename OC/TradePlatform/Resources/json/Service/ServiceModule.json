@@ -32,14 +32,14 @@
                   "name" : "批发商城",
                   "nav_url" : "acgj://commercial_city",
                   "image_url" : "home_page_commercial_city",
-                  "web_url" : "http://xtest.cheweifang.cn/mall/#/1/2?_k=l01xoq",
+                  "web_url" : "http://x.cheweifang.cn/mall/#/1/2?_k=l01xoq",
                   "web_url_id" : "0",
                   },
                   {
                   "name" : "数据分析",
                   "nav_url" : "acgj://report",
                   "image_url" : "home_page_report",
-                  "web_url" : "http://xtest.cheweifang.cn/web/analyse/dataAnalysis.html?provider_id=",
+                  "web_url" : "http://x.cheweifang.cn/web/analyse/dataAnalysis.html?provider_id=",
                   "web_url_id" : "1",
                   },
                   {
@@ -52,5 +52,11 @@
                   "nav_url" : "acgj://store",
                   "image_url" : "home_page_store",
                   },
+                  {
+                  "name" : "优惠劵",
+                  "nav_url" : "acgj://coupon_gover",
+                  "image_url" : "home_coupon_gover",
+                  }
     ]
 }
+

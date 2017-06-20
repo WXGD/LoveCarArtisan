@@ -25,13 +25,16 @@
 @property (strong, nonatomic) CommodityShowStyleModel *defaultCommodity;
 /** 服务 */
 @property (strong, nonatomic) ServiceProviderModel *defaultService;
-
 /** 挂单ID */
 @property (assign, nonatomic) NSInteger cartID;
 /** 行驶里程 */
 @property (copy, nonatomic) NSString *mileage;
 /** 下一次保养时间 */
 @property (copy, nonatomic) NSString *nextMaintain;
+/** 优惠金额 */
+@property (assign, nonatomic) double offerSum;
+/** 优惠券ID */
+@property (copy, nonatomic) NSString *couponID;
 /** 支付成功页面来源 */
 @property (assign, nonatomic) PaySuccessVCSource paySuccessVCSource;
 

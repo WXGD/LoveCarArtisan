@@ -7,15 +7,19 @@
 //
 
 #import "UserInfoViewController.h"
+// view
 #import "UserInfoView.h"
+#import "SeeDrivingLicenseView.h"
 // 下级控制器
-#import "ChangeInfoViewController.h"
 #import "OrderViewController.h"
 #import "UserCardListViewController.h"
 #import "CustomOpenCardViewController.h"
 #import "AddCarViewController.h"
 #import "BenefitQuiryViewController.h"
 #import "UsedCarViewController.h"
+#import "EditUserInfoViewController.h"
+#import "EditCarInfoViewController.h"
+
 // 用户模型
 #import "UserModel.h"
 
@@ -68,26 +72,38 @@
     switch (button.tag) {
         /** 会员头像，名称，微信号 */
         case UserHeaderBtnAction:{
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangeNameAssignment;
-            changeInfoVC.userInfo = self.userInfoModel;
-            changeInfoVC.editSuccessBlock = ^(UserModel *userInfo) {
-                // 界面赋值
-                [self userInfoAssignment:userInfo];
-            };
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
+            EditUserInfoViewController *editUserInfoVC = [[EditUserInfoViewController alloc] init];
+            /** 编辑信息页面标题 */
+            editUserInfoVC.navTitleStr = @"编辑姓名";
+            /** 编辑信息类型标题 */
+            editUserInfoVC.typeTitleStr = @"姓名：";
+            /** 编辑信息提示文字 */
+            editUserInfoVC.placeholderStr = @"请输入用户姓名";
+            /** 编辑信息回显文字 */
+            editUserInfoVC.echoStr = self.userInfoModel.name;
+            /** 用户信息模型 */
+            editUserInfoVC.userModel = self.userInfoModel;
+            /** 输入框响应类型 */
+            editUserInfoVC.editUserInfoType = EditUserName;
+            [self.navigationController pushViewController:editUserInfoVC animated:YES];
             break;
         }
             /** 电话 */
         case UserPhoneBtnAction:{
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangeUserPhoneAssignment;
-            changeInfoVC.userInfo = self.userInfoModel;
-            changeInfoVC.editSuccessBlock = ^(UserModel *userInfo) {
-                // 界面赋值
-                [self userInfoAssignment:userInfo];
-            };
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
+            EditUserInfoViewController *editUserInfoVC = [[EditUserInfoViewController alloc] init];
+            /** 编辑信息页面标题 */
+            editUserInfoVC.navTitleStr = @"编辑手机号";
+            /** 编辑信息类型标题 */
+            editUserInfoVC.typeTitleStr = @"手机号：";
+            /** 编辑信息提示文字 */
+            editUserInfoVC.placeholderStr = @"请输入用户手机号";
+            /** 编辑信息回显文字 */
+            editUserInfoVC.echoStr = self.userInfoModel.mobile;
+            /** 用户信息模型 */
+            editUserInfoVC.userModel = self.userInfoModel;
+            /** 输入框响应类型 */
+            editUserInfoVC.editUserInfoType = EditUserPhone;
+            [self.navigationController pushViewController:editUserInfoVC animated:YES];
             break;
         }
         /** 会员卡 */
@@ -142,13 +158,20 @@
 #pragma mark - 会员车辆代理方法
 /** 编辑按钮 */
 - (void)editCarInfoBtnDelegate:(UIButton *)button {
-    /** 修改车辆信息 */
-    ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-    changeInfoVC.changeInfoExhibitionType = ChangeCarInfoAssignment;
-    changeInfoVC.userCar = self.userInfoView.userCarArray[button.tag];
-    changeInfoVC.userInfo = self.userInfoModel;
-    changeInfoVC.provider_user_id = [NSString stringWithFormat:@"%ld", self.userInfoModel.provider_user_id];
-    [self.navigationController pushViewController:changeInfoVC animated:YES];
+//    /** 修改车辆信息 */
+//    ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
+//    changeInfoVC.changeInfoExhibitionType = ChangeCarInfoAssignment;
+//    changeInfoVC.userCar = self.userInfoView.userCarArray[button.tag];
+//    changeInfoVC.userInfo = self.userInfoModel;
+//    changeInfoVC.provider_user_id = [NSString stringWithFormat:@"%ld", self.userInfoModel.provider_user_id];
+//    [self.navigationController pushViewController:changeInfoVC animated:YES];
+
+    EditCarInfoViewController *editCarInfoVC = [[EditCarInfoViewController alloc] init];
+    /** 用户信息(修改用户信息时需要) */
+    editCarInfoVC.userInfo = self.userInfoModel;
+    /** 用户车辆信息 */
+    editCarInfoVC.userCar = self.userInfoView.userCarArray[button.tag];
+    [self.navigationController pushViewController:editCarInfoVC animated:YES];
 }
 /** 二手车估值 */
 - (void)useCarValuationBtnDelegate:(UIButton *)button {
@@ -164,6 +187,16 @@
 //    benefitQuiryVC.userCar = self.userInfoView.userCarArray[button.tag];
     [self.navigationController pushViewController:benefitQuiryVC animated:YES];
 }
+// 查看行驶证
+- (void)seeDrivingLicenseBtnDelegate:(UIButton *)button {
+    SeeDrivingLicenseView *seeDrivingLicense = [[SeeDrivingLicenseView alloc] init];
+    
+    UserCarModel *userCarModel = [self.userInfoModel.car objectAtIndex:button.tag];
+    
+    
+    [seeDrivingLicense.drivingLicenseImage setImageWithImageUrl:userCarModel.license_img perchImage:@"placeholder_logo"];    [seeDrivingLicense show];
+}
+
 
 #pragma mark - 界面赋值
 - (void)userInfoAssignment:(UserModel *)userInfo {

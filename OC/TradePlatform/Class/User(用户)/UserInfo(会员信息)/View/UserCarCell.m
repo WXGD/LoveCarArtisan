@@ -32,6 +32,11 @@
     self.userCarView.carBrandLabel.text = userCarModel.car_brand_series;
     /** 车牌号 */
     self.userCarView.carPlnLabel.text = userCarModel.car_plate_no;
+    // 判断是否有行驶证图片
+    if (userCarModel.license_img.length == 0) {
+        /** 查看行驶证 */
+        [self.userCarView.seeDrivingLicenseBtn setHidden:YES];
+    }
 }
 
 - (void)layoutSubviews {

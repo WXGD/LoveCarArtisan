@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger, StoreInfoBottonAction) {
 - (void)useCarValuationBtnDelegate:(UIButton *)button;
 /** 查保险 */
 - (void)quiryBenefitBtnDelegate:(UIButton *)button;
+/** 查看行驶证 */
+- (void)seeDrivingLicenseBtnDelegate:(UIButton *)button;
 
 @end
 

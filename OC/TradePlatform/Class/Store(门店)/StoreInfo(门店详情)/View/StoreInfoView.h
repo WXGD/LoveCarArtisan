@@ -38,8 +38,10 @@ typedef NS_ENUM(NSInteger, StoreButtonAction) {
 @property (nonatomic, strong) UsedCellView *telPhoneView;
 /** 短信 */
 @property (nonatomic, strong) UsedCellView *messagePhoneView;
-/** 地址 */
+/** 地址View */
 @property (nonatomic, strong) UsedCellView *addressView;
+/** 具体地址 */
+@property (nonatomic, strong) UILabel *addressLabel;
 /** 营业时间 */
 @property (nonatomic, strong) UsedCellView *timeView;
 /** VX */

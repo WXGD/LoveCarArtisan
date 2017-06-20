@@ -96,7 +96,7 @@
     parame[@"name"] = self.carModel.hold_man; // 所有人名称
     parame[@"insurances_data"] = self.safeSchemeID; // 险种信息
     parame[@"companys_data"] = benefitFirmID; // 保险公司信息
-    [BenefitFirmModel addBenefitInquiryParame:parame modifyImage:self.carModel.license_img success:^{
+    [BenefitFirmModel addBenefitInquiryParame:parame modifyImage:self.carModel.license_img_img success:^{
         [AlertAction determineStayLeft:self title:@"提示" admit:@"是" noadmit:@"否" message:@"提交成功，10分钟后出查询结果\n是否继续添加查询" admitBlock:^{
             // 返回到车险询价界面
             [CustomObject returnAppointController:[BenefitQuiryViewController class] currentVC:self];

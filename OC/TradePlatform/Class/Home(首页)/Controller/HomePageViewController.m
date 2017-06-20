@@ -27,8 +27,6 @@
 #import "PendOrderViewController.h"
 #import "MyAccountViewController.h"
 #import "StoreViewController.h"
-
-
 // 模型
 #import "BannerModel.h"
 #import "ShopRealtimeModel.h"
@@ -40,6 +38,8 @@
 #import "PendOrderModel.h"
 // URL跳转界面
 #import "DCURLRouter.h"
+// 下拉刷新动画
+#import "GifHeaderRefresh.h"
 
 @interface HomePageViewController ()<DropdownMenuDelegate, ServiceModuleDelegate>
 
@@ -113,7 +113,7 @@
 - (void)homePageRepuestShowData {
     // 下拉刷新
     @weakify(self)
-    self.homePageView.homePageScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.homePageView.homePageScrollView.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         /*/index.php?c=order&a=statistic_amount&v=1
          provider_id 	int 	是 	商家id
@@ -150,20 +150,7 @@
 #pragma mark - 按钮点击方法
 // nav右边按钮
 - (void)homePageRightBarBtnAction {
-    // 创建下拉菜单
-    DropdownMenu *menu = [DropdownMenu menu];
-    menu.delegate = self;
-    // 设置内容
-    ShortcutViewController *shortcutVC = [[ShortcutViewController alloc] init];
-    shortcutVC.view.height = 150;
-    shortcutVC.view.width = 150;
-    menu.contentController = shortcutVC;
-    shortcutVC.shortcutNav = self.navigationController;
-    shortcutVC.ShortcutBtnActionBlock = ^() {
-        [menu dismiss];
-    };
-    // 显示
-    [menu showFrom:self.search];
+    
 }
 // 搜索view点击按钮
 - (void)searchViewBtnAction:(UIButton *)button {

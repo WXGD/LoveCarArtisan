@@ -201,6 +201,8 @@
         cell = [[CommodityShowStyleCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     cell.commodityShowModel = self.commodityShowStyleTableDataSource.rowArray[indexPath.row];
+    /** 商品状态 0-下架 1-在售 */
+    cell.status = self.status;
     /** 上架 */
     cell.shelvesBtn.tag = indexPath.row;
     /** 下架 */
@@ -212,11 +214,14 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];    
-    CommodityShowStyleModel *commodityShowModel = self.commodityShowStyleTableDataSource.rowArray[indexPath.row];
-    EditCommodityWholeViewController *editCommodityWholeVC = [[EditCommodityWholeViewController alloc] init];
-    editCommodityWholeVC.commodityShowModel = commodityShowModel;
-    [self.navigationController pushViewController:editCommodityWholeVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // 分店不能编辑，商品信息
+    if (self.merchantInfo.is_initial_provider == 1) { // 总店
+        CommodityShowStyleModel *commodityShowModel = self.commodityShowStyleTableDataSource.rowArray[indexPath.row];
+        EditCommodityWholeViewController *editCommodityWholeVC = [[EditCommodityWholeViewController alloc] init];
+        editCommodityWholeVC.commodityShowModel = commodityShowModel;
+        [self.navigationController pushViewController:editCommodityWholeVC animated:YES];
+    }
 }
 
 

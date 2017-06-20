@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, UsedCarValuationBottonAction) {
 
 @interface UsedCarView : UIView
 
-/** 保险选项卡ScrollView */
+/** 二手车选项卡ScrollView */
 @property (strong, nonatomic) UIScrollView *usedCarTabScorllView;
 /** 二手车查询历史 */
 @property (strong, nonatomic) UIButton *usedCarHistoryBtn;

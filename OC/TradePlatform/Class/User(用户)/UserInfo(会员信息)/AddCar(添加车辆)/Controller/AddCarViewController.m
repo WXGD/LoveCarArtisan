@@ -8,7 +8,7 @@
 
 #import "AddCarViewController.h"
 // view
-#import "ChangeCarInfoView.h"
+#import "EditCarInfoView.h"
 // 下级控制器
 #import "CarBrandListViewController.h"
 #import "UserInfoViewController.h"
@@ -18,7 +18,7 @@
 @interface AddCarViewController ()
 
 /** 添加view */
-@property (strong, nonatomic) ChangeCarInfoView *addCarView;
+@property (strong, nonatomic) EditCarInfoView *addCarView;
 /** 车辆模型 */
 @property (strong, nonatomic) CWFUserCarModel *carModel;
 
@@ -44,9 +44,8 @@
     carBrandListVC.carSystemBlack = ^(CWFUserCarModel *selectCarSystem) {
         // 保存用户选中的车辆
         self.carModel = selectCarSystem;
-        self.addCarView.editCar.describeLabel.text = selectCarSystem.car_series_name;
-        [self.addCarView.editCar.describeImage setImageWithImageUrl:selectCarSystem.image perchImage:@"placeholder_car"];
-        self.addCarView.editCar.viceLabel.text = @"";
+        self.addCarView.editCar.rightViceLabel.text = selectCarSystem.car_series_name;
+        [self.addCarView.editCarImage setImageWithImageUrl:selectCarSystem.image perchImage:@"placeholder_car"];
     };
     [self.navigationController pushViewController:carBrandListVC animated:YES];
 }
@@ -54,7 +53,7 @@
 - (void)addCarRightBarButtonItmeAction {
     [self.view endEditing:YES];
     // 判断车牌号格式
-    if (![CustomObject isPlnNumber:self.addCarView.editPln.viceTextFiled.text]) {
+    if (![CustomObject isPlnNumber:self.addCarView.editPln.viceTF.text]) {
         [MBProgressHUD showError:@"车牌号格式不正确"];
         return;
     }
@@ -68,13 +67,13 @@
     params[@"provider_user_id"] = [NSString stringWithFormat:@"%ld", self.userInfo.provider_user_id]; // 服用户id
     params[@"car_brand_id"] = self.carModel.car_brand_id; // 车品牌id
     params[@"car_brand_series_id"] = self.carModel.car_series_id; // 车系id
-    params[@"car_plate_no"] = self.addCarView.editPln.viceTextFiled.text; // 车辆车牌号
-    [AddCarNetwork addUserCarParams:params success:^(ChangeInfoNetWork *changeUserCar) {
+    params[@"car_plate_no"] = self.addCarView.editPln.viceTF.text; // 车辆车牌号
+    [AddCarNetwork addUserCarParams:params success:^(AddCarNetwork *addCarNetwork) {
         // 判断车牌号是否存在
-        if (changeUserCar.exist_user == 2) { // 车牌号存在
+        if (addCarNetwork.exist_user == 2) { // 车牌号存在
             [AlertAction determineStayLeft:self title:@"提示" admit:@"取消" noadmit:@"编辑" message:@"车牌号已经存在，是否编辑已存在的用户?" admitBlock:nil noadmitBlock:^{
                 UserInfoViewController *userInfoVC = [[UserInfoViewController alloc] init];
-                userInfoVC.providerUserId = changeUserCar.provider_user_id;
+                userInfoVC.providerUserId = addCarNetwork.provider_user_id;
                 [self.navigationController pushViewController:userInfoVC animated:YES];
                 // 删除当前页面
                 NSMutableArray *navViews = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
@@ -106,8 +105,8 @@
 #pragma mark - 布局视图
 - (void)addCarLayoutView {
     /** 用户信息view */
-    self.addCarView = [[ChangeCarInfoView alloc] init];
-    [self.addCarView.editCar.usedCellBtn addTarget:self action:@selector(addCarBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.addCarView = [[EditCarInfoView alloc] init];
+    [self.addCarView.editCar.mainBtn addTarget:self action:@selector(addCarBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.addCarView];
     @weakify(self)
     [self.addCarView mas_makeConstraints:^(MASConstraintMaker *make) {

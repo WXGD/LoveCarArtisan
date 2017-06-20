@@ -24,11 +24,15 @@
     /** 门店图片 */
     self.storeImage = [[UIImageView alloc] init];
     self.storeImage.image = [UIImage imageNamed:@""];
+    self.storeImage.layer.borderWidth = 1.0f;
+    self.storeImage.layer.cornerRadius = 2;
+    self.storeImage.clipsToBounds = YES;
+    self.storeImage.layer.borderColor = VCBackground.CGColor;
     [self addSubview:self.storeImage];
     /** 门店名字 */
     self.storeNameLabel = [[UILabel alloc] init];
     self.storeNameLabel.text = @"";
-    self.storeNameLabel.font = FifteenTypefaceBold;
+    self.storeNameLabel.font = SixteenTypeface;
     self.storeNameLabel.textColor = Black;
     [self addSubview:self.storeNameLabel];
     /** 门店地址 */

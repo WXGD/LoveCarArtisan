@@ -33,6 +33,8 @@
 @property (nonatomic, assign) NSInteger conflict;
 /** 冲突用户id */
 @property (nonatomic, copy) NSString *provider_user_id;
+/** 用户拥有的优惠券数量 */
+@property (nonatomic, assign) NSInteger coupon_count;
 
 /** 根据用户手机号，获取用户信息，用户会员卡信息 (收银页使用)*/
 + (void)foundationUserPhoneObtainUserInfoParams:(NSMutableDictionary *)params success:(void(^)(CashierUserModel *cashierUserModel))success;

@@ -13,6 +13,8 @@
 #import "OpenCardSuccessViewController.h"
 // 模型
 #import "PayQRModel.h"
+// Socket
+@import SocketIO;
 
 @interface PayQRCodeViewController ()
 
@@ -28,6 +30,8 @@
 @property (strong, nonatomic) UIImageView *qrImage;
 /** 支付按钮 */
 @property (strong, nonatomic) UIButton *payBtn;
+/** SocketIO */
+@property (strong, nonatomic) SocketIOClient *socket;
 
 @end
 
@@ -56,9 +60,23 @@
     [self payQRCodeLayoutView];
     // 界面赋值
     [self payQRCodeAssignment];
+    // 建立socket链接
+    [self establishSocketLink];
 }
 #pragma mark - 网络请求
-
+// 建立socket链接
+- (void)establishSocketLink {
+    NSURL* url = [[NSURL alloc] initWithString:@"http://139.196.213.202:9990"];
+    self.socket = [[SocketIOClient alloc] initWithSocketURL:url config:@{@"log": @NO, @"forcePolling": @YES}];
+    [self.socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSString *orderID = [NSString stringWithFormat:@"appOrderPay_%@", self.payParams[@"order_id"]];
+        [self.socket emit:@"identify" with:@[orderID]];
+    }];
+    [self.socket on:@"appOrderPay_success" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        [self payBtnAction:nil];
+    }];
+    [self.socket connect];
+}
 #pragma mark - 按钮点击方法
 // 确认支付
 - (void)payBtnAction:(UIButton *)button {
@@ -71,6 +89,8 @@
         if (payQRModel.order_status == 1) { // 未支付
             [MBProgressHUD showError:@"订单未支付"];
         }else { // 已完成， 待评价
+            // 断开socket链接
+            [self.socket disconnect];
             switch (self.payQRCodePageType) {
                     /** 收银页使用 */
                 case CashierUseVCPageType: {
@@ -104,6 +124,14 @@
         }
     }];
 }
+// nav左边按钮
+- (void)payQRCodeNavLeftBtnAction {
+    // 断开socket链接
+    [self.socket disconnect];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 #pragma mark - 界面赋值
 - (void)payQRCodeAssignment {
     self.view.backgroundColor = ThemeColor;
@@ -118,7 +146,7 @@
 - (void)payQRCodeLayoutNAV {
     self.navigationItem.title = self.navTitle;
     // 左边
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backImage"] style:UIBarButtonItemStyleDone target:self action:@selector(statisticsNavLeftBtnAction)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_back"] style:UIBarButtonItemStyleDone target:self action:@selector(payQRCodeNavLeftBtnAction)];
     // 右边
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"旧版订单"] style:UIBarButtonItemStyleDone target:self action:@selector(statisticsOrderRightBarButtonItmeAction)];
 }

@@ -14,8 +14,6 @@ typedef NS_ENUM(NSInteger, AccountBottonAction) {
     TelPhoneBtnAction,
     /** 修改密码 */
     DelPasswordBtnAction,
-    /** 退出当前账户 */
-    SignOutBtnAction,
 };
 
 
@@ -24,12 +22,10 @@ typedef NS_ENUM(NSInteger, AccountBottonAction) {
 @interface AloneInfoView : UIView
 
 /** 名字 */
-@property (strong, nonatomic) UsedCellView *accountName;
+@property (strong, nonatomic) CustomCell *accountName;
 /** 手机号 */
-@property (strong, nonatomic) UsedCellView *telPhone;
+@property (strong, nonatomic) CustomCell *telPhone;
 /** 修改密码 */
-@property (strong, nonatomic) UsedCellView *delPassword;
-/** 退出当前账户 */
-@property (strong, nonatomic) UIButton *signOutView;
+@property (strong, nonatomic) CustomCell *delPassword;
 
 @end

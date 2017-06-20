@@ -244,7 +244,7 @@
     /** 所有人 */
     carModel.hold_man = self.benefitQuiryView.holdManView.viceTextFiled.text;
     /** 行驶证图片 */
-    carModel.license_img = self.benefitQuiryView.cardImg.image;
+    carModel.license_img_img = self.benefitQuiryView.cardImg.image;
     AddSchemeViewController *addSchemeVC = [[AddSchemeViewController alloc] init];
     addSchemeVC.carModel = carModel;
     [self.navigationController pushViewController:addSchemeVC animated:YES];

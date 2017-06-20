@@ -1,30 +1,30 @@
 {
     "code" : "0",
     "msg" : "成功",
-    "data" :     [
-                  {
-                  "goods_category_id" : "1",
-                  "name" : "洗车",
-                  },
-                  {
-                  "goods_category_id" : "2",
-                  "name" : "美容",
-                  },
-                  {
-                  "goods_category_id" : "3",
-                  "name" : "贴膜",
-                  },
-                  {
-                  "goods_category_id" : "4",
-                  "name" : "配件",
-                  },
-                  {
-                  "goods_category_id" : "5",
-                  "name" : "饰品",
-                  },
-                  {
-                  "goods_category_id" : "6",
-                  "name" : "保养",
-                  }
-    ]
+    "data" :    {
+                    {
+                    "goods_category_id" : "1",
+                    "name" : "洗车",
+                    },
+                    {
+                    "goods_category_id" : "2",
+                    "name" : "美容",
+                    },
+                    {
+                    "goods_category_id" : "3",
+                    "name" : "贴膜",
+                    },
+                    {
+                    "goods_category_id" : "4",
+                    "name" : "配件",
+                    },
+                    {
+                    "goods_category_id" : "5",
+                    "name" : "饰品",
+                    },
+                    {
+                    "goods_category_id" : "6",
+                    "name" : "保养",
+                    }
+    }
 }

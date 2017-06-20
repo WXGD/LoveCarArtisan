@@ -57,7 +57,9 @@
      pay_amount 	string 	是 	支付方式:格式--支付方式_支付金额_卡号，(无卡的卡号为00000000) 1.支付宝 2.微信 3.次数 4.eb 5.账户余额 6.现金或刷卡 7-年卡
      mileage 	float 	否 	行驶里程
      next_maintain 	string 	否 	下一次保养时间,
-     cart_id 	int 	否 	购物车记录[挂单列表] id (挂单界面直接收银时必传)      */
+     cart_id 	int 	否 	购物车记录[挂单列表] id (挂单界面直接收银时必传)
+     coupon_grant_record_id 	string 	否 	选择用户优惠券的id集合,多个用逗号分割，默认为空
+     save_amount 	float 	否 	优惠金额，默认为0       */
     NSString *URL = [NSString stringWithFormat:@"%@?c=%@&a=%@&v=%@", API, @"order", @"add", APITWOEdition];
     // 拼接请求参数
     NSMutableDictionary *parameters = params;

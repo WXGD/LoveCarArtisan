@@ -21,47 +21,38 @@
 
 - (void)aloneInfoLayoutView {
     /** 名字 */
-    self.accountName = [[UsedCellView alloc] init];
-    self.accountName.cellLabel.text = @"名字";
-    self.accountName.cellLabel.font = FifteenTypeface;
-    self.accountName.describeLabel.font = FifteenTypeface;
-    self.accountName.describeLabel.textColor = Black;
-    self.accountName.isSplistLine = YES;
-    self.accountName.isCellImage = YES;
-    self.accountName.isArrow = YES;
-    self.accountName.usedCellBtn.tag = AccountNameBtnAction;
+    self.accountName = [[CustomCell alloc] init];
+    self.accountName.lineStyle = NotLine;
+    self.accountName.cellStyle = HorizontalLayoutNotMImgAndVImg;
+    self.accountName.mainLabel.text = @"姓名";
+    self.accountName.mainLabel.font = FifteenTypeface;
+    self.accountName.mainLabel.textColor = Black;
+    self.accountName.rightViceLabel.font = ThirteenTypeface;
+    self.accountName.rightViceLabel.textColor = GrayH1;
+    self.accountName.mainBtn.tag = AccountNameBtnAction;
     [self addSubview:self.accountName];
     /** 手机号 */
-    self.telPhone = [[UsedCellView alloc] init];
-    self.telPhone.cellLabel.text = @"手机号";
-    self.telPhone.cellLabel.font = FifteenTypeface;
-    self.telPhone.describeLabel.font = FifteenTypeface;
-    self.telPhone.describeLabel.textColor = Black;
-    self.telPhone.isSplistLine = YES;
-    self.telPhone.isCellImage = YES;
-    self.telPhone.isArrow = YES;
-    self.telPhone.usedCellBtn.tag = TelPhoneBtnAction;
+    self.telPhone = [[CustomCell alloc] init];
+    self.telPhone.lineStyle = NotLine;
+    self.telPhone.cellStyle = HorizontalLayoutNotMImgAndVImg;
+    self.telPhone.mainLabel.text = @"手机号";
+    self.telPhone.mainLabel.font = FifteenTypeface;
+    self.telPhone.mainLabel.textColor = Black;
+    self.telPhone.rightViceLabel.font = ThirteenTypeface;
+    self.telPhone.rightViceLabel.textColor = GrayH1;
+    self.telPhone.mainBtn.tag = TelPhoneBtnAction;
     [self addSubview:self.telPhone];
     /** 修改密码 */
-    self.delPassword = [[UsedCellView alloc] init];
-    self.delPassword.cellLabel.text = @"修改密码";
-    self.delPassword.cellLabel.font = FifteenTypeface;
-    self.delPassword.describeLabel.font = FifteenTypeface;
-    self.delPassword.describeLabel.textColor = Black;
-    self.delPassword.isSplistLine = YES;
-    self.delPassword.isCellImage = YES;
-    self.delPassword.usedCellBtn.tag = DelPasswordBtnAction;
+    self.delPassword = [[CustomCell alloc] init];
+    self.delPassword.lineStyle = NotLine;
+    self.delPassword.cellStyle = HorizontalLayoutNotMImgAndHaveVImgAndNotVBtn;
+    self.delPassword.mainLabel.text = @"修改密码";
+    self.delPassword.mainLabel.font = FifteenTypeface;
+    self.delPassword.mainLabel.textColor = Black;
+    self.delPassword.leftViceLabel.font = ThirteenTypeface;
+    self.delPassword.leftViceLabel.textColor = GrayH1;
+    self.delPassword.mainBtn.tag = DelPasswordBtnAction;
     [self addSubview:self.delPassword];
-//    /** 退出当前账户 */
-//    self.signOutView = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.signOutView setTitle:@"退出当前账户" forState:UIControlStateNormal];
-//    [self.signOutView setTitleColor:WhiteColor forState:UIControlStateNormal];
-//    self.signOutView.titleLabel.font = EighteenTypeface;
-//    [self.signOutView setBackgroundImage:[UIImage imageNamed:@"login_btn_back"] forState:UIControlStateNormal];
-//    [self.signOutView setBackgroundImage:[UIImage imageNamed:@"login_no_btn_back"] forState:UIControlStateSelected];
-//    self.signOutView.adjustsImageWhenHighlighted = NO;
-//    self.signOutView.tag = SignOutBtnAction;
-//    [self addSubview:self.signOutView];
 }
 
 - (void)layoutSubviews {
@@ -91,14 +82,6 @@
         make.top.equalTo(self.telPhone.mas_bottom).offset(10);
         make.height.mas_equalTo(@50);
     }];
-//    /** 退出当前账户 */
-//    [self.signOutView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        @strongify(self)
-//        make.left.equalTo(self.mas_left).offset(16);
-//        make.right.equalTo(self.mas_right).offset(-16);
-//        make.top.equalTo(self.delPassword.mas_bottom).offset(30);
-//        make.height.mas_equalTo(@50);
-//    }];
 }
 
 @end

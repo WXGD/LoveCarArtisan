@@ -185,43 +185,31 @@
         }
             /** 副标题为输入框(没有主图片，没有副图片) */
         case ViceTFHorizontalLayoutNotMImgAndNotVImg: {
-            // 隐藏主按钮
-            [self.mainBtn setHidden:YES];
             [self viceTFHorizontalLayoutNotMImgAndNotVImg];
             break;
         }
             /** 副标题为输入框(有主图片，没有副图片) */
         case ViceTFHorizontalLayoutHaveMImgAndNotVImg: {
-            // 隐藏主按钮
-            [self.mainBtn setHidden:YES];
             [self viceTFHorizontalLayoutHaveMImgAndNotVImg];
             break;
         }
             /** 副标题为输入框(没有主图片，有副图片，有副按钮) */
         case ViceTFHorizontalLayoutNotMImgAndHaveVImgAndHaveVBtn: {
-            // 隐藏主按钮
-            [self.mainBtn setHidden:YES];
             [self viceTFHorizontalLayoutNotMImgAndHaveVImgAndHaveVBtn];
             break;
         }
             /** 副标题为输入框(没有主图片，有副图片，没有副按钮) */
         case ViceTFHorizontalLayoutNotMImgAndHaveVImgAndNotVBtn: {
-            // 隐藏主按钮
-            [self.mainBtn setHidden:YES];
             [self viceTFHorizontalLayoutNotMImgAndHaveVImgAndNotVBtn];
             break;
         }
             /** 副标题为输入框(有主图片，有副图片，有副按钮) */
         case ViceTFHorizontalLayoutHaveMImgAndHaveVImgAndHaveVBtn: {
-            // 隐藏主按钮
-            [self.mainBtn setHidden:YES];
             [self viceTFHorizontalLayoutHaveMImgAndHaveVImgAndHaveVBtn];
             break;
         }
             /** 副标题为输入框(有主图片，有副图片，没有副按钮) */
         case ViceTFHorizontalLayoutHaveMImgAndHaveVImgAndNotVBtn: {
-            // 隐藏主按钮
-            [self.mainBtn setHidden:YES];
             [self viceTFHorizontalLayoutHaveMImgAndHaveVImgAndNotVBtn];
             break;
         }
@@ -250,8 +238,8 @@
             [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
                 @strongify(self)
                 make.left.equalTo(self.mas_left).offset(16);
-                make.right.equalTo(self.mas_right);
-                make.bottom.equalTo(self.mas_bottom).offset(-16);
+                make.right.equalTo(self.mas_right).offset(-16);
+                make.bottom.equalTo(self.mas_bottom);
                 make.height.mas_equalTo(self.lineHeight);
             }];
             break;

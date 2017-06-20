@@ -56,6 +56,8 @@
     [encoder encodeObject:self.thumb_image_url forKey:@"thumb_image_url"];
     /** 服务商联系方式 */
     [encoder encodeObject:self.service_tel forKey:@"service_tel"];
+    /** 登陆人联系方式 */
+    [encoder encodeObject:self.service_tel forKey:@"login_mobile"];
     /** 微信公众号图片 */
     [encoder encodeObject:self.wxmp_qrcode forKey:@"wxmp_qrcode"];
     /** 服务商微信支付二维码 */
@@ -70,6 +72,8 @@
     [encoder encodeObject:self.create_time forKey:@"create_time"];
     /** 过期时间 */
     [encoder encodeObject:self.overdue_timer forKey:@"overdue_timer"];
+    /** 1-总店 0-分店 */
+    [encoder encodeObject:@(self.is_initial_provider) forKey:@"is_initial_provider"];
 }
 
 /**
@@ -91,6 +95,8 @@
         self.thumb_image_url = [decoder decodeObjectForKey:@"thumb_image_url"];
         /** 服务商联系方式 */
         self.service_tel = [decoder decodeObjectForKey:@"service_tel"];
+        /** 登陆人联系方式 */
+        self.login_mobile = [decoder decodeObjectForKey:@"login_mobile"];
         /** 微信公众号图片 */
         self.wxmp_qrcode = [decoder decodeObjectForKey:@"wxmp_qrcode"];
         /** 服务商微信支付二维码 */
@@ -105,6 +111,8 @@
         self.create_time = [decoder decodeObjectForKey:@"create_time"];
         /** 过期时间 */
         self.overdue_timer = [decoder decodeObjectForKey:@"overdue_timer"];
+        /** 1-总店 0-分店 */
+        self.is_initial_provider = [[decoder decodeObjectForKey:@"is_initial_provider"] integerValue];
     }
     return self;
 }

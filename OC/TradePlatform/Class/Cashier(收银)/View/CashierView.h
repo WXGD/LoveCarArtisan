@@ -9,9 +9,9 @@
 // 收银页按钮点击类型
 typedef NS_ENUM(NSInteger, CashierBottonAction) {
     /** 确认收款 */
-    ConfirmationCollectionBtnAction,
-    /** 提交订单 */
-    PlaceOrderBtnAction,
+    ConfirCashierBtnAction,
+    /** 暂不收银 */
+    TemporCashierBtnAction,
     /** 手机号 */
     PhoneBtnAction,
     /** 车牌号 */
@@ -24,17 +24,17 @@ typedef NS_ENUM(NSInteger, CashierBottonAction) {
     ClassBtnAction,
     /** 服务 */
     ServiceBtnAction,
-    /** 添加商品 */
-    AddGoodsBtnAction,
-    /** 购物车 */
-    ShoppingCartBtnAction,
     /** 服务师傅 */
     ServiceMasterBtnAction,
+    /** 优惠券 */
+    CouponBtnAction,
 };
 
 #import <UIKit/UIKit.h>
 #import "AddSubNumView.h"
-#import "CaftaBtn.h"
+#import "CashierBomView.h"
+#import "PlnCellView.h"
+#import "CashierBomView.h"
 
 @protocol CashierViewDelegate <NSObject>
 
@@ -46,43 +46,35 @@ typedef NS_ENUM(NSInteger, CashierBottonAction) {
 
 @interface CashierView : UIView
 
-/** 确认收款 */
-@property (strong, nonatomic) UIButton *confirmationCollectionBtn;
-/** 提交订单 */
-@property (strong, nonatomic) UIButton *placeOrderBtn;
+
+/** 底部view */
+@property (strong, nonatomic) CashierBomView *cashierBomView;
 /** 手机号view */
-@property (strong, nonatomic) UITextField *phoneTF;
-@property (strong, nonatomic) UIButton *phoneBtn;
+@property (strong, nonatomic) CustomCell *phoneView;
 /** 车牌号view */
-@property (strong, nonatomic) UITextField *plnTF;
-@property (strong, nonatomic) UIButton *plnBtn;
-@property (strong, nonatomic) CaftaBtn *caftaBtn;
+@property (strong, nonatomic) PlnCellView *plnCellView;
 /** 用户名 */
-@property (strong, nonatomic) UsedCellView *userNameView;
+@property (strong, nonatomic) CustomCell *userNameView;
 /** 类别view */
-@property (strong, nonatomic) UsedCellView *classView;
+@property (strong, nonatomic) CustomCell *classView;
 /** 服务view */
-@property (strong, nonatomic) UsedCellView *serviceView;
+@property (strong, nonatomic) CustomCell *serviceView;
 /** 数量操作 */
 @property (strong, nonatomic) AddSubNumView *numberOperationBtn;
-/** 价格view */
-@property (strong, nonatomic) UsedCellView *priceView;
 /** 销售价view */
-@property (strong, nonatomic) UsedCellView *pretiumView;
-/** 总价view */
-@property (strong, nonatomic) UsedCellView *totalView;
-/** 添加商品 */
-@property (strong, nonatomic) UIButton *addGoodsBtn;
-/** 购物车 */
-@property (strong, nonatomic) UIButton *shoppingCartBtn;
-/** 购物车数量 */
-@property (assign, nonatomic) NSInteger shoppingCartNum;
+@property (strong, nonatomic) CustomCell *pretiumView;
 /** 服务师傅 */
-@property (strong, nonatomic) UsedCellView *serviceMasterView;
+@property (strong, nonatomic) CustomCell *serviceMasterView;
+/** 优惠券 */
+@property (strong, nonatomic) CustomCell *couponView;
+/** 优惠券选择前 */
+@property (assign, nonatomic) NSInteger couponChoiceBefore;
+/** 优惠券选择后 */
+@property (assign, nonatomic) double couponChoiceAfter;
 /** 行驶里程 */
-@property (strong, nonatomic) UsedCellView *mileageView;
+@property (strong, nonatomic) CustomCell *mileageView;
 /** 下次保养时间 */
-@property (strong, nonatomic) UsedCellView *nextTimeView;
+@property (strong, nonatomic) CustomCell *nextTimeView;
 /** 收银代理 */
 @property (assign, nonatomic) id<CashierViewDelegate>delegate;
 

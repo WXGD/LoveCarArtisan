@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) UINavigationController *shortcutNav;
 @property (strong, nonatomic) void(^ShortcutBtnActionBlock)();
+@property (strong, nonatomic) UIButton *shortcutBtn;
 
 @end

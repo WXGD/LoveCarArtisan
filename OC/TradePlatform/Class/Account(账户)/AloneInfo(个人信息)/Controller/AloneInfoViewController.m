@@ -9,9 +9,10 @@
 #import "AloneInfoViewController.h"
 #import "AloneInfoView.h"
 // 下级控制器
-#import "ChangeInfoViewController.h"
 #import "LoginViewController.h"
 #import "NavigationViewController.h"
+#import "EditPasswordViewController.h"
+
 // 推送设置别名
 #import "JPUSHService.h"
 // 单利
@@ -53,33 +54,12 @@
         }
         /** 修改密码 */
         case DelPasswordBtnAction: {
-            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
-            changeInfoVC.changeInfoExhibitionType = ChangeUserDelPasswordAssignment;
-            [self.navigationController pushViewController:changeInfoVC animated:YES];
-            break;
-        }
-            /** 退出当前账户 */
-        case SignOutBtnAction: {
-            [AlertAction determineStayLeft:self title:@"退出登录" message:@"确定要退出登录吗?" determineBlock:^{
-                // 设置标签和(或)别名
-                [JPUSHService setTags:nil alias:@"" fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
-                    PDLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);
-                }];
-                // 清空用户信息数据
-                MerchantInfoModel *merchantInfo = [[MerchantInfoModel alloc] init];
-                // 储存商家信息
-                [NSKeyedArchiver archiveRootObject:merchantInfo toFile:AccountPath];
-                // 销毁单利
-                [OrderFilterHandle destroyHandle];
-                [OrderClassHandle destroyHandle];
-                [UsedCarBrandHandle destroyHandle];
-                [AllGoodsHandle destroyHandle];
-                [ServiceMasterHandle destroyHandle];
-                [ServiceCategoryHandle destroyHandle];
-                // 跳转到登录界面
-                UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-                keyWindow.rootViewController = [[NavigationViewController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-            }];
+            EditPasswordViewController *editPasswordVC = [[EditPasswordViewController alloc] init];
+            [self.navigationController pushViewController:editPasswordVC animated:YES];
+
+//            ChangeInfoViewController *changeInfoVC = [[ChangeInfoViewController alloc] init];
+//            changeInfoVC.changeInfoExhibitionType = ChangeUserDelPasswordAssignment;
+//            [self.navigationController pushViewController:changeInfoVC animated:YES];
             break;
         }
         default:
@@ -90,27 +70,26 @@
 #pragma mark - 界面赋值
 - (void)aloneInfoAssignment {
     /** 名字 */
-    self.aloneInfoView.accountName.cellLabel.text = self.merchantInfo.user_name;
+    self.aloneInfoView.accountName.rightViceLabel.text = self.merchantInfo.user_name;
     /** 手机号 */
-    self.aloneInfoView.telPhone.cellLabel.text = self.merchantInfo.service_tel;
+    self.aloneInfoView.telPhone.rightViceLabel.text = self.merchantInfo.login_mobile;
 
 }
 #pragma mark - 布局nav
 - (void)aloneInfoLayoutNAV {
     self.navigationItem.title = @"个人信息";
     // 左边
-    //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backImage"] style:UIBarButtonItemStyleDone target:self action:@selector(statisticsNavLeftBtnAction)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backImage"] style:UIBarButtonItemStyleDone target:self action:@selector(statisticsNavLeftBtnAction)];
     // 右边
-    //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"旧版订单"] style:UIBarButtonItemStyleDone target:self action:@selector(statisticsOrderRightBarButtonItmeAction)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"旧版订单"] style:UIBarButtonItemStyleDone target:self action:@selector(statisticsOrderRightBarButtonItmeAction)];
 }
 #pragma mark - 布局视图
 - (void)aloneInfoLayoutView {
     /** 个人信息view */
     self.aloneInfoView = [[AloneInfoView alloc] init];
     /** 修改密码 */
-    [self.aloneInfoView.delPassword.usedCellBtn addTarget:self action:@selector(aloneInfoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.aloneInfoView.delPassword.mainBtn addTarget:self action:@selector(aloneInfoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     /** 退出当前账户 */
-    [self.aloneInfoView.signOutView addTarget:self action:@selector(aloneInfoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.aloneInfoView];
     @weakify(self)
     [self.aloneInfoView mas_makeConstraints:^(MASConstraintMaker *make) {

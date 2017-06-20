@@ -39,7 +39,9 @@
 /** 总价 */
 @property (strong, nonatomic) UsedCellView *priceView;
 /** 优惠 */
-@property (strong, nonatomic) UsedCellView *discountView;
+@property (strong, nonatomic) CustomCell *discountView;
+/** 优惠券 */
+@property (strong, nonatomic) CustomCell *couponView;
 /** 实收 */
 @property (strong, nonatomic) UsedCellView *thePaidView;
 /*================== 订单信息  ================*/

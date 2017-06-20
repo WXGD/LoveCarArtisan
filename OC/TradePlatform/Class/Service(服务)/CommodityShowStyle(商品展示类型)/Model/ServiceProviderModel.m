@@ -8,6 +8,15 @@
 
 #import "ServiceProviderModel.h"
 
+@implementation AdminServiceModel
+
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"used_goods_category" : [ServiceProviderModel class], @"unUsed_goods_category" : [ServiceProviderModel class]};
+}
+
+@end
+
+
 @implementation ServiceProviderModel
 
 + (NSDictionary *)mj_objectClassInArray {

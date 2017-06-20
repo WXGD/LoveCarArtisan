@@ -16,7 +16,6 @@
 #import "SearchUserCardNetwork.h"
 // 下级控制器
 #import "UserInfoViewController.h"
-#import "ChangeInfoViewController.h"
 //#import "EditUserCardViewController.h"
 //#import "UserCardRechargeViewController.h"
 

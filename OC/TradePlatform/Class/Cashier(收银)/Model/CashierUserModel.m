@@ -29,6 +29,8 @@
     [TPNetRequest GET:URL parameters:parameters ProgressHUD:@"正在获取用户信息..." falseDate:@"queryUser" parentController:nil success:^(id responseObject) {
         PDLog(@"responseObject%@", responseObject);
         PDLog(@"params%@", params);
+        PDLog(@"URL%@", URL);
+
         if ([[NSString stringWithFormat:@"%@", responseObject[@"code"]] isEqual:@"0"]) {
             NSMutableArray *array = [CashierUserModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             if (array.count) {

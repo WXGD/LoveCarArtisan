@@ -122,7 +122,9 @@
     /** 总价 */
     self.orderInfoView.priceView.describeLabel.text = [NSString stringWithFormat:@"%.2f元", orderModel.order_info.total_price];
     /** 优惠 */
-    self.orderInfoView.discountView.describeLabel.text = [NSString stringWithFormat:@"%.2f元", orderModel.order_info.save_amount];
+    self.orderInfoView.discountView.rightViceLabel.text = [NSString stringWithFormat:@"%.2f元", orderModel.order_info.save_amount];
+    /** 优惠券 */
+    self.orderInfoView.couponView.rightViceLabel.text = [NSString stringWithFormat:@"%.2f元", orderModel.order_info.coupon_amount];
     /** 实收 */
     self.orderInfoView.thePaidView.describeLabel.text = [NSString stringWithFormat:@"%@", orderModel.order_pay_info.pay_amount_text];
     /*================== 订单信息  ================*/

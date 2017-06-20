@@ -39,7 +39,7 @@
     /** 搜索框view */
     self.search = [[SearchView alloc] init];
     self.search.isSearch = YES;
-    self.search.searchType = NavigationLayout;
+    self.search.isSearchWidth = YES;
     [self.navView addSubview:self.search];
     /** 快捷方式 */
     self.shortcutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -69,16 +69,17 @@
     /** 搜索框view */
     [self.search mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.centerX.equalTo(self.navView.mas_centerX);
+        make.left.equalTo(self.navView.mas_left).offset(16);
         make.centerY.equalTo(self.navView.mas_centerY);
+        
     }];
     /** 快捷方式 */
     [self.shortcutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.right.equalTo(self.navView.mas_right).offset(-10);
+        make.left.equalTo(self.search.mas_right);
         make.top.equalTo(self.navView.mas_top);
         make.bottom.equalTo(self.navView.mas_bottom);
-        make.width.equalTo(self.shortcutBtn.mas_height);
     }];
     /** self高度 */
     [self mas_makeConstraints:^(MASConstraintMaker *make) {

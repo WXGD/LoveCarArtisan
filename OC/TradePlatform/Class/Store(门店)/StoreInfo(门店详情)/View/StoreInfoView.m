@@ -21,7 +21,7 @@
 - (void)storeInfoLayoutView {
     self.storeInfoScrollerView = [[UIScrollView alloc] init];
     self.storeInfoScrollerView.showsVerticalScrollIndicator = NO;
-    self.storeInfoScrollerView.backgroundColor = WhiteColor;
+    self.storeInfoScrollerView.backgroundColor = VCBackground;
     [self addSubview:self.storeInfoScrollerView];
     
     self.storeInfostackView = [[UIStackView alloc] init];
@@ -32,6 +32,7 @@
     [self.storeInfostackView addArrangedSubview:self.imageBgView];
     
     self.imageView = [[UIImageView alloc] init];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.imageBgView addSubview:self.imageView];
     /** 店名 */
     self.storeNameView = [[UsedCellView alloc] init];
@@ -67,10 +68,13 @@
     self.addressView.isCellImageSize = YES;
     self.addressView.isCellImage = YES;
     self.addressView.cellLabel.text = @"地址";
-    self.addressView.describeLabel.textAlignment = NSTextAlignmentRight;
-    self.addressView.describeLabel.font = FourteenTypeface;
-    self.addressView.describeLabel.textColor = GrayH1;
     [self.storeInfostackView addArrangedSubview:self.addressView];
+    /** 具体地址 */
+    self.addressLabel = [[UILabel alloc] init];
+    self.addressLabel.textAlignment = NSTextAlignmentRight;
+    self.addressLabel.font = FourteenTypeface;
+    self.addressLabel.textColor = GrayH1;
+    [self.addressView addSubview:self.addressLabel];
     /** 营业时间 */
     self.timeView = [[UsedCellView alloc] init];
     self.timeView.usedCellBtn.tag = StoreTimeBtnAction;
@@ -85,7 +89,7 @@
     self.qrCodeView.usedCellBtn.tag = StoreQrBtnAction;
     self.qrCodeView.isCellImageSize = YES;
     self.qrCodeView.isCellImage = YES;
-    self.qrCodeView.isArrow = YES;
+//    self.qrCodeView.isArrow = YES;
     self.qrCodeView.cellLabel.text = @"微信公众二维码";
     self.qrCodeView.describeLabel.font = FourteenTypeface;
     self.qrCodeView.describeLabel.textColor = GrayH1;
@@ -118,6 +122,7 @@
     }];
     /** 图片bg */
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.top.equalTo(self.imageBgView.mas_top);
         make.left.equalTo(self.imageBgView.mas_left);
         make.bottom.equalTo(self.imageBgView.mas_bottom);
@@ -139,12 +144,12 @@
     [self.addressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(@50);
     }];
-    [self.addressView.arrowImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.addressView.mas_right).offset(16);
-    }];
-    [self.addressView.describeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 具体地址 */
+    [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
         make.left.equalTo(self.addressView.mas_left).offset(130);
-        make.right.equalTo(self.addressView.arrowImage.mas_left).offset(16);
+        make.right.equalTo(self.addressView.mas_right).offset(-45);
+        make.centerY.mas_equalTo(self.addressView.cellLabel.centerY);
     }];
     /** 营业时间 */
     [self.timeView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -11,7 +11,7 @@
 @implementation AddCarNetwork
 
 /** 添加用户车辆 */
-+ (void)addUserCarParams:(NSMutableDictionary *)params success:(void(^)(ChangeInfoNetWork *changeUserCar))success {
++ (void)addUserCarParams:(NSMutableDictionary *)params success:(void(^)(AddCarNetwork *addCarNetwork))success {
     /*/index.php?c=provider_user_car&a=add&v=1
      provider_user_id 	int 	是 	用户id
      car_brand_id 	int 	是 	车品牌id
@@ -25,10 +25,10 @@
         PDLog(@"responseObject%@", responseObject);
         PDLog(@"params%@", params);
         if ([[NSString stringWithFormat:@"%@", responseObject[@"code"]] isEqual:@"0"]) {
-            ChangeInfoNetWork *changeUserCar = [ChangeInfoNetWork mj_objectWithKeyValues:responseObject[@"data"]];
+            AddCarNetwork *addCarNetwork = [AddCarNetwork mj_objectWithKeyValues:responseObject[@"data"]];
             // 请求成功
             if (success) {
-                success(changeUserCar);
+                success(addCarNetwork);
             }
         }else {
             [MBProgressHUD showError:responseObject[@"msg"]];

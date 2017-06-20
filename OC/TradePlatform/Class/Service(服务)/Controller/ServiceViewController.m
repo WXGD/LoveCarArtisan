@@ -10,18 +10,32 @@
 // 下级控制器
 #import "CommodityShowStyleViewController.h"
 #import "AddCommodityViewController.h"
+#import "AdminServiceClassViewController.h"
 // 单利
 #import "ServiceCategoryHandle.h"
+// 阴影框架
+#import <QuartzCore/QuartzCore.h>
 
-@interface ServiceViewController ()
+@interface ServiceViewController ()<AdminServiceClassDelegate>
 
-@property (nonatomic, strong) NSMutableArray *commodityTypeArray;
+/** 服务管理模型 */
+@property (strong, nonatomic) AdminServiceModel *adminServiceModel;
+/** 已经选择的服务 */
+@property (strong, nonatomic) NSMutableArray *haveServiceClassArray;
 /** 0-下架 1-在售 2-全部（ */
 @property (nonatomic, assign) NSInteger status;
 
 @end
 
 @implementation ServiceViewController
+
+#pragma mark - get方法
+- (NSMutableArray *)haveServiceClassArray {
+    if (!_haveServiceClassArray) {
+        _haveServiceClassArray = [[NSMutableArray alloc] init];
+    }
+    return _haveServiceClassArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,30 +50,23 @@
 #pragma mark - 网络请求
 - (void)serviceRequestData {
     // 加载服务类别数据
-    self.commodityTypeArray = [ServiceCategoryHandle sharedInstance].serviceWholeCategoryArray;
+    self.adminServiceModel = [ServiceCategoryHandle sharedInstance].adminServiceModel;
+    /** 已经选择的服务 */
+    self.haveServiceClassArray = [NSMutableArray arrayWithArray:[ServiceCategoryHandle sharedInstance].serviceWholeCategoryArray];
+    // 刷新界面
     [self.magicView reloadData];
     // 判断是否有类型数据，如果没有等请求成功后，在次刷新界面
-    if (self.commodityTypeArray.count == 0) {
+    if (self.haveServiceClassArray.count == 0) {
         [ServiceCategoryHandle sharedInstance].requestCategorySuccessBlock = ^ () {
-            self.commodityTypeArray = [ServiceCategoryHandle sharedInstance].serviceWholeCategoryArray;
+            [MBProgressHUD hideHUD];
+            // 加载服务类别数据
+            self.adminServiceModel = [ServiceCategoryHandle sharedInstance].adminServiceModel;
+            /** 已经选择的服务 */
+            self.haveServiceClassArray = [NSMutableArray arrayWithArray:[ServiceCategoryHandle sharedInstance].serviceWholeCategoryArray];
+            // 刷新界面
             [self.magicView reloadData];
         };
     }
-
-//    // 获取商户信息user
-//    MerchantInfoModel *merchantInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:AccountPath];
-//    // 请求商品类型
-//    /*/index.php?c=goods_category&a=list&v=1
-//     provider_id 	int 	是 	服务商id
-//     start 	int 	否 	记录开始位置,默认为0
-//     pageSize 	int 	否 	每页显示条数，默认为0 (代表全部)     */
-//    // 网络请求参数
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    params[@"provider_id"] = merchantInfo.provider_id; // 服务商id
-//    [ServiceProviderModel requestServiceTypeListParams:params success:^(NSMutableArray *commodityTypeArray) {
-//        self.commodityTypeArray = commodityTypeArray;
-//        [self.magicView reloadData];
-//    }];
 }
 #pragma mark - 按钮点击方法
 //
@@ -89,6 +96,48 @@
 }
 
 
+// 管理服务类别
+- (void)subscribeAction {
+    AdminServiceClassViewController *adminServiceClassVC = [[AdminServiceClassViewController alloc] init];
+    /** 已添加服务类别数据 */
+    adminServiceClassVC.haveChosenArray = [NSMutableArray arrayWithArray:self.adminServiceModel.used_goods_category];
+    /** 未添加服务类别数据 */
+    adminServiceClassVC.notChosenArray = [NSMutableArray arrayWithArray:self.adminServiceModel.unUsed_goods_category];
+    /** 管理修改代理 */
+    adminServiceClassVC.delegate = self;
+    [self.navigationController pushViewController:adminServiceClassVC animated:YES];
+}
+
+#pragma mark - 管理修改代理
+// 确认修改
+- (void)confirmReviseDelegate:(NSMutableArray *)haveChosenArray notChosenArray:(NSMutableArray *)notChosenArray {
+//    // 销毁服务类别单利
+//    [ServiceCategoryHandle destroyHandle];
+//    [MBProgressHUD showMessage:@"加载中..."];
+//    // 网络请求
+//    [self serviceRequestData];
+//    // 刷新界面
+//    [self.magicView reloadData];
+    /** 已经选择的服务 */
+    self.haveServiceClassArray = [NSMutableArray arrayWithArray:haveChosenArray];
+    ServiceProviderModel *wholeTypeModel = [[ServiceProviderModel alloc] init];
+    wholeTypeModel.goods_category_id = 0;
+    wholeTypeModel.name = @"全部";
+    [self.haveServiceClassArray insertObject:wholeTypeModel atIndex:0];
+    // 刷新界面
+    [self.magicView reloadData];
+    /** 修改单利数据 */
+    // 加载服务类别数据
+    [ServiceCategoryHandle sharedInstance].adminServiceModel.used_goods_category = [NSMutableArray arrayWithArray:haveChosenArray];
+    [ServiceCategoryHandle sharedInstance].adminServiceModel.unUsed_goods_category = [NSMutableArray arrayWithArray:notChosenArray];
+    // 可用服务数组
+    [ServiceCategoryHandle sharedInstance].serviceCategoryArray = [NSMutableArray arrayWithArray:haveChosenArray];
+    // 添加全部选项的可用服务
+    [ServiceCategoryHandle sharedInstance].serviceWholeCategoryArray = [NSMutableArray arrayWithArray:haveChosenArray];
+    [[ServiceCategoryHandle sharedInstance].serviceWholeCategoryArray insertObject:wholeTypeModel atIndex:0];
+}
+
+
 #pragma mark - 布局nav
 - (void)serviceLayoutNAV {
     NSArray *segmentedArray = [NSArray arrayWithObjects:@"在售",@"下架",nil];
@@ -102,8 +151,14 @@
     self.status = 1;
     // 左边
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backImage"] style:UIBarButtonItemStyleDone target:self action:@selector(statisticsNavLeftBtnAction)];
-    // 右边
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_add"] style:UIBarButtonItemStyleDone target:self action:@selector(serviceRightBarButtonItmeAction)];
+    
+    // 获取商户信息user
+    MerchantInfoModel *merchantInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:AccountPath];
+    // 分店不能添加商品
+    if (merchantInfo.is_initial_provider == 1) { // 总店
+        // 右边
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_add"] style:UIBarButtonItemStyleDone target:self action:@selector(serviceRightBarButtonItmeAction)];
+    }
 }
 
 #pragma mark - 布局视图
@@ -112,11 +167,27 @@
     self.magicView.sliderColor = ThemeColor;
     self.magicView.sliderWidth = 30;
     self.magicView.separatorHidden = YES;
+    
+    // 获取商户信息user
+    MerchantInfoModel *merchantInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:AccountPath];
+    // 判断如果是分店，有管理按钮
+    if (merchantInfo.is_initial_provider == 0) {
+        // 管理按钮
+        UIButton *adminBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 44)];
+        [adminBtn setBackgroundColor:WhiteColor];
+        [adminBtn setImage:[UIImage imageNamed:@"service_admin"] forState:UIControlStateNormal];
+        [adminBtn addTarget:self action:@selector(subscribeAction) forControlEvents:UIControlEventTouchUpInside];
+        self.magicView.rightNavigatoinItem = adminBtn;
+        adminBtn.layer.shadowOpacity = 0.5;// 阴影透明度
+        adminBtn.layer.shadowColor = GrayH5.CGColor;// 阴影的颜色
+        adminBtn.layer.shadowRadius = 3;// 阴影扩散的范围控制
+        adminBtn.layer.shadowOffset  = CGSizeMake(-2, 0);// 阴影的范围
+    }
 }
 #pragma mark - VTMagicViewDataSource
 - (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
     NSMutableArray *titleList = [NSMutableArray array];
-    for (ServiceProviderModel *commodityType in self.commodityTypeArray) {
+    for (ServiceProviderModel *commodityType in self.haveServiceClassArray) {
         [titleList addObject:commodityType.name];
     }
     return titleList;
@@ -140,7 +211,7 @@
     if (!commodityShowStyleVC) {
         commodityShowStyleVC = [[CommodityShowStyleViewController alloc] init];
     }
-    commodityShowStyleVC.commodityTypeModel = self.commodityTypeArray[pageIndex];
+    commodityShowStyleVC.commodityTypeModel = self.haveServiceClassArray[pageIndex];
     commodityShowStyleVC.status = self.status;
     return commodityShowStyleVC;
 }

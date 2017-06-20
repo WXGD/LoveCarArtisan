@@ -12,6 +12,8 @@
 // 下级控制器
 #import "UserInfoViewController.h"
 #import "CashierViewController.h"
+// model
+#import "CouponModel.h"
 
 @interface PaySuccessViewController ()
 
@@ -26,13 +28,26 @@
     [super viewDidLoad];
     // 布局nav
     [self paySuccessLayoutNAV];
-    // 布局视图
-    [self paySuccessLayoutView];
-    // 界面赋值
-    [self paySuccessAssignment];
+    // 请求服务商优惠券列表
+    [self requestMerchantCouponList];
 }
 #pragma mark - 网络请求
-
+// 请求服务商优惠券列表
+- (void)requestMerchantCouponList {
+    /*/index.php?c=coupon&a=list&v=1
+     provider_user_id 	int 	是 	用户id
+     provider_id 	int 	是 	服务商id       */
+    // 拼接请求参数
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"provider_user_id"] = [NSString stringWithFormat:@"%ld", self.userInfo.provider_user_id]; // 用户id
+    params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商id
+    [CouponInfoModel requestMerchantCouponListParams:params success:^(NSMutableArray *couponArray) {
+        // 布局视图
+        [self paySuccessLayoutView:couponArray];
+        // 界面赋值
+        [self paySuccessAssignment];
+    }];
+}
 #pragma mark - 按钮点击方法
 // nav右边按钮
 - (void)paySuccessRightBarBtnAction {
@@ -79,7 +94,7 @@
 #pragma mark - 界面赋值
 - (void)paySuccessAssignment {
     // 判断会员卡信息是否完善
-    if (self.userInfo.is_completed != 0) { // 不完善
+    if (self.userInfo.is_completed != 0) { // 完善
         [self.paySuccessView.perfectInfoView removeFromSuperview];
         [self.paySuccessView.orderInfoBackView removeArrangedSubview:self.paySuccessView.perfectInfoView];
     }
@@ -95,9 +110,13 @@
 }
 
 #pragma mark - 布局视图
-- (void)paySuccessLayoutView {
+- (void)paySuccessLayoutView:(NSMutableArray *)couponArray {
     /** 付款成功view */
     self.paySuccessView = [[PaySuccessView alloc] init];
+    /** 用户信息(修改用户信息时需要) */
+    self.paySuccessView.userInfo = self.userInfo;
+    /** 优惠券数据 */
+    self.paySuccessView.couponArray = couponArray;
     /** 完善信息按钮 */
     [self.paySuccessView.perfectInfoBtn addTarget:self action:@selector(paySuccessBtnAvtion:) forControlEvents:UIControlEventTouchUpInside];
     /** 继续收款 */

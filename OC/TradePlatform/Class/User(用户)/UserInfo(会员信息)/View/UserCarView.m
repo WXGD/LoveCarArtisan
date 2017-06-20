@@ -83,6 +83,13 @@
     self.quiryBenefitBtn.layer.borderWidth = 0.5;
     self.quiryBenefitBtn.layer.borderColor = ThemeColor.CGColor;
     [self.operationView addSubview:self.quiryBenefitBtn];
+    /** 查看行驶证 */
+    self.seeDrivingLicenseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.seeDrivingLicenseBtn setTitle:@"查看行驶证" forState:UIControlStateNormal];
+    [self.seeDrivingLicenseBtn setTitleColor:ThemeColor forState:UIControlStateNormal];
+    self.seeDrivingLicenseBtn.titleLabel.font = FourteenTypeface;
+    [self addSubview:self.seeDrivingLicenseBtn];
+
 }
 
 - (void)layoutSubviews {
@@ -134,6 +141,12 @@
         make.centerY.equalTo(self.operationView.mas_centerY);
         make.right.equalTo(self.useCarValuationBtn.mas_left).offset(-16);
         make.size.mas_equalTo(CGSizeMake(59, 25));
+    }];
+    /** 查看行驶证 */
+    [self.seeDrivingLicenseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.centerY.equalTo(self.carBrandImage.mas_centerY);
+        make.right.equalTo(self.mas_right).offset(-16);
     }];
     /** self */
     [self mas_makeConstraints:^(MASConstraintMaker *make) {

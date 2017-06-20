@@ -9,7 +9,20 @@
 #import "AlertListModel.h"
 #import "CommodityShowStyleModel.h"
 
-@interface ServiceProviderModel : AlertListModel 
+
+@interface AdminServiceModel : NSObject
+
+/*  "used_goods_category": [] #可用服务,
+ "unUsed_goods_category": []  #不可用服务 */
+/** 可用服务 */
+@property (nonatomic, strong) NSMutableArray *used_goods_category;
+/** 不可用服务 */
+@property (nonatomic, strong) NSMutableArray *unUsed_goods_category;
+
+@end
+
+
+@interface ServiceProviderModel : AlertListModel
 
 /*  "goods_category_id": 1  #商品分类id,
  "name": "洗车"  #商品分类名称*/
@@ -26,9 +39,7 @@
  "goods_category_name": "洗车"  #服务类别名称,  **/
 /** 商品分类名称 */
 @property (nonatomic, copy) NSString *goods_category_name;
-
-
-
+/** 自加字段  **/
 /** 选中标记 */
 @property (nonatomic, assign) BOOL checkMark;
 

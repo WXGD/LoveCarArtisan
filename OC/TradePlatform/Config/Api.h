@@ -31,7 +31,7 @@
 
 
 /** 日志开关 */ // DEBUG
-#ifdef DEBUG
+#ifdef DE
 #define PDLog(...) NSLog(__VA_ARGS__)
 #else
 #define PDLog(...)

@@ -90,8 +90,11 @@
     self.commodityOriginalPriceLable.viceLabel.text = [NSString stringWithFormat:@"%.2f元", commodityShowModel.price];
     /** 商品现价 */
     self.commodityPresentPriceLabel.viceLabel.text = [NSString stringWithFormat:@"%.2f元", commodityShowModel.sale_price];
+}
+/** 商品状态 0-下架 1-在售 */
+- (void)setStatus:(NSInteger)status {
     // 商品状态 0-下架 1-在售
-    if (commodityShowModel.status == 0) {
+    if (status == 0) {
         /** 商品名称 */
         self.commodityNameLabel.textColor = GrayH1;
         /** 商品现价 */
@@ -100,7 +103,7 @@
         [self.shelvesBtn setHidden:NO];
         /** 下架 */
         [self.theShelfBtn setHidden:YES];
-    }else if (commodityShowModel.status == 1) {
+    }else if (status == 1) {
         /** 商品名称 */
         self.commodityNameLabel.textColor = Black;
         /** 商品现价 */
@@ -111,7 +114,6 @@
         [self.theShelfBtn setHidden:NO];
     }
 }
-
 
 - (void)layoutSubviews {
     [super layoutSubviews];

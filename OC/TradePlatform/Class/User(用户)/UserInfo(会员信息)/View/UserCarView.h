@@ -22,5 +22,7 @@
 @property (strong, nonatomic) UIButton *useCarValuationBtn;
 /** 查保险 */
 @property (strong, nonatomic) UIButton *quiryBenefitBtn;
+/** 查看行驶证 */
+@property (strong, nonatomic) UIButton *seeDrivingLicenseBtn;
 
 @end
