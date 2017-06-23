@@ -23,13 +23,14 @@
         // 通知
         // 当UITextView的文字发生改变的时候，UITextView自己会发出一个UITextViewTextDidChangeNotification通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:self];
-        
-        self.wordLimitLabel = [[UILabel alloc] init];
-        _wordLimitLabel.text = self.wordLimit;
-        _wordLimitLabel.textAlignment = NSTextAlignmentLeft;
-        _wordLimitLabel.font = [UIFont systemFontOfSize:12];
-        [self.superview addSubview:_wordLimitLabel];
-       // NSLog(@"%@", self.superview);
+        if (self.wordLimit.length !=0) {
+            self.wordLimitLabel = [[UILabel alloc] init];
+            _wordLimitLabel.text = self.wordLimit;
+            _wordLimitLabel.textAlignment = NSTextAlignmentLeft;
+            _wordLimitLabel.font = [UIFont systemFontOfSize:12];
+            [self.superview addSubview:_wordLimitLabel];
+           // NSLog(@"%@", self.superview);
+        }
     }
     return self;
 }
@@ -43,11 +44,13 @@
         // 当UITextView的文字发生改变的时候，UITextView自己会发出一个UITextViewTextDidChangeNotification通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:self];
         
-        self.wordLimitLabel = [[UILabel alloc] init];
-        _wordLimitLabel.text = self.wordLimit;
-        _wordLimitLabel.textAlignment = NSTextAlignmentLeft;
-        _wordLimitLabel.font = [UIFont systemFontOfSize:12];
-        [self addSubview:_wordLimitLabel];
+        if (self.wordLimit.length !=0) {
+            self.wordLimitLabel = [[UILabel alloc] init];
+            _wordLimitLabel.text = self.wordLimit;
+            _wordLimitLabel.textAlignment = NSTextAlignmentLeft;
+            _wordLimitLabel.font = [UIFont systemFontOfSize:12];
+            [self addSubview:_wordLimitLabel];
+        }
     }
     return self;
 }

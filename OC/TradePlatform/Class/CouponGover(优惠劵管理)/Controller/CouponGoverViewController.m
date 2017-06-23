@@ -75,6 +75,22 @@
     if (!couponContentVC) {
         couponContentVC = [[CouponContentViewController alloc] init];
     }
+    switch (pageIndex) {
+        case 0: {
+            couponContentVC.couponState = 1; // 启用
+            break;
+        }
+        case 1: {
+            couponContentVC.couponState = 0; // 禁用
+            break;
+        }
+        case 2: {
+            couponContentVC.couponState = 2; // 过期
+            break;
+        }
+        default:
+            break;
+    }
     return couponContentVC;
 }
 

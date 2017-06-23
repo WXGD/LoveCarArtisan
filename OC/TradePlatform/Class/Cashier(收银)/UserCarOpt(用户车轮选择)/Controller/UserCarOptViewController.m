@@ -45,7 +45,7 @@
     params[@"mobile"] = self.userModel.mobile; // 手机号
     // 下拉刷新
     @weakify(self)
-    self.carOptTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.carOptTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求
         [userCarOpt userCarOptRefreshRequestData:self.carOptTable params:params viewController:self success:^(NSMutableArray *userCarOptArray) {
@@ -55,10 +55,13 @@
             [self.carOptArray removeAllObjects];
             // 判断是否有数据
             if (userCarOptArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.carOptTable.mas_centerX);
                         make.centerY.equalTo(self.carOptTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {

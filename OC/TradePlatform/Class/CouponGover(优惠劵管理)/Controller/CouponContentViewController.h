@@ -10,4 +10,7 @@
 
 @interface CouponContentViewController : RootViewController
 
+/** 优惠劵状态 */
+@property (assign, nonatomic) NSInteger couponState;
+
 @end

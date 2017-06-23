@@ -57,7 +57,7 @@
   PendOrderModel *orderModel = [[PendOrderModel alloc] init];
   // 下拉刷新
   @weakify(self) self.tableVi.mj_header =
-      [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+      [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
             // 网络请求参数
             NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -75,19 +75,17 @@
                               [self.pendOrderArray removeAllObjects];
                               // 判断是否有数据
                               if (orderArray.count == 0) {
-                                [self showNoDataView:^(UILabel *noLabel,
-                                                       UIImageView *noImage) {
-                                  [noLabel mas_remakeConstraints:^(
-                                               MASConstraintMaker *make) {
-                                    make.centerX.equalTo(
-                                        self.tableVi.mas_centerX);
-                                    make.centerY.equalTo(
-                                        self.tableVi.mas_centerY);
-                                    noLabel.text = @"暂无挂单";
-                                    noImage.image =
-                                        [UIImage imageNamed:@"pendorder_zero"];
+                                  [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                                      noLabel.text = @"暂无挂单";
+                                      noImage.image = [UIImage imageNamed:@"placeholder_order"];
+                                      [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                                          make.centerX.equalTo(self.tableVi.mas_centerX);
+                                          make.centerY.equalTo(self.tableVi.mas_centerY);
+                                          make.top.equalTo(noImage.mas_top);
+                                          make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                                          make.width.mas_equalTo(ScreenW);
+                                      }];
                                   }];
-                                }];
                               } else {
                                 self.pendOrderArray = orderArray;
                               }

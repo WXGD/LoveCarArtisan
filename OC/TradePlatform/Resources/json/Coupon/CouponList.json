@@ -1,0 +1,30 @@
+{
+    "code" : "0",
+    "msg" : "成功",
+    "data" :     [
+                  {
+                  "all_service" :             {
+                  "goods_category_id" :                 [
+                                                         2
+                                                         ],
+                  "goods_id" :                 [
+                  ],
+                  "used_service_text" : "全部美容,",
+                  },
+                  "available_num" : "0",
+                  "coupon_id" : "21",
+                  "description" : "Aaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "expire_day" : "6",
+                  "full_money" : "5.00",
+                  "grant_end_time" : "2017-06-30",
+                  "grant_start_time" : "2017-06-22",
+                  "is_grant" : "0",
+                  "limit_num_type : "1",
+                  "money" : "5.80",
+                  "name" : "Text",
+                  "num" : "12",
+                  "status" : "1",
+                  }
+    ]
+}
+

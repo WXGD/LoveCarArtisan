@@ -37,7 +37,7 @@
     AccountBankModel *accountBankModel = [[AccountBankModel alloc] init];
     // 下拉刷新
     @weakify(self) self.accountBankTab.mj_header =
-    [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求参数
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -51,17 +51,15 @@
             [self.accountBankArr removeAllObjects];
             // 判断是否有数据
             if (!accountBankModel.DefaultModel && accountBankModel.common.count==0) {
-                [self showNoDataView:^(UILabel *noLabel,
-                                       UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(
-                                                     MASConstraintMaker *make) {
-                        make.centerX.equalTo(
-                                             self.accountBankTab.mas_centerX);
-                        make.centerY.equalTo(
-                                             self.accountBankTab.mas_centerY);
-                        noLabel.text = @"暂无银行卡";
-                        noImage.image =
-                        [UIImage imageNamed:@"pendorder_zero"];
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    noLabel.text = @"暂无银行卡";
+                    noImage.image = [UIImage imageNamed:@"placeholder_order"];
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.equalTo(self.accountBankTab.mas_centerX);
+                        make.centerY.equalTo(self.accountBankTab.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             } else {

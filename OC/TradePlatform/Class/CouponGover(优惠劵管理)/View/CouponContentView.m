@@ -7,17 +7,11 @@
 //
 
 #import "CouponContentView.h"
-// view
-#import "CouponContentCell.h"
 
 @interface CouponContentView ()<UITableViewDelegate, UITableViewDataSource>
 
-/** 内容table */
-@property (strong, nonatomic) UITableView *contentTable;
 /** 按钮背景 */
-@property (strong, nonatomic) UIView *contentBackView;
-/** 按钮 */
-@property (strong, nonatomic) UIButton *addCouponBtn;
+@property (strong, nonatomic) UIView *buttonBackView;
 
 @end
 
@@ -38,22 +32,23 @@
     self.contentTable.dataSource = self;
     self.contentTable.rowHeight = 150;
     self.contentTable.backgroundColor = CLEARCOLOR;
+    self.contentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self addSubview:self.contentTable];
     /** 按钮背景 */
-    self.contentBackView = [[UIView alloc] init];
-    self.contentBackView.backgroundColor = WhiteColor;
-    [self addSubview:self.contentBackView];
-    /** 按钮 */
+    self.buttonBackView = [[UIView alloc] init];
+    self.buttonBackView.backgroundColor = WhiteColor;
+    [self addSubview:self.buttonBackView];
+    /** 新增优惠劵 */
     self.addCouponBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.addCouponBtn.backgroundColor = ThemeColor;
     self.addCouponBtn.layer.cornerRadius = 2;
     self.addCouponBtn.clipsToBounds = YES;
-    [self.addCouponBtn setTitle:@"确认查询" forState:UIControlStateNormal];
+    [self.addCouponBtn setTitle:@"新增优惠劵" forState:UIControlStateNormal];
     [self.addCouponBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     self.addCouponBtn.titleLabel.font = SixteenTypeface;
     self.addCouponBtn.layer.masksToBounds = YES;
     self.addCouponBtn.layer.cornerRadius = 2;
-    [self.contentBackView addSubview:self.addCouponBtn];
+    [self.buttonBackView addSubview:self.addCouponBtn];
 }
 
 
@@ -65,11 +60,11 @@
         @strongify(self)
         make.top.equalTo(self.mas_top);
         make.left.equalTo(self.mas_left);
-        make.bottom.equalTo(self.contentBackView.mas_top);
+        make.bottom.equalTo(self.buttonBackView.mas_top);
         make.right.equalTo(self.mas_right);
     }];
     /** 按钮背景 */
-    [self.contentBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.buttonBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.left.equalTo(self.mas_left);
         make.bottom.equalTo(self.mas_bottom);
@@ -79,27 +74,72 @@
     /** 按钮 */
     [self.addCouponBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.top.equalTo(self.contentBackView.mas_top).offset(5);
-        make.left.equalTo(self.contentBackView.mas_left).offset(16);
-        make.bottom.equalTo(self.contentBackView.mas_bottom).offset(-5);
-        make.right.equalTo(self.contentBackView.mas_right).offset(-16);
+        make.top.equalTo(self.buttonBackView.mas_top).offset(5);
+        make.left.equalTo(self.buttonBackView.mas_left).offset(16);
+        make.bottom.equalTo(self.buttonBackView.mas_bottom).offset(-5);
+        make.right.equalTo(self.buttonBackView.mas_right).offset(-16);
     }];
 }
 
 
-#pragma mark - tableviewDegate、DataSource
+#pragma mark - tableview代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.couponArray.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID = @"contentCell";
     CouponContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[CouponContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    /** 优惠劵模型 */
+    cell.couponGoverModel = [self.couponArray objectAtIndex:indexPath.row];
+    /** 优惠劵状态 */
+    cell.couponState = self.couponState;
+    /** 发劵记录 */
+    cell.grantRecordBtn.tag = indexPath.row;
+    [cell.grantRecordBtn addTarget:self action:@selector(grantRecordBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    /** 禁用 */
+    cell.disableBtn.tag = indexPath.row;
+    [cell.disableBtn addTarget:self action:@selector(disableBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    /** 发劵 */
+    cell.grantBtn.tag = indexPath.row;
+    [cell.grantBtn addTarget:self action:@selector(grantBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    /** 启用 */
+    cell.enableBtn.tag = indexPath.row;
+    [cell.enableBtn addTarget:self action:@selector(enableBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
-
+/** 编辑优惠劵 */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (_delegate && [_delegate respondsToSelector:@selector(editCoupon:)]) {
+        [_delegate editCoupon:indexPath];
+    }
+}
+/** 发劵记录 */
+- (void)grantRecordBtnAction:(UIButton *)button {
+    if (_delegate && [_delegate respondsToSelector:@selector(grantRecordAction:)]) {
+        [_delegate grantRecordAction:button];
+    }
+}
+/** 禁用 */
+- (void)disableBtnAction:(UIButton *)button {
+    if (_delegate && [_delegate respondsToSelector:@selector(disableAction:)]) {
+        [_delegate disableAction:button];
+    }
+}
+/** 发劵 */
+- (void)grantBtnAction:(UIButton *)button {
+    if (_delegate && [_delegate respondsToSelector:@selector(grantAction:)]) {
+        [_delegate grantAction:button];
+    }
+}
+/** 启用 */
+- (void)enableBtnAction:(UIButton *)button {
+    if (_delegate && [_delegate respondsToSelector:@selector(enableAction:)]) {
+        [_delegate enableAction:button];
+    }
+}
 
 @end

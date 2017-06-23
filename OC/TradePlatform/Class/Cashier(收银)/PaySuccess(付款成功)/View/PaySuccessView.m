@@ -60,8 +60,8 @@
     }
     cell.couponCellType = ChoiceGrantCouponStyle;
     cell.couponInfoModel = [self.couponArray objectAtIndex:indexPath.row];
-    cell.giveBtn.tag = indexPath.row;
-    [cell.giveBtn addTarget:self action:@selector(giveBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    cell.giveCouponView.button.tag = indexPath.row;
+    [cell.giveCouponView.button addTarget:self action:@selector(giveBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

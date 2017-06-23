@@ -65,7 +65,7 @@
     SearchUserNetwork *searchUser = [[SearchUserNetwork alloc] init];
     // 下拉刷新
     @weakify(self)
-    self.searchVCView.userTableView.userTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.searchVCView.userTableView.userTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         if (self.searchTFView.searchTF.text.length == 0) {
             // 结束下拉刷新
@@ -92,10 +92,13 @@
                 [self.searchVCView.userTableView.userArray removeAllObjects];
                 [self.searchVCView.userTableView.userTable reloadData];
                 // 展示无数据占位
-                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                        make.centerX.equalTo(self.searchVCView.userTableView.userTable.mas_centerX);
-                        make.centerY.equalTo(self.searchVCView.userTableView.userTable.mas_centerY).offset(-20);
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.equalTo(self.searchVCView.userTableView.mas_centerX);
+                        make.centerY.equalTo(self.searchVCView.userTableView.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {
@@ -134,7 +137,7 @@
     SearchUserCarNetwork *searchUserCar = [[SearchUserCarNetwork alloc] init];
     // 下拉刷新
     @weakify(self)
-    self.searchVCView.userCarTableView.userCarTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.searchVCView.userCarTableView.userCarTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         if (self.searchTFView.searchTF.text.length == 0) {
             // 结束下拉刷新
@@ -161,10 +164,13 @@
                 [self.searchVCView.userCarTableView.userCarArray removeAllObjects];
                 [self.searchVCView.userCarTableView.userCarTable reloadData];
                 // 展示无数据占位
-                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                        make.centerX.equalTo(self.searchVCView.userCarTableView.userCarTable.mas_centerX);
-                        make.centerY.equalTo(self.searchVCView.userCarTableView.userCarTable.mas_centerY).offset(-20);
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.equalTo(self.searchVCView.userCarTableView.mas_centerX);
+                        make.centerY.equalTo(self.searchVCView.userCarTableView.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {
@@ -203,7 +209,7 @@
     SearchUserCardNetwork *searchUserCard = [[SearchUserCardNetwork alloc] init];
     // 下拉刷新
     @weakify(self)
-    self.searchVCView.userCardTableView.userCardTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.searchVCView.userCardTableView.userCardTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         if (self.searchTFView.searchTF.text.length == 0) {
             // 结束下拉刷新
@@ -230,10 +236,13 @@
                 [self.searchVCView.userCardTableView.userCardArray removeAllObjects];
                 [self.searchVCView.userCardTableView.userCardTable reloadData];
                 // 展示无数据占位
-                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-                        make.centerX.equalTo(self.searchVCView.userCardTableView.userCardTable.mas_centerX);
-                        make.centerY.equalTo(self.searchVCView.userCardTableView.userCardTable.mas_centerY).offset(-20);
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.equalTo(self.searchVCView.userCardTableView.mas_centerX);
+                        make.centerY.equalTo(self.searchVCView.userCardTableView.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {

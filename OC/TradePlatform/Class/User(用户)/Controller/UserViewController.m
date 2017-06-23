@@ -58,7 +58,7 @@
     params[@"user_input"] = self.searchTFView.searchTF.text; // 用户手机号
     // 下拉刷新
     @weakify(self)
-    self.userTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.userTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求
         [self.userTableDataSource userRefreshRequestData:self.userTable params:params viewController:self success:^(NSInteger arrayCount) {
@@ -67,10 +67,13 @@
             if (arrayCount == 0) {
                 // 判断是否有数据
                 if (arrayCount == 0) {
-                    [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                        [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                        [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.centerX.equalTo(self.userTable.mas_centerX);
                             make.centerY.equalTo(self.userTable.mas_centerY);
+                            make.top.equalTo(noImage.mas_top);
+                            make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                            make.width.mas_equalTo(ScreenW);
                         }];
                     }];
                 }

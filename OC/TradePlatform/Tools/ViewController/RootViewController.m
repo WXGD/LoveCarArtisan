@@ -42,11 +42,11 @@
 
 #pragma mark - 无数据视图操作
 // 显示没有数据页面
--(void)showNoDataView:(void(^)(UILabel *noLabel, UIImageView *noImage))noDataView {
+-(void)showNoDataView:(void(^)(UILabel *noLabel, UIImageView *noImage, UIView *noDataView))noDataView {
     // 创建无数据视图
     [self noDataViewLayoutView];
     if (noDataView) {
-        noDataView(self.noDataLabel, self.noDataImageView);
+        noDataView(self.noDataLabel, self.noDataImageView, self.noDataView);
     }
 }
 // 移除无数据页面
@@ -60,7 +60,11 @@
     /** 无数据view */
     self.noDataView = [[UIView alloc] init];
     // 无数据视图，显示在tableview上面
-    [self.view addSubview:_noDataView];
+    [self.view addSubview:self.noDataView];
+    /** 无数据图片 */
+    self.noDataImageView = [[UIImageView alloc] init];
+    self.noDataImageView.image = [UIImage imageNamed:@"placeholder_big_list"];
+    [self.noDataView addSubview:self.noDataImageView];
     /** 无数据文字 */
     self.noDataLabel = [[UILabel alloc] init];
     self.noDataLabel.font = FourteenTypeface;
@@ -69,23 +73,30 @@
     self.noDataLabel.numberOfLines = 0;
     self.noDataLabel.textAlignment = NSTextAlignmentCenter;
     [self.noDataView addSubview:self.noDataLabel];
+    
+    /** 无数据view */
     @weakify(self)
-    [self.noDataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.noDataView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
         make.centerX.equalTo(self.view.mas_centerX);
         make.centerY.equalTo(self.view.mas_centerY);
+        make.top.equalTo(self.noDataImageView.mas_top);
+        make.bottom.equalTo(self.noDataLabel.mas_bottom).offset(30);
+        make.width.mas_equalTo(ScreenW);
     }];
     /** 无数据图片 */
-    self.noDataImageView = [[UIImageView alloc] init];
-    self.noDataImageView.image = [UIImage imageNamed:@"placeholder_big_list"];
-    [self.noDataView addSubview:self.noDataImageView];
     [self.noDataImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(self)
-        make.centerX.equalTo(self.noDataLabel.mas_centerX);
-        make.bottom.equalTo(self.noDataLabel.mas_top).offset(-20);
+        make.centerX.equalTo(self.noDataView.mas_centerX);
+        make.top.equalTo(self.noDataView.mas_top);
+    }];
+    /** 无数据文字 */
+    [self.noDataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self)
+        make.centerX.equalTo(self.noDataView.mas_centerX);
+        make.top.equalTo(self.noDataImageView.mas_bottom).offset(10);
     }];
 }
-
 
 
 

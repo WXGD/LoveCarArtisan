@@ -147,6 +147,18 @@
         }
     }
 };
+/** 优惠劵类型模型 */
+- (void)setCouponTypeModel:(CouponGoverModel *)couponTypeModel {
+    _couponTypeModel = couponTypeModel;
+    /** 优惠劵 */
+    self.serviceNameLabel.text = [NSString stringWithFormat:@"%@", couponTypeModel.name];
+    // 判断是否选中
+    if (couponTypeModel.checkMark) {
+        self.serviceNameLabel.textColor = ThemeColor;
+    }else {
+        self.serviceNameLabel.textColor = Black;
+    }
+}
 
 
 - (void)layoutSubviews {

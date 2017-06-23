@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger, SurplusLackViewType) {
     ExpircUserModel *expircUserModel = [[ExpircUserModel alloc] init];
     // 下拉刷新
     @weakify(self)
-    self.surplusLackView.balanceView.expireTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.surplusLackView.balanceView.expireTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         /* /index.php?c=user_track&a=list&v=1
          provider_id 	int 	是 	服务商id
          user_track_id 	int 	是 	区间列表id
@@ -147,10 +147,13 @@ typedef NS_ENUM(NSInteger, SurplusLackViewType) {
             [self.surplusLackView.balanceView.expireArray removeAllObjects];
             // 判断是否有数据
             if (expircUserArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.surplusLackView.balanceView.expireTable.mas_centerX);
                         make.centerY.equalTo(self.surplusLackView.balanceView.expireTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {
@@ -183,7 +186,7 @@ typedef NS_ENUM(NSInteger, SurplusLackViewType) {
     ExpircUserModel *expircUserModel = [[ExpircUserModel alloc] init];
     // 下拉刷新
     @weakify(self)
-    self.surplusLackView.leaveSecondView.expireTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.surplusLackView.leaveSecondView.expireTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         /* /index.php?c=user_track&a=list&v=1
          provider_id 	int 	是 	服务商id
          user_track_id 	int 	是 	区间列表id
@@ -201,10 +204,13 @@ typedef NS_ENUM(NSInteger, SurplusLackViewType) {
             [self.surplusLackView.leaveSecondView.expireArray removeAllObjects];
             // 判断是否有数据
             if (expircUserArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.surplusLackView.leaveSecondView.expireTable.mas_centerX);
                         make.centerY.equalTo(self.surplusLackView.leaveSecondView.expireTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {
@@ -345,24 +351,28 @@ typedef NS_ENUM(NSInteger, SurplusLackViewType) {
     if (bntTag==5010) {
         if (self.surplusLackView.balanceView.expireArray.count==0||!self.surplusLackView.balanceView.expireArray) {
             [self removeNoDataView];
-            [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.equalTo(self.surplusLackView.balanceView.expireTable.mas_centerX);
                     make.centerY.equalTo(self.surplusLackView.balanceView.expireTable.mas_centerY);
+                    make.top.equalTo(noImage.mas_top);
+                    make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                    make.width.mas_equalTo(ScreenW);
                 }];
             }];
-            
         }
     }else{
         if (self.surplusLackView.leaveSecondView.expireArray.count==0||!self.surplusLackView.leaveSecondView.expireArray) {
             [self removeNoDataView];
-            [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.equalTo(self.surplusLackView.leaveSecondView.expireTable.mas_centerX);
                     make.centerY.equalTo(self.surplusLackView.leaveSecondView.expireTable.mas_centerY);
+                    make.top.equalTo(noImage.mas_top);
+                    make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                    make.width.mas_equalTo(ScreenW);
                 }];
             }];
-            
         }
         if (self.leaveSecondSectionArray.count == 0) {
             // 数据请求

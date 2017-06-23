@@ -51,16 +51,19 @@
     params[@"provider_id"] = self.merchantInfo.provider_id; // 服务商id
     // 下拉刷新
     @weakify(self)
-    self.newsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.newsTableView.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         [newsNetwork newsRefreshRequestData:self.newsTableView params:params success:^(NSMutableArray *newsArray) {
             if (newsArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
                     noLabel.text = @"暂未收到消息";
-                    noImage.image = [UIImage imageNamed:@"placeholder_nothing_news"];
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    noImage.image = [UIImage imageNamed:@"placeholder_news"];
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.newsTableView.mas_centerX);
                         make.centerY.equalTo(self.newsTableView.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {

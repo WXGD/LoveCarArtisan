@@ -65,7 +65,7 @@
     params[@"provider_user_id"] = [NSString stringWithFormat:@"%ld", self.userModel.provider_user_id]; // 用户id(用户信息中查看卡信息必传)
     // 下拉刷新
     @weakify(self)
-    self.userCardListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.userCardListTableView.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求
         [cardListNetwork cardListRefreshRequestData:self.userCardListTableView params:params viewController:self success:^(NSMutableArray *userCardArray) {
@@ -75,14 +75,17 @@
             self.userCardListTableView.backgroundColor = ThemeColor;
             // 判断有无数据
             if (userCardArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
                     // 修改背景颜色
                     self.userCardListTableView.backgroundColor = VCBackground;
                     noLabel.text = @"无会员卡";
                     noImage.image = [UIImage imageNamed:@"placeholder_nothing_card"];
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.userCardListTableView.mas_centerX);
                         make.centerY.equalTo(self.userCardListTableView.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {

@@ -47,7 +47,7 @@
 - (void)commodityShowStyleRequestData {
     // 下拉刷新
     @weakify(self)
-    self.commodityShowStyleTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.commodityShowStyleTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         /*/index.php?c=goods&a=list&v=1
          provider_id 	int 	是 	服务id
@@ -67,10 +67,13 @@
             if (arrayCount == 0) {
                 // 判断是否有数据
                 if (arrayCount == 0) {
-                    [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                        [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                        [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.centerX.equalTo(self.commodityShowStyleTable.mas_centerX);
                             make.centerY.equalTo(self.commodityShowStyleTable.mas_centerY);
+                            make.top.equalTo(noImage.mas_top);
+                            make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                            make.width.mas_equalTo(ScreenW);
                         }];
                     }];
                 }
@@ -118,10 +121,13 @@
             // 移除无数据页面
             [self removeNoDataView];
             if (self.commodityShowStyleTableDataSource.rowArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.commodityShowStyleTable.mas_centerX);
                         make.centerY.equalTo(self.commodityShowStyleTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }
@@ -148,10 +154,13 @@
             // 移除无数据页面
             [self removeNoDataView];
             if (self.commodityShowStyleTableDataSource.rowArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.commodityShowStyleTable.mas_centerX);
                         make.centerY.equalTo(self.commodityShowStyleTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }

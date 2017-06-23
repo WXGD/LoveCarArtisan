@@ -15,6 +15,7 @@
 #import "CarUseModel.h"
 #import "OrderPayStateModel.h"
 #import "ExpireModel.h"
+#import "CouponGoverModel.h"
 
 @interface ServiceGoodsCell : UITableViewCell
 
@@ -34,6 +35,8 @@
 @property (strong, nonatomic) OrderPayStateModel *orderPayStateModel;
 /** 用户筛选区间 */
 @property (strong, nonatomic) ExpireModel *expireModel;
+/** 优惠劵类型模型 */
+@property (strong, nonatomic) CouponGoverModel *couponTypeModel;
 
 /** 服务，商品，师傅名称 */
 @property (strong, nonatomic) UILabel  *serviceNameLabel;

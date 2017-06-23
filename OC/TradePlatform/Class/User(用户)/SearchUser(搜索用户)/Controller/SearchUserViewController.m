@@ -39,7 +39,7 @@
 - (void)searchUserRequestData {
     // 下拉刷新
     @weakify(self)
-    self.searchUserTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.searchUserTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         /*/index.php?c=provider_user&a=list&v=1
          provider_id 	int 	是 	服务商id
@@ -57,10 +57,13 @@
             if (arrayCount == 0) {
                 // 判断是否有数据
                 if (arrayCount == 0) {
-                    [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                        [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                        [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.centerX.equalTo(self.searchUserTable.mas_centerX);
                             make.centerY.equalTo(self.searchUserTable.mas_centerY);
+                            make.top.equalTo(noImage.mas_top);
+                            make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                            make.width.mas_equalTo(ScreenW);
                         }];
                     }];
                 }

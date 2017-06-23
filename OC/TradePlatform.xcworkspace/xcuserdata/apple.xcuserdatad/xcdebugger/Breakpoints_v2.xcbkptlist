@@ -13,5 +13,133 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradePlatform/Class/Cashier(&#x6536;&#x94f6;)/Coupon(&#x4f18;&#x60e0;&#x5377;)/View/CouponViewCell.m"
+            timestampString = "519705699.119719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CouponViewCell layoutSubviews]"
+                  moduleName = "TradePlatform"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/TradePlatform/TradePlatform/Class/Cashier(%E6%94%B6%E9%93%B6)/Coupon(%E4%BC%98%E6%83%A0%E5%8D%B7)/View/CouponViewCell.m"
+                  timestampString = "519899989.400916"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "382">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[CouponViewCell layoutSubviews]_block_invoke.165"
+                  moduleName = "TradePlatform"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/TradePlatform/TradePlatform/Class/Cashier(%E6%94%B6%E9%93%B6)/Coupon(%E4%BC%98%E6%83%A0%E5%8D%B7)/View/CouponViewCell.m"
+                  timestampString = "519899989.402754"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradePlatform/Class/Cashier(&#x6536;&#x94f6;)/Coupon(&#x4f18;&#x60e0;&#x5377;)/View/CouponViewCell.m"
+            timestampString = "519705699.119719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CouponViewCell layoutSubviews]"
+                  moduleName = "TradePlatform"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/TradePlatform/TradePlatform/Class/Cashier(%E6%94%B6%E9%93%B6)/Coupon(%E4%BC%98%E6%83%A0%E5%8D%B7)/View/CouponViewCell.m"
+                  timestampString = "519899989.406548"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "1176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[CouponViewCell layoutSubviews]_block_invoke.181"
+                  moduleName = "TradePlatform"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/TradePlatform/TradePlatform/Class/Cashier(%E6%94%B6%E9%93%B6)/Coupon(%E4%BC%98%E6%83%A0%E5%8D%B7)/View/CouponViewCell.m"
+                  timestampString = "519899989.408046"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradePlatform/Class/Account(&#x8d26;&#x6237;)/SetUp(&#x8bbe;&#x7f6e;)/Feedback(&#x610f;&#x89c1;&#x53cd;&#x9988;)/FeedbackViewController.m"
+            timestampString = "519793832.600527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-textDidChange"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradePlatform/Class/Account(&#x8d26;&#x6237;)/AloneInfo(&#x4e2a;&#x4eba;&#x4fe1;&#x606f;)/Controller/AloneInfoViewController.m"
+            timestampString = "519815583.672435"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-aloneInfoAssignment"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

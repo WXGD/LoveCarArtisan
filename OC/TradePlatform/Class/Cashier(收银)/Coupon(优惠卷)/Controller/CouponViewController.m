@@ -56,7 +56,7 @@
     params[@"is_useful"] = @(1); // 是否可用
     // 下拉刷新
     @weakify(self)
-    self.couponView.usableCouponTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.couponView.usableCouponTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求
         [couponModel couponRefreshRequestData:self.couponView.usableCouponTable params:params success:^(CouponModel *couponModel) {
@@ -66,10 +66,13 @@
             [self.couponView.usableCouponArray removeAllObjects];
             // 判断是否有数据
             if (couponModel.coupons.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.couponView.usableCouponTable.mas_centerX);
                         make.centerY.equalTo(self.couponView.usableCouponTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {
@@ -121,7 +124,7 @@
     params[@"is_useful"] = @(0); // 是否可用
     // 下拉刷新
     @weakify(self)
-    self.couponView.noUsableCouponTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.couponView.noUsableCouponTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求
         [couponModel couponRefreshRequestData:self.couponView.noUsableCouponTable params:params success:^(CouponModel *couponModel) {
@@ -131,10 +134,13 @@
             [self.couponView.noUsableCouponArray removeAllObjects];
             // 判断是否有数据
             if (couponModel.coupons.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.couponView.noUsableCouponTable.mas_centerX);
                         make.centerY.equalTo(self.couponView.noUsableCouponTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {

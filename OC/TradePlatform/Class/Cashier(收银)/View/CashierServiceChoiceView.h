@@ -30,6 +30,8 @@ typedef NS_ENUM(NSInteger, CashierServiceChoiceBtnAction) {
     BalanceScreenServiceBtnAction,
     /** 余次筛选区间 */
     ThanTimesScreenServiceBtnAction,
+    /** 优惠劵类型选择 */
+    CouponTyoeChoiceBtnAction,
 };
 
 #import <UIKit/UIKit.h>

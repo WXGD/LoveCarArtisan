@@ -58,7 +58,7 @@
     DangerRecordModel *dangerRecordModel = [[DangerRecordModel alloc] init];
     // 下拉刷新
     @weakify(self) self.dangerRecordTab.mj_header =
-    [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求参数
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -72,17 +72,15 @@
             [self.dangerRecordArray removeAllObjects];
             // 判断是否有数据
             if (orderArray.count == 0) {
-                [self showNoDataView:^(UILabel *noLabel,
-                                       UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(
-                                                     MASConstraintMaker *make) {
-                        make.centerX.equalTo(
-                                             self.dangerRecordTab.mas_centerX);
-                        make.centerY.equalTo(
-                                             self.dangerRecordTab.mas_centerY);
-                        noLabel.text = @"暂无询价";
-                        noImage.image =
-                        [UIImage imageNamed:@"pendorder_zero"];
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    noLabel.text = @"暂无询价";
+                    noImage.image = [UIImage imageNamed:@"placeholder_query"];
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.equalTo(self.dangerRecordTab.mas_centerX);
+                        make.centerY.equalTo(self.dangerRecordTab.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             } else {

@@ -23,7 +23,7 @@ target 'TradePlatform' do
 	pod 'TYAttributedLabel'
 	pod 'Socket.IO-Client-Swift', '~> 9.0.1'
 
-	pod 'Pgyer', :configurations => ['Debug']
-	pod 'PgyUpdate', :configurations => ['Debug']
+	pod 'Pgyer'
+	pod 'PgyUpdate'
 	pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 end

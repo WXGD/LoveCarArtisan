@@ -16,8 +16,7 @@
 /**
  *  显示没有数据页面
  */
--(void)showNoDataView:(void(^)(UILabel *noLabel, UIImageView *noImage))noDataView;
-
+-(void)showNoDataView:(void(^)(UILabel *noLabel, UIImageView *noImage, UIView *noDataView))noDataView;
 /**
  *  移除无数据页面
  */

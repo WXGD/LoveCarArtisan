@@ -56,11 +56,13 @@
             [self.usedCarBrandTable reloadData];
             // 如果数据为空
             if (self.usedCarBrandKeys.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    noLabel.text = @"聚合数据使用过期，正在抓紧修复！";
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.usedCarBrandTable.mas_centerX);
                         make.centerY.equalTo(self.usedCarBrandTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }

@@ -57,7 +57,7 @@
     /** 服务商联系方式 */
     [encoder encodeObject:self.service_tel forKey:@"service_tel"];
     /** 登陆人联系方式 */
-    [encoder encodeObject:self.service_tel forKey:@"login_mobile"];
+    [encoder encodeObject:self.login_mobile forKey:@"login_mobile"];
     /** 微信公众号图片 */
     [encoder encodeObject:self.wxmp_qrcode forKey:@"wxmp_qrcode"];
     /** 服务商微信支付二维码 */

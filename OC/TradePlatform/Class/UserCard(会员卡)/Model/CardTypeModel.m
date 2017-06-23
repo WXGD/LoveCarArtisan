@@ -10,8 +10,11 @@
 
 @implementation CardTypeModel
 
-/** 适用服务 */
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"descri" : @"description"};
+}
 
+/** 适用服务 */
 - (void)setUsed_goods_text:(NSString *)used_goods_text {
     _used_goods_text = used_goods_text;
     if (used_goods_text.length == 0) {

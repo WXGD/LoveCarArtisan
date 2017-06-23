@@ -66,7 +66,7 @@
     params[@"staff_user_id"] = self.merchantInfo.staff_user_id; // 登录者id
     // 下拉刷新
     @weakify(self)
-    self.usedCarView.valuationRecordTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.usedCarView.valuationRecordTableView.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         [valuationNotesModel usedCarValuationListDataParams:params tableView:self.usedCarView.valuationRecordTableView success:^(NSMutableArray *valuationNotesArray) {
             // 移除无数据视图
@@ -75,11 +75,14 @@
             [self.usedCarView.valuationRecordArray removeAllObjects];
             // 判断是否有数据
             if (valuationNotesArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
                     noLabel.text = @"还没有估值记录\n去新增估值添加吧！";
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.usedCarView.valuationRecordTableView.mas_centerX);
                         make.centerY.equalTo(self.usedCarView.valuationRecordTableView.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {

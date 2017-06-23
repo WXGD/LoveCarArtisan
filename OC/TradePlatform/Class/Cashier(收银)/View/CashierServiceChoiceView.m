@@ -230,6 +230,18 @@
             return cell;
             break;
         }
+            /** 优惠劵类型选择 */
+        case CouponTyoeChoiceBtnAction:{
+            static NSString *cellID = @"couponTyoeCell";
+            ServiceGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            if (cell == nil) {
+                cell = [[ServiceGoodsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            }
+            CouponGoverModel *couponTypeModel = [self.choiceArray objectAtIndex:indexPath.row];
+            cell.couponTypeModel = couponTypeModel;
+            return cell;
+            break;
+        }
         default:
             break;
     }

@@ -84,7 +84,9 @@
  "consume_time": "2017-03-07"  #最后一次消费时间*/
 /** 最后一次消费时间 */
 @property (nonatomic, copy) NSString *consume_time;
-
+// 自加字段
+/** 当前选中标记 */
+@property (nonatomic, assign) BOOL checkMark;
 
 /** 获取用户详细信息 */
 + (void)requestUserDetailsInfo:(NSMutableDictionary *)params success:(void(^)(UserModel *userInfo))success;
@@ -93,6 +95,10 @@
 /** 获取用户手机号和车牌号 （开卡，自定义开卡） */
 + (void)requestUserPhoneAndPln:(NSMutableDictionary *)params success:(void(^)(UserModel *userInfo))success;
 
+/** 下拉刷新 */
+- (void)userRefreshRequestData:(UITableView *)tableView params:(NSMutableDictionary *)params success:(void(^)(NSMutableArray *userArray))success;
+/** 上啦加载 */
+- (void)userLoadRequestData:(UITableView *)tableView params:(NSMutableDictionary *)params success:(void(^)(NSMutableArray *userArray))success;
 
 @end
 

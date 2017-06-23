@@ -38,8 +38,6 @@
 #import "PendOrderModel.h"
 // URL跳转界面
 #import "DCURLRouter.h"
-// 下拉刷新动画
-#import "GifHeaderRefresh.h"
 
 @interface HomePageViewController ()<DropdownMenuDelegate, ServiceModuleDelegate>
 

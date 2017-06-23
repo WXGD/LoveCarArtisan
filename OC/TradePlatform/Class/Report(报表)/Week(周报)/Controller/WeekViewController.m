@@ -54,7 +54,7 @@
     params[@"type"] = @"2"; // 报表类型 1-日报 2-周报 3-月报
     // 下拉刷新
     @weakify(self)
-    self.dateReportView.orderListTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.dateReportView.orderListTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         // 网络请求
         [self.dateReportView.detaReportDataSource detaReportDropRequestData:self.dateReportView.orderListTable params:params viewController:self success:^(NSInteger arrayCount, ReportModel *current, ReportModel *last) {
@@ -66,10 +66,15 @@
             if (arrayCount == 0) {
                 // 判断是否有数据
                 if (arrayCount == 0) {
-                    [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                        [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                        noLabel.text = @"暂无银行卡";
+                        noImage.image = [UIImage imageNamed:@"placeholder_order"];
+                        [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.centerX.equalTo(self.dateReportView.orderListTable.mas_centerX);
                             make.centerY.equalTo(self.dateReportView.orderListTable.mas_centerY);
+                            make.top.equalTo(noImage.mas_top);
+                            make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                            make.width.mas_equalTo(ScreenW);
                         }];
                     }];
                 }

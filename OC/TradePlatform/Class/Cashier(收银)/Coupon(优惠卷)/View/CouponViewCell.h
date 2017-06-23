@@ -16,6 +16,8 @@ typedef NS_ENUM(NSInteger, CouponCellType) {
 };
 
 #import <UIKit/UIKit.h>
+// view
+#import "CouponInfoView.h"
 #import "CouponModel.h"
 
 
@@ -25,7 +27,7 @@ typedef NS_ENUM(NSInteger, CouponCellType) {
 @property (assign, nonatomic) CouponCellType couponCellType;
 /** 优惠券模型 */
 @property (strong, nonatomic) CouponInfoModel *couponInfoModel;
-/** 赠送／以赠送按钮 */
-@property (strong, nonatomic) UIButton *giveBtn;
+/** 赠送优惠劵view */
+@property (strong, nonatomic) CouponInfoView *giveCouponView;
 
 @end

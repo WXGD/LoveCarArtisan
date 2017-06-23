@@ -57,7 +57,7 @@
     UserMemberCardModel *userMemberCardModel = [[UserMemberCardModel alloc] init];
     // 下拉刷新
     @weakify(self)
-    self.userMemberCardView.userMemberCardTypeTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.userMemberCardView.userMemberCardTypeTable.mj_header = [GifHeaderRefresh headerWithRefreshingBlock:^{
         @strongify(self)
         /*/index.php?c=provider_card&a=statistic&v=1
          provider_id 	int 	是 	服务商id
@@ -77,10 +77,15 @@
             [self.userMemberCardView.userMemberCardTypeArray removeAllObjects];
             // 判断是否有数据
             if (userCardArray.count == 0) {
-                [self  showNoDataView:^(UILabel *noLabel, UIImageView *noImage) {
-                    [noLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                [self showNoDataView:^(UILabel *noLabel, UIImageView *noImage, UIView *noDataView) {
+                    noLabel.text = @"还没有卡，点击左上方的“新增卡”去添加一张吧！";
+                    noImage.image = [UIImage imageNamed:@"placeholder_card"];
+                    [noDataView mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.userMemberCardView.userMemberCardTypeTable.mas_centerX);
                         make.centerY.equalTo(self.userMemberCardView.userMemberCardTypeTable.mas_centerY);
+                        make.top.equalTo(noImage.mas_top);
+                        make.bottom.equalTo(noLabel.mas_bottom).offset(30);
+                        make.width.mas_equalTo(ScreenW);
                     }];
                 }];
             }else {
