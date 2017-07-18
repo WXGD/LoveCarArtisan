@@ -11,6 +11,8 @@
 		18009B751EC99E840003B929 /* serviceClass.json in Resources */ = {isa = PBXBuildFile; fileRef = 18009B741EC99E840003B929 /* serviceClass.json */; };
 		18009B7B1EC9AD680003B929 /* ServiceClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18009B791EC9AD680003B929 /* ServiceClassModel.swift */; };
 		18009B7D1EC9AD830003B929 /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18009B7C1EC9AD830003B929 /* GoodsViewController.swift */; };
+		180EBE9D1F0C8D650069854C /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180EBE9C1F0C8D650069854C /* OrderViewController.swift */; };
+		180EBEA11F0C98190069854C /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180EBEA01F0C98190069854C /* OrderCell.swift */; };
 		18130F2C1ECACCF300A525A0 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F2B1ECACCF300A525A0 /* GoodsCell.swift */; };
 		18130F311ECAD04400A525A0 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F301ECAD04400A525A0 /* CustomCell.swift */; };
 		18130F331ECAD55C00A525A0 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130F321ECAD55C00A525A0 /* Tools.swift */; };
@@ -85,6 +87,8 @@
 		18009B741EC99E840003B929 /* serviceClass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = serviceClass.json; sourceTree = "<group>"; };
 		18009B791EC9AD680003B929 /* ServiceClassModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClassModel.swift; sourceTree = "<group>"; };
 		18009B7C1EC9AD830003B929 /* GoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
+		180EBE9C1F0C8D650069854C /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		180EBEA01F0C98190069854C /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		18130F2B1ECACCF300A525A0 /* GoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		18130F301ECAD04400A525A0 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		18130F321ECAD55C00A525A0 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
@@ -221,6 +225,39 @@
 			isa = PBXGroup;
 			children = (
 				18130F2B1ECACCF300A525A0 /* GoodsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		180EBE951F0C7B880069854C /* Order(订单) */ = {
+			isa = PBXGroup;
+			children = (
+				180EBE961F0C7B880069854C /* Controller */,
+				180EBE971F0C7B880069854C /* Model */,
+				180EBE981F0C7B880069854C /* View */,
+			);
+			path = "Order(订单)";
+			sourceTree = "<group>";
+		};
+		180EBE961F0C7B880069854C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				180EBE9C1F0C8D650069854C /* OrderViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		180EBE971F0C7B880069854C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		180EBE981F0C7B880069854C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				180EBEA01F0C98190069854C /* OrderCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -464,6 +501,7 @@
 		18CC20011EA8B05A00FC2B54 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				180EBE951F0C7B880069854C /* Order(订单) */,
 				18DF12BF1EC049DF0070302D /* Service(服务) */,
 				1839C87A1EADE55C00E8B1FF /* Account(账户) */,
 				18CC20021EA8B05A00FC2B54 /* Home(首页) */,
@@ -725,7 +763,7 @@
 				TargetAttributes = {
 					18CC1FCD1EA8AF7D00FC2B54 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = PM6CHF268R;
+						DevelopmentTeam = KYFLQKR234;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -872,11 +910,13 @@
 				1839C85E1EAD9C9400E8B1FF /* HomeView.swift in Sources */,
 				1837B68E1ECEBF4400FF4455 /* AppDelegate+AppService.swift in Sources */,
 				1837B68C1ECEBF1200FF4455 /* AppDelegate+AppLifeCircle.swift in Sources */,
+				180EBE9D1F0C8D650069854C /* OrderViewController.swift in Sources */,
 				18DF12C81EC04AD70070302D /* UserTableCell.swift in Sources */,
 				1837B6921ECECB0E00FF4455 /* AccountView.swift in Sources */,
 				1837B69E1ECED8B000FF4455 /* AloneInfoView.swift in Sources */,
 				18130F2C1ECACCF300A525A0 /* GoodsCell.swift in Sources */,
 				18009B7B1EC9AD680003B929 /* ServiceClassModel.swift in Sources */,
+				180EBEA11F0C98190069854C /* OrderCell.swift in Sources */,
 				18130F311ECAD04400A525A0 /* CustomCell.swift in Sources */,
 				1837B6A01ECEDC4C00FF4455 /* SetUpViewController.swift in Sources */,
 				18CC201E1EA8B05A00FC2B54 /* NewsViewController.swift in Sources */,
@@ -1038,8 +1078,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = PM6CHF268R;
+				DEVELOPMENT_TEAM = KYFLQKR234;
 				INFOPLIST_FILE = LoveCarArtisan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1057,8 +1098,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = PM6CHF268R;
+				DEVELOPMENT_TEAM = KYFLQKR234;
 				INFOPLIST_FILE = LoveCarArtisan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheweifang.LoveCarArtisan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
